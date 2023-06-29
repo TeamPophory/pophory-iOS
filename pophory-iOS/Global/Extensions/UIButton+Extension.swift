@@ -13,7 +13,10 @@ extension UIButton {
         let attributed = NSMutableAttributedString().bold(title, size: size)
         setAttributedTitle(attributed, for: .normal)
     }
-
+    
+    
+     /// 사용 예시:
+     /// fooButton.showLoading(true)
     private func showLoading(_ isLoading: Bool) {
         if isLoading {
             var spinner = UIActivityIndicatorView(frame: bounds)

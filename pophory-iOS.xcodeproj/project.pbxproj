@@ -114,9 +114,7 @@
 		B1631F5A2A175F850050974F /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B1631F5C2A175F9C0050974F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		B1631F5F2A175FF50050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
-		B1631F622A1760020050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1631F652A1760180050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
-		B1631F682A1760310050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,7 +314,6 @@
 		B1631F3B2A175B290050974F /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				37EB69E72A4BEF4300075E4E /* Base */,
 				37DCA6922A4AB55F00FF8F90 /* AlbumDetails */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
 				37DCA6902A4AB4F000FF8F90 /* EditAlbums */,
@@ -394,7 +391,6 @@
 		B1631F612A175FF80050974F /* Consts */ = {
 			isa = PBXGroup;
 			children = (
-				B1631F622A1760020050974F /* .keep */,
 				37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */,
 				37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */,
 			);
@@ -412,7 +408,7 @@
 		B1631F672A1760210050974F /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B1631F682A1760310050974F /* .keep */,
+				37EB69E72A4BEF4300075E4E /* Base */,
 			);
 			path = Components;
 			sourceTree = "<group>";
