@@ -5,7 +5,7 @@
 //  Created by Joon Baek on 2023/06/27.
 //
 
-import Foundation
+import UIKit
 
 extension UILabel {
     
