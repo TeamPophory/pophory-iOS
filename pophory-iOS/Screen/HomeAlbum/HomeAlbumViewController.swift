@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeAlbumViewController: UIViewController {
+class HomeAlbumViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,15 +15,7 @@ class HomeAlbumViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func setupStyle() {
+        view.backgroundColor = .white
     }
-    */
-
 }

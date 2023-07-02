@@ -11,6 +11,9 @@ enum ImageLiterals {
     
     //MARK: - tab bar icon
     
+    static var tabBarHomeAlbumIcon: UIImage { .load(name: "tabBarHomeAlbumIcon") }
+    static var tabBarEditAlbumIcon: UIImage { .load(name: "tabBarEditAlbumIcon") }
+    static var tabBarMyPageIcon: UIImage { .load(name: "tabBarMyPageIcon") }
 }
 
 extension UIImage {
@@ -30,4 +33,3 @@ extension UIImage {
         return image
     }
 }
-
