@@ -5,6 +5,14 @@
 //  Created by Joon Baek on 2023/07/01.
 //
 
+/**
+ 1. Navigatable 프로토콜 채택
+ 2. var navigationBarTitleText: String? { return "회원가입" }
+ 3. viewWillAppear() {
+    setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+ }
+ */
+
 import UIKit
 
 protocol NavigationConfigurator {
@@ -15,6 +23,10 @@ protocol NavigationConfigurator {
 class PophoryNavigationConfigurator: NavigationConfigurator {
     
     // MARK: - Private Methods
+    
+    static let shared = PophoryNavigationConfigurator()
+    
+    private init() {}
     
     let customTitleFont = UIFont.systemFont(ofSize: 22, weight: .bold)
     var customTitleText = String()
