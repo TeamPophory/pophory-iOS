@@ -29,9 +29,10 @@ public class PophoryButton: UIButton {
         
         switch style {
         case .primary:
-            self.buttonFont = UIFont.systemFont(ofSize: 18, weight: .regular)
+            self.buttonFont = .h3
         case .secondary:
-            self.buttonFont = UIFont.systemFont(ofSize: 14, weight: .regular)
+            // TODO: 디자인 픽스 이후 수정
+            self.buttonFont = .h3
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
