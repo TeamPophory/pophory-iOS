@@ -42,6 +42,10 @@ final class TabBarController: UITabBarController {
         self.tabBar.unselectedItemTintColor = .pophoryGray400
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = .pophoryWhite
+        
+        let imageInset: CGFloat = 10.0
+        homeAlbumViewController.tabBarItem.imageInsets = UIEdgeInsets(top: imageInset, left: 0, bottom: -imageInset, right: 0)
+        myPageViewController.tabBarItem.imageInsets = UIEdgeInsets(top: imageInset, left: 0, bottom: -imageInset, right: 0)
 
         let viewControllers:[UIViewController] = [
             homeAlbumViewController,
