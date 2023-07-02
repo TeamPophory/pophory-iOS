@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		371A7C5D2A5120CA0095C744 /* MyAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C5C2A5120CA0095C744 /* MyAlbumViewController.swift */; };
-		371A7C612A5125070095C744 /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C602A5125070095C744 /* Navigatable.swift */; };
+		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
@@ -22,7 +21,7 @@
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
-		37DCA6942A4AB59500FF8F90 /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6932A4AB59500FF8F90 /* AlbumDetailsViewController.swift */; };
+		37DCA6942A4AB59500FF8F90 /* MyPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6932A4AB59500FF8F90 /* MyPhotoViewController.swift */; };
 		37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */; };
 		37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */; };
 		37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */; };
@@ -44,7 +43,6 @@
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
-		B1631F122A1759EA0050974F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1631F102A1759EA0050974F /* Main.storyboard */; };
 		B1631F142A1759EB0050974F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1631F132A1759EB0050974F /* Assets.xcassets */; };
 		B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1631F152A1759EB0050974F /* LaunchScreen.storyboard */; };
 		B1631F222A1759EB0050974F /* pophory-iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F212A1759EB0050974F /* pophory-iOSTests.swift */; };
@@ -81,7 +79,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		37DCA6932A4AB59500FF8F90 /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
 		371A7C602A5125070095C744 /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
@@ -117,7 +114,6 @@
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B1631F0E2A1759EA0050974F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B1631F112A1759EA0050974F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1631F132A1759EB0050974F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1631F162A1759EB0050974F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1631F182A1759EB0050974F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,14 +166,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		371A7C5B2A5120B30095C744 /* MyAlbum */ = {
-			isa = PBXGroup;
-			children = (
-				371A7C5C2A5120CA0095C744 /* MyAlbumViewController.swift */,
-			);
-			path = MyAlbum;
-			sourceTree = "<group>";
-		};
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +278,7 @@
 		37DCA6922A4AB55F00FF8F90 /* AlbumDetails */ = {
 			isa = PBXGroup;
 			children = (
-				37DCA6932A4AB59500FF8F90 /* AlbumDetailsViewController.swift */,
+				37DCA6932A4AB59500FF8F90 /* MyPhotoViewController.swift */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
@@ -380,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				37DCA6922A4AB55F00FF8F90 /* AlbumDetails */,
-				37DCA6922A4AB55F00FF8F90 /* MyPhoto */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
 				37DCA6902A4AB4F000FF8F90 /* EditAlbums */,
 				37DCA68F2A4AB4E900FF8F90 /* HomeAlbum */,
@@ -434,7 +421,6 @@
 				B1631F0C2A1759EA0050974F /* SceneDelegate.swift */,
 				B1631F132A1759EB0050974F /* Assets.xcassets */,
 				B1631F0E2A1759EA0050974F /* ViewController.swift */,
-				B1631F102A1759EA0050974F /* Main.storyboard */,
 				B1631F152A1759EB0050974F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -601,7 +587,6 @@
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
-				B1631F122A1759EA0050974F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,7 +626,7 @@
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
-				37DCA6982A4AB67500FF8F90 /* PhotoUploadViewController.swift in Sources */,
+				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
@@ -650,7 +635,7 @@
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
 				37DCA6A82A4AB71200FF8F90 /* OnboardingViewController.swift in Sources */,
 				B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */,
-				37DCA6942A4AB59500FF8F90 /* AlbumDetailsViewController.swift in Sources */,
+				37DCA6942A4AB59500FF8F90 /* MyPhotoViewController.swift in Sources */,
 				377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */,
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
@@ -661,7 +646,7 @@
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
-				371A7C5D2A5120CA0095C744 /* MyAlbumViewController.swift in Sources */,
+				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
 				37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */,
 				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
@@ -705,14 +690,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B1631F102A1759EA0050974F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1631F112A1759EA0050974F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B1631F152A1759EB0050974F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -845,21 +822,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J92QJ4K4KU;
+				DEVELOPMENT_TEAM = 6ML57N96S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.glitchhackathon.zkface;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -874,21 +852,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J92QJ4K4KU;
+				DEVELOPMENT_TEAM = 6ML57N96S3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.glitchhackathon.zkface;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
