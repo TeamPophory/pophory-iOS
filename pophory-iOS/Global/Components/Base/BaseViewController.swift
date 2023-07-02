@@ -13,8 +13,6 @@ class BaseViewController: UIViewController {
     
     // MARK: - Properties
     
-    let navigationConfigurator = PophoryNavigationConfigurator()
-    
     lazy private(set) var className: String = {
       return type(of: self).description().components(separatedBy: ".").last ?? ""
     }()
@@ -28,10 +26,6 @@ class BaseViewController: UIViewController {
     @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar()
     }
     
     override func viewDidLoad() {
@@ -59,10 +53,4 @@ class BaseViewController: UIViewController {
     
     @objc func backButtonOnClick() {}
     @objc func rightButtonOnClick() {}
-
-    // MARK: - Private Methods
-    
-    func setupNavigationBar() {
-        navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController!)
-    }
 }
