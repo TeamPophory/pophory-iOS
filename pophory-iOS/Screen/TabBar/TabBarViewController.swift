@@ -33,7 +33,7 @@ final class TabBarController: UITabBarController {
         
         editAlbumImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(33)
+            $0.bottom.equalToSuperview().inset(25)
         }
     }
 
