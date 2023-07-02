@@ -21,7 +21,6 @@
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
-		37DCA6942A4AB59500FF8F90 /* MyPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6932A4AB59500FF8F90 /* MyPhotoViewController.swift */; };
 		37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */; };
 		37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */; };
 		37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */; };
@@ -91,7 +90,6 @@
 		377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAlbumCoverView.swift; sourceTree = "<group>"; };
 		377EF7EC2A4FA8E700E3268D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationConfigurator.swift; sourceTree = "<group>"; };
-		37DCA6932A4AB59500FF8F90 /* MyPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoViewController.swift; sourceTree = "<group>"; };
 		37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		37DCA6922A4AB55F00FF8F90 /* AlbumDetails */ = {
 			isa = PBXGroup;
 			children = (
-				37DCA6932A4AB59500FF8F90 /* MyPhotoViewController.swift */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
@@ -635,7 +632,6 @@
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
 				37DCA6A82A4AB71200FF8F90 /* OnboardingViewController.swift in Sources */,
 				B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */,
-				37DCA6942A4AB59500FF8F90 /* MyPhotoViewController.swift in Sources */,
 				377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */,
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
