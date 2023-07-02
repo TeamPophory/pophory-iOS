@@ -16,6 +16,7 @@ final class HomeAlbumView: BaseView {
         let label = UILabel()
         label.font = .h1
         label.text = "포릿만의 네컷 앨범에\n소중한 추억을 보관해봐!"
+        label.asColor(targetString: "포릿만의 네컷 앨범", color: .pophoryPurple)
         label.numberOfLines = 2
         return label
     }()
