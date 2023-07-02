@@ -39,6 +39,7 @@
 		37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */; };
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
+		91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7572A51760B00C06D1B /* Navigatable.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -78,7 +79,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		371A7C602A5125070095C744 /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
@@ -108,6 +108,7 @@
 		37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		91F3A7572A51760B00C06D1B /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,7 +168,7 @@
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				371A7C602A5125070095C744 /* Navigatable.swift */,
+				91F3A7572A51760B00C06D1B /* Navigatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -625,6 +626,7 @@
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
+				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
@@ -818,7 +820,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6ML57N96S3;
+				DEVELOPMENT_TEAM = D96A3BCL3R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -848,7 +850,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6ML57N96S3;
+				DEVELOPMENT_TEAM = D96A3BCL3R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";

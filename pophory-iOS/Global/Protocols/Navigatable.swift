@@ -2,7 +2,7 @@
 //  Navigatable.swift
 //  pophory-iOS
 //
-//  Created by Joon Baek on 2023/07/02.
+//  Created by 홍준혁 on 2023/07/02.
 //
 
 import UIKit
@@ -16,5 +16,3 @@ extension Navigatable where Self: UIViewController {
         return nil
     }
 }
-
-
