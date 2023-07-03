@@ -36,7 +36,8 @@ final class AddPhotoView: UIView {
     
     private let photoInfoStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.backgroundColor = .pophoryGray200
+        stackView.axis = .vertical
+        stackView.spacing = 22
         return stackView
     }()
     
@@ -51,6 +52,33 @@ final class AddPhotoView: UIView {
             .setStyle(.primary)
             .setTitle(.addPhoto)
         return buttonBuilder.build()
+    }()
+    
+    private let dateStackView: PhotoInfoStackView = {
+        let stackView = PhotoInfoStackView()
+        stackView.setupTitle(title: "찍은 날짜")
+        stackView.setupSelected(selected: true)
+        stackView.setupIcon(icon: ImageLiterals.calanderIcon)
+        stackView.setupExplain(explain: "2020.06.06(금)")
+        return stackView
+    }()
+    
+    private let studioStackView: PhotoInfoStackView = {
+        let stackView = PhotoInfoStackView()
+        stackView.setupTitle(title: "사진관")
+        stackView.setupSelected(selected: false)
+        stackView.setupIcon(icon: ImageLiterals.downIcon)
+        stackView.setupExplain(explain: "사진관을 선택해줘")
+        return stackView
+    }()
+    
+    private let friendsStackView: PhotoInfoStackView = {
+        let stackView = PhotoInfoStackView()
+        stackView.setupTitle(title: "함께 찍은 친구")
+        stackView.setupSelected(selected: false)
+        stackView.setupIcon(icon: ImageLiterals.searchIcon)
+        stackView.setupExplain(explain: "열심히 준비중이야!")
+        return stackView
     }()
     
     // MARK: - Life Cycle
@@ -80,6 +108,7 @@ extension AddPhotoView {
         scrollView.addSubview(contentsView)
         photoAddButtonView.addSubview(photoAddButton)
         contentsView.addSubviews([photoView, photoInfoStackView])
+        photoInfoStackView.addArrangedSubviews([dateStackView, studioStackView, friendsStackView])
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -111,10 +140,22 @@ extension AddPhotoView {
         }
         
         photoInfoStackView.snp.makeConstraints {
-            $0.height.equalTo(128+22+311)
             $0.top.equalTo(photoView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(22)
+        }
+        
+        dateStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+
+        studioStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+
+        friendsStackView
+            .snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
         }
     }
     
