@@ -50,6 +50,7 @@
 		91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */; };
 		91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7782A52AC3E00C06D1B /* Photos.swift */; };
 		91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */; };
+		91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -129,6 +130,7 @@
 		91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumListResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A7782A52AC3E00C06D1B /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumPhotoListResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,7 +143,6 @@
 		B1631F272A1759EB0050974F /* pophoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pophoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F2B2A1759EB0050974F /* pophoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pophoryUITests.swift; sourceTree = "<group>"; };
 		B1631F2D2A1759EB0050974F /* pophoryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pophoryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B1631F402A175B970050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1631F442A175BDE0050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1631F472A175C780050974F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B1631F492A175D5C0050974F /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -355,6 +356,23 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
+		91F3A77C2A52AD8300C06D1B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A77D2A52ADCA00C06D1B /* Common */,
+				B1631F5E2A175FD00050974F /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		91F3A77D2A52ADCA00C06D1B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		B1631EFE2A1759EA0050974F = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +396,7 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
 			);
@@ -408,8 +427,6 @@
 				B1631F672A1760210050974F /* Components */,
 				B1631F642A1760050050974F /* Utilities */,
 				B1631F612A175FF80050974F /* Consts */,
-				B1631F5E2A175FD00050974F /* Models */,
-				B1631F3F2A175B7B0050974F /* API */,
 				B1631F3C2A175B4D0050974F /* Extensions */,
 				B1631F422A175BA30050974F /* Resources */,
 				B1631F462A175BF10050974F /* Supporting Files */,
@@ -458,14 +475,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B1631F3F2A175B7B0050974F /* API */ = {
-			isa = PBXGroup;
-			children = (
-				B1631F402A175B970050974F /* .keep */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		B1631F422A175BA30050974F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,10 +500,10 @@
 			isa = PBXGroup;
 			children = (
 				91F3A7782A52AC3E00C06D1B /* Photos.swift */,
-				91F3A7742A52AB8300C06D1B /* Album */,
-				91F3A76D2A52AA2400C06D1B /* Member */,
-				91F3A7682A52A8D000C06D1B /* Photo */,
 				91F3A7672A52A8C300C06D1B /* Studio */,
+				91F3A7682A52A8D000C06D1B /* Photo */,
+				91F3A76D2A52AA2400C06D1B /* Member */,
+				91F3A7742A52AB8300C06D1B /* Album */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -709,6 +718,7 @@
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
+				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
