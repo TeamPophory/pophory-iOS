@@ -33,6 +33,7 @@ final class NameInputViewController: BaseViewController, Navigatable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
         keyboardManager?.keyboardAddObserver()

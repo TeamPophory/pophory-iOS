@@ -12,6 +12,7 @@ class SignInViewController: BaseViewController, Navigatable {
     var navigationBarTitleText: String? { return "회원가입" }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
