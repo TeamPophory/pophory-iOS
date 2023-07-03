@@ -21,8 +21,10 @@
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4312A51E6D200FE3846 /* KeyboardManager.swift */; };
 		3782F4342A528A3600FE3846 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4332A528A3600FE3846 /* SignInView.swift */; };
-		3782F4362A528B9600FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4352A528B9600FE3846 /* StartPophoryView.swift */; };
+		3782F4362A528B9600FE3846 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */; };
+		3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */; };
+		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
 		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
 		37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */; };
@@ -97,6 +99,8 @@
 		3782F4312A51E6D200FE3846 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		3782F4332A528A3600FE3846 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryViewController.swift; sourceTree = "<group>"; };
+		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
+		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
@@ -198,7 +202,8 @@
 				377EF7E62A4F4C8700E3268D /* NameInputView.swift */,
 				377EF7E82A4F4CA500E3268D /* IDInputView.swift */,
 				377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */,
-				3782F4352A528B9600FE3846 /* StartPophoryView.swift */,
+				3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */,
+				3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -621,7 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
-				3782F4362A528B9600FE3846 /* StartPophoryView.swift in Sources */,
+				3782F4362A528B9600FE3846 /* (null) in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
 				B1631F502A175E840050974F /* String+Extension.swift in Sources */,
@@ -640,6 +645,7 @@
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
+				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
@@ -647,6 +653,7 @@
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
 				37DCA6A82A4AB71200FF8F90 /* OnboardingViewController.swift in Sources */,
 				B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */,
+				3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */,
 				377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */,
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,

@@ -8,96 +8,67 @@
 import UIKit
 import SnapKit
 
-class NameInputView: UIView {
-    
-    let headerLabel = UILabel()
-    let bodyStackView = UIStackView()
-    let bodyLabel = UILabel()
-    let inputTextField = UITextField()
-    let charCountLabel = UILabel()
-    let warningLabel = UILabel()
-    
-    lazy var nextButton: PophoryButton = {
-        let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primary)
-            .setTitle(.next)
-        return buttonBuilder.build()
+class NameInputView: BaseSignUpView {
+
+    lazy var bodyStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        return stackView
+    }()
+
+    lazy var bodyLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "포포리 사용을 위해 실명 입력이 필요해요"
+        label.textColor = .pophoryGray500
+        label.font = .t2
+        label.numberOfLines = 0
+        label.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
+        return label
+    }()
+
+    lazy var inputTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "이름(성+이름)"
+        textField.textColor = .black
+        textField.font = .t1
+        textField.layer.borderColor = UIColor.pophoryGray400.cgColor
+        textField.layer.borderWidth = 1
+        textField.makeRounded(radius: 18)
+        textField.addPadding(left: 15)
+        return textField
+    }()
+
+    lazy var charCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .t1
+        label.textColor = .pophoryGray400
+        label.text = "(0/6)"
+        return label
+    }()
+
+    lazy var warningLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .t2
+        label.textColor = .pophoryRed
+        label.text = "*6글자를 초과했습니다"
+        label.isHidden = true
+        return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         inputTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         setupDelegate()
-        setupStyle()
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Style
-    
-    func setupStyle() {
-        configureHeaderLabel()
-        configureBodyStackView()
-        configureBodyLabel()
-        configureInputTextField()
-        configureCharCountLabel()
-        configureWarningLabel()
-    }
-    
-    func configureHeaderLabel() {
-        headerLabel.text = "만나서 반가워\n너의 이름이 궁금해!"
-        headerLabel.textColor = .black
-        headerLabel.font = .h1
-        headerLabel.numberOfLines = 0
-        headerLabel.asColor(targetString: "너의 이름", color: .pophoryPurple)
-    }
-    
-    func configureBodyStackView() {
-        bodyStackView.axis = .vertical
-        bodyStackView.spacing = 16
-        bodyStackView.distribution = .fill
-        
-        bodyStackView.addArrangedSubview(bodyLabel)
-        bodyStackView.addArrangedSubview(inputTextField)
-        bodyStackView.addArrangedSubview(charCountLabel)
-        bodyStackView.addArrangedSubview(warningLabel)
-    }
-    
-    func configureBodyLabel() {
-        bodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        bodyLabel.text = "포포리 사용을 위해 실명 입력이 필요해요"
-        bodyLabel.textColor = .pophoryGray500
-        bodyLabel.font = .t2
-        bodyLabel.numberOfLines = 0
-        bodyLabel.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
-    }
-    
-    func configureInputTextField() {
-        inputTextField.placeholder = "이름(성+이름)"
-        inputTextField.textColor = .black
-        inputTextField.font = .t1
-        inputTextField.layer.borderColor = UIColor.pophoryGray400.cgColor
-        inputTextField.layer.borderWidth = 1
-        inputTextField.makeRounded(radius: 18)
-        inputTextField.addPadding(left: 15)
-    }
-    
-    func configureCharCountLabel() {
-        charCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        charCountLabel.font = .t1
-        charCountLabel.textColor = .pophoryGray400
-        charCountLabel.text = "(0/6)"
-    }
-    
-    func configureWarningLabel() {
-        warningLabel.translatesAutoresizingMaskIntoConstraints = false
-        warningLabel.font = .t2
-        warningLabel.textColor = .pophoryRed
-        warningLabel.text = "*6글자를 초과했습니다"
-        warningLabel.isHidden = true
     }
 }
 
@@ -109,26 +80,16 @@ extension NameInputView {
     
     private func setupViews() {
         
-        addSubviews([headerLabel, bodyStackView, charCountLabel, nextButton, warningLabel])
+        addSubviews([bodyStackView, charCountLabel, warningLabel])
         bodyStackView.addArrangedSubviews([bodyLabel, inputTextField])
-        
-        headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
-            $0.leading.equalTo(bodyStackView)
-        }
         
         bodyStackView.snp.makeConstraints {
             $0.top.equalTo(headerLabel.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         inputTextField.snp.makeConstraints {
             $0.height.equalTo(60)
-        }
-        
-        nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-36)
         }
         
         charCountLabel.snp.makeConstraints {
@@ -140,8 +101,6 @@ extension NameInputView {
             $0.top.equalTo(charCountLabel)
             $0.leading.equalToSuperview().offset(26)
         }
-        
-        nextButton.addCenterXConstraint(to: self)
     }
     
     // MARK: - @objc
