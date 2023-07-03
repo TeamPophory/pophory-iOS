@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NameInputViewController: BaseViewController, Navigatable {
+final class NameInputViewController: BaseViewController, Navigatable {
     
     // MARK: - UI Components
     
@@ -15,7 +15,7 @@ class NameInputViewController: BaseViewController, Navigatable {
     
     var bottomConstraint: NSLayoutConstraint?
     
-    var keyboardManager: KeyboardManager!
+    var keyboardManager: KeyboardManager?
     
     lazy var nameInputView: NameInputView = {
         let view = NameInputView()
@@ -35,7 +35,7 @@ class NameInputViewController: BaseViewController, Navigatable {
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
-               keyboardManager.keyboardAddObserver()
+        keyboardManager?.keyboardAddObserver()
     }
     
     override func viewDidLoad() {
@@ -49,11 +49,11 @@ class NameInputViewController: BaseViewController, Navigatable {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        keyboardManager.keyboardRemoveObserver()
+        keyboardManager?.keyboardRemoveObserver()
     }
     
     deinit {
-        keyboardManager.keyboardRemoveObserver()
+        keyboardManager?.keyboardRemoveObserver()
         keyboardManager = nil
     }
 }

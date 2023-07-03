@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PickAlbumCoverViewController: BaseViewController, Navigatable {
+final class PickAlbumCoverViewController: BaseViewController, Navigatable {
 
     
     var navigationBarTitleText: String? { return "회원가입" }

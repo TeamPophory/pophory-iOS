@@ -17,7 +17,6 @@
 		377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7E62A4F4C8700E3268D /* NameInputView.swift */; };
 		377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7E82A4F4CA500E3268D /* IDInputView.swift */; };
 		377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */; };
-		377EF7ED2A4FA8E700E3268D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EC2A4FA8E700E3268D /* BaseView.swift */; };
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4312A51E6D200FE3846 /* KeyboardManager.swift */; };
 		3782F4342A528A3600FE3846 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4332A528A3600FE3846 /* SignInView.swift */; };
@@ -94,7 +93,6 @@
 		377EF7E62A4F4C8700E3268D /* NameInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputView.swift; sourceTree = "<group>"; };
 		377EF7E82A4F4CA500E3268D /* IDInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDInputView.swift; sourceTree = "<group>"; };
 		377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAlbumCoverView.swift; sourceTree = "<group>"; };
-		377EF7EC2A4FA8E700E3268D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationConfigurator.swift; sourceTree = "<group>"; };
 		3782F4312A51E6D200FE3846 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		3782F4332A528A3600FE3846 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 				377EF7E62A4F4C8700E3268D /* NameInputView.swift */,
 				377EF7E82A4F4CA500E3268D /* IDInputView.swift */,
 				377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */,
-				3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */,
 				3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */,
 			);
 			path = Views;
@@ -310,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				37EB69E82A4BEF5400075E4E /* BaseViewController.swift */,
-				377EF7EC2A4FA8E700E3268D /* BaseView.swift */,
+				3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -659,7 +656,6 @@
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
 				37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */,
 				37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */,
-				377EF7ED2A4FA8E700E3268D /* BaseView.swift in Sources */,
 				377EF7E22A4F48BE00E3268D /* PickAlbumCoverViewController.swift in Sources */,
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,

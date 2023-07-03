@@ -9,8 +9,6 @@ import UIKit
 
 class StartPophoryViewController: BaseViewController {
     
-//    var coordinator: StartPophoryCoordinator?
-    
     lazy var startPophoryView: StartPophoryView = {
         let view = StartPophoryView()
         view.translatesAutoresizingMaskIntoConstraints = false

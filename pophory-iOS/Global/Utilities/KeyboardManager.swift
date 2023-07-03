@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KeyboardManager: NSObject {
+final class KeyboardManager: NSObject {
     weak var bottomConstraint: NSLayoutConstraint?
     weak var viewController: UIViewController?
 

@@ -18,6 +18,7 @@ class PickAlbumCoverView: NameInputView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // TODO: Delegate 이용해서 구현하기
     private func hideSuperViewComponents() {
         inputTextField.isHidden = true
         charCountLabel.isHidden = true
