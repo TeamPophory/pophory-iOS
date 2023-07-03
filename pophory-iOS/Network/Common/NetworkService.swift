@@ -10,4 +10,10 @@ final class NetworkService {
     static let shared = NetworkService()
 
     private init() {}
+    
+    let studioRepository = DefaultStudioRepository()
+    let photoRepository = DefaultPhotoRepository()
+    let memberRepository = DefaultMemberRepository()
+    let albumRepository = DefaultAlbumRespository()
+    let authRepostiory = DefaultAuthRepository()
 }
