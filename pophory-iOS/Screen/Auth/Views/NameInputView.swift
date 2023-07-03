@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 class NameInputView: BaseSignUpView {
-
+    
+    // TODO: Private -> Delegate 패턴 구현
+    
     lazy var bodyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
