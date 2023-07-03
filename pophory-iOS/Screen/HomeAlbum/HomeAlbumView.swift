@@ -23,7 +23,9 @@ final class HomeAlbumView: BaseView {
     let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .pophoryGray300
-        imageView.layer.cornerRadius = 26
+        let rightRadius = 26.0
+        let rightCornerMask: CACornerMask = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
     let statusView: UIView = {
