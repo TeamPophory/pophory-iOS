@@ -32,6 +32,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTarget()
     }
 
 }
@@ -42,7 +43,25 @@ extension AddPhotoViewController {
     
     // MARK: - @objc
     
+    @objc func onclickDateButton() {
+        print("날짜")
+    }
+    
+    @objc func onclicStudioButton() {
+        print("사진관")
+    }
+    
+    @objc func onclickFriendsButton() {
+        print("친구")
+    }
+
     // MARK: - Private Methods
+    
+    private func setupTarget() {
+        rootView.dateStackView.infoButton.addTarget(self, action: #selector(onclickDateButton), for: .touchUpInside)
+        rootView.studioStackView.infoButton.addTarget(self, action: #selector(onclicStudioButton), for: .touchUpInside)
+        rootView.friendsStackView.infoButton.addTarget(self, action: #selector(onclickFriendsButton), for: .touchUpInside)
+    }
     
 }
 

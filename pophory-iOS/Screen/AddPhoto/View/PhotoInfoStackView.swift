@@ -11,6 +11,7 @@ class PhotoInfoStackView: UIStackView {
     
     // MARK: - Properties
     
+    /// 선택 완료 시 선택된 label의 색 변경
     private var didSelected: Bool = false {
         didSet {
             changeInfoLabelColor(selected: didSelected)
@@ -27,34 +28,33 @@ class PhotoInfoStackView: UIStackView {
         return label
     }()
     
-    private let infoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryGray100
-        view.makeRounded(radius: 18)
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.pophoryGray300.cgColor
-        return view
+    lazy var infoButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .pophoryGray100
+        button.makeRounded(radius: 18)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.pophoryGray300.cgColor
+        return button
     }()
     
     private let infoLabel: UILabel = {
         let label = UILabel()
-        label.text = "테스트입니다."
         label.font = .t1
         label.textColor = .pophoryBlack
         label.textAlignment = .left
         return label
     }()
     
-    private lazy var infoButton: UIButton = {
-        let button = UIButton()
-        return button
+    private lazy var infoIcon: UIImageView = {
+        let icon = UIImageView()
+        return icon
     }()
     
     // MARK: - Life Cycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupStyle()
         setupLayout()
     }
@@ -62,8 +62,6 @@ class PhotoInfoStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 extension PhotoInfoStackView {
@@ -74,29 +72,33 @@ extension PhotoInfoStackView {
         self.axis = .vertical
         self.spacing = 16
     }
-
+    
     private func setupLayout() {
-        self.addArrangedSubviews([mainLabel,
-                                  infoView])
+        self.addArrangedSubviews(
+            [mainLabel,
+             infoButton]
+        )
         
         mainLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
         }
         
-        infoView.snp.makeConstraints {
+        infoButton.snp.makeConstraints {
             $0.height.equalTo(58)
             $0.leading.trailing.equalToSuperview()
         }
         
-        infoView.addSubviews([infoLabel,
-                              infoButton])
+        infoButton.addSubviews(
+            [infoLabel,
+             infoIcon]
+        )
         
         infoLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16)
         }
         
-        infoButton.snp.makeConstraints {
+        infoIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(17)
         }
@@ -115,6 +117,7 @@ extension PhotoInfoStackView {
     }
     
     // MARK: - Public Methods
+    
     public func setupTitle(title: String) {
         mainLabel.text = title
     }
@@ -124,11 +127,10 @@ extension PhotoInfoStackView {
     }
     
     public func setupIcon(icon: UIImage) {
-        infoButton.setImage(icon, for: .normal)
+        infoIcon.image = icon
     }
     
     public func setupExplain(explain: String) {
         infoLabel.text = explain
     }
-
 }
