@@ -18,20 +18,14 @@ extension BaseTargetType {
     }
 
     var headers: [String: String]? {
-        let accessToken = getTokenFromRealm()
         let header = [
             "Content-Type": "application/json",
-            "X-AUTH-TOKEN": accessToken
+            "X-AUTH-TOKEN": "Bearer" + "accessToken"
         ]
         return header
     }
 
     var sampleData: Data {
         return Data()
-    }
-    
-    private func getTokenFromRealm() -> String {
-        let realm = RealmService()
-        return realm.getAccessToken()
     }
 }
