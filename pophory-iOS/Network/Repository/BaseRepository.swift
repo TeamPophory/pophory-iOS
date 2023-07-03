@@ -7,10 +7,9 @@
 
 import Foundation
 
-final class BaseRepository {
+class BaseRepository {
 
     func judgeStatus<T: Decodable>(by statusCode: Int, _ data: Data) -> NetworkResult<T> {
-        let decoder = JSONDecoder()
         print("statusCode: ", statusCode)
         switch statusCode {
         case 200..<300:

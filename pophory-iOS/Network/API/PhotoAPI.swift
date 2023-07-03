@@ -11,7 +11,7 @@ import Moya
 
 enum PhotoAPI {
     case postPhoto(body: PostPhotoRequestDTO)
-    case deletePhoto(photoId: String)
+    case deletePhoto(photoId: Int)
 }
 
 extension PhotoAPI: BaseTargetType {

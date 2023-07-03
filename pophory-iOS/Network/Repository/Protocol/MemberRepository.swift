@@ -8,7 +8,10 @@
 import Foundation
 
 protocol MemberRepository {
-    func patchMyPage(completion: @escaping (NetworkResult<Any>) -> Void)
-    func patchSignIn(completion: @escaping (NetworkResult<Any>) -> Void)
-    func patchUserInfo(completion: @escaping (NetworkResult<Any>) -> Void)
+    func patchMyPage(completion: @escaping (NetworkResult<PatchMyPageResponseDTO>) -> Void)
+    func patchSignUp(
+        body: PatchSignUpRequestDTO,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    )
+    func patchUserInfo(completion: @escaping (NetworkResult<PatchUserInfoResponseDTO>) -> Void)
 }

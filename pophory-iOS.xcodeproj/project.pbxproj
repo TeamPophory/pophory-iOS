@@ -67,6 +67,11 @@
 		91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A79F2A52D36F00C06D1B /* MemberRepository.swift */; };
 		91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A12A52D40A00C06D1B /* AlbumRepository.swift */; };
 		91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A32A52D52200C06D1B /* AuthRepository.swift */; };
+		91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A52A52D57700C06D1B /* DefaultStudioRepository.swift */; };
+		91F3A7A82A52D6C100C06D1B /* DefaultPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A72A52D6C100C06D1B /* DefaultPhotoRepository.swift */; };
+		91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */; };
+		91F3A7AC2A52F23D00C06D1B /* DefaultAlbumRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */; };
+		91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -163,6 +168,11 @@
 		91F3A79F2A52D36F00C06D1B /* MemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepository.swift; sourceTree = "<group>"; };
 		91F3A7A12A52D40A00C06D1B /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
 		91F3A7A32A52D52200C06D1B /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		91F3A7A52A52D57700C06D1B /* DefaultStudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStudioRepository.swift; sourceTree = "<group>"; };
+		91F3A7A72A52D6C100C06D1B /* DefaultPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPhotoRepository.swift; sourceTree = "<group>"; };
+		91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMemberRepository.swift; sourceTree = "<group>"; };
+		91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlbumRespository.swift; sourceTree = "<group>"; };
+		91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -429,6 +439,11 @@
 			children = (
 				91F3A7962A52D04200C06D1B /* BaseRepository.swift */,
 				91F3A79A2A52D25400C06D1B /* Protocol */,
+				91F3A7A52A52D57700C06D1B /* DefaultStudioRepository.swift */,
+				91F3A7A72A52D6C100C06D1B /* DefaultPhotoRepository.swift */,
+				91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */,
+				91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */,
+				91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -756,6 +771,7 @@
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
 				B1631F502A175E840050974F /* String+Extension.swift in Sources */,
 				37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */,
+				91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */,
 				91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */,
 				B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */,
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
@@ -772,6 +788,7 @@
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
+				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
@@ -808,6 +825,8 @@
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
+				91F3A7AC2A52F23D00C06D1B /* DefaultAlbumRespository.swift in Sources */,
+				91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
 				37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */,
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
@@ -819,6 +838,7 @@
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,
 				91F3A7972A52D04200C06D1B /* BaseRepository.swift in Sources */,
+				91F3A7A82A52D6C100C06D1B /* DefaultPhotoRepository.swift in Sources */,
 				377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

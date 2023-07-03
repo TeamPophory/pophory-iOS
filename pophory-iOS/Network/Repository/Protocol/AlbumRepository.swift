@@ -8,9 +8,9 @@
 import Foundation
 
 protocol AlbumRepository {
-    func patchAlbumList(completion: @escaping (NetworkResult<Any>) -> Void)
+    func patchAlbumList(completion: @escaping (NetworkResult<PatchAlbumListResponseDTO>) -> Void)
     func patchAlbumPhotoList(
         albumId: Int,
-        completion: @escaping (NetworkResult<Any>) -> Void
+        completion: @escaping (NetworkResult<PatchAlbumPhotoListResponseDTO>) -> Void
     )
 }
