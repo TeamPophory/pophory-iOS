@@ -108,6 +108,7 @@ extension NameInputView {
     // MARK: - Layout
     
     private func setupViews() {
+        
         addSubviews([headerLabel, bodyStackView, charCountLabel, nextButton, warningLabel])
         bodyStackView.addArrangedSubviews([bodyLabel, inputTextField])
         
