@@ -72,6 +72,8 @@
 		91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */; };
 		91F3A7AC2A52F23D00C06D1B /* DefaultAlbumRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */; };
 		91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */; };
+		91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */; };
+		91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -173,6 +175,8 @@
 		91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMemberRepository.swift; sourceTree = "<group>"; };
 		91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlbumRespository.swift; sourceTree = "<group>"; };
 		91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
+		91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
+		91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -337,11 +341,13 @@
 			path = EntireAlbums;
 			sourceTree = "<group>";
 		};
-		37DCA6922A4AB55F00FF8F90 /* AlbumDetails */ = {
+		37DCA6922A4AB55F00FF8F90 /* AlbumDetail */ = {
 			isa = PBXGroup;
 			children = (
+				91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */,
+				91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */,
 			);
-			path = AlbumDetails;
+			path = AlbumDetail;
 			sourceTree = "<group>";
 		};
 		37DCA6AF2A4AC79400FF8F90 /* Fonts */ = {
@@ -525,7 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				37DCA68B2A4AB45000FF8F90 /* TabBar */,
-				37DCA6922A4AB55F00FF8F90 /* AlbumDetails */,
+				37DCA6922A4AB55F00FF8F90 /* AlbumDetail */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
 				37DCA6902A4AB4F000FF8F90 /* EditAlbums */,
 				37DCA68F2A4AB4E900FF8F90 /* HomeAlbum */,
@@ -784,6 +790,7 @@
 				91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */,
 				91F3A79C2A52D2DE00C06D1B /* StudioRepository.swift in Sources */,
 				377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */,
+				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
@@ -834,6 +841,7 @@
 				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
+				91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */,
 				B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */,
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,

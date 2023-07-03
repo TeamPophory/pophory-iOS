@@ -16,6 +16,9 @@ enum ImageLiterals {
     static var tabBarMyPageIcon: UIImage { .load(name: "tabBarMyPageIcon") }
     
     static var logIcon: UIImage { .load(name: "logIcon") }
+    static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
+    static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
+    static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
 }
 
 extension UIImage {
