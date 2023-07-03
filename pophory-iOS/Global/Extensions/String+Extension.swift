@@ -27,4 +27,10 @@ extension String {
         let endIndex = index(from: r.upperBound)
         return String(self[startIndex..<endIndex])
     }
+    
+    func isContainNumberAlphabetAndSpecialCharacters() -> Bool {
+        let pattern = "^[0-9a-zA-Z!@#$%^&*()-=+] [!@$%^&+=]*$"
+        guard let isContain = self.range(of: pattern, options: .regularExpression) else { return false}
+        return true
+    }
 }
