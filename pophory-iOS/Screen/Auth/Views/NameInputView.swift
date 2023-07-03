@@ -8,53 +8,64 @@
 import UIKit
 import SnapKit
 
-class NameInputView: UIView {
+class NameInputView: BaseSignUpView {
     
-    let headerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "만나서 반가워\n너의 이름이 궁금해!"
-        label.textColor = .black
-        label.font = .h1
-        label.numberOfLines = 0
-        return label
+    // TODO: Private -> Delegate 패턴 구현
+    
+    lazy var bodyStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        return stackView
     }()
-    
-    let bodyLabel: UILabel = {
+
+    lazy var bodyLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "포포리 사용을 위해 실명 입력이 필요해요"
-        label.textColor = .black
-        //TODO: 확인 필요
+        label.textColor = .pophoryGray500
         label.font = .t2
+        label.numberOfLines = 0
+        label.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
         return label
     }()
-    
-    let inputTextField: UITextField = {
+
+    lazy var inputTextField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
         textField.placeholder = "이름(성+이름)"
         textField.textColor = .black
         textField.font = .t1
+        textField.layer.borderColor = UIColor.pophoryGray400.cgColor
+        textField.layer.borderWidth = 1
+        textField.makeRounded(radius: 18)
         textField.addPadding(left: 15)
         return textField
     }()
-    
-    let charCountLabel: UILabel = {
-        
+
+    lazy var charCountLabel: UILabel = {
         let label = UILabel()
-        //        label.text = "(\()/6)"
-        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .t1
+        label.textColor = .pophoryGray400
+        label.text = "(0/6)"
         return label
     }()
-    
-    lazy var nextButton: PophoryButton = {
-        let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primary)
-            .setTitle(.next)
-        return buttonBuilder.build()
+
+    lazy var warningLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .t2
+        label.textColor = .pophoryRed
+        label.text = "*6글자를 초과했습니다"
+        label.isHidden = true
+        return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        inputTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        setupDelegate()
         setupViews()
     }
     
@@ -63,33 +74,81 @@ class NameInputView: UIView {
     }
 }
 
+// MARK: - Extensions
+
 extension NameInputView {
     
+    // MARK: - Layout
+    
     private func setupViews() {
-        addSubviews([headerLabel,bodyLabel, inputTextField, nextButton])
         
-        headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
-            $0.leading.equalToSuperview().offset(20)
-        }
+        addSubviews([bodyStackView, charCountLabel, warningLabel])
+        bodyStackView.addArrangedSubviews([bodyLabel, inputTextField])
         
-        bodyLabel.snp.makeConstraints {
+        bodyStackView.snp.makeConstraints {
             $0.top.equalTo(headerLabel.snp.bottom).offset(10)
-            $0.leading.equalTo(headerLabel)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         inputTextField.snp.makeConstraints {
-            $0.top.equalTo(bodyLabel.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview()
-            $0.leading.equalTo(headerLabel)
-            $0.width.equalTo(nextButton)
             $0.height.equalTo(60)
         }
         
-        nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-36)
+        charCountLabel.snp.makeConstraints {
+            $0.top.equalTo(inputTextField.snp.bottom).offset(10)
+            $0.trailing.equalTo(inputTextField)
         }
         
-        nextButton.addCenterXConstraint(to: self)
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(charCountLabel)
+            $0.leading.equalToSuperview().offset(26)
+        }
+    }
+    
+    // MARK: - @objc
+    
+    // MARK: - Private Methods
+    
+    private func setupDelegate() {
+        inputTextField.delegate = self
+    }
+    
+    func updateCharCountLabel(charCount: Int) {
+        charCountLabel.text = "(\(charCount)/6)"
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension NameInputView: UITextFieldDelegate {
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text?.count == 0 {
+            textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+        }
+    }
+    
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.pophoryGray400.cgColor
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        if newLength > 6 {
+            textField.layer.borderColor = UIColor.pophoryRed.cgColor
+            warningLabel.isHidden = false
+            return false
+        } else {
+            textField.textColor = .black
+            textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+            warningLabel.isHidden = true
+        }
+        return true
+    }
+    
+    @objc func textDidChange(_ textField: UITextField) {
+        updateCharCountLabel(charCount: textField.text?.count ?? 0)
     }
 }

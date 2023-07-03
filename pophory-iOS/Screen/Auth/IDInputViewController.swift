@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IDInputViewController: BaseViewController {
+final class IDInputViewController: BaseViewController {
     
     lazy var iDInputView: IDInputView = {
         let view = IDInputView()
