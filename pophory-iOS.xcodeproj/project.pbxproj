@@ -56,6 +56,11 @@
 		91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7842A52AE3900C06D1B /* NetworkResult.swift */; };
 		91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7862A52AE4600C06D1B /* NetworkService.swift */; };
 		91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7882A52AE5A00C06D1B /* URLConstants.swift */; };
+		91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A78B2A52B21000C06D1B /* StudiosAPI.swift */; };
+		91F3A78E2A52B38000C06D1B /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A78D2A52B38000C06D1B /* PhotoAPI.swift */; };
+		91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A78F2A52B5DA00C06D1B /* MemberAPI.swift */; };
+		91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7912A52B71800C06D1B /* AlbumAPI.swift */; };
+		91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7932A52B96F00C06D1B /* AuthAPI.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -141,6 +146,11 @@
 		91F3A7842A52AE3900C06D1B /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		91F3A7862A52AE4600C06D1B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		91F3A7882A52AE5A00C06D1B /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		91F3A78B2A52B21000C06D1B /* StudiosAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiosAPI.swift; sourceTree = "<group>"; };
+		91F3A78D2A52B38000C06D1B /* PhotoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
+		91F3A78F2A52B5DA00C06D1B /* MemberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberAPI.swift; sourceTree = "<group>"; };
+		91F3A7912A52B71800C06D1B /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		91F3A7932A52B96F00C06D1B /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -369,6 +379,7 @@
 		91F3A77C2A52AD8300C06D1B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				91F3A78A2A52B1B300C06D1B /* API */,
 				91F3A77D2A52ADCA00C06D1B /* Common */,
 				B1631F5E2A175FD00050974F /* Models */,
 			);
@@ -386,6 +397,18 @@
 				91F3A7882A52AE5A00C06D1B /* URLConstants.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		91F3A78A2A52B1B300C06D1B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A78B2A52B21000C06D1B /* StudiosAPI.swift */,
+				91F3A78D2A52B38000C06D1B /* PhotoAPI.swift */,
+				91F3A78F2A52B5DA00C06D1B /* MemberAPI.swift */,
+				91F3A7912A52B71800C06D1B /* AlbumAPI.swift */,
+				91F3A7932A52B96F00C06D1B /* AuthAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		B1631EFE2A1759EA0050974F = {
@@ -701,6 +724,7 @@
 				37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */,
 				91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */,
 				B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */,
+				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
 				37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */,
 				37DCA6A42A4AB6F600FF8F90 /* SplashViewController.swift in Sources */,
@@ -712,6 +736,7 @@
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
+				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
@@ -729,6 +754,7 @@
 				B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */,
 				377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */,
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
+				91F3A78E2A52B38000C06D1B /* PhotoAPI.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
 				91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */,
 				37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */,
@@ -737,6 +763,7 @@
 				377EF7E22A4F48BE00E3268D /* PickAlbumCoverViewController.swift in Sources */,
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
+				91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
@@ -747,6 +774,7 @@
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
+				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */,
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
