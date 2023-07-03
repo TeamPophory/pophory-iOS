@@ -51,6 +51,11 @@
 		91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7782A52AC3E00C06D1B /* Photos.swift */; };
 		91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */; };
 		91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */; };
+		91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */; };
+		91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */; };
+		91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7842A52AE3900C06D1B /* NetworkResult.swift */; };
+		91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7862A52AE4600C06D1B /* NetworkService.swift */; };
+		91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7882A52AE5A00C06D1B /* URLConstants.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -131,6 +136,11 @@
 		91F3A7782A52AC3E00C06D1B /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumPhotoListResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
+		91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
+		91F3A7842A52AE3900C06D1B /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		91F3A7862A52AE4600C06D1B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		91F3A7882A52AE5A00C06D1B /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -369,6 +379,11 @@
 			isa = PBXGroup;
 			children = (
 				91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */,
+				91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */,
+				91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */,
+				91F3A7842A52AE3900C06D1B /* NetworkResult.swift */,
+				91F3A7862A52AE4600C06D1B /* NetworkService.swift */,
+				91F3A7882A52AE5A00C06D1B /* URLConstants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -678,6 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */,
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
@@ -693,7 +709,9 @@
 				91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */,
 				377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
+				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
+				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
@@ -701,6 +719,8 @@
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
+				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
+				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
 				B1631F4C2A175DC80050974F /* NSMutableAttributedString+Extension.swift in Sources */,
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
