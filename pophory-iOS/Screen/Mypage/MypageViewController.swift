@@ -14,8 +14,4 @@ class MypageViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    override func setupStyle() {
-        view.backgroundColor = .white
-    }
 }

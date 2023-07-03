@@ -17,10 +17,6 @@ extension UIView {
         return subviews
     }
     
-    func addSubviews(_ views: UIView...) {
-        views.forEach { self.addSubview($0) }
-    }
-    
     /// UIView 의 모서리가 둥근 정도를 설정
     /// - Parameter radius: radius 값
     /// - Parameter maskedCorners: radius를 적용할 코너 지정

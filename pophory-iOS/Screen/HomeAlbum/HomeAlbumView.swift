@@ -11,8 +11,8 @@ import SnapKit
 
 final class HomeAlbumView: BaseView {
     
-    let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
-    let headTitle: UILabel = {
+    private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
+    private let headTitle: UILabel = {
         let label = UILabel()
         label.font = .h1
         label.text = "포릿만의 네컷 앨범에\n소중한 추억을 보관해봐!"
@@ -20,7 +20,7 @@ final class HomeAlbumView: BaseView {
         label.numberOfLines = 2
         return label
     }()
-    let albumImageView: UIImageView = {
+    private let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .pophoryGray300
         let rightRadius = 26.0
@@ -28,13 +28,13 @@ final class HomeAlbumView: BaseView {
         imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
-    let statusView: UIView = {
+    private let statusView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryPurple
         view.layer.cornerRadius = 20
         return view
     }()
-    let statusLabel: UILabel = {
+    private let statusLabel: UILabel = {
         let label = UILabel()
         label.font = .t1
         label.textColor = .white
@@ -44,7 +44,7 @@ final class HomeAlbumView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        render()
+        setupLayout()
         configUI()
     }
     
@@ -52,12 +52,12 @@ final class HomeAlbumView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func render() {
+    private func setupLayout() {
         self.addSubviews(
-            appLogo,
+            [ appLogo,
             headTitle,
             albumImageView,
-            statusView
+            statusView ]
         )
         
         statusView.addSubview(statusLabel)
@@ -91,7 +91,7 @@ final class HomeAlbumView: BaseView {
         }
     }
     
-    func configUI() {
+    private func configUI() {
         self.backgroundColor = .pophoryWhite
     }
 }

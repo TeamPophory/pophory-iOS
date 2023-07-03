@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeAlbumViewController: BaseViewController {
+final class HomeAlbumViewController: BaseViewController {
     
     let homeAlbumView = HomeAlbumView()
 
@@ -19,9 +19,5 @@ class HomeAlbumViewController: BaseViewController {
     
     override func setupLayout() {
         view = homeAlbumView
-    }
-    
-    override func setupStyle() {
-        view.backgroundColor = .white
     }
 }
