@@ -42,6 +42,14 @@
 		91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7572A51760B00C06D1B /* Navigatable.swift */; };
 		91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */; };
 		91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */; };
+		91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7652A52A87E00C06D1B /* PatchStudiosResponseDTO.swift */; };
+		91F3A76A2A52A93600C06D1B /* PostPhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */; };
+		91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */; };
+		91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */; };
+		91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */; };
+		91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */; };
+		91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7782A52AC3E00C06D1B /* Photos.swift */; };
+		91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -113,6 +121,14 @@
 		91F3A7572A51760B00C06D1B /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumView.swift; sourceTree = "<group>"; };
+		91F3A7652A52A87E00C06D1B /* PatchStudiosResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchStudiosResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoRequestDTO.swift; sourceTree = "<group>"; };
+		91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchSignUpRequestDTO.swift; sourceTree = "<group>"; };
+		91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchMyPageResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchUserInfoResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumListResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7782A52AC3E00C06D1B /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumPhotoListResponseDTO.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +154,6 @@
 		B1631F582A175F470050974F /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		B1631F5A2A175F850050974F /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B1631F5C2A175F9C0050974F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		B1631F5F2A175FF50050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1631F652A1760180050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -305,6 +320,41 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		91F3A7672A52A8C300C06D1B /* Studio */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A7652A52A87E00C06D1B /* PatchStudiosResponseDTO.swift */,
+			);
+			path = Studio;
+			sourceTree = "<group>";
+		};
+		91F3A7682A52A8D000C06D1B /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		91F3A76D2A52AA2400C06D1B /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */,
+				91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */,
+				91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		91F3A7742A52AB8300C06D1B /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */,
+				91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
 		B1631EFE2A1759EA0050974F = {
 			isa = PBXGroup;
 			children = (
@@ -440,7 +490,11 @@
 		B1631F5E2A175FD00050974F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B1631F5F2A175FF50050974F /* .keep */,
+				91F3A7782A52AC3E00C06D1B /* Photos.swift */,
+				91F3A7742A52AB8300C06D1B /* Album */,
+				91F3A76D2A52AA2400C06D1B /* Member */,
+				91F3A7682A52A8D000C06D1B /* Photo */,
+				91F3A7672A52A8C300C06D1B /* Studio */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -627,6 +681,7 @@
 				37DCA6A42A4AB6F600FF8F90 /* SplashViewController.swift in Sources */,
 				37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */,
 				B1631F4E2A175E350050974F /* UIStackView+Extension.swift in Sources */,
+				91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */,
 				377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
@@ -634,16 +689,19 @@
 				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
+				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
 				B1631F4C2A175DC80050974F /* NSMutableAttributedString+Extension.swift in Sources */,
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
 				37DCA6A82A4AB71200FF8F90 /* OnboardingViewController.swift in Sources */,
+				91F3A76A2A52A93600C06D1B /* PostPhotoRequestDTO.swift in Sources */,
 				B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */,
 				377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */,
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
+				91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */,
 				37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */,
 				37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */,
 				377EF7ED2A4FA8E700E3268D /* BaseView.swift in Sources */,
@@ -651,11 +709,15 @@
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
+				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
+				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
 				37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */,
+				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
+				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */,
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,
