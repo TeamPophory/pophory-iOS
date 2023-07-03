@@ -12,7 +12,7 @@ extension UIColor {
         return UIColor(hex: "#725BFF")
     }
     static var pophoryRed: UIColor {
-        return UIColor(hex: "#F5F5F5")
+        return UIColor(hex: "#FC4646")
     }
     static var pophoryBlack: UIColor {
         return UIColor(hex: "#212121")
