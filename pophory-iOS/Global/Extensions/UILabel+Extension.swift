@@ -21,7 +21,7 @@ extension UILabel {
     }
     
     /// 선택된 텍스트의 색상 조정
-    func applyColorToString(targetString: String, color: UIColor) {
+    func asColor(targetString: String, color: UIColor) {
         let fullText = text ?? ""
         let attributedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: targetString)
