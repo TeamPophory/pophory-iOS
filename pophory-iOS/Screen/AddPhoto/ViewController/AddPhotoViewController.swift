@@ -55,6 +55,8 @@ extension AddPhotoViewController {
     @objc func onclickFriendsButton() {
         print("친구")
     }
+    
+    @objc func onclickAddPhotoButton() {}
 
     // MARK: - Private Methods
     
@@ -62,6 +64,7 @@ extension AddPhotoViewController {
         rootView.dateStackView.infoButton.addTarget(self, action: #selector(onclickDateButton), for: .touchUpInside)
         rootView.studioStackView.infoButton.addTarget(self, action: #selector(onclicStudioButton), for: .touchUpInside)
         rootView.friendsStackView.infoButton.addTarget(self, action: #selector(onclickFriendsButton), for: .touchUpInside)
+        rootView.photoAddButton.addTarget(self, action: #selector(onclickAddPhotoButton), for: .touchUpInside)
     }
     
     private func setupDelegate() {
