@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class AddPhotoView: UIView {
-
+    
     // MARK: - Properties
     
     // MARK: - UI Properties
@@ -66,9 +66,15 @@ final class AddPhotoView: UIView {
         label.textAlignment = .left
         return label
     }()
-    private let albumView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryGray300
+    
+    let albumCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 70, height: 95)
+        flowLayout.minimumLineSpacing = 8
+        flowLayout.scrollDirection = .horizontal
+        
+        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        view.register(PhotoAlbumCollectionViewCell.self, forCellWithReuseIdentifier: PhotoAlbumCollectionViewCell.identifier)
         return view
     }()
     
@@ -104,13 +110,15 @@ final class AddPhotoView: UIView {
         
         setupLayout()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 extension AddPhotoView {
+    
+    // MARK: - Layout
     
     private func setupLayout() {
         self.addSubviews([scrollView, photoAddButtonView])
@@ -148,15 +156,15 @@ extension AddPhotoView {
             $0.bottom.equalToSuperview().inset(22)
         }
         
-        albumStackView.addArrangedSubviews([albumTitle, albumView])
-
-        albumView.snp.makeConstraints {
+        albumStackView.addArrangedSubviews([albumTitle, albumCollectionView])
+        
+        albumCollectionView.snp.makeConstraints {
             $0.height.equalTo(95)
-            $0.width.equalTo(70)
+            $0.leading.trailing.equalToSuperview()
         }
         
         photoAddButtonView.addSubview(photoAddButton)
-
+        
         photoAddButton.snp.makeConstraints {
             $0.width.equalTo(335)
             $0.height.equalTo(60)

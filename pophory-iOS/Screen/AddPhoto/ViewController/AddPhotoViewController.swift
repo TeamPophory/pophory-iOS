@@ -12,6 +12,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     // MARK: - Properties
     
     var navigationBarTitleText: String? { return "사진 추가" }
+    private let numberOfAlbum: Int = 1
     
     // MARK: - UI Properties
     
@@ -35,8 +36,8 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         super.viewDidLoad()
 
         setupTarget()
+        setupDelegate()
     }
-
 }
 
 extension AddPhotoViewController {
@@ -63,6 +64,23 @@ extension AddPhotoViewController {
         rootView.friendsStackView.infoButton.addTarget(self, action: #selector(onclickFriendsButton), for: .touchUpInside)
     }
     
+    private func setupDelegate() {
+        rootView.albumCollectionView.dataSource = self
+    }
 }
 
-// MARK: - UITableView Delegate
+// MARK: - UICollectionView Delegate
+
+extension AddPhotoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return numberOfAlbum
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
+//        cell.configCell(image: )
+        return cell
+    }
+    
+    
+}
