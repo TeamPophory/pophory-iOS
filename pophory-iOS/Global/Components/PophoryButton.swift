@@ -60,6 +60,16 @@ extension PophoryButton {
         }
     }
     
+    public func addCenterConstraint(to view: UIView) {
+        view.addSubview(self)
+        
+        snp.makeConstraints {
+            $0.center.equalTo(view)
+            $0.width.equalTo(buttonSize.width)
+            $0.height.equalTo(buttonSize.height)
+        }
+    }
+    
     // MARK: - @objc
     
     @objc private func buttonStateChanged() {
