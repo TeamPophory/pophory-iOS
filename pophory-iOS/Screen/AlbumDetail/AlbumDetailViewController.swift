@@ -10,15 +10,17 @@ import UIKit
 final class AlbumDetailViewController: BaseViewController {
     
     let homeAlbumView = AlbumDetailView()
+    private var albumPhotoList: PatchAlbumPhotoListResponseDTO?
     
     override func viewDidLoad() {
         view = homeAlbumView
         
         setButtonAction()
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        requestGetAlbumPhotoList(albumId: 12)
     }
     
     private func setButtonAction() {
@@ -37,6 +39,22 @@ final class AlbumDetailViewController: BaseViewController {
         let yOffset: CGFloat = 222
         changeSortViewController.view.frame = CGRect(x: 0, y: yOffset, width: view.frame.width, height: yOffset)
         self.present(changeSortViewController, animated: true)
+    }
+}
+
+extension AlbumDetailViewController {
+    func requestGetAlbumPhotoList(
+        albumId: Int
+    ) {
+        NetworkService.shared.albumRepository.patchAlbumPhotoList(
+            albumId: albumId
+        ) { result in
+            switch result {
+            case .success(let response):
+                self.albumPhotoList = response
+            default : return
+            }
+        }
     }
 }
 

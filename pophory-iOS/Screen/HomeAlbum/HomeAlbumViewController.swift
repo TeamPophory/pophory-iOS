@@ -19,7 +19,7 @@ final class HomeAlbumViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        requestGetTagAPI()
+        requestGetAlumListAPI()
     }
     
     override func setupLayout() {
@@ -28,7 +28,7 @@ final class HomeAlbumViewController: BaseViewController {
 }
 
 extension HomeAlbumViewController  {
-    func requestGetTagAPI() {
+    func requestGetAlumListAPI() {
         NetworkService.shared.albumRepository.patchAlbumList() { result in
             switch result {
             case .success(let response):
