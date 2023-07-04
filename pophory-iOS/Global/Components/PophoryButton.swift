@@ -50,7 +50,7 @@ extension PophoryButton {
     
     // MARK: - Layout
     
-    public func addCenterXConstraint(to view: UIView) {
+    func addCenterXConstraint(to view: UIView) {
         view.addSubview(self)
         
         snp.makeConstraints {
@@ -60,7 +60,7 @@ extension PophoryButton {
         }
     }
     
-    public func addCenterConstraint(to view: UIView) {
+    func addCenterConstraint(to view: UIView) {
         view.addSubview(self)
         
         snp.makeConstraints {
