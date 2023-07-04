@@ -15,7 +15,7 @@ enum PhotoCellType {
 
 final class AlbumDetailViewController: BaseViewController {
     
-    let homeAlbumView = AlbumDetailView(frame: .null, photoCollectionViewLayout: nil)
+    let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO?
     
     override func viewDidLoad() {

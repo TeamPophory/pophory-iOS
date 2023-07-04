@@ -16,10 +16,8 @@ protocol SettablePhotoProperty {
 
 final class PhotoCollectionViewCell: UICollectionViewCell, SettablePhotoProperty {
     
-    static var identifier: String = "ScrapStorageCollectionViewCell"
+    static var identifier: String = "PhotoCollectionViewCell"
     
-    private let privatePhotoImage = UIImageView()
-    private var privatePhotoImageString: URL?
     var photoImageString: String {
         get {
             guard let privatePhotoImageString = privatePhotoImageString?.absoluteString else { return String() }
@@ -32,6 +30,9 @@ final class PhotoCollectionViewCell: UICollectionViewCell, SettablePhotoProperty
             }
         }
     }
+    
+    private let privatePhotoImage = UIImageView()
+    private var privatePhotoImageString: URL?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
