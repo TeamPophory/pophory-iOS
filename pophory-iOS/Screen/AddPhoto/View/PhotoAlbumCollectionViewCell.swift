@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoAlbumCollectionViewCell: UICollectionViewCell {
+final class PhotoAlbumCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
 
@@ -48,7 +48,7 @@ extension PhotoAlbumCollectionViewCell {
     
     // MARK: - Method
     
-    func configCell(image: UIImage) {
+    func configureCell(image: UIImage) {
         photoAlbum.image = image
     }
 }

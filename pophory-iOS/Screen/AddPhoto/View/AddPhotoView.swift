@@ -42,7 +42,7 @@ final class AddPhotoView: UIView {
         return view
     }()
     
-    lazy var photoAddButton: PophoryButton = {
+    let photoAddButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primary)
             .setTitle(.addPhoto)
