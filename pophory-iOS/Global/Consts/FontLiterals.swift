@@ -9,6 +9,10 @@ import UIKit
 
 extension UIFont {
     @nonobjc class var h1: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 24)
+    }
+    
+    @nonobjc class var h1m: UIFont {
         return UIFont.font(.pretendardSemiBold, ofSize: 24)
     }
     
@@ -39,9 +43,19 @@ extension UIFont {
     @nonobjc class var c2: UIFont {
         return UIFont.font(.pretendardMedium, ofSize: 12)
     }
+    
+    @nonobjc class var id: UIFont {
+        return UIFont.font(.pretendardSemiBold, ofSize: 22)
+        
+    }
+    
+    @nonobjc class var nav: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 12)
+    }
 }
 
 enum FontName: String {
+    case pretendardBold = "Pretendard-Bold"
     case pretendardSemiBold = "Pretendard-SemiBold"
     case pretendardMedium = "Pretendard-Medium"
     case pretendardRegular = "Pretendard-Regular"

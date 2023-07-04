@@ -12,6 +12,8 @@ public class PophoryButton: UIButton {
     
     // MARK: - Properties
     
+    private var styler: PophoryButtonStyler?
+    
     private var buttonStyle: ButtonStyle
     private var buttonTitle: String
     private var buttonSize: CGSize
@@ -22,13 +24,13 @@ public class PophoryButton: UIButton {
     
     // MARK: - Life Cycle
     
-    public init(style: ButtonStyle, text: ButtonText) {
+    public init(style: ButtonStyle, text: ButtonText, styler: PophoryButtonStyler? = nil) {
         self.buttonStyle = style
         self.buttonTitle = text.rawValue
         self.buttonSize = style.size
         
         switch style {
-        case .primary:
+        case .primaryBlack, .primaryWhite:
             self.buttonFont = .h3
         case .secondary:
             // TODO: 디자인 픽스 이후 수정
@@ -37,6 +39,8 @@ public class PophoryButton: UIButton {
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
         self.setupPophoryButton()
+        
+        styler?.applyStyle(to: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,11 +54,21 @@ extension PophoryButton {
     
     // MARK: - Layout
     
-    public func addCenterXConstraint(to view: UIView) {
+    func addCenterXConstraint(to view: UIView) {
         view.addSubview(self)
         
         snp.makeConstraints {
             $0.centerX.equalTo(view)
+            $0.width.equalTo(buttonSize.width)
+            $0.height.equalTo(buttonSize.height)
+        }
+    }
+    
+    func addCenterConstraint(to view: UIView) {
+        view.addSubview(self)
+        
+        snp.makeConstraints {
+            $0.center.equalTo(view)
             $0.width.equalTo(buttonSize.width)
             $0.height.equalTo(buttonSize.height)
         }

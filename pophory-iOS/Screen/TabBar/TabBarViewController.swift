@@ -14,7 +14,7 @@ final class TabBarController: UITabBarController {
     // MARK: - viewController properties
     
     let homeAlbumViewController = HomeAlbumViewController()
-    let editAlbumViewController = EditAlbumsViewController()
+    let addPhotoViewController = UIViewController()
     let myPageViewController = MypageViewController()
     
     let editAlbumImageView = UIImageView(image: ImageLiterals.tabBarEditAlbumIcon)
@@ -49,7 +49,7 @@ final class TabBarController: UITabBarController {
 
         let viewControllers:[UIViewController] = [
             homeAlbumViewController,
-            editAlbumViewController,
+            addPhotoViewController,
             myPageViewController
         ]
         self.setViewControllers(viewControllers, animated: true)

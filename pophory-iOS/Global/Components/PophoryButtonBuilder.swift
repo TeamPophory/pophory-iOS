@@ -12,10 +12,23 @@ import UIKit
  
  lazy var nextButton: PophoryButton = {
      let buttonBuilder = PophoryButtonBuilder()
-         .setStyle(.primary)
+         .setStyle(.primaryBlack)
          .setTitle(.next)
      return buttonBuilder.build()
  }()
+ 
+ 레이아웃:
+ - y축 설정 후 addCenterXConstraint 호출
+ 
+ func setupLayout() {
+ 
+ nextButton.snp.makeConstraints {
+     $0.bottom.equalToSuperview().inset(36)
+ }
+ 
+ nextButton.addCenterXConstraint(to: self)
+ 
+ }
  
  **/
 
@@ -26,15 +39,28 @@ public enum ButtonText: String {
     case addPhoto = "사진 추가하기"
     case delete = "삭제할래!"
     case keep = "아니 안할래!"
+    case startWithAppleID = "Apple ID로 시작하기"
 }
 
 public enum ButtonStyle {
-    case primary
+    case primaryBlack
+    case primaryWhite
     case secondary
+    
+    func styler() -> PophoryButtonStyler? {
+          switch self {
+          case .primaryBlack:
+              return PrimaryBlackButtonStyler()
+          case .primaryWhite:
+              return PrimaryWhiteButtonStyler()
+          case .secondary:
+              return SecondaryButtonStyler()
+          }
+      }
     
     var size: CGSize {
         switch self {
-        case .primary:
+        case .primaryBlack, .primaryWhite:
             return CGSize(width: 335, height: 60)
         case .secondary:
             return CGSize(width: 230, height: 47)
@@ -46,20 +72,29 @@ public protocol PophoryButtonStyler {
     func applyStyle(to button: PophoryButton)
 }
 
-public struct PrimaryButtonStyler: PophoryButtonStyler {
+public struct PrimaryBlackButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        button.titleLabel?.font = .h3
+        button.backgroundColor = .black
+    }
+}
+
+public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
+    public func applyStyle(to button: PophoryButton) {
+        button.titleLabel?.font = .h3
+        button.backgroundColor = .pophoryWhite
+        button.setTitleColor(.pophoryPurple, for: .normal)
     }
 }
 
 public struct SecondaryButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.font = .t1
     }
 }
 
 public class PophoryButtonBuilder {
-    private var style: ButtonStyle = .primary
+    private var style: ButtonStyle = .primaryBlack
     private var title: ButtonText = .next
     private var size: CGSize = .zero
     
@@ -80,7 +115,8 @@ public class PophoryButtonBuilder {
     }
 
     public func build() -> PophoryButton {
-        let button = PophoryButton(style: self.style, text: self.title)
+        let styler = style.styler()
+        let button = PophoryButton(style: self.style, text: self.title, styler: styler)
         return button
     }
 }
