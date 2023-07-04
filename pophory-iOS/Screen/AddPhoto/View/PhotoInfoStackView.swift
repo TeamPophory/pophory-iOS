@@ -11,7 +11,7 @@ class PhotoInfoStackView: UIStackView {
     
     // MARK: - Properties
     
-    /// 선택 완료 시 선택된 label의 색 변경
+    /// 선택 완료 시 선택된 label의 색 변경하기 위한 변수
     private var didSelected: Bool = false {
         didSet {
             changeInfoLabelColor(selected: didSelected)
@@ -74,30 +74,22 @@ extension PhotoInfoStackView {
     }
     
     private func setupLayout() {
-        self.addArrangedSubviews(
-            [mainLabel,
-             infoButton]
-        )
+        self.addArrangedSubviews([mainLabel, infoButton])
         
         mainLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
         }
-        
         infoButton.snp.makeConstraints {
             $0.height.equalTo(58)
             $0.leading.trailing.equalToSuperview()
         }
         
-        infoButton.addSubviews(
-            [infoLabel,
-             infoIcon]
-        )
+        infoButton.addSubviews([infoLabel,infoIcon])
         
         infoLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16)
         }
-        
         infoIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(17)

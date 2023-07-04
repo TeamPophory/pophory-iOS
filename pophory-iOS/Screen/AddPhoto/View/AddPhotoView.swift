@@ -10,9 +10,7 @@ import UIKit
 import SnapKit
 
 final class AddPhotoView: UIView {
-    
-    // MARK: - Properties
-    
+        
     // MARK: - UI Properties
     
     private let scrollView: UIScrollView = {
@@ -44,7 +42,7 @@ final class AddPhotoView: UIView {
         return view
     }()
     
-    private lazy var photoAddButton: PophoryButton = {
+    lazy var photoAddButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primary)
             .setTitle(.addPhoto)
@@ -66,7 +64,6 @@ final class AddPhotoView: UIView {
         label.textAlignment = .left
         return label
     }()
-    
     let albumCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 70, height: 95)
@@ -138,8 +135,7 @@ extension AddPhotoView {
         scrollView.addSubview(scrollContentsView)
         
         scrollContentsView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.edges.width.equalToSuperview()
         }
         
         photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView, friendsStackView])
