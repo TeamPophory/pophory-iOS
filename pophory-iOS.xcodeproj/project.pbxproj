@@ -27,7 +27,6 @@
 		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
 		37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */; };
-		37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */; };
 		37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */; };
 		37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */; };
 		37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */; };
@@ -132,7 +131,6 @@
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireAlbumsViewController.swift; sourceTree = "<group>"; };
-		37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
 		37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveServiceViewController.swift; sourceTree = "<group>"; };
 		37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -333,14 +331,6 @@
 			path = HomeAlbum;
 			sourceTree = "<group>";
 		};
-		37DCA6902A4AB4F000FF8F90 /* EditAlbums */ = {
-			isa = PBXGroup;
-			children = (
-				37DCA6972A4AB67500FF8F90 /* EditAlbumsViewController.swift */,
-			);
-			path = EditAlbums;
-			sourceTree = "<group>";
-		};
 		37DCA6912A4AB53900FF8F90 /* EntireAlbums */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,7 +529,6 @@
 				37DCA68B2A4AB45000FF8F90 /* TabBar */,
 				37DCA6922A4AB55F00FF8F90 /* AlbumDetails */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
-				37DCA6902A4AB4F000FF8F90 /* EditAlbums */,
 				37DCA68F2A4AB4E900FF8F90 /* HomeAlbum */,
 				37DCA68E2A4AB4C200FF8F90 /* LeaveService */,
 				37DCA68D2A4AB48800FF8F90 /* Settings */,
@@ -806,8 +795,6 @@
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
-				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
-				37DCA6982A4AB67500FF8F90 /* EditAlbumsViewController.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
