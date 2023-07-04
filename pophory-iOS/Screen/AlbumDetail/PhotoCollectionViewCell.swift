@@ -8,13 +8,30 @@
 import UIKit
 
 import SnapKit
-//import Kingfisher
+import Kingfisher
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+protocol SettablePhotoProperty {
+    var photoImageString: String { get set }
+}
+
+final class PhotoCollectionViewCell: UICollectionViewCell, SettablePhotoProperty {
     
     static var identifier: String = "ScrapStorageCollectionViewCell"
     
-    let photoImage = UIImageView()
+    private let privatePhotoImage = UIImageView()
+    private var privatePhotoImageString: URL?
+    var photoImageString: String {
+        get {
+            guard let privatePhotoImageString = privatePhotoImageString?.absoluteString else { return String() }
+            return privatePhotoImageString
+        }
+        set {
+            if let photoUrl = URL(string: newValue) {
+                self.privatePhotoImageString = photoUrl
+                self.configCell(imageUrl: photoUrl)
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +43,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     private func render() {
-        self.addSubview(photoImage)
+        self.addSubview(privatePhotoImage)
+        
+        privatePhotoImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func configCell(imageUrl: URL) {
+        privatePhotoImage.kf.setImage(with: imageUrl)
     }
 }

@@ -45,6 +45,9 @@
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
 		9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */; };
+		9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9161CADE2A5460AA002B8B77 /* Kingfisher */; };
+		9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */; };
+		9161CAE32A546511002B8B77 /* ReusableView+Extesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */; };
 		91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7572A51760B00C06D1B /* Navigatable.swift */; };
 		91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */; };
 		91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */; };
@@ -155,6 +158,8 @@
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
 		91F3A7572A51760B00C06D1B /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumView.swift; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
 				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
 			);
@@ -593,6 +599,8 @@
 				37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */,
 				37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */,
 				371A7C622A5133C80095C744 /* UIViewController+Extension.swift */,
+				9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */,
+				9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -679,6 +687,7 @@
 			packageProductDependencies = (
 				37DCA6822A4A97AF00FF8F90 /* Moya */,
 				37DCA6852A4A97CA00FF8F90 /* SnapKit */,
+				9161CADE2A5460AA002B8B77 /* Kingfisher */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -755,6 +764,7 @@
 			packageReferences = (
 				37DCA6812A4A97AF00FF8F90 /* XCRemoteSwiftPackageReference "Moya" */,
 				37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -829,6 +839,7 @@
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
+				9161CAE32A546511002B8B77 /* ReusableView+Extesion.swift in Sources */,
 				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
@@ -841,6 +852,7 @@
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
+				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
@@ -1247,6 +1259,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1259,6 +1279,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		9161CADE2A5460AA002B8B77 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,9 +7,15 @@
 
 import UIKit
 
+@frozen
+enum PhotoCellType {
+    case vertical
+    case horizontal
+}
+
 final class AlbumDetailViewController: BaseViewController {
     
-    let homeAlbumView = AlbumDetailView()
+    let homeAlbumView = AlbumDetailView(frame: .null, photoCollectionViewLayout: nil)
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO?
     
     override func viewDidLoad() {
@@ -39,6 +45,30 @@ final class AlbumDetailViewController: BaseViewController {
         let yOffset: CGFloat = 222
         changeSortViewController.view.frame = CGRect(x: 0, y: yOffset, width: view.frame.width, height: yOffset)
         self.present(changeSortViewController, animated: true)
+    }
+    
+    private func configCollectionCellLayout(
+        photoCellType: PhotoCellType
+    ) -> UICollectionViewFlowLayout {
+        switch photoCellType {
+        case .vertical:
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            let cellWidth = (UIScreen.main.bounds.width - 50) / 2
+            layout.itemSize = CGSize(width: cellWidth, height: 96)
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            return layout
+            
+        case .horizontal:
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            let cellWidth = (UIScreen.main.bounds.width - 50) / 2
+            layout.itemSize = CGSize(width: cellWidth, height: 96)
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 10
+            return layout
+        }
     }
 }
 

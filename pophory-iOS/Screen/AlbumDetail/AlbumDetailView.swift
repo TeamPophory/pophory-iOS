@@ -9,7 +9,21 @@ import UIKit
 
 import SnapKit
 
-final class AlbumDetailView: UIView {
+protocol SettableCollectionCellProperty {
+    var photoCollectionViewLayout: UICollectionViewFlowLayout { get set }
+}
+
+final class AlbumDetailView: UIView, SettableCollectionCellProperty {
+    
+    var photoCollectionViewLayout: UICollectionViewFlowLayout {
+        get {
+            return self.privatePhotoCollectionViewLayout
+        }
+        set {
+            self.privatePhotoCollectionViewLayout = newValue
+            self.photoCollectionView.reloadData()
+        }
+    }
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -38,22 +52,19 @@ final class AlbumDetailView: UIView {
         button.setImage(ImageLiterals.arrowUpDown, for: .normal)
         return button
     }()
-    let photoCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 40) / 2, height: 96)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(cell: ScrapStorageCollectionViewCell.self)
+    private var privatePhotoCollectionViewLayout = UICollectionViewFlowLayout()
+    lazy var photoCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: privatePhotoCollectionViewLayout)
+        collectionView.register(cell: PhotoCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = true
-        collectionView.backgroundColor = .gray100
+        collectionView.backgroundColor = .pophoryWhite
         return collectionView
     }()
 
-    override init(frame: CGRect) {
+    override init(
+        frame: CGRect
+    ) {
         super.init(frame: frame)
         setupLayout()
         configUI()
@@ -70,8 +81,7 @@ final class AlbumDetailView: UIView {
               lineView,
               sortLabel,
               sortButton,
-//              photoCollectionView ]
-              ]
+              photoCollectionView ]
         )
         
         backButton.snp.makeConstraints {
@@ -103,12 +113,12 @@ final class AlbumDetailView: UIView {
             $0.size.equalTo(24)
         }
         
-//        photoCollectionView.snp.makeConstraints {
-//            $0.top.equalTo(sortLabel.snp.bottom).offset(45)
-//            $0.leading.trailing.equalToSuperview().inset(20)
-//            $0.bottom.equalToSuperview()
-//        }
-//        photoCollectionView.backgroundColor = .red
+        photoCollectionView.snp.makeConstraints {
+            $0.top.equalTo(sortLabel.snp.bottom).offset(45)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+        }
+        photoCollectionView.backgroundColor = .red
     }
     
     private func configUI() {
