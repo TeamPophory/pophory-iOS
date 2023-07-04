@@ -40,7 +40,7 @@ final class PhotoCollectionViewDataSource {
             let photo = albumPhotoList.photos[indexPath.row]
             let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
             
-            cell.photoImageString = photo.imageUrl
+            cell.configCell(imageUrl: photo.imageUrl)
             return cell
         }
     }

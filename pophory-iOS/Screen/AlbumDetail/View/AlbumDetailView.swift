@@ -9,21 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol SettableCollectionCellProperty {
-    var photoCollectionViewLayout: UICollectionViewFlowLayout { get set }
-}
-
-final class AlbumDetailView: UIView, SettableCollectionCellProperty {
-    
-    var photoCollectionViewLayout: UICollectionViewFlowLayout {
-        get {
-            return self.privatePhotoCollectionViewLayout
-        }
-        set {
-            self.privatePhotoCollectionViewLayout = newValue
-            self.photoCollectionView.reloadData()
-        }
-    }
+final class AlbumDetailView: UIView {
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -52,11 +38,13 @@ final class AlbumDetailView: UIView, SettableCollectionCellProperty {
         button.setImage(ImageLiterals.arrowUpDown, for: .normal)
         return button
     }()
-    private var privatePhotoCollectionViewLayout = UICollectionViewFlowLayout()
     lazy var photoCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: privatePhotoCollectionViewLayout)
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 8
+        flowLayout.minimumLineSpacing = 8
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(cell: PhotoCollectionViewCell.self)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = true
         collectionView.backgroundColor = .pophoryWhite
         return collectionView
@@ -114,11 +102,10 @@ final class AlbumDetailView: UIView, SettableCollectionCellProperty {
         }
         
         photoCollectionView.snp.makeConstraints {
-            $0.top.equalTo(sortLabel.snp.bottom).offset(45)
+            $0.top.equalTo(lineView.snp.bottom).offset(45)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
-        photoCollectionView.backgroundColor = .red
     }
     
     private func configUI() {

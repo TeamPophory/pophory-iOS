@@ -15,18 +15,27 @@ enum PhotoCellType {
 
 final class AlbumDetailViewController: BaseViewController {
     
-    let homeAlbumView = AlbumDetailView()
-    private var albumPhotoList: PatchAlbumPhotoListResponseDTO?
+    private let homeAlbumView = AlbumDetailView()
+    private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
+        didSet {
+            albumPhotoDataSource.update(photos: albumPhotoList)
+            homeAlbumView.photoCollectionView.reloadData()
+        }
+    }
+    private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         view = homeAlbumView
         
         setButtonAction()
+        addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        requestGetAlbumPhotoList(albumId: 12)
+        super.viewWillAppear(animated)
+        requestGetAlbumPhotoList(albumId: 0)
     }
     
     private func setButtonAction() {
@@ -40,37 +49,45 @@ final class AlbumDetailViewController: BaseViewController {
     
     private func presentChangeSortViewController() {
         let changeSortViewController = ChangeSortViewController()
-        changeSortViewController.modalPresentationStyle = .custom
-        
-        let yOffset: CGFloat = 222
-        changeSortViewController.view.frame = CGRect(x: 0, y: yOffset, width: view.frame.width, height: yOffset)
+        changeSortViewController.modalPresentationStyle = .automatic
+
         self.present(changeSortViewController, animated: true)
     }
+
+    private func checkPhotoCellType(
+        width: Int,
+        height: Int
+    ) -> PhotoCellType {
+        if width < height {
+            return .vertical
+        } else {
+            return .horizontal
+        }
+    }
     
-    private func configCollectionCellLayout(
-        photoCellType: PhotoCellType
-    ) -> UICollectionViewFlowLayout {
+    private func addDelegate() {
+        homeAlbumView.photoCollectionView.delegate = self
+    }
+}
+
+// MARK: - collection cell size
+
+extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellIndex = indexPath.row
+        guard let photo = albumPhotoList?.photos[cellIndex] else { return CGSize() }
+        let photoCellType = checkPhotoCellType(width: photo.width, height: photo.height)
+        
         switch photoCellType {
         case .vertical:
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            let cellWidth = (UIScreen.main.bounds.width - 50) / 2
-            layout.itemSize = CGSize(width: cellWidth, height: 96)
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
-            return layout
-            
+            return CGSize(width: (collectionView.bounds.width - 8) / 2, height: 246)
         case .horizontal:
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            let cellWidth = (UIScreen.main.bounds.width - 50) / 2
-            layout.itemSize = CGSize(width: cellWidth, height: 96)
-            layout.minimumLineSpacing = 10
-            layout.minimumInteritemSpacing = 10
-            return layout
+            return CGSize(width: collectionView.bounds.width - 8, height: 223)
         }
     }
 }
+
+// MARK: - api
 
 extension AlbumDetailViewController {
     func requestGetAlbumPhotoList(
@@ -87,6 +104,8 @@ extension AlbumDetailViewController {
         }
     }
 }
+
+// MARK: - navigation bar
 
 extension AlbumDetailViewController: Navigatable {
     var navigationBarTitleText: String? { return "내 앨범" }

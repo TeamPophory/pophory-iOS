@@ -10,29 +10,15 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-protocol SettablePhotoProperty {
-    var photoImageString: String { get set }
-}
-
-final class PhotoCollectionViewCell: UICollectionViewCell, SettablePhotoProperty {
+final class PhotoCollectionViewCell: UICollectionViewCell {
     
     static var identifier: String = "PhotoCollectionViewCell"
     
-    var photoImageString: String {
-        get {
-            guard let privatePhotoImageString = privatePhotoImageString?.absoluteString else { return String() }
-            return privatePhotoImageString
-        }
-        set {
-            if let photoUrl = URL(string: newValue) {
-                self.privatePhotoImageString = photoUrl
-                self.configCell(imageUrl: photoUrl)
-            }
-        }
-    }
-    
-    private let privatePhotoImage = UIImageView()
-    private var privatePhotoImageString: URL?
+    private let photoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,14 +30,15 @@ final class PhotoCollectionViewCell: UICollectionViewCell, SettablePhotoProperty
     }
     
     private func render() {
-        self.addSubview(privatePhotoImage)
+        self.addSubview(photoImage)
         
-        privatePhotoImage.snp.makeConstraints {
+        photoImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
-    private func configCell(imageUrl: URL) {
-        privatePhotoImage.kf.setImage(with: imageUrl)
+    func configCell(imageUrl: String) {
+        let imageUrl = URL(string: imageUrl)
+        photoImage.kf.setImage(with: imageUrl)
     }
 }
