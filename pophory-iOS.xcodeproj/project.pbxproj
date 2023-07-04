@@ -43,6 +43,10 @@
 		37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */; };
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
+		6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */; };
+		6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */; };
+		6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */; };
+		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
 		91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7572A51760B00C06D1B /* Navigatable.swift */; };
 		91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */; };
 		91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */; };
@@ -147,6 +151,10 @@
 		37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
+		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
 		91F3A7572A51760B00C06D1B /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumView.swift; sourceTree = "<group>"; };
@@ -365,6 +373,33 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		6B29DC522A5494A000F93EC7 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				6B29DC532A5494A000F93EC7 /* View */,
+				6B29DC572A5494A000F93EC7 /* ViewController */,
+			);
+			path = AddPhoto;
+			sourceTree = "<group>";
+		};
+		6B29DC532A5494A000F93EC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */,
+				6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */,
+				6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B29DC572A5494A000F93EC7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		91F3A7672A52A8C300C06D1B /* Studio */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +561,7 @@
 		B1631F3B2A175B290050974F /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				6B29DC522A5494A000F93EC7 /* AddPhoto */,
 				37DCA68B2A4AB45000FF8F90 /* TabBar */,
 				37DCA6922A4AB55F00FF8F90 /* AlbumDetails */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
@@ -781,6 +817,8 @@
 				91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
 				37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */,
+				6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */,
+				6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */,
 				37DCA6A42A4AB6F600FF8F90 /* SplashViewController.swift in Sources */,
 				3782F4342A528A3600FE3846 /* SignInView.swift in Sources */,
 				37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */,
@@ -794,6 +832,7 @@
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
+				6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
@@ -819,6 +858,7 @@
 				37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */,
 				377EF7E22A4F48BE00E3268D /* PickAlbumCoverViewController.swift in Sources */,
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
+				6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
