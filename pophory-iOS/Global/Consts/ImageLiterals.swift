@@ -19,6 +19,7 @@ enum ImageLiterals {
     static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
     static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
     static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
+    static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
 }
 
 extension UIImage {

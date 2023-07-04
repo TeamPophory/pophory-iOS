@@ -74,6 +74,8 @@
 		91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */; };
 		91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */; };
 		91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */; };
+		91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B32A53077F00C06D1B /* ChangeSortViewController.swift */; };
+		91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B62A53183800C06D1B /* ChangeSortView.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -177,6 +179,8 @@
 		91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
+		91F3A7B32A53077F00C06D1B /* ChangeSortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSortViewController.swift; sourceTree = "<group>"; };
+		91F3A7B62A53183800C06D1B /* ChangeSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSortView.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 		37DCA6922A4AB55F00FF8F90 /* AlbumDetail */ = {
 			isa = PBXGroup;
 			children = (
+				91F3A7B52A53178B00C06D1B /* ChangeSort */,
 				91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */,
 				91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */,
 			);
@@ -464,6 +469,15 @@
 				91F3A7A32A52D52200C06D1B /* AuthRepository.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		91F3A7B52A53178B00C06D1B /* ChangeSort */ = {
+			isa = PBXGroup;
+			children = (
+				91F3A7B32A53077F00C06D1B /* ChangeSortViewController.swift */,
+				91F3A7B62A53183800C06D1B /* ChangeSortView.swift */,
+			);
+			path = ChangeSort;
 			sourceTree = "<group>";
 		};
 		B1631EFE2A1759EA0050974F = {
@@ -790,11 +804,13 @@
 				91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */,
 				91F3A79C2A52D2DE00C06D1B /* StudioRepository.swift in Sources */,
 				377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */,
+				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
+				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,

@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeAlbumViewController: BaseViewController {
     
-    let homeAlbumView = HomeAlbumView()
+    let homeAlbumView = HomeAlbumView(statusLabelText: String())
 
     override func viewDidLoad() {
         super.viewDidLoad()

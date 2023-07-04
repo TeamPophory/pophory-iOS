@@ -33,7 +33,7 @@ final class AlbumDetailView: BaseView {
         label.font = .c1
         return label
     }()
-    private let sortButton: UIButton = {
+    let sortButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.arrowUpDown, for: .normal)
         return button

@@ -9,8 +9,24 @@ import UIKit
 
 import SnapKit
 
-final class HomeAlbumView: BaseView {
+protocol GettableHomeAlbumProperty {
+    var statusLabelText: String { get set }
+}
+
+final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
+
+    private var privateStatusLabelText: String
     
+    var statusLabelText: String {
+        get {
+            return privateStatusLabelText
+        }
+        set {
+            privateStatusLabelText = newValue
+            self.statusLabel.text = privateStatusLabelText
+        }
+    }
+
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
         let label = UILabel()
@@ -38,12 +54,14 @@ final class HomeAlbumView: BaseView {
         let label = UILabel()
         label.font = .t1
         label.textColor = .white
-        label.text = "8/30"
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(
+        statusLabelText: String
+    ) {
+        privateStatusLabelText = statusLabelText
+        super.init(frame: .zero)
         setupLayout()
         configUI()
     }
