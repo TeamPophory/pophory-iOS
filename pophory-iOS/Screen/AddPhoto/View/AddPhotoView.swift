@@ -21,8 +21,7 @@ final class AddPhotoView: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    
-    private let contentsView: UIView = {
+    private let scrollContentsView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         return view
@@ -33,14 +32,12 @@ final class AddPhotoView: UIView {
         view.backgroundColor = .lightGray
         return view
     }()
-    
     private let photoInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 22
         return stackView
     }()
-    
     private let photoAddButtonView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryWhite
@@ -69,7 +66,6 @@ final class AddPhotoView: UIView {
         label.textAlignment = .left
         return label
     }()
-    
     private let albumView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryGray300
@@ -84,7 +80,6 @@ final class AddPhotoView: UIView {
         stackView.setupExplain(explain: "2020.06.06(금)")
         return stackView
     }()
-    
     let studioStackView: PhotoInfoStackView = {
         let stackView = PhotoInfoStackView()
         stackView.setupTitle(title: "사진관")
@@ -93,7 +88,6 @@ final class AddPhotoView: UIView {
         stackView.setupExplain(explain: "사진관을 선택해줘")
         return stackView
     }()
-    
     let friendsStackView: PhotoInfoStackView = {
         let stackView = PhotoInfoStackView()
         stackView.setupTitle(title: "함께 찍은 친구")
@@ -108,7 +102,6 @@ final class AddPhotoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupStyle()
         setupLayout()
     }
 
@@ -119,26 +112,14 @@ final class AddPhotoView: UIView {
 
 extension AddPhotoView {
     
-    // MARK: - Layout
-    
-    private func setupStyle() {
-        
-    }
-    
     private func setupLayout() {
         self.addSubviews([scrollView, photoAddButtonView])
-        scrollView.addSubview(contentsView)
-        photoAddButtonView.addSubview(photoAddButton)
-        contentsView.addSubviews([photoView, photoInfoStackView])
-        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView, friendsStackView])
-        albumStackView.addArrangedSubviews([albumTitle, albumView])
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.left.right.equalToSuperview()
             $0.bottom.equalTo(photoAddButtonView.snp.top)
         }
-        
         photoAddButtonView.snp.makeConstraints {
             $0.height.equalTo(80)
             $0.top.equalTo(scrollView.snp.bottom)
@@ -146,31 +127,40 @@ extension AddPhotoView {
             $0.leading.trailing.equalToSuperview()
         }
         
-        photoAddButton.snp.makeConstraints {
-            $0.width.equalTo(335)
-            $0.height.equalTo(60)
-            $0.center.equalToSuperview()
-        }
+        scrollView.addSubview(scrollContentsView)
         
-        contentsView.snp.makeConstraints {
+        scrollContentsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
         }
+        
+        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView, friendsStackView])
+        
+        scrollContentsView.addSubviews([photoView, photoInfoStackView])
         
         photoView.snp.makeConstraints {
             $0.height.equalTo(325)
             $0.top.leading.trailing.equalToSuperview()
         }
-        
         photoInfoStackView.snp.makeConstraints {
             $0.top.equalTo(photoView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(22)
         }
         
+        albumStackView.addArrangedSubviews([albumTitle, albumView])
+
         albumView.snp.makeConstraints {
             $0.height.equalTo(95)
             $0.width.equalTo(70)
+        }
+        
+        photoAddButtonView.addSubview(photoAddButton)
+
+        photoAddButton.snp.makeConstraints {
+            $0.width.equalTo(335)
+            $0.height.equalTo(60)
+            $0.center.equalToSuperview()
         }
     }
     

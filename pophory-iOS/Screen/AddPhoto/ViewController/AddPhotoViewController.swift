@@ -17,7 +17,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     private let rootView = AddPhotoView()
     
-    // MARK: - Life Cycle - (init, life Cycle, deinit 순서)
+    // MARK: - Life Cycle
     
     override func loadView() {
         super.loadView()
@@ -26,6 +26,8 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
@@ -38,9 +40,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
 }
 
 extension AddPhotoViewController {
-    
-    // MARK: - Layout
-    
+        
     // MARK: - @objc
     
     @objc func onclickDateButton() {
