@@ -50,11 +50,21 @@ extension PophoryButton {
     
     // MARK: - Layout
     
-    public func addCenterXConstraint(to view: UIView) {
+    func addCenterXConstraint(to view: UIView) {
         view.addSubview(self)
         
         snp.makeConstraints {
             $0.centerX.equalTo(view)
+            $0.width.equalTo(buttonSize.width)
+            $0.height.equalTo(buttonSize.height)
+        }
+    }
+    
+    func addCenterConstraint(to view: UIView) {
+        view.addSubview(self)
+        
+        snp.makeConstraints {
+            $0.center.equalTo(view)
             $0.width.equalTo(buttonSize.width)
             $0.height.equalTo(buttonSize.height)
         }
