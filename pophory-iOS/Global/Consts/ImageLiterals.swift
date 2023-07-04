@@ -29,6 +29,9 @@ enum ImageLiterals {
     static var downIcon: UIImage { .load(name: "downIcon") }
     static var calanderIcon: UIImage { .load(name: "calanderIcon") }
     
+    // MARK: - exception
+    
+    static var emptyPhotoExceptionIcon: UIImage { .load(name: "emptyPhotoExceptionIcon") }
 }
 
 

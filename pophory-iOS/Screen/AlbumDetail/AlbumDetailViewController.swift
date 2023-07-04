@@ -19,6 +19,8 @@ final class AlbumDetailViewController: BaseViewController {
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
             albumPhotoDataSource.update(photos: albumPhotoList)
+            
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList?.photos.isEmpty ?? Bool())
             homeAlbumView.photoCollectionView.reloadData()
         }
     }
@@ -35,7 +37,7 @@ final class AlbumDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: 0)
+        requestGetAlbumPhotoList(albumId: 12)
     }
     
     private func setButtonAction() {
