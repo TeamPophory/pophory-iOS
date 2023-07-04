@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class HomeAlbumView: BaseView {
+final class HomeAlbumView: UIView {
     
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
