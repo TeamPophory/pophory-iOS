@@ -20,12 +20,13 @@ enum ImageLiterals {
     static var logIcon: UIImage { .load(name: "logIcon") }
     
     // MARK: - icon
-
+    
     static var searchIcon: UIImage { .load(name: "searchIcon") }
     static var downIcon: UIImage { .load(name: "downIcon") }
     static var calanderIcon: UIImage { .load(name: "calanderIcon") }
-
+    
 }
+
 
 extension UIImage {
     static func load(name: String) -> UIImage {
