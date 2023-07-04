@@ -14,7 +14,7 @@ final class TabBarController: UITabBarController {
     // MARK: - viewController properties
     
     let homeAlbumViewController = HomeAlbumViewController()
-    let editAlbumViewController = EditAlbumsViewController()
+    let editAlbumViewController = UIViewController()
     let myPageViewController = MypageViewController()
     
     let editAlbumImageView = UIImageView(image: ImageLiterals.tabBarEditAlbumIcon)
