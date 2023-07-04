@@ -158,14 +158,8 @@ extension AddPhotoView {
             $0.height.equalTo(95)
             $0.leading.trailing.equalToSuperview()
         }
-        
-        photoAddButtonView.addSubview(photoAddButton)
-        
-        photoAddButton.snp.makeConstraints {
-            $0.width.equalTo(335)
-            $0.height.equalTo(60)
-            $0.center.equalToSuperview()
-        }
+                
+        photoAddButton.addCenterConstraint(to: photoAddButtonView)
     }
     
     // MARK: - @objc
