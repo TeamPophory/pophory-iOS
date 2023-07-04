@@ -16,8 +16,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void) {
         provider.request(.withdrawUser) { result in
             switch result {
-            case.success(let response):
-                let statusCode = response.statusCode
+            case.success(_):
                 completion(.success((Any).self))
             case .failure(let err):
                 print(err)
