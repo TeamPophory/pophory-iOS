@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class ChangeSortView: BaseView {
+final class ChangeSortView: UIView {
     
     private let headTitle: UILabel = {
         let label = UILabel()

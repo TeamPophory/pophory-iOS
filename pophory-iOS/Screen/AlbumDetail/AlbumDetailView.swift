@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class AlbumDetailView: BaseView {
+final class AlbumDetailView: UIView {
     
     private let backButton: UIButton = {
         let button = UIButton()
@@ -59,13 +59,13 @@ final class AlbumDetailView: BaseView {
         )
         
         backButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(52)
+            $0.top.equalToSuperview().offset(65)
             $0.leading.equalToSuperview().offset(20)
             $0.size.equalTo(24)
         }
         
         plusButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(52)
+            $0.top.equalToSuperview().offset(65)
             $0.trailing.equalToSuperview().inset(20)
             $0.size.equalTo(24)
         }

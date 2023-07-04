@@ -23,7 +23,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         }
         set {
             privateStatusLabelText = newValue
-            self.statusLabel.text = privateStatusLabelText
+            self.statusLabel.text = privateStatusLabelText + "/30"
         }
     }
 
