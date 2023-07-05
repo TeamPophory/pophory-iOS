@@ -16,13 +16,14 @@ class BaseSignUpView: UIView {
         label.textColor = .black
         label.font = .h1
         label.numberOfLines = 0
+        label.setTextWithLineHeight(lineHeight: 34)
         label.asColor(targetString: "너의 이름", color: .pophoryPurple)
         return label
     }()
     
     lazy var nextButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primary)
+            .setStyle(.primaryBlack)
             .setTitle(.next)
         return buttonBuilder.build()
     }()
@@ -45,9 +46,8 @@ extension BaseSignUpView {
     // MARK: - Layout
     
     private func setupViews() {
-        
         addSubviews([headerLabel, nextButton])
-        
+
         headerLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().offset(20)
@@ -58,6 +58,14 @@ extension BaseSignUpView {
         }
         
         nextButton.addCenterXConstraint(to: self)
+    }
+    
+    func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
+        addSubview(subView)
+        subView.snp.makeConstraints {
+            $0.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
+            $0.centerX.equalToSuperview()
+        }
     }
     
     // MARK: - @objc

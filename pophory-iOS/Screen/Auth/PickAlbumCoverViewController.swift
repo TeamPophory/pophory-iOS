@@ -8,9 +8,23 @@
 import UIKit
 
 final class PickAlbumCoverViewController: BaseViewController, Navigatable {
-
+    
     
     var navigationBarTitleText: String? { return "회원가입" }
+    
+    lazy var pickAlbumCoverView: PickAlbumCoverView = {
+        let view = PickAlbumCoverView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    override func loadView() {
+        super.loadView()
+        
+        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
+        self.view = pickAlbumCoverView
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -19,7 +33,7 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
 }

@@ -7,14 +7,72 @@
 
 import UIKit
 
-class StartPophoryView: UIView {
+import SnapKit
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+final class StartPophoryView: UIView {
+
+    let ilustView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryGray300
+        return view
+    }()
+    
+    let startLabel: UILabel = {
+        let label = UILabel()
+        label.text = "포포리 앨범을 만들었어!\n지금 사진을 추가해볼까?"
+        label.font = .h1
+        label.textColor = .pophoryWhite
+        label.numberOfLines = 0
+        label.setTextWithLineHeight(lineHeight: 34)
+        return label
+    }()
+    
+    let startButton: PophoryButton = {
+        let buttonBuider = PophoryButtonBuilder()
+            .setStyle(.primaryWhite)
+            .setTitle(.startPophory)
+        return buttonBuider.build()
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupLayout()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
+// MARK: - Extensions
+
+extension StartPophoryView {
+    
+    private func setupBackground() {
+        self.backgroundColor = .pophoryPurple
+    }
+    
+    private func setupLayout() {
+        
+        addSubviews([ilustView, startLabel, startButton])
+        
+        ilustView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).offset(179)
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(convertByWidthRatio(94))
+            $0.height.equalTo(convertByWidthRatio(187))
+        }
+        
+        startLabel.snp.makeConstraints {
+            $0.top.equalTo(ilustView.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        startButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(42)
+        }
+        
+        startButton.addCenterXConstraint(to: self)
+    }
 }
