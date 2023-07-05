@@ -26,16 +26,16 @@ final class AlbumDetailViewController: BaseViewController {
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     private let albumId: Int = 12
     
+    override func loadView() {
+        view = homeAlbumView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setButtonAction()
         addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-    }
-    
-    override func loadView() {
-        view = homeAlbumView
     }
     
     override func viewWillAppear(_ animated: Bool) {
