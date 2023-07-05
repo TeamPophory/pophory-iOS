@@ -10,7 +10,7 @@ import UIKit
 class CustomModalPresentationController: UIPresentationController {
     
     // MARK: - Properties
-
+    
     private let customHeight: CGFloat
     
     // MARK: - UI Properties
@@ -53,11 +53,18 @@ class CustomModalPresentationController: UIPresentationController {
     override func dismissalTransitionWillBegin() {
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.blurEffectView.alpha = 0}, completion: { _ in self.blurEffectView.removeFromSuperview()})
     }
-
+    
+    override func containerViewWillLayoutSubviews() {
+        super.containerViewWillLayoutSubviews()
+        
+        presentedView?.layer.cornerRadius = 20.0
+        presentedView?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
     // 모달의 크기가 조절됐을 때 호출
     override func containerViewDidLayoutSubviews() {
         guard let containerView = containerView else { return }
-
+        
         super.containerViewDidLayoutSubviews()
         blurEffectView.frame = containerView.bounds
     }
@@ -72,7 +79,7 @@ extension CustomModalPresentationController {
     }
     
     // MARK: - Private Methods
-
+    
     private func setupTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         blurEffectView.addGestureRecognizer(tapGestureRecognizer)

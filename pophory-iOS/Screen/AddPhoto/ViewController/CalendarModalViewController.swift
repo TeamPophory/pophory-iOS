@@ -25,14 +25,6 @@ class CalendarModalViewController: BaseViewController {
         return picker
     }()
     
-    override func setupStyle() {
-        super.setupStyle()
-        
-        view.layer.cornerRadius = 20
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-    }
-    
     override func setupLayout() {
         super.setupLayout()
         
