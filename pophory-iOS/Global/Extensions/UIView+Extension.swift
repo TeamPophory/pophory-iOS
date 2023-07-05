@@ -78,7 +78,7 @@ extension UIView {
         customView.frame = self.bounds
         self.addSubview(customView)
     }
-
+    
     func rotate() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotation.toValue = NSNumber(value: Double.pi * 2)
@@ -86,5 +86,65 @@ extension UIView {
         rotation.isCumulative = true
         rotation.repeatCount = Float.greatestFiniteMagnitude
         self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+    
+    func getDeviceWidth() -> CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    func getDeviceHeight() -> CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    /// 아이폰 13 미니(width 375)를 기준으로 레이아웃을 잡고, 기기의 width 사이즈를 곱해 대응 값을 구할 때 사용
+    func convertByWidthRatio(_ convert: CGFloat) -> CGFloat {
+        return (convert / 375) * getDeviceWidth()
+    }
+    
+    /// 아이폰 13 미니(height 812)를 기준으로 레이아웃을 잡고, 기기의 height 사이즈를 곱해 대응 값을 구할 때 사용
+    func convertByHeightRatio(_ convert: CGFloat) -> CGFloat {
+        return (convert / 812) * getDeviceHeight()
+    }
+    
+    func shapeWithCustomCorners(topLeftRadius: CGFloat, topRightRadius: CGFloat, bottomLeftRadius: CGFloat, bottomRightRadius: CGFloat) {
+        let path = UIBezierPath()
+        
+        // Top left corner
+        path.move(to: CGPoint(x: 0, y: topLeftRadius))
+        path.addArc(withCenter: CGPoint(x: topLeftRadius, y: topLeftRadius),
+                    radius: topLeftRadius,
+                    startAngle: CGFloat.pi,
+                    endAngle: CGFloat.pi * 1.5,
+                    clockwise: true)
+        
+        // Top right corner
+        path.addLine(to: CGPoint(x: self.bounds.width - topRightRadius, y: 0))
+        path.addArc(withCenter: CGPoint(x: self.bounds.width - topRightRadius, y: topRightRadius),
+                    radius: topRightRadius,
+                    startAngle: CGFloat.pi * 1.5,
+                    endAngle: 0,
+                    clockwise: true)
+        
+        // Bottom right corner
+        path.addLine(to: CGPoint(x: self.bounds.width, y: self.bounds.height - bottomRightRadius))
+        path.addArc(withCenter: CGPoint(x: self.bounds.width - bottomRightRadius, y: self.bounds.height - bottomRightRadius),
+                    radius: bottomRightRadius,
+                    startAngle: 0,
+                    endAngle: CGFloat.pi * 0.5,
+                    clockwise: true)
+        
+        // Bottom left corner
+        path.addLine(to: CGPoint(x: bottomLeftRadius, y: self.bounds.height))
+        path.addArc(withCenter: CGPoint(x: bottomLeftRadius, y: self.bounds.height - bottomLeftRadius),
+                    radius: bottomLeftRadius,
+                    startAngle: CGFloat.pi * 0.5,
+                    endAngle: CGFloat.pi,
+                    clockwise: true)
+        
+        path.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        self.layer.mask = shapeLayer
     }
 }

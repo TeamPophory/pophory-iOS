@@ -22,8 +22,14 @@ class StartPophoryViewController: BaseViewController {
         self.view = startPophoryView
     }
     
+    override func setupStyle() {
+        view.backgroundColor = .pophoryPurple
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideNavigationBar()
     }
     
 }
