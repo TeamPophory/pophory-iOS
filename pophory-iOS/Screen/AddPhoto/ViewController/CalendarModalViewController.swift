@@ -11,7 +11,7 @@ class CalendarModalViewController: BaseViewController {
     
     // MARK: - Properties
     
-    weak var delegate: DataBind?
+    weak var delegate: DateDataBind?
     
     // MARK: - UI Properties
     
@@ -33,7 +33,8 @@ class CalendarModalViewController: BaseViewController {
         view.addSubview(calendar)
         
         calendar.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(31)
+            $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }
@@ -42,7 +43,7 @@ extension CalendarModalViewController {
     
     // MARK: - @objc
     @objc func onclickCalendar() {
-        delegate?.stringDataBind(text:DateManager.dateToString(date: calendar.date))
+        delegate?.dateDataBind(text:DateManager.dateToString(date: calendar.date))
         dismiss(animated: true)
     }
     

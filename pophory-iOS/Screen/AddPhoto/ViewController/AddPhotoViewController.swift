@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol DateDataBind: AnyObject{
+    func dateDataBind(text: String)
+}
+
+protocol StudioDataBind: AnyObject{
+    func studioDataBind(text: String)
+}
+
 final class AddPhotoViewController: BaseViewController, Navigatable {
 
     // MARK: - Properties
@@ -48,14 +56,20 @@ extension AddPhotoViewController {
         let customModalVC = CalendarModalViewController()
         customModalVC.modalPresentationStyle = .custom
 
-        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 325)
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 360)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
     }
     
     @objc func onclicStudioButton() {
-        print("사진관")
+        let customModalVC = StudioModalViewController()
+        customModalVC.modalPresentationStyle = .custom
+
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 270)
+        customModalVC.transitioningDelegate = customTransitionDelegate
+        customModalVC.delegate = self
+        present(customModalVC, animated: true, completion: nil)
     }
     
     @objc func onclickFriendsButton() {
@@ -89,9 +103,15 @@ extension AddPhotoViewController: UICollectionViewDataSource {
     }
 }
 
-extension AddPhotoViewController: DataBind {
-    func stringDataBind(text: String) {
+extension AddPhotoViewController: DateDataBind, StudioDataBind {
+    
+    func dateDataBind(text: String) {
         rootView.dateStackView.setupExplain(explain: text)
         rootView.dateStackView.setupSelected(selected: true)
+    }
+    
+    func studioDataBind(text: String) {
+        rootView.studioStackView.setupExplain(explain: text)
+        rootView.studioStackView.setupSelected(selected: true)
     }
 }
