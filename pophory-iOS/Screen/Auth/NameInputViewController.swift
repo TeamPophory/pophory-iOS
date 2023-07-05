@@ -57,6 +57,8 @@ final class NameInputViewController: BaseViewController, Navigatable {
     }
 }
 
+// MARK: - Extension
+
 extension NameInputViewController {
     
     // MARK: - Layout
