@@ -19,7 +19,6 @@ final class AlbumDetailViewController: BaseViewController {
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
             albumPhotoDataSource.update(photos: albumPhotoList)
-            
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList?.photos.isEmpty ?? Bool())
             homeAlbumView.photoCollectionView.reloadData()
         }
@@ -28,16 +27,19 @@ final class AlbumDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = homeAlbumView
         
         setButtonAction()
         addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
+    override func loadView() {
+        view = homeAlbumView
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: 12)
+        requestGetAlbumPhotoList(albumId: 0)
     }
     
     private func setButtonAction() {
