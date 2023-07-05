@@ -85,7 +85,7 @@ extension StudioModalViewController: UICollectionViewDataSource {
 
 extension StudioModalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.studioDataBind(text: "인생네컷")
+        delegate?.studioDataBind(text: String(indexPath.item))
         dismiss(animated: true)
     }
 }
