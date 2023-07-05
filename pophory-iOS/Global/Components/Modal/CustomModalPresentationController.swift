@@ -7,6 +7,18 @@
 
 import UIKit
 
+/**
+ 생성 예시
+ 
+ let customModalVC = CalendarModalViewController()
+ customModalVC.modalPresentationStyle = .custom
+
+ let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 360)
+ customModalVC.transitioningDelegate = customTransitionDelegate
+
+ present(customModalVC, animated: true, completion: nil)
+ **/
+
 class CustomModalPresentationController: UIPresentationController {
     
     // MARK: - Properties
