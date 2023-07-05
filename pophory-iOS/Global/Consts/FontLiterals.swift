@@ -13,7 +13,7 @@ extension UIFont {
     }
     
     @nonobjc class var h1m: UIFont {
-        return UIFont.font(.pretendardSemiBold, ofSize: 24)
+        return UIFont.font(.pretendardMedium, ofSize: 24)
     }
     
     @nonobjc class var h2: UIFont {
@@ -32,6 +32,7 @@ extension UIFont {
         return UIFont.font(.pretendardMedium, ofSize: 16)
     }
     
+    // TODO: 삭제예정
     @nonobjc class var t2: UIFont {
         return UIFont.font(.pretendardMedium, ofSize: 18)
     }
@@ -44,13 +45,32 @@ extension UIFont {
         return UIFont.font(.pretendardMedium, ofSize: 12)
     }
     
-    @nonobjc class var id: UIFont {
-        return UIFont.font(.pretendardSemiBold, ofSize: 22)
-        
-    }
-    
     @nonobjc class var nav: UIFont {
         return UIFont.font(.pretendardBold, ofSize: 12)
+    }
+    
+    @nonobjc class var pTtl: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 19)
+    }
+    
+    @nonobjc class var pTxt: UIFont {
+        return UIFont.font(.pretendardRegular, ofSize: 16)
+    }
+    
+    @nonobjc class var pBtn: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 16)
+    }
+    
+    @nonobjc class var pL: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 14)
+    }
+    
+    @nonobjc class var mTtl: UIFont {
+        return UIFont.font(.pretendardBold, ofSize: 28)
+    }
+    
+    @nonobjc class var mTxt: UIFont {
+        return UIFont.font(.pretendardMedium, ofSize: 18)
     }
 }
 
