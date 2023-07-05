@@ -24,6 +24,7 @@ final class AlbumDetailViewController: BaseViewController {
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
+    private let albumId: Int = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ final class AlbumDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: 0)
+        requestGetAlbumPhotoList(albumId: albumId)
     }
     
     private func setButtonAction() {
