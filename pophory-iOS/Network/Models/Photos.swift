@@ -14,6 +14,8 @@ struct Photos: Codable {
 
 // MARK: - Photo
 struct Photo: Codable {
-    let id: Int?
-    let studio, takenAt, imageUrl: String?
+    let id: Int
+    let studio, takenAt: String
+    let imageUrl: String
+    let width, height: Int
 }

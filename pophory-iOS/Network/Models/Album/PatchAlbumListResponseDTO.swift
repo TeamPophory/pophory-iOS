@@ -13,7 +13,7 @@ struct PatchAlbumListResponseDTO: Codable {
 
 // MARK: - Album
 struct Album: Codable {
-    let id: Int
-    let title: String
-    let photoCount: Int
+    let id: Int?
+    let title: String?
+    let photoCount: Int?
 }
