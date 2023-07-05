@@ -90,7 +90,6 @@ extension OnboardingView {
         contentCollectionView.snp.makeConstraints {
             $0.top.equalTo(pageControl.snp.bottom).offset(22)
             $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(20))
-//            $0.width.equalTo(335)
             $0.height.equalTo(480)
         }
         
