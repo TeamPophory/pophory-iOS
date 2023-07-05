@@ -27,7 +27,7 @@ class CustomModalPresentationController: UIPresentationController {
     
     // MARK: - UI Properties
     
-    private let blurEffectView: UIView = {
+    private let dimmendView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryBlack
         view.isUserInteractionEnabled = true
@@ -57,13 +57,13 @@ class CustomModalPresentationController: UIPresentationController {
     override func presentationTransitionWillBegin() {
         guard let containerView = containerView else { return }
         
-        blurEffectView.alpha = 0
-        containerView.addSubview(blurEffectView)
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.blurEffectView.alpha = 0.3},completion: nil)
+        dimmendView.alpha = 0
+        containerView.addSubview(dimmendView)
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.dimmendView.alpha = 0.3},completion: nil)
     }
     
     override func dismissalTransitionWillBegin() {
-        self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.blurEffectView.alpha = 0}, completion: { _ in self.blurEffectView.removeFromSuperview()})
+        self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.dimmendView.alpha = 0}, completion: { _ in self.dimmendView.removeFromSuperview()})
     }
     
     override func containerViewWillLayoutSubviews() {
@@ -78,7 +78,7 @@ class CustomModalPresentationController: UIPresentationController {
         guard let containerView = containerView else { return }
         
         super.containerViewDidLayoutSubviews()
-        blurEffectView.frame = containerView.bounds
+        dimmendView.frame = containerView.bounds
     }
 }
 
@@ -94,6 +94,6 @@ extension CustomModalPresentationController {
     
     private func setupTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
-        blurEffectView.addGestureRecognizer(tapGestureRecognizer)
+        dimmendView.addGestureRecognizer(tapGestureRecognizer)
     }
 }

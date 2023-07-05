@@ -49,9 +49,9 @@ class StudioModalViewController: BaseViewController {
         stackView.addArrangedSubviews([studioLabel, studioCollectionView])
         
         stackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(37)
+            $0.top.equalToSuperview().inset(34)
             $0.leading.trailing.equalToSuperview().inset(19.5)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(50)
         }
         
         studioCollectionView.dataSource = self
@@ -59,17 +59,7 @@ class StudioModalViewController: BaseViewController {
     }
 }
 
-extension StudioModalViewController {
-    
-    // MARK: - @objc
-    
-//    @objc func onclickCalendar() {
-//        delegate?.stringDataBind(text:DateManager.dateToString(date: studioCollectionView.date))
-//        dismiss(animated: true)
-//    }
-    
-    // MARK: - Private Methods
-}
+// MARK: - UICollectionView DataSource, Delegate
 
 extension StudioModalViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

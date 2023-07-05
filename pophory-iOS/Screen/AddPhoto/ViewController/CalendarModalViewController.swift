@@ -33,8 +33,9 @@ class CalendarModalViewController: BaseViewController {
         view.addSubview(calendar)
         
         calendar.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(31)
+            $0.top.equalToSuperview().inset(34)
             $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(50)
         }
     }
 }
@@ -42,10 +43,9 @@ class CalendarModalViewController: BaseViewController {
 extension CalendarModalViewController {
     
     // MARK: - @objc
+    
     @objc func onclickCalendar() {
         delegate?.dateDataBind(text:DateManager.dateToString(date: calendar.date))
         dismiss(animated: true)
     }
-    
-    // MARK: - Private Methods
 }

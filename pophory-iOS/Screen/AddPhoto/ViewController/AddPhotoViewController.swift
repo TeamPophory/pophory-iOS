@@ -56,7 +56,7 @@ extension AddPhotoViewController {
         let customModalVC = CalendarModalViewController()
         customModalVC.modalPresentationStyle = .custom
 
-        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 360)
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 326)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
@@ -66,7 +66,7 @@ extension AddPhotoViewController {
         let customModalVC = StudioModalViewController()
         customModalVC.modalPresentationStyle = .custom
 
-        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 270)
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 232)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
@@ -102,6 +102,8 @@ extension AddPhotoViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - DataBind Protocol
 
 extension AddPhotoViewController: DateDataBind, StudioDataBind {
     
