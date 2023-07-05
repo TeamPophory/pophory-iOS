@@ -107,7 +107,7 @@ extension IDInputViewController {
     }
     
     private func loadNextViewController(with nickName: String, fullName: String) {
-        let pickAlbumCoverVC = PickAlbumCoverViewController(nibName: nil, bundle: nil)
+        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickName: nickName, nibName: nil, bundle: nil)
         pickAlbumCoverVC.fullName = fullName
         pickAlbumCoverVC.nickName = nickName
         print("PickAlbumCoverViewController - Full Name: \(fullName)")

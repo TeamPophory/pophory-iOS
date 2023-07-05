@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 
 protocol PickAlbumCoverViewDelegate: AnyObject {
-    func didSelectRowAtIndexPath(indexPath: IndexPath)
+    func didSelectButton(at index: Int)
 }
 
 final class PickAlbumCoverView: BaseSignUpView {
 
-    weak var delegate: PickAlbumCoverViewDelegate?
+    weak var delegate: PickAlbumCoverViewControllerDelegate?
     
     private let albumCoverView: UIView = {
         let view = UIView()
@@ -87,7 +87,7 @@ extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectRowAtIndexPath(indexPath: indexPath)
+        self.delegate?.didSelectButton(at: indexPath.item)
     }
 }
 

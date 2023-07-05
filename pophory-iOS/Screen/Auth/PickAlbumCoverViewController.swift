@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol PickAlbumCoverViewControllerDelegate: AnyObject {
+    func didSelectButton(at index: Int)
+}
+
 typealias SignUpDelegates = NameInputViewControllerDelegate & IDInputViewControllerDelegate
 
-final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignUpDelegates {
+final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignUpDelegates, PickAlbumCoverViewControllerDelegate {
     
     // MARK: - Properties
     
@@ -30,15 +34,20 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - Life Cycle
     
-    init(fullName: String?, nickName: String?, pickAlbumCoverView: PickAlbumCoverView, nibName: String?, bundle: Bundle?) {
+    init(fullName: String?, nickName: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?) {
         self.fullName = fullName
         self.nickName = nickName
-        self.pickAlbumCoverView = pickAlbumCoverView
+        
         super.init(nibName: nibName, bundle: bundle)
-
-        self.pickAlbumCoverView.delegate = self
+        
+        if let pickAlbumCoverView = pickAlbumCoverView {
+            self.pickAlbumCoverView = pickAlbumCoverView
+        } else {
+            let view = PickAlbumCoverView()
+            self.pickAlbumCoverView = view
+            self.pickAlbumCoverView.delegate = self
+        }
     }
-
     
     override func loadView() {
         super.loadView()
@@ -55,15 +64,14 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.pickAlbumCoverView.delegate = self
     }
-
 }
 
 // MARK: - Extensions
 
 extension PickAlbumCoverViewController {
-
+    
     func didEnterName(name: String) {
         fullName = name
         print("Full name: \(fullName ?? "None")🅾️")
