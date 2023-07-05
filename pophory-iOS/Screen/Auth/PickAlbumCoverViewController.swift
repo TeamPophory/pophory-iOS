@@ -30,6 +30,16 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - Life Cycle
     
+    init(fullName: String?, nickName: String?, pickAlbumCoverView: PickAlbumCoverView, nibName: String?, bundle: Bundle?) {
+        self.fullName = fullName
+        self.nickName = nickName
+        self.pickAlbumCoverView = pickAlbumCoverView
+        super.init(nibName: nibName, bundle: bundle)
+
+        self.pickAlbumCoverView.delegate = self
+    }
+
+    
     override func loadView() {
         super.loadView()
         
@@ -65,3 +75,11 @@ extension PickAlbumCoverViewController {
         print("Nickname: \(nickname), Full name: \(fullName)🩷")
     }
 }
+
+extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
+    
+    func didSelectButton(at index: Int) {
+        print("Selected item at index: \(index)")
+    }
+}
+
