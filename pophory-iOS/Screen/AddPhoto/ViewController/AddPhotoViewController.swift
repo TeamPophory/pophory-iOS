@@ -45,7 +45,12 @@ extension AddPhotoViewController {
     // MARK: - @objc
     
     @objc func onclickDateButton() {
-        print("날짜")
+        let customModalVC = CalendarModalViewController()
+        customModalVC.modalPresentationStyle = .custom
+
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 325)
+        customModalVC.transitioningDelegate = customTransitionDelegate
+        present(customModalVC, animated: true, completion: nil)
     }
     
     @objc func onclicStudioButton() {
