@@ -9,15 +9,33 @@ import UIKit
 
 final class HomeAlbumViewController: BaseViewController {
     
-    let homeAlbumView = HomeAlbumView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    let homeAlbumView = HomeAlbumView(statusLabelText: String())
+    private var albumList: PatchAlbumListResponseDTO? {
+        didSet {
+            if let photoCount = albumList?.albums?[0].photoCount {
+                homeAlbumView.statusLabelText = String(photoCount)
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        requestGetAlumListAPI()
     }
     
     override func setupLayout() {
         view = homeAlbumView
+    }
+}
+
+extension HomeAlbumViewController  {
+    func requestGetAlumListAPI() {
+        NetworkService.shared.albumRepository.patchAlbumList() { result in
+            switch result {
+            case .success(let response):
+                self.albumList = response
+            default : return
+            }
+        }
     }
 }

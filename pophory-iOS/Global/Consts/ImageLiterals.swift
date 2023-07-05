@@ -18,6 +18,10 @@ enum ImageLiterals {
     //MARK: - logo icon
     
     static var logIcon: UIImage { .load(name: "logIcon") }
+    static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
+    static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
+    static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
+    static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
     
     // MARK: - icon
     
