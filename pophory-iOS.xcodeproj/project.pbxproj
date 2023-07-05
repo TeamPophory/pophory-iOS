@@ -51,6 +51,9 @@
 		6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */; };
 		6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */; };
 		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
+		6BB37C612A5579E100E49B12 /* CustomModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C602A5579E100E49B12 /* CustomModalViewController.swift */; };
+		6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */; };
+		6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */; };
 		9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */; };
 		9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9161CADE2A5460AA002B8B77 /* Kingfisher */; };
 		9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */; };
@@ -137,9 +140,6 @@
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
 		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
-		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
-		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
 		377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +176,9 @@
 		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		6BB37C602A5579E100E49B12 /* CustomModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalViewController.swift; sourceTree = "<group>"; };
+		6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalPresentationController.swift; sourceTree = "<group>"; };
+		6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalTransitionDelegate.swift; sourceTree = "<group>"; };
 		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
@@ -437,6 +440,16 @@
 				6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6BB37C5F2A5579AA00E49B12 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				6BB37C602A5579E100E49B12 /* CustomModalViewController.swift */,
+				6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */,
+				6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		9161CAE42A546BFA002B8B77 /* View */ = {
@@ -714,6 +727,7 @@
 			isa = PBXGroup;
 			children = (
 				37EB69E72A4BEF4300075E4E /* Base */,
+				6BB37C5F2A5579AA00E49B12 /* Modal */,
 				377EF7D42A4EFB5000E3268D /* PophoryButton.swift */,
 				377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */,
 				377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */,
@@ -871,10 +885,12 @@
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
 				B1631F502A175E840050974F /* String+Extension.swift in Sources */,
 				37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */,
+				6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */,
 				91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */,
 				91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */,
 				B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */,
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
+				6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */,
 				91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
 				37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */,
@@ -908,6 +924,7 @@
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
+				6BB37C612A5579E100E49B12 /* CustomModalViewController.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
 				B1631F4C2A175DC80050974F /* NSMutableAttributedString+Extension.swift in Sources */,
