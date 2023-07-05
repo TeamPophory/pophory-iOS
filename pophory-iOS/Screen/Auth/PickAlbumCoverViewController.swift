@@ -22,6 +22,8 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     var fullName: String?
     var nickName: String?
     
+    let memberRepository: MemberRepository = DefaultMemberRepository()
+    
     // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "회원가입" }
@@ -85,9 +87,25 @@ extension PickAlbumCoverViewController {
 }
 
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
-    
     func didSelectButton(at index: Int) {
         print("Selected item at index: \(index)")
+        
+        if let fullName = fullName, let nickName = nickName {
+            let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: index)
+            memberRepository.patchSignUp(body: signUpDTO) { result in
+                switch result {
+                case .success(_):
+                    print("Successful signUp")
+                case .requestErr(let data):
+                    print("Request error: \(data)")
+                case .pathErr:
+                    print("Path error")
+                case .serverErr:
+                    print("Server error")
+                case .networkFail:
+                    print("Network failure") 
+                }
+            }
+        }
     }
 }
-
