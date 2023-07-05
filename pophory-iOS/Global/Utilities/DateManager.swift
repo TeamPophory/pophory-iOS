@@ -25,5 +25,4 @@ class DateManager {
         
         return dateFormat
     }
-
 }

@@ -80,7 +80,7 @@ final class AddPhotoView: UIView {
         stackView.setupTitle(title: "찍은 날짜")
         stackView.setupSelected(selected: true)
         stackView.setupIcon(icon: ImageLiterals.calanderIcon)
-        stackView.setupExplain(explain: "2020.06.06(금)")
+        stackView.setupExplain(explain: DateManager.dateToString(date: Date()))
         return stackView
     }()
     let studioStackView: PhotoInfoStackView = {
@@ -161,9 +161,5 @@ extension AddPhotoView {
                 
         photoAddButton.addCenterConstraint(to: photoAddButtonView)
     }
-    
-    // MARK: - @objc
-    
-    // MARK: - Private Methods
 }
 

@@ -50,6 +50,7 @@ extension AddPhotoViewController {
 
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 325)
         customModalVC.transitioningDelegate = customTransitionDelegate
+        customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
     }
     
@@ -86,6 +87,11 @@ extension AddPhotoViewController: UICollectionViewDataSource {
 //        cell.configCell(image: )
         return cell
     }
-    
-    
+}
+
+extension AddPhotoViewController: DataBind {
+    func stringDataBind(text: String) {
+        rootView.dateStackView.setupExplain(explain: text)
+        rootView.dateStackView.setupSelected(selected: true)
+    }
 }

@@ -11,6 +11,8 @@ class CalendarModalViewController: BaseViewController {
     
     // MARK: - Properties
     
+    weak var delegate: DataBind?
+    
     // MARK: - UI Properties
     
     private lazy var calendar: UIDatePicker = {
@@ -40,6 +42,7 @@ extension CalendarModalViewController {
     
     // MARK: - @objc
     @objc func onclickCalendar() {
+        delegate?.stringDataBind(text:DateManager.dateToString(date: calendar.date))
         dismiss(animated: true)
     }
     
