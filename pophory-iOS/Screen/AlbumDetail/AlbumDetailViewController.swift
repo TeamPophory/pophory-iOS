@@ -24,7 +24,7 @@ final class AlbumDetailViewController: BaseViewController {
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
-    private let albumId: Int = 12
+    private let albumId: Int = 0
     
     override func loadView() {
         view = homeAlbumView
