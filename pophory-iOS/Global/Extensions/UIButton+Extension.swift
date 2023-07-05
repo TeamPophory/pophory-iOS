@@ -9,12 +9,6 @@ import UIKit
 
 extension UIButton {
     
-    func boldTitle(title: String, size: CGFloat = 16) {
-        let attributed = NSMutableAttributedString().bold(title, size: size)
-        setAttributedTitle(attributed, for: .normal)
-    }
-    
-    
      /// 사용 예시:
      /// fooButton.showLoading(true)
     private func showLoading(_ isLoading: Bool) {
