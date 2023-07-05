@@ -7,9 +7,17 @@
 
 import UIKit
 
+protocol NameInputViewControllerDelegate: AnyObject {
+    func didEnterName(name: String)
+}
+
 final class NameInputViewController: BaseViewController, Navigatable {
     
-    // MARK: - UI Components
+    // MARK: - Properties
+    
+    weak var delegate: NameInputViewControllerDelegate?
+    
+    // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "회원가입" }
     
@@ -43,6 +51,7 @@ final class NameInputViewController: BaseViewController, Navigatable {
         super.viewDidLoad()
         
         setupConstraints()
+        handleNextButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,10 +81,30 @@ extension NameInputViewController {
     
     // MARK: - objc
     
+    @objc private func nextButtonOnClick() {
+        guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        print("Full Name: \(name)")
+        loadNextViewController(with: name)
+    }
+
+    
     // MARK: - Private Functions
     
     private func setupKeyboardManager() {
         keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
         keyboardManager?.keyboardAddObserver()
+    }
+    
+    private func loadNextViewController(with name: String) {
+        self.view.endEditing(true)
+        
+        delegate?.didEnterName(name: name)
+        let idViewController = IDInputViewController(fullName: name)
+        idViewController.delegate = self.navigationController?.viewControllers.first as? IDInputViewControllerDelegate
+        self.navigationController?.pushViewController(idViewController, animated: true)
+    }
+    
+    private func handleNextButton() {
+        nameInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
 }

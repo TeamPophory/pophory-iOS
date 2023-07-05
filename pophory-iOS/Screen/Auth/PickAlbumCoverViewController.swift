@@ -7,8 +7,18 @@
 
 import UIKit
 
-final class PickAlbumCoverViewController: BaseViewController, Navigatable {
+typealias SignUpDelegates = NameInputViewControllerDelegate & IDInputViewControllerDelegate
+
+final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignUpDelegates {
     
+    // MARK: - Properties
+    
+    var delegate: SignUpDelegates?
+    
+    var fullName: String?
+    var nickName: String?
+    
+    // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "회원가입" }
     
@@ -17,6 +27,8 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    // MARK: - Life Cycle
     
     override func loadView() {
         super.loadView()
@@ -36,4 +48,20 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable {
         
     }
 
+}
+
+// MARK: - Extensions
+
+extension PickAlbumCoverViewController {
+
+    func didEnterName(name: String) {
+        fullName = name
+        print("Full name: \(fullName ?? "None")🅾️")
+    }
+    
+    func didEnterNickname(nickname: String, fullName: String) {
+        self.nickName = nickname
+        self.fullName = fullName
+        print("Nickname: \(nickname), Full name: \(fullName)🩷")
+    }
 }

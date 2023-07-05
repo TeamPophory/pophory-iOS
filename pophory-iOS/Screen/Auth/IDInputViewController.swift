@@ -7,9 +7,18 @@
 
 import UIKit
 
-final class IDInputViewController: BaseViewController {
+protocol IDInputViewControllerDelegate: AnyObject {
+    func didEnterNickname(nickname: String, fullName: String)
+}
+
+final class IDInputViewController: BaseViewController, Navigatable {
     
-    // MARK: - UI Components
+    // MARK: - Properties
+    
+    weak var delegate: IDInputViewControllerDelegate?
+    var fullName: String?
+    
+    // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "회원가입" }
     
@@ -24,6 +33,15 @@ final class IDInputViewController: BaseViewController {
     }()
     
     // MARK: - Life Cycle
+    
+    init(fullName: String) {
+        self.fullName = fullName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -43,6 +61,7 @@ final class IDInputViewController: BaseViewController {
         super.viewDidLoad()
         
         setupConstraints()
+        handleNextButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,17 +84,38 @@ extension IDInputViewController {
     
     private func setupConstraints() {
         let safeArea = self.view.safeAreaLayoutGuide
-            
+        
         self.bottomConstraint = NSLayoutConstraint(item: iDInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.bottomConstraint?.isActive = true
     }
     
     // MARK: - objc
     
+    @objc func nextButtonOnClick() {
+        guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
+        print("Full Name: \(fullName)")
+        print("Nick Name: \(nickName)")
+        delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
+        loadNextViewController(with: nickName, fullName: fullName)
+    }
+    
     // MARK: - Private Functions
     
     private func setupKeyboardManager() {
         keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
         keyboardManager?.keyboardAddObserver()
+    }
+    
+    private func loadNextViewController(with nickName: String, fullName: String) {
+        let pickAlbumCoverVC = PickAlbumCoverViewController(nibName: nil, bundle: nil)
+        pickAlbumCoverVC.fullName = fullName
+        pickAlbumCoverVC.nickName = nickName
+        print("PickAlbumCoverViewController - Full Name: \(fullName)")
+        print("PickAlbumCoverViewController - Nick Name: \(nickName)")
+        navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
+    }
+    
+    private func handleNextButton() {
+        iDInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
 }
