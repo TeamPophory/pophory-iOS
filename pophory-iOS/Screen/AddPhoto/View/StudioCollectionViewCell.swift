@@ -10,14 +10,28 @@ import UIKit
 class StudioCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-
+    
     static let identifier = "StudioCell"
+    
+    //    // MARK: - Properties
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                cellView.backgroundColor = .pophoryBlack
+                cellLabel.textColor = .pophoryWhite
+            } else {
+                cellView.backgroundColor = .pophoryGray200
+                cellLabel.textColor = .pophoryGray500
+            }
+        }
+    }
     
     // MARK: - UI Properties
     
     private let cellView: UIView = {
         let view = UIView()
-        view.backgroundColor = .pophoryGray400
+        view.backgroundColor = .pophoryGray200
         view.makeRounded(radius: 20)
         return view
     }()
@@ -26,13 +40,13 @@ class StudioCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .t1
         label.text = "인생네컷"
-        label.textColor = .pophoryWhite
+        label.textColor = .pophoryGray500
         label.textAlignment = .center
         return label
     }()
-
+    
     // MARK: - Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
