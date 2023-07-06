@@ -11,6 +11,7 @@ import UIKit
 enum PhotoCellType {
     case vertical
     case horizontal
+    case none
 }
 
 @frozen
@@ -24,9 +25,8 @@ final class AlbumDetailViewController: BaseViewController {
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
-            homeAlbumView.setSortLabelText(sortStyleText: "최근에 찍은 순")
-            
             guard let albumPhotoList = albumPhotoList else { return }
+            
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
             homeAlbumView.photoCollectionView.reloadData()
@@ -46,9 +46,9 @@ final class AlbumDetailViewController: BaseViewController {
             
             guard let albumPhotoList = albumPhotoList else { return }
             let photoAlbumPhotoList = self.sortPhoto(
-                albumPhotoList: albumPhotoList,
-                sortStyle: photoSortStyle
+                albumPhotoList: albumPhotoList
             )
+            self.albumPhotoList = photoAlbumPhotoList
             albumPhotoDataSource.update(photos: photoAlbumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
             homeAlbumView.photoCollectionView.reloadData()
@@ -94,22 +94,55 @@ final class AlbumDetailViewController: BaseViewController {
     ) -> PhotoCellType {
         if width < height {
             return .vertical
-        } else {
+        } else if width > height {
             return .horizontal
+        } else {
+            return .none
         }
     }
     
     private func sortPhoto(
-        albumPhotoList: PatchAlbumPhotoListResponseDTO,
-        sortStyle: PhotoSortStyle
+        albumPhotoList: PatchAlbumPhotoListResponseDTO
     ) -> PatchAlbumPhotoListResponseDTO {
-        switch sortStyle {
-        case .current:
-            return albumPhotoList
-        case .old:
             let reversedPhotos = albumPhotoList.photos.reversed()
             return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
+    }
+    
+    private func mappedDefaultAlbumPhoto(
+        photos: [Photo]
+    ) -> [Photo] {
+        var photoItems = [Photo]()
+        var verticalItemsBuffer = [Photo]()
+        var num = 1000
+
+        for photo in photos {
+            switch checkPhotoCellType(width: photo.width, height: photo.height) {
+            case .vertical:
+                verticalItemsBuffer.append(photo)
+                if verticalItemsBuffer.count == 2 {
+                    photoItems.append(contentsOf: verticalItemsBuffer)
+                    verticalItemsBuffer.removeAll()
+                }
+            case .horizontal:
+                if !verticalItemsBuffer.isEmpty {
+                    num += 1
+                    verticalItemsBuffer.append(Photo(id: num, studio: "", takenAt: "", imageUrl: "", width: 0, height: 0))
+                    photoItems.append(contentsOf: verticalItemsBuffer)
+                    verticalItemsBuffer.removeAll()
+                }
+                photoItems.append(photo)
+            case .none:
+                break
+            }
         }
+        
+        if !verticalItemsBuffer.isEmpty {
+            num += 1
+            verticalItemsBuffer.append(Photo(id: num, studio: "", takenAt: "", imageUrl: "", width: 0, height: 0))
+            photoItems.append(contentsOf: verticalItemsBuffer)
+        }
+        
+        return photoItems
     }
     
     private func addDelegate() {
@@ -147,6 +180,8 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: (collectionView.bounds.width - 8) / 2, height: 246)
         case .horizontal:
             return CGSize(width: collectionView.bounds.width - 8, height: 223)
+        case .none:
+            return CGSize(width: (collectionView.bounds.width - 8) / 2, height: 246)
         }
     }
 }
@@ -162,7 +197,9 @@ extension AlbumDetailViewController {
         ) { result in
             switch result {
             case .success(let response):
-                self.albumPhotoList = response
+                let mappedDefaultPhotoList = self.mappedDefaultAlbumPhoto(photos: response.photos)
+                let mappedDefaultAlbumPhotoListDTO = PatchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
+                self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
             default : return
             }
         }

@@ -29,6 +29,7 @@ final class AlbumDetailView: UIView {
     private let sortLabel: UILabel = {
         let label = UILabel()
         label.textColor = .pophoryGray500
+        label.text = "최근에 찍은 순"
         label.font = .c1
         return label
     }()
