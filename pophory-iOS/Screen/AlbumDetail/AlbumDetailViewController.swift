@@ -72,9 +72,9 @@ final class AlbumDetailViewController: BaseViewController {
             photoSortStyle: self.photoSortStyle
         )
         changeSortViewController.modalPresentationStyle = .custom
+        
         let transitionDelegate = CustomModalTransitionDelegate(customHeight: 138)
         changeSortViewController.transitioningDelegate = transitionDelegate
-        
         changeSortViewController.configPhotoSortSyleDelegate = self
         self.present(changeSortViewController, animated: true)
     }
