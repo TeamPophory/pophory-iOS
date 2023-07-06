@@ -20,7 +20,14 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     // MARK: - Properties
     
     var navigationBarTitleText: String? { return "사진 추가" }
-    private let numberOfAlbum: Int = 1
+    
+    private var albumList: PatchAlbumListResponseDTO? {
+        didSet {
+            if let albumCover = albumList?.albums?[0].albumCover {
+                rootView.albumCollectionView.reloadData()
+            }
+        }
+    }
     
     // MARK: - UI Properties
     
@@ -38,6 +45,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        requestGetAlumListAPI()
     }
     
     override func viewDidLoad() {
@@ -93,12 +101,17 @@ extension AddPhotoViewController {
 
 extension AddPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfAlbum
+        guard let count = albumList?.albums?.count else { return 0 }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
-//        cell.configCell(image: )
+        if let albumCoverInt = albumList?.albums?[indexPath.item].albumCover {
+            cell.configureCell(image: ImageLiterals.albumCoverList[albumCoverInt])
+        } else {
+            cell.configureCell(image: UIImage())
+        }
         return cell
     }
 }
@@ -115,5 +128,19 @@ extension AddPhotoViewController: DateDataBind, StudioDataBind {
     func studioDataBind(text: String) {
         rootView.studioStackView.setupExplain(explain: text)
         rootView.studioStackView.setupSelected(selected: true)
+    }
+}
+
+// MARK: - API
+
+extension AddPhotoViewController {
+    func requestGetAlumListAPI() {
+        NetworkService.shared.albumRepository.patchAlbumList() { result in
+            switch result {
+            case .success(let response):
+                self.albumList = response
+            default : return
+            }
+        }
     }
 }
