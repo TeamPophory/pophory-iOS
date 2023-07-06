@@ -8,7 +8,17 @@
 import UIKit
 import SnapKit
 
-class BaseSignUpView: UIView {
+protocol BaseSignUpViewDelegate: AnyObject {
+    func didTapBaseNextButton()
+}
+
+class BaseSignUpView: UIView{
+    
+    // MARK: - Properties
+    
+    weak var delegate: BaseSignUpViewDelegate?
+    
+    // MARK: - UI Properties
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -16,20 +26,22 @@ class BaseSignUpView: UIView {
         label.textColor = .black
         label.font = .h1
         label.numberOfLines = 0
+        label.setTextWithLineHeight(lineHeight: 34)
         label.asColor(targetString: "너의 이름", color: .pophoryPurple)
         return label
     }()
     
     lazy var nextButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primary)
+            .setStyle(.primaryBlack)
             .setTitle(.next)
         return buttonBuilder.build()
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        setupBaseNextButton()
         setupViews()
     }
     
@@ -45,9 +57,8 @@ extension BaseSignUpView {
     // MARK: - Layout
     
     private func setupViews() {
-        
         addSubviews([headerLabel, nextButton])
-        
+
         headerLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().offset(20)
@@ -60,8 +71,23 @@ extension BaseSignUpView {
         nextButton.addCenterXConstraint(to: self)
     }
     
+    func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
+        addSubview(subView)
+        subView.snp.makeConstraints {
+            $0.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
+            $0.centerX.equalToSuperview()
+        }
+    }
+    
     // MARK: - @objc
+    
+    @objc func didTapBaseNextButton() {
+        self.delegate?.didTapBaseNextButton()
+    }
     
     // MARK: - Private Methods
     
+    private func setupBaseNextButton() {
+        nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
+    }
 }

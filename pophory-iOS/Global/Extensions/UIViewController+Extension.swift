@@ -14,4 +14,9 @@ extension UIViewController {
             navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController)
         }
     }
+    
+    func hideNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
 }

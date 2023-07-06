@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
+		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
+		372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F372A5446390032B7BC /* KeyboardFollowable.swift */; };
+		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
+		376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
 		377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */; };
@@ -20,10 +24,10 @@
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4312A51E6D200FE3846 /* KeyboardManager.swift */; };
 		3782F4342A528A3600FE3846 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4332A528A3600FE3846 /* SignInView.swift */; };
-		3782F4362A528B9600FE3846 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */; };
 		3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */; };
 		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
+		3782F4462A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */; };
 		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
 		37DCA6962A4AB5B900FF8F90 /* EntireAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */; };
@@ -47,6 +51,12 @@
 		6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */; };
 		6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */; };
 		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
+		6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */; };
+		6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */; };
+		6BB37C6F2A55ADCF00E49B12 /* CalendarModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C6E2A55ADCF00E49B12 /* CalendarModalViewController.swift */; };
+		6BB37C732A55EB7400E49B12 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C722A55EB7400E49B12 /* DateManager.swift */; };
+		6BB37C772A55FA7E00E49B12 /* StudioModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C762A55FA7E00E49B12 /* StudioModalViewController.swift */; };
+		6BB37C792A56000800E49B12 /* StudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C782A56000800E49B12 /* StudioCollectionViewCell.swift */; };
 		9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */; };
 		9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9161CADE2A5460AA002B8B77 /* Kingfisher */; };
 		9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */; };
@@ -129,6 +139,10 @@
 
 /* Begin PBXFileReference section */
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
+		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
 		377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +157,7 @@
 		3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryViewController.swift; sourceTree = "<group>"; };
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
+		3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		37DCA6952A4AB5B900FF8F90 /* EntireAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireAlbumsViewController.swift; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
 		37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveServiceViewController.swift; sourceTree = "<group>"; };
@@ -160,14 +175,20 @@
 		37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
-		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
-		9161CAE52A546DCC002B8B77 /* PhotoCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
 		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalPresentationController.swift; sourceTree = "<group>"; };
+		6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalTransitionDelegate.swift; sourceTree = "<group>"; };
+		6BB37C6E2A55ADCF00E49B12 /* CalendarModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModalViewController.swift; sourceTree = "<group>"; };
+		6BB37C722A55EB7400E49B12 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		6BB37C762A55FA7E00E49B12 /* StudioModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioModalViewController.swift; sourceTree = "<group>"; };
+		6BB37C782A56000800E49B12 /* StudioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioCollectionViewCell.swift; sourceTree = "<group>"; };
+		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
+		9161CAE52A546DCC002B8B77 /* PhotoCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		91F3A7572A51760B00C06D1B /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		91F3A7612A5206B100C06D1B /* HomeAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumView.swift; sourceTree = "<group>"; };
@@ -264,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				91F3A7572A51760B00C06D1B /* Navigatable.swift */,
+				372F7F372A5446390032B7BC /* KeyboardFollowable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -271,6 +293,7 @@
 		377EF7DC2A4F479800E3268D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */,
 				377EF7E32A4F4C3D00E3268D /* Views */,
 				377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */,
 				377EF7DF2A4F489B00E3268D /* IDInputViewController.swift */,
@@ -294,7 +317,9 @@
 		37DCA6872A4AB3C900FF8F90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */,
 				37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */,
+				372F7F352A540D270032B7BC /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -379,6 +404,7 @@
 		37DCA6AF2A4AC79400FF8F90 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */,
 				37DCA6B12A4AC7CC00FF8F90 /* Pretendard-Medium.otf */,
 				37DCA6B22A4AC7CD00FF8F90 /* Pretendard-Regular.otf */,
 				37DCA6B02A4AC7CC00FF8F90 /* Pretendard-SemiBold.otf */,
@@ -410,6 +436,7 @@
 				6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */,
 				6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */,
 				6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */,
+				6BB37C782A56000800E49B12 /* StudioCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -418,8 +445,19 @@
 			isa = PBXGroup;
 			children = (
 				6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */,
+				6BB37C6E2A55ADCF00E49B12 /* CalendarModalViewController.swift */,
+				6BB37C762A55FA7E00E49B12 /* StudioModalViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6BB37C5F2A5579AA00E49B12 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */,
+				6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		9161CAE42A546BFA002B8B77 /* View */ = {
@@ -689,6 +727,7 @@
 			children = (
 				B1631F652A1760180050974F /* .keep */,
 				3782F4312A51E6D200FE3846 /* KeyboardManager.swift */,
+				6BB37C722A55EB7400E49B12 /* DateManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -697,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				37EB69E72A4BEF4300075E4E /* Base */,
+				6BB37C5F2A5579AA00E49B12 /* Modal */,
 				377EF7D42A4EFB5000E3268D /* PophoryButton.swift */,
 				377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */,
 				377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */,
@@ -819,6 +859,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */,
+				376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */,
 				37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */,
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
@@ -849,17 +890,19 @@
 			files = (
 				91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */,
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
-				3782F4362A528B9600FE3846 /* (null) in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
 				B1631F502A175E840050974F /* String+Extension.swift in Sources */,
 				37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */,
+				6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */,
 				91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */,
 				91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */,
 				B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */,
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
+				6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */,
 				91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
+				6BB37C772A55FA7E00E49B12 /* StudioModalViewController.swift in Sources */,
 				37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */,
 				6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */,
@@ -881,6 +924,8 @@
 				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
+				6BB37C6F2A55ADCF00E49B12 /* CalendarModalViewController.swift in Sources */,
+				6BB37C792A56000800E49B12 /* StudioCollectionViewCell.swift in Sources */,
 				6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
@@ -918,24 +963,30 @@
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
+				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
 				91F3A7AC2A52F23D00C06D1B /* DefaultAlbumRespository.swift in Sources */,
 				91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */,
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
+				6BB37C732A55EB7400E49B12 /* DateManager.swift in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
 				37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */,
 				9161CAE62A546DCD002B8B77 /* PhotoCollectionViewDataSource.swift in Sources */,
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
+				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */,
 				B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */,
+				37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */,
 				3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */,
+				3782F4462A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift in Sources */,
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,
 				91F3A7972A52D04200C06D1B /* BaseRepository.swift in Sources */,
 				91F3A7A82A52D6C100C06D1B /* DefaultPhotoRepository.swift in Sources */,
+				372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */,
 				377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
