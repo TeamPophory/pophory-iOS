@@ -29,6 +29,16 @@ enum ImageLiterals {
     static var downIcon: UIImage { .load(name: "downIcon") }
     static var calanderIcon: UIImage { .load(name: "calanderIcon") }
     
+    // MARK: - AlbumCover
+    
+    static var albumCover1: UIImage { .load(name: "ic_album_cover_friends") }
+    static var albumCover2: UIImage { .load(name: "ic_album_cover_love") }
+    static var albumCover3: UIImage { .load(name: "ic_album_cover_myAlbum") }
+    static var albumCover4: UIImage { .load(name: "ic_album_cover_collectBook") }
+
+    /// index 맞추기 위해 0번째에 빈 이미지 삽입
+    static var albumCoverList: [UIImage] = [UIImage(), albumCover1, albumCover2, albumCover3, albumCover4]
+    
 }
 
 
