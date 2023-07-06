@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 final class PhotoDetailView: UIView {
     
@@ -15,6 +16,7 @@ final class PhotoDetailView: UIView {
     
     private var takenAt: String!
     private var studio: String!
+    private var imageUrl: String!
     
     // MARK: - UI Properties
     
@@ -70,7 +72,8 @@ final class PhotoDetailView: UIView {
     
     // MARK: - Life Cycle
     
-    init(frame: CGRect, takenAt: String, studio: String) {
+    init(frame: CGRect, imageUrl: String, takenAt: String, studio: String) {
+        self.imageUrl = imageUrl
         self.takenAt = takenAt
         self.studio = studio
         super.init(frame: frame)
@@ -85,11 +88,14 @@ final class PhotoDetailView: UIView {
 
 extension PhotoDetailView {
     private func configUI() {
+        print(takenAt, imageUrl, studio, "SADSDFFDRTHWASGRQ")
         backgroundColor = .pophoryWhite
+        photoImageView.kf.setImage(with: URL(string: imageUrl))
     }
     
     private func setupLayout() {
         photoInfoStackView.addArrangedSubviews([takenAtLabel, studioLabel])
+        photoDetailView.addSubview(photoImageView)
         addSubviews([separateLine, photoDetailView, bottomLine, photoInfoStackView])
         
         separateLine.snp.makeConstraints { make in
@@ -102,6 +108,11 @@ extension PhotoDetailView {
             make.top.equalTo(separateLine.snp.bottom)
             make.directionalHorizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(554)
+        }
+        
+        photoImageView.snp.makeConstraints { make in
+            make.directionalHorizontalEdges.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
         bottomLine.snp.makeConstraints { make in
