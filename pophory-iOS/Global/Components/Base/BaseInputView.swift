@@ -8,7 +8,17 @@
 import UIKit
 import SnapKit
 
-class BaseSignUpView: UIView {
+protocol BaseSignUpViewDelegate: AnyObject {
+    func didTapBaseNextButton()
+}
+
+class BaseSignUpView: UIView{
+    
+    // MARK: - Properties
+    
+    weak var delegate: BaseSignUpViewDelegate?
+    
+    // MARK: - UI Properties
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -30,7 +40,8 @@ class BaseSignUpView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        setupBaseNextButton()
         setupViews()
     }
     
@@ -70,6 +81,13 @@ extension BaseSignUpView {
     
     // MARK: - @objc
     
+    @objc func didTapBaseNextButton() {
+        self.delegate?.didTapBaseNextButton()
+    }
+    
     // MARK: - Private Methods
     
+    private func setupBaseNextButton() {
+        nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
+    }
 }

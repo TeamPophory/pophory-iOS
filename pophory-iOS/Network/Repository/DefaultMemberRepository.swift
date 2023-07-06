@@ -35,9 +35,9 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
-                completion(.success((Any).self))
+                completion(.success(()))
             case .failure(let err):
-                print(err)
+                completion(.networkFail)
             }
         }
     }

@@ -38,7 +38,7 @@ final class PhotoCollectionViewDataSource {
                 return UICollectionViewCell()
             }
             let photo = albumPhotoList.photos[indexPath.row]
-            let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
             
             cell.configCell(imageUrl: photo.imageUrl)
             return cell

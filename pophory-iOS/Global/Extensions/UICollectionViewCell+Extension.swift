@@ -10,8 +10,8 @@ import UIKit
 extension UICollectionViewCell {
     func getCellIndexPath() -> IndexPath {
         let superView = self.superview as! UICollectionView
-        let indexPath = superView.indexPath(for: self)
-        return indexPath!
+        guard let indexPath = superView.indexPath(for: self) else { return IndexPath() }
+        return indexPath
     }
 }
 

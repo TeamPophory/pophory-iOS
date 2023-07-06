@@ -19,14 +19,19 @@ final class AlbumDetailViewController: BaseViewController {
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
             albumPhotoDataSource.update(photos: albumPhotoList)
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList?.photos.isEmpty ?? Bool())
             homeAlbumView.photoCollectionView.reloadData()
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
+    private let albumId: Int = 12
+    
+    override func loadView() {
+        view = homeAlbumView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = homeAlbumView
         
         setButtonAction()
         addDelegate()
@@ -35,7 +40,7 @@ final class AlbumDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: 0)
+        requestGetAlbumPhotoList(albumId: albumId)
     }
     
     private func setButtonAction() {

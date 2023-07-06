@@ -9,8 +9,12 @@ import UIKit
 
 import SnapKit
 
-final class PickAlbumCoverView: BaseSignUpView {
+protocol PickAlbumCoverViewDelegate: BaseSignUpViewDelegate {
+    func didSelectAlbumButton(at index: Int)
+}
 
+final class PickAlbumCoverView: BaseSignUpView {
+    
     private let albumCoverView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryGray300
@@ -78,6 +82,10 @@ extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return convertByWidthRatio(18)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        (self.delegate as? PickAlbumCoverViewDelegate)?.didSelectAlbumButton(at: indexPath.item)
     }
 }
 

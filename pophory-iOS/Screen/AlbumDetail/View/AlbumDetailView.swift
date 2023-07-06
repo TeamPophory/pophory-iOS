@@ -49,6 +49,7 @@ final class AlbumDetailView: UIView {
         collectionView.backgroundColor = .pophoryWhite
         return collectionView
     }()
+    private let emptyPhotoExceptionIcon: UIImageView = UIImageView(image: ImageLiterals.emptyPhotoExceptionIcon)
 
     override init(
         frame: CGRect
@@ -69,7 +70,8 @@ final class AlbumDetailView: UIView {
               lineView,
               sortLabel,
               sortButton,
-              photoCollectionView ]
+              photoCollectionView,
+              emptyPhotoExceptionIcon ]
         )
         
         backButton.snp.makeConstraints {
@@ -106,9 +108,27 @@ final class AlbumDetailView: UIView {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
+        
+        emptyPhotoExceptionIcon.snp.makeConstraints {
+            $0.height.equalTo(213)
+            $0.width.equalTo(180)
+            $0.center.equalToSuperview()
+        }
     }
     
     private func configUI() {
         self.backgroundColor = .pophoryWhite
+    }
+    
+    func setEmptyPhotoExceptionImageView(
+        isEmpty: Bool
+    ) {
+        if isEmpty {
+            emptyPhotoExceptionIcon.isHidden = false
+            photoCollectionView.isHidden = true
+        } else {
+            emptyPhotoExceptionIcon.isHidden = true
+            photoCollectionView.isHidden = false
+        }
     }
 }
