@@ -29,7 +29,6 @@ final class AlbumDetailViewController: BaseViewController {
             
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
-            homeAlbumView.photoCollectionView.reloadData()
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
@@ -51,7 +50,6 @@ final class AlbumDetailViewController: BaseViewController {
             self.albumPhotoList = photoAlbumPhotoList
             albumPhotoDataSource.update(photos: photoAlbumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
-            homeAlbumView.photoCollectionView.reloadData()
         }
     }
     
