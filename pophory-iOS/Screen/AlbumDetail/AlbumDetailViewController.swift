@@ -24,6 +24,8 @@ final class AlbumDetailViewController: BaseViewController {
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
+            homeAlbumView.setSortLabelText(sortStyleText: "최근에 찍은 순")
+            
             guard let albumPhotoList = albumPhotoList else { return }
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
@@ -35,6 +37,13 @@ final class AlbumDetailViewController: BaseViewController {
     private let albumId: Int = 0
     private var photoSortStyle: PhotoSortStyle = .current {
         didSet {
+            switch photoSortStyle {
+            case .current:
+                homeAlbumView.setSortLabelText(sortStyleText: "최근에 찍은 순")
+            case .old:
+                homeAlbumView.setSortLabelText(sortStyleText: "과거에 찍은 순")
+            }
+            
             guard let albumPhotoList = albumPhotoList else { return }
             let photoAlbumPhotoList = self.sortPhoto(
                 albumPhotoList: albumPhotoList,
