@@ -8,12 +8,19 @@
 import UIKit
 
 final class PhotoDetailViewController: BaseViewController {
-
+    
+    // MARK: - Properties
+    
+    private var image: String!
+    private var takenAt: String!
+    private var studio: String!
+    
     // MARK: - UI Properties
     
-    private let photoDetailView = PhotoDetailView(frame: .zero,
-                                                            takenAt: "2023.07.06",
-                                                            studio: "인생네컷")
+    private lazy var photoDetailView = PhotoDetailView(frame: .zero,
+                                                  imageUrl: self.image,
+                                                  takenAt: self.takenAt,
+                                                  studio: self.studio)
     
     // MARK: - Life Cycle
     
@@ -22,14 +29,29 @@ final class PhotoDetailViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         view = photoDetailView
-        
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        view.addSubview(photoDetailView)
+//
+//        photoDetailView.snp.makeConstraints { make in
+//            make.bottom.leading.trailing.equalTo(view.safeAreaInsets)
+//            make.top.equalToSuperview().offset(totalNavigationBarHeight)
+//        }
+//    }
 }
 
 // MARK: - navigation bar
 
 extension PhotoDetailViewController: Navigatable {
     var navigationBarTitleText: String? { return "내 사진" }
+}
+
+extension PhotoDetailViewController {
+    func setData(imageUrl: String, takenAt: String, studio: String) {
+        self.image = imageUrl
+        self.takenAt = takenAt
+        self.studio = studio
+    }
 }
