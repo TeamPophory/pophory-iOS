@@ -41,7 +41,7 @@ class BaseSignUpView: UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
+        setupBaseNextButton()
         setupViews()
     }
     
@@ -83,5 +83,11 @@ extension BaseSignUpView {
     
     @objc func didTapBaseNextButton() {
         self.delegate?.didTapBaseNextButton()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupBaseNextButton() {
+        nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
     }
 }

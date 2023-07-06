@@ -84,7 +84,6 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     
     func didSelectAlbumButton(at index: Int) {
         selectedAlbumCoverIndex = index
-        print(index)
     }
     
     func didTapBaseNextButton() {
