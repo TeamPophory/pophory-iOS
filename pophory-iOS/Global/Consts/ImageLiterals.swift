@@ -32,6 +32,7 @@ enum ImageLiterals {
     // MARK: - exception
     
     static var emptyPhotoExceptionIcon: UIImage { .load(name: "emptyPhotoExceptionIcon") }
+    static var defaultPhotoIcon: UIImage { .load(name: "defaultPhotoIcon") }
 
     // MARK: - AlbumCover
     

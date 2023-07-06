@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol ChangeSortViewButtonTappedDelegate {
+    func sortButtonTapped(by sortType: PhotoSortStyle)
+}
+
 final class ChangeSortView: UIView {
+    
+    var buttonTappedDelegate: ChangeSortViewButtonTappedDelegate?
     
     private let headTitle: UILabel = {
         let label = UILabel()
@@ -18,9 +24,10 @@ final class ChangeSortView: UIView {
         label.textColor = .pophoryBlack
         return label
     }()
-    private let currentSortButton: UIButton = {
+    private lazy var currentSortButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(currentSortButtonTapped), for: .touchUpInside)
         return button
     }()
     private let currentSortLabelText: UILabel = {
@@ -30,9 +37,10 @@ final class ChangeSortView: UIView {
         label.textColor = .pophoryBlack
         return label
     }()
-    private let oldSortButton: UIButton = {
+    private lazy var oldSortButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(oldSortButtonTapped), for: .touchUpInside)
         return button
     }()
     private let oldSortLabelText: UILabel = {
@@ -110,5 +118,30 @@ final class ChangeSortView: UIView {
     
     private func configUI() {
         self.backgroundColor = .pophoryWhite
+    }
+    
+    func configCheckImage(
+        photoSortSytle: PhotoSortStyle
+    ) {
+        switch photoSortSytle {
+        case .current:
+            currentSortCheckImageView.isHidden = false
+            oldSortCheckImageView.isHidden = true
+        case .old:
+            currentSortCheckImageView.isHidden = true
+            oldSortCheckImageView.isHidden = false
+        }
+    }
+}
+
+private extension ChangeSortView {
+    @objc
+    func currentSortButtonTapped() {
+        self.buttonTappedDelegate?.sortButtonTapped(by: .current)
+    }
+    
+    @objc
+    func oldSortButtonTapped() {
+        self.buttonTappedDelegate?.sortButtonTapped(by: .old)
     }
 }

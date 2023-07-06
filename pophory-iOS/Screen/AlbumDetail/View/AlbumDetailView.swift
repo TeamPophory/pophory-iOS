@@ -123,12 +123,7 @@ final class AlbumDetailView: UIView {
     func setEmptyPhotoExceptionImageView(
         isEmpty: Bool
     ) {
-        if isEmpty {
-            emptyPhotoExceptionIcon.isHidden = false
-            photoCollectionView.isHidden = true
-        } else {
-            emptyPhotoExceptionIcon.isHidden = true
-            photoCollectionView.isHidden = false
-        }
+        emptyPhotoExceptionIcon.isHidden = !isEmpty
+        photoCollectionView.isHidden = isEmpty
     }
 }
