@@ -393,9 +393,9 @@
 		37DCA6922A4AB55F00FF8F90 /* AlbumDetail */ = {
 			isa = PBXGroup;
 			children = (
+				9161CAE42A546BFA002B8B77 /* View */,
 				9161CAE52A546DCC002B8B77 /* PhotoCollectionViewDataSource.swift */,
 				91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */,
-				9161CAE42A546BFA002B8B77 /* View */,
 			);
 			path = AlbumDetail;
 			sourceTree = "<group>";

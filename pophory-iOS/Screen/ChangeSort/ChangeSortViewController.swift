@@ -52,11 +52,11 @@ final class ChangeSortViewController: BaseViewController {
 extension ChangeSortViewController: ChangeSortViewButtonTapped {
     func currentSortButtonTapped() {
         photoSortStyle = .current
-        changeSortView.configCheckImage(photoSortSytle: photoSortStyle)
+        self.dismiss(animated: true)
     }
     
     func oldSortButtonTapped() {
         photoSortStyle = .old
-        changeSortView.configCheckImage(photoSortSytle: photoSortStyle)
+        self.dismiss(animated: true)
     }
 }
