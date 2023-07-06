@@ -37,15 +37,18 @@ public enum ButtonText: String {
     case complete = "완료하기"
     case startPophory = "포포리 시작하기"
     case addPhoto = "사진 추가하기"
-    case delete = "삭제할래!"
-    case keep = "아니 안할래!"
+    case delete = "삭제하기"
     case startWithAppleID = "Apple ID로 시작하기"
+    case back = "돌아가기"                  // 추가된 버튼 텍스트
+    case logout = "로그아웃하기"             // 추가된 버튼 텍스트
+    case withdraw = "아쉽지만, 탈퇴하기"
 }
 
 public enum ButtonStyle {
     case primaryBlack
     case primaryWhite
-    case secondary
+    case secondaryBlack
+    case secondaryGray
     
     func styler() -> PophoryButtonStyler? {
           switch self {
@@ -53,8 +56,8 @@ public enum ButtonStyle {
               return PrimaryBlackButtonStyler()
           case .primaryWhite:
               return PrimaryWhiteButtonStyler()
-          case .secondary:
-              return SecondaryButtonStyler()
+          case .secondaryBlack, .secondaryGray:
+              return SecondaryBlackButtonStyler()
           }
       }
     
@@ -62,7 +65,7 @@ public enum ButtonStyle {
         switch self {
         case .primaryBlack, .primaryWhite:
             return CGSize(width: 335, height: 60)
-        case .secondary:
+        case .secondaryBlack, .secondaryGray:
             return CGSize(width: 230, height: 47)
         }
     }
@@ -87,11 +90,20 @@ public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
     }
 }
 
-public struct SecondaryButtonStyler: PophoryButtonStyler {
+public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
         button.titleLabel?.font = .t1
     }
 }
+
+public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
+    public func applyStyle(to button: PophoryButton) {
+        button.titleLabel?.font = .t1
+        button.backgroundColor = .pophoryGray400
+        button.setTitleColor(.pophoryWhite, for: .normal)
+    }
+}
+
 
 public class PophoryButtonBuilder {
     private var style: ButtonStyle = .primaryBlack
