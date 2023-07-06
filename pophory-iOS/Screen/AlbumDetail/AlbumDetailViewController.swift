@@ -13,6 +13,12 @@ enum PhotoCellType {
     case horizontal
 }
 
+@frozen
+enum PhotoSortStyle {
+    case current
+    case old
+}
+
 final class AlbumDetailViewController: BaseViewController {
     
     private let homeAlbumView = AlbumDetailView()
@@ -24,7 +30,9 @@ final class AlbumDetailViewController: BaseViewController {
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
+    
     private let albumId: Int = 0
+    private var photoSortStyle: PhotoSortStyle = .current
     
     override func loadView() {
         view = homeAlbumView
@@ -54,8 +62,13 @@ final class AlbumDetailViewController: BaseViewController {
     
     private func presentChangeSortViewController() {
         let changeSortViewController = ChangeSortViewController()
-        changeSortViewController.modalPresentationStyle = .automatic
-
+        changeSortViewController.modalPresentationStyle = .custom
+        let transitionDelegate = CustomModalTransitionDelegate(customHeight: 138)
+        changeSortViewController.transitioningDelegate = transitionDelegate
+        
+        changeSortViewController.changeSortView.configCheckImage(
+            photoSortSytle: photoSortStyle
+        )
         self.present(changeSortViewController, animated: true)
     }
 

@@ -111,4 +111,17 @@ final class ChangeSortView: UIView {
     private func configUI() {
         self.backgroundColor = .pophoryWhite
     }
+    
+    func configCheckImage(
+        photoSortSytle: PhotoSortStyle
+    ) {
+        switch photoSortSytle {
+        case .current:
+            currentSortButton.isHidden = false
+            oldSortCheckImageView.isHidden = true
+        case .old:
+            currentSortButton.isHidden = true
+            oldSortCheckImageView.isHidden = false
+        }
+    }
 }
