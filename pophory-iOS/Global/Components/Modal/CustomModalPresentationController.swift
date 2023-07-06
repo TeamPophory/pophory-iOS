@@ -47,7 +47,7 @@ class CustomModalPresentationController: UIPresentationController {
     // MARK: - override
     
     override var frameOfPresentedViewInContainerView: CGRect {
-        guard let containerView = containerView else { return CGRect.zero }
+        guard let containerView else { return CGRect.zero }
         let safeAreaInsets = containerView.safeAreaInsets
         let height = customHeight + safeAreaInsets.top + safeAreaInsets.bottom
         
@@ -55,8 +55,7 @@ class CustomModalPresentationController: UIPresentationController {
     }
     
     override func presentationTransitionWillBegin() {
-        guard let containerView = containerView else { return }
-        
+        guard let containerView else { return }
         dimmendView.alpha = 0
         containerView.addSubview(dimmendView)
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in self.dimmendView.alpha = 0.3},completion: nil)
@@ -75,8 +74,7 @@ class CustomModalPresentationController: UIPresentationController {
     
     // 모달의 크기가 조절됐을 때 호출
     override func containerViewDidLayoutSubviews() {
-        guard let containerView = containerView else { return }
-        
+        guard let containerView else { return }
         super.containerViewDidLayoutSubviews()
         dimmendView.frame = containerView.bounds
     }
