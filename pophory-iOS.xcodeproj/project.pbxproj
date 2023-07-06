@@ -137,9 +137,6 @@
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
 		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
-		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
-		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
 		377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputViewController.swift; sourceTree = "<group>"; };
