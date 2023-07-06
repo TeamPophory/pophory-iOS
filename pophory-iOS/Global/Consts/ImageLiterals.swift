@@ -39,6 +39,18 @@ enum ImageLiterals {
     /// index 맞추기 위해 0번째에 빈 이미지 삽입
     static var albumCoverList: [UIImage] = [UIImage(), albumCover1, albumCover2, albumCover3, albumCover4]
     
+    // MARK: - AlbumCoverProfile
+    
+    static var albumCoverProfile1: UIImage { .load(name: "albumCoverProfile1") }
+    static var albumCoverProfile2: UIImage { .load(name: "albumCoverProfile2") }
+    static var albumCoverProfile3: UIImage { .load(name: "albumCoverProfile3") }
+    static var albumCoverProfile4: UIImage { .load(name: "albumCoverProfile4") }
+    
+    // MARK: - OnboardingImg
+    
+    static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
+    static var OnboardingImage2: UIImage { .load(name: "onboardingImg2") }
+    static var OnboardingImage3: UIImage { .load(name: "onboardingImg3") }
 }
 
 
