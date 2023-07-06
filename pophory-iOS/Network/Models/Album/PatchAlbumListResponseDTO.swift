@@ -15,5 +15,6 @@ struct PatchAlbumListResponseDTO: Codable {
 struct Album: Codable {
     let id: Int?
     let title: String?
+    let albumCover: Int?
     let photoCount: Int?
 }

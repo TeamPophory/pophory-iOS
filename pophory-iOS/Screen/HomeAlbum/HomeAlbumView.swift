@@ -36,7 +36,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.numberOfLines = 2
         return label
     }()
-    private let albumImageView: UIImageView = {
+    let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .pophoryGray300
         let rightRadius = 26.0

@@ -44,7 +44,7 @@ final class AddPhotoView: UIView {
     
     let photoAddButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primary)
+            .setStyle(.primaryBlack)
             .setTitle(.addPhoto)
         return buttonBuilder.build()
     }()

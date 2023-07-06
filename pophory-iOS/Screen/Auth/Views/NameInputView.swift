@@ -10,6 +10,8 @@ import SnapKit
 
 class NameInputView: BaseSignUpView {
     
+    var maxCharCount:Int = 6
+    
     // TODO: Private -> Delegate 패턴 구현
     
     lazy var bodyStackView: UIStackView = {
@@ -23,10 +25,11 @@ class NameInputView: BaseSignUpView {
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "포포리 사용을 위해 실명 입력이 필요해요"
+        label.text = "원활한 포포리 사용을 위해 실명 입력이 필요해요"
         label.textColor = .pophoryGray500
         label.font = .t2
         label.numberOfLines = 0
+        label.setTextWithLineHeight(lineHeight: 24)
         label.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
         return label
     }()
@@ -135,8 +138,8 @@ extension NameInputView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
-        
-        if newLength > 6 {
+
+        if newLength > maxCharCount {
             textField.layer.borderColor = UIColor.pophoryRed.cgColor
             warningLabel.isHidden = false
             return false
