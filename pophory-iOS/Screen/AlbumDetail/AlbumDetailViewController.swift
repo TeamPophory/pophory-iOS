@@ -61,14 +61,14 @@ final class AlbumDetailViewController: BaseViewController {
     }
     
     private func presentChangeSortViewController() {
-        let changeSortViewController = ChangeSortViewController()
+        let changeSortViewController = ChangeSortViewController(
+            photoSortStyle: self.photoSortStyle
+        )
         changeSortViewController.modalPresentationStyle = .custom
         let transitionDelegate = CustomModalTransitionDelegate(customHeight: 138)
         changeSortViewController.transitioningDelegate = transitionDelegate
         
-        changeSortViewController.changeSortView.configCheckImage(
-            photoSortSytle: photoSortStyle
-        )
+        changeSortViewController.configPhotoSortSyleDelegate = self
         self.present(changeSortViewController, animated: true)
     }
 
@@ -85,6 +85,11 @@ final class AlbumDetailViewController: BaseViewController {
     
     private func addDelegate() {
         homeAlbumView.photoCollectionView.delegate = self
+    }
+}
+
+extension AlbumDetailViewController: ConfigPhotoSortStyle {
+    func configPhotoSortStyle(sortStyle: PhotoSortStyle) {        self.photoSortStyle = sortStyle
     }
 }
 

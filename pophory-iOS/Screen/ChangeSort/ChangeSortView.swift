@@ -9,7 +9,14 @@ import UIKit
 
 import SnapKit
 
+protocol ChangeSortViewButtonTapped {
+    func currentSortButtonTapped()
+    func oldSortButtonTapped()
+}
+
 final class ChangeSortView: UIView {
+    
+    var buttonTappedDelegate: ChangeSortViewButtonTapped?
     
     private let headTitle: UILabel = {
         let label = UILabel()
@@ -18,9 +25,10 @@ final class ChangeSortView: UIView {
         label.textColor = .pophoryBlack
         return label
     }()
-    private let currentSortButton: UIButton = {
+    private lazy var currentSortButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(currentSortButtonTapped), for: .touchUpInside)
         return button
     }()
     private let currentSortLabelText: UILabel = {
@@ -30,9 +38,10 @@ final class ChangeSortView: UIView {
         label.textColor = .pophoryBlack
         return label
     }()
-    private let oldSortButton: UIButton = {
+    private lazy var oldSortButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(oldSortButtonTapped), for: .touchUpInside)
         return button
     }()
     private let oldSortLabelText: UILabel = {
@@ -117,11 +126,23 @@ final class ChangeSortView: UIView {
     ) {
         switch photoSortSytle {
         case .current:
-            currentSortButton.isHidden = false
+            currentSortCheckImageView.isHidden = false
             oldSortCheckImageView.isHidden = true
         case .old:
-            currentSortButton.isHidden = true
+            currentSortCheckImageView.isHidden = true
             oldSortCheckImageView.isHidden = false
         }
+    }
+}
+
+private extension ChangeSortView {
+    @objc
+    func currentSortButtonTapped() {
+        self.buttonTappedDelegate?.currentSortButtonTapped()
+    }
+    
+    @objc
+    func oldSortButtonTapped() {
+        self.buttonTappedDelegate?.oldSortButtonTapped()
     }
 }
