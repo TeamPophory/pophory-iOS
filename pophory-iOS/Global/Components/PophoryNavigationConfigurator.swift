@@ -9,7 +9,7 @@
  1. Navigatable 프로토콜 채택
  2. var navigationBarTitleText: String? { return "회원가입" }
  3. viewWillAppear() {
-    setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+ setupNavigationBar(with: PophoryNavigationConfigurator.shared)
  }
  */
 
@@ -28,22 +28,30 @@ class PophoryNavigationConfigurator: NavigationConfigurator {
     
     static let shared = PophoryNavigationConfigurator()
     
+    private weak var navBarView: UIView?
+    private weak var backButton: UIButton?
+    
+    let customTitleFont = UIFont.h2
+    var customTitleText = String()
+    
     private init() {}
     
-    let customTitleFont = UIFont.systemFont(ofSize: 22, weight: .bold)
-    var customTitleText = String()
-
     func configureNavigationBar(in viewController: UIViewController, navigationController: UINavigationController) {
-            
+        
         let titleFont = UIFont.h2
         let titleColor = UIColor.black
         let titleText: String?
         let navBarHeight: CGFloat = 66.0
         
-        let navBarView = UIView()
-        navBarView.backgroundColor = .white
-        navigationController.navigationBar.addSubview(navBarView)
-        navigationController.navigationBar.sendSubviewToBack(navBarView)
+        let navBarView: UIView = {
+            let view = UIView()
+            view.backgroundColor = .white
+            navigationController.navigationBar.addSubview(view)
+            navigationController.navigationBar.sendSubviewToBack(view)
+            return view
+        }()
+        
+        self.navBarView = navBarView
         
         navBarView.snp.makeConstraints {
             $0.height.equalTo(navBarHeight)
@@ -57,15 +65,34 @@ class PophoryNavigationConfigurator: NavigationConfigurator {
             titleText = viewController.title
         }
         
-        let titleLabel = UILabel()
-        titleLabel.textAlignment = .center
-        titleLabel.font = titleFont
-        titleLabel.textColor = titleColor
-        titleLabel.text = titleText ?? "NavTitle"
-        navBarView.addSubview(titleLabel)
-
+        let titleLabel: UILabel = {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.font = titleFont
+            label.textColor = titleColor
+            label.text = titleText ?? "NavTitle"
+            return label
+        }()
+        
+        lazy var backButton: UIButton = {
+            let button = UIButton()
+            button.setImage(ImageLiterals.backButtonIcon, for: .normal)
+            button.addTarget(viewController, action: #selector(BaseViewController.backButtonOnClick), for: .touchUpInside)
+            return button
+        }()
+        
+        self.backButton = backButton
+        
+        navBarView.addSubviews([titleLabel, backButton])
+        
         titleLabel.snp.makeConstraints {
             $0.center.equalTo(navBarView)
+        }
+        
+        backButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+            $0.size.equalTo(24)
         }
         
         let titleAttributes: [NSAttributedString.Key: Any] = [
@@ -73,23 +100,37 @@ class PophoryNavigationConfigurator: NavigationConfigurator {
             .foregroundColor: titleColor
         ]
         navigationController.navigationBar.titleTextAttributes = titleAttributes
-
-        viewController.navigationItem.title = titleText ?? "NavTitle"
         
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: viewController, action: #selector(BaseViewController.backButtonOnClick))
-        backButton.tintColor = UIColor.white
-        //TODO: 에셋 추가 후 등록예정
-        navigationController.navigationBar.backIndicatorImage = UIImage(named: "")
-        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "")
-        viewController.navigationItem.backBarButtonItem = backButton
+        viewController.navigationItem.title = titleText ?? "NavTitle"
     }
-
+    
     
     func configureRightButton(in viewController: UIViewController, navigationController: UINavigationController, showRightButton: Bool) {
+        guard let navBarView = self.navBarView else { return }
+        
+        print("configureRightButton called")
+        
         if showRightButton {
-            let rightButton = UIBarButtonItem(title: "", style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
-            rightButton.tintColor = UIColor.white
-            viewController.navigationItem.rightBarButtonItem = rightButton
+            let rightButton: UIButton = {
+                let button = UIButton()
+                button.setImage(ImageLiterals.backButtonIcon, for: .normal)
+                button.addTarget(viewController, action: #selector(BaseViewController.rightButtonOnClick), for: .touchUpInside)
+                return button
+            }()
+            
+            navBarView.addSubview(rightButton)
+            
+            rightButton.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.trailing.equalToSuperview().inset(20)
+                $0.size.equalTo(24)
+            }
+        } else {
+            navBarView.subviews.forEach { button in
+                if let button = button as? UIButton, button != backButton {
+                    button.removeFromSuperview()
+                }
+            }
         }
     }
 }
