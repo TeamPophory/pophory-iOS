@@ -24,15 +24,27 @@ final class AlbumDetailViewController: BaseViewController {
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
+            guard let albumPhotoList = albumPhotoList else { return }
             albumPhotoDataSource.update(photos: albumPhotoList)
-            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList?.photos.isEmpty ?? Bool())
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
             homeAlbumView.photoCollectionView.reloadData()
         }
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     
     private let albumId: Int = 0
-    private var photoSortStyle: PhotoSortStyle = .current
+    private var photoSortStyle: PhotoSortStyle = .current {
+        didSet {
+            guard let albumPhotoList = albumPhotoList else { return }
+            let photoAlbumPhotoList = self.sortPhoto(
+                albumPhotoList: albumPhotoList,
+                sortStyle: photoSortStyle
+            )
+            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
+            homeAlbumView.photoCollectionView.reloadData()
+        }
+    }
     
     override func loadView() {
         view = homeAlbumView
@@ -53,11 +65,6 @@ final class AlbumDetailViewController: BaseViewController {
     
     private func setButtonAction() {
         homeAlbumView.sortButton.addTarget(self, action: #selector(sortButtonDidTapped), for: .touchUpInside)
-    }
-    
-    @objc
-    private func sortButtonDidTapped() {
-        self.presentChangeSortViewController()
     }
     
     private func presentChangeSortViewController() {
@@ -83,10 +90,34 @@ final class AlbumDetailViewController: BaseViewController {
         }
     }
     
+    private func sortPhoto(
+        albumPhotoList: PatchAlbumPhotoListResponseDTO,
+        sortStyle: PhotoSortStyle
+    ) -> PatchAlbumPhotoListResponseDTO {
+        switch sortStyle {
+        case .current:
+            return albumPhotoList
+        case .old:
+            let reversedPhotos = albumPhotoList.photos.reversed()
+            return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
+        }
+    }
+    
     private func addDelegate() {
         homeAlbumView.photoCollectionView.delegate = self
     }
 }
+
+// MARK: - @objc
+
+extension AlbumDetailViewController {
+    @objc
+    private func sortButtonDidTapped() {
+        self.presentChangeSortViewController()
+    }
+}
+
+// MARK: - delegate
 
 extension AlbumDetailViewController: ConfigPhotoSortStyleDelegate {
     func configPhotoSortStyle(by sortStyle: PhotoSortStyle) {
