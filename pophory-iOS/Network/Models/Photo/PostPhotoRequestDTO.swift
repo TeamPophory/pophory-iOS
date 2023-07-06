@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct PostPhotoRequestDTO: Codable {
-    let photo: String?
+    let photo: Data?
     let object: PhotoObject?
 }
 
