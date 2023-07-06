@@ -88,7 +88,6 @@ final class PhotoDetailView: UIView {
 
 extension PhotoDetailView {
     private func configUI() {
-        print(takenAt, imageUrl, studio, "SADSDFFDRTHWASGRQ")
         backgroundColor = .pophoryWhite
         photoImageView.kf.setImage(with: URL(string: imageUrl))
     }
