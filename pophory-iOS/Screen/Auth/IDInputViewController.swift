@@ -22,11 +22,11 @@ final class IDInputViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "회원가입" }
     
-    var bottomConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
     
-    var keyboardManager: KeyboardManager?
+    private var keyboardManager: KeyboardManager?
     
-    lazy var iDInputView: IDInputView = {
+    private lazy var iDInputView: IDInputView = {
         let view = IDInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -93,8 +93,6 @@ extension IDInputViewController {
     
     @objc func nextButtonOnClick() {
         guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
-        print("Full Name: \(fullName)")
-        print("Nick Name: \(nickName)")
         delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
         loadNextViewController(with: nickName, fullName: fullName)
     }
@@ -107,11 +105,9 @@ extension IDInputViewController {
     }
     
     private func loadNextViewController(with nickName: String, fullName: String) {
-        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickName: nickName, nibName: nil, bundle: nil)
+        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil)
         pickAlbumCoverVC.fullName = fullName
-        pickAlbumCoverVC.nickName = nickName
-        print("PickAlbumCoverViewController - Full Name: \(fullName)")
-        print("PickAlbumCoverViewController - Nick Name: \(nickName)")
+        pickAlbumCoverVC.nickname = nickName
         navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
     }
     

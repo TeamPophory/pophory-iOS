@@ -21,11 +21,11 @@ final class NameInputViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "회원가입" }
     
-    var bottomConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
     
-    var keyboardManager: KeyboardManager?
+    private var keyboardManager: KeyboardManager?
     
-    lazy var nameInputView: NameInputView = {
+    private lazy var nameInputView: NameInputView = {
         let view = NameInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -83,7 +83,6 @@ extension NameInputViewController {
     
     @objc private func nextButtonOnClick() {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-        print("Full Name: \(name)")
         loadNextViewController(with: name)
     }
 

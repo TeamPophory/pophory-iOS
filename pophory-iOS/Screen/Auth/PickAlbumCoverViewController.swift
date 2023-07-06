@@ -17,19 +17,20 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - Properties
     
-    var delegate: SignUpDelegates?
+    private var delegate: SignUpDelegates?
     
     var fullName: String?
     var nickname: String?
+    
     private var selectedAlbumCoverIndex: Int?
     
-    let memberRepository: MemberRepository = DefaultMemberRepository()
+    private let memberRepository: MemberRepository = DefaultMemberRepository()
     
     // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "회원가입" }
     
-    lazy var pickAlbumCoverView: PickAlbumCoverView = {
+    private lazy var pickAlbumCoverView: PickAlbumCoverView = {
         let view = PickAlbumCoverView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
