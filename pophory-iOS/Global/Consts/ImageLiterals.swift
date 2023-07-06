@@ -29,6 +29,10 @@ enum ImageLiterals {
     static var downIcon: UIImage { .load(name: "downIcon") }
     static var calanderIcon: UIImage { .load(name: "calanderIcon") }
     
+    // MARK: - exception
+    
+    static var emptyPhotoExceptionIcon: UIImage { .load(name: "emptyPhotoExceptionIcon") }
+
     // MARK: - AlbumCover
     
     static var albumCover1: UIImage { .load(name: "ic_album_cover_friends") }
