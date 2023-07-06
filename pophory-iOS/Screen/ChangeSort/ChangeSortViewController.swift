@@ -59,5 +59,6 @@ extension ChangeSortViewController: ChangeSortViewButtonTappedDelegate {
         case .old:
             photoSortStyle = .old
         }
+        self.dismiss(animated: true)
     }
 }
