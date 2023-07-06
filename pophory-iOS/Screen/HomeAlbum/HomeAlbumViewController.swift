@@ -12,6 +12,9 @@ final class HomeAlbumViewController: BaseViewController {
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
+            if let albumCover = albumList?.albums?[0].albumCover {
+                homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
+            }
             if let photoCount = albumList?.albums?[0].photoCount {
                 homeAlbumView.statusLabelText = String(photoCount)
             }
