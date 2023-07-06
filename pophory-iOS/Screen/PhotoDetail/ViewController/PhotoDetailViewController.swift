@@ -7,23 +7,29 @@
 
 import UIKit
 
-class PhotoDetailViewController: UIViewController {
+final class PhotoDetailViewController: BaseViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: - UI Properties
+    
+    private let photoDetailView = PhotoDetailView(frame: .zero,
+                                                            takenAt: "2023.07.06",
+                                                            studio: "인생네컷")
+    
+    // MARK: - Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view = photoDetailView
+        
     }
-    */
+}
 
+// MARK: - navigation bar
+
+extension PhotoDetailViewController: Navigatable {
+    var navigationBarTitleText: String? { return "내 사진" }
 }
