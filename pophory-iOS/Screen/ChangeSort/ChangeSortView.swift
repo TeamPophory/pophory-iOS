@@ -9,14 +9,13 @@ import UIKit
 
 import SnapKit
 
-protocol ChangeSortViewButtonTapped {
-    func currentSortButtonTapped()
-    func oldSortButtonTapped()
+protocol ChangeSortViewButtonTappedDelegate {
+    func sortButtonTapped(by sortType: PhotoSortStyle)
 }
 
 final class ChangeSortView: UIView {
     
-    var buttonTappedDelegate: ChangeSortViewButtonTapped?
+    var buttonTappedDelegate: ChangeSortViewButtonTappedDelegate?
     
     private let headTitle: UILabel = {
         let label = UILabel()
@@ -138,11 +137,11 @@ final class ChangeSortView: UIView {
 private extension ChangeSortView {
     @objc
     func currentSortButtonTapped() {
-        self.buttonTappedDelegate?.currentSortButtonTapped()
+        self.buttonTappedDelegate?.sortButtonTapped(by: .current)
     }
     
     @objc
     func oldSortButtonTapped() {
-        self.buttonTappedDelegate?.oldSortButtonTapped()
+        self.buttonTappedDelegate?.sortButtonTapped(by: .old)
     }
 }

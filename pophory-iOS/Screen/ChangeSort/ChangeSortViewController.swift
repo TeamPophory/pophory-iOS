@@ -9,8 +9,8 @@ import UIKit
 
 import SnapKit
 
-protocol ConfigPhotoSortStyle {
-    func configPhotoSortStyle(sortStyle: PhotoSortStyle)
+protocol ConfigPhotoSortStyleDelegate {
+    func configPhotoSortStyle(by sortStyle: PhotoSortStyle)
 }
 
 final class ChangeSortViewController: BaseViewController {
@@ -18,7 +18,7 @@ final class ChangeSortViewController: BaseViewController {
     let changeSortView = ChangeSortView()
     
     private var photoSortStyle: PhotoSortStyle
-    var configPhotoSortSyleDelegate: ConfigPhotoSortStyle?
+    var configPhotoSortSyleDelegate: ConfigPhotoSortStyleDelegate?
     
     init(
         photoSortStyle: PhotoSortStyle
@@ -37,7 +37,7 @@ final class ChangeSortViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.configPhotoSortSyleDelegate?.configPhotoSortStyle(sortStyle: self.photoSortStyle)
+        self.configPhotoSortSyleDelegate?.configPhotoSortStyle(by: self.photoSortStyle)
     }
     
     override func setupLayout() {
@@ -49,14 +49,15 @@ final class ChangeSortViewController: BaseViewController {
     }
 }
 
-extension ChangeSortViewController: ChangeSortViewButtonTapped {
-    func currentSortButtonTapped() {
-        photoSortStyle = .current
-        self.dismiss(animated: true)
-    }
-    
-    func oldSortButtonTapped() {
-        photoSortStyle = .old
-        self.dismiss(animated: true)
+extension ChangeSortViewController: ChangeSortViewButtonTappedDelegate {
+    func sortButtonTapped(
+        by sortStyle: PhotoSortStyle
+    ) {
+        switch sortStyle {
+        case .current:
+            photoSortStyle = .current
+        case .old:
+            photoSortStyle = .old
+        }
     }
 }

@@ -88,8 +88,8 @@ final class AlbumDetailViewController: BaseViewController {
     }
 }
 
-extension AlbumDetailViewController: ConfigPhotoSortStyle {
-    func configPhotoSortStyle(sortStyle: PhotoSortStyle) {
+extension AlbumDetailViewController: ConfigPhotoSortStyleDelegate {
+    func configPhotoSortStyle(by sortStyle: PhotoSortStyle) {
         self.photoSortStyle = sortStyle
     }
 }
