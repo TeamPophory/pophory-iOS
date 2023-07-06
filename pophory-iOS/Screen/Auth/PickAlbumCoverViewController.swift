@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PickAlbumCoverViewControllerDelegate: AnyObject {
-    func didSelectButton(at index: Int)
+    func didSelectAlbumButton(at index: Int)
 }
 
 typealias SignUpDelegates = NameInputViewControllerDelegate & IDInputViewControllerDelegate
@@ -20,7 +20,8 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     var delegate: SignUpDelegates?
     
     var fullName: String?
-    var nickName: String?
+    var nickname: String?
+    private var selectedAlbumCoverIndex: Int?
     
     let memberRepository: MemberRepository = DefaultMemberRepository()
     
@@ -36,9 +37,9 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - Life Cycle
     
-    init(fullName: String?, nickName: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?) {
+    init(fullName: String?, nickname: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?) {
         self.fullName = fullName
-        self.nickName = nickName
+        self.nickname = nickname
         
         super.init(nibName: nibName, bundle: bundle)
         
@@ -47,7 +48,6 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
         } else {
             let view = PickAlbumCoverView()
             self.pickAlbumCoverView = view
-            self.pickAlbumCoverView.delegate = self
         }
     }
     
@@ -55,18 +55,13 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
         super.loadView()
         
         pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
+        pickAlbumCoverView.delegate = self
         self.view = pickAlbumCoverView
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.pickAlbumCoverView.delegate = self
     }
 }
 
@@ -76,22 +71,24 @@ extension PickAlbumCoverViewController {
     
     func didEnterName(name: String) {
         fullName = name
-        print("Full name: \(fullName ?? "None")🅾️")
     }
     
     func didEnterNickname(nickname: String, fullName: String) {
-        self.nickName = nickname
+        self.nickname = nickname
         self.fullName = fullName
-        print("Nickname: \(nickname), Full name: \(fullName)🩷")
     }
 }
 
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
-    func didSelectButton(at index: Int) {
-        print("Selected item at index: \(index)")
-        
-        if let fullName = fullName, let nickName = nickName {
-            let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: index)
+    
+    func didSelectAlbumButton(at index: Int) {
+        selectedAlbumCoverIndex = index
+        print(index)
+    }
+    
+    func didTapBaseNextButton() {
+        if let fullName = fullName, let nickName = nickname, let selectedIndex = selectedAlbumCoverIndex {
+            let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
             memberRepository.patchSignUp(body: signUpDTO) { result in
                 switch result {
                 case .success(_):
@@ -103,7 +100,7 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
                 case .serverErr:
                     print("Server error")
                 case .networkFail:
-                    print("Network failure") 
+                    print("Network failure")
                 }
             }
         }
