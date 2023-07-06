@@ -17,6 +17,7 @@ final class PhotoDetailView: UIView {
     private var takenAt: String!
     private var studio: String!
     private var imageUrl: String!
+    private var photoType: PhotoCellType!
     
     // MARK: - UI Properties
     
@@ -72,10 +73,11 @@ final class PhotoDetailView: UIView {
     
     // MARK: - Life Cycle
     
-    init(frame: CGRect, imageUrl: String, takenAt: String, studio: String) {
+    init(frame: CGRect, imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
         self.imageUrl = imageUrl
         self.takenAt = takenAt
         self.studio = studio
+        self.photoType = type
         super.init(frame: frame)
         configUI()
         setupLayout()
@@ -109,11 +111,21 @@ extension PhotoDetailView {
             make.height.equalTo(554)
         }
         
-        photoImageView.snp.makeConstraints { make in
-            make.directionalHorizontalEdges.equalToSuperview()
-            make.centerY.equalToSuperview()
+        switch photoType {
+        case .horizontal:
+            photoImageView.snp.makeConstraints { make in
+                make.directionalHorizontalEdges.centerY.equalToSuperview()
+                make.height.equalTo(213)
+            }
+        case .vertical:
+            photoImageView.snp.makeConstraints { make in
+                make.directionalHorizontalEdges.centerY.equalToSuperview()
+                make.directionalVerticalEdges.equalToSuperview().inset(20)
+            }
+        case .none:
+            break
         }
-        
+               
         bottomLine.snp.makeConstraints { make in
             make.top.equalTo(photoDetailView.snp.bottom)
             make.directionalHorizontalEdges.equalTo(photoDetailView)

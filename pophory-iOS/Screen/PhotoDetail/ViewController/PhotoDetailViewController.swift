@@ -14,13 +14,15 @@ final class PhotoDetailViewController: BaseViewController {
     private var image: String!
     private var takenAt: String!
     private var studio: String!
+    private var photoType: PhotoCellType!
     
     // MARK: - UI Properties
     
     private lazy var photoDetailView = PhotoDetailView(frame: .zero,
-                                                  imageUrl: self.image,
-                                                  takenAt: self.takenAt,
-                                                  studio: self.studio)
+                                                       imageUrl: self.image,
+                                                       takenAt: self.takenAt,
+                                                       studio: self.studio,
+                                                       type: photoType)
     
     // MARK: - Life Cycle
     
@@ -49,9 +51,10 @@ extension PhotoDetailViewController: Navigatable {
 }
 
 extension PhotoDetailViewController {
-    func setData(imageUrl: String, takenAt: String, studio: String) {
+    func setData(imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
         self.image = imageUrl
         self.takenAt = takenAt
         self.studio = studio
+        self.photoType = type
     }
 }
