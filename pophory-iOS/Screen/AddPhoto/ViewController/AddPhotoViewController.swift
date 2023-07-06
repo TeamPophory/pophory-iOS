@@ -23,9 +23,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
-            if let albumCover = albumList?.albums?[0].albumCover {
                 rootView.albumCollectionView.reloadData()
-            }
         }
     }
     
