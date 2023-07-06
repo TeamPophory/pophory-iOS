@@ -1,0 +1,123 @@
+//
+//  PhotoDetailView.swift
+//  pophory-iOS
+//
+//  Created by 강윤서 on 2023/07/06.
+//
+
+import UIKit
+
+import SnapKit
+
+final class PhotoDetailView: UIView {
+    
+    // MARK: - Properties
+    
+    private var takenAt: String!
+    private var studio: String!
+    
+    // MARK: - UI Properties
+    
+    private let separateLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryGray300
+        return view
+    }()
+    
+    private let photoDetailView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryWhite
+        return view
+    }()
+    
+    private let bottomLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryGray300
+        return view
+    }()
+    
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
+    private let photoInfoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private lazy var takenAtLabel: UILabel = {
+        let label = UILabel()
+        label.font = .ttl1
+        label.textColor = .pophoryBlack
+        label.text = takenAt
+        return label
+    }()
+    
+    private lazy var studioLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .pophoryBlack
+        label.layer.cornerRadius = 37 / 2
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        label.font = .t1
+        label.textColor = .pophoryWhite
+        label.text = studio
+        return label
+    }()
+    
+    // MARK: - Life Cycle
+    
+    init(frame: CGRect, takenAt: String, studio: String) {
+        self.takenAt = takenAt
+        self.studio = studio
+        super.init(frame: frame)
+        configUI()
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension PhotoDetailView {
+    private func configUI() {
+        backgroundColor = .pophoryWhite
+    }
+    
+    private func setupLayout() {
+        photoInfoStackView.addArrangedSubviews([takenAtLabel, studioLabel])
+        addSubviews([separateLine, photoDetailView, bottomLine, photoInfoStackView])
+        
+        separateLine.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(125)
+            make.directionalHorizontalEdges.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        photoDetailView.snp.makeConstraints { make in
+            make.top.equalTo(separateLine.snp.bottom)
+            make.directionalHorizontalEdges.equalToSuperview().inset(20)
+            make.height.equalTo(554)
+        }
+        
+        bottomLine.snp.makeConstraints { make in
+            make.top.equalTo(photoDetailView.snp.bottom)
+            make.directionalHorizontalEdges.equalTo(photoDetailView)
+            make.height.equalTo(1)
+        }
+        
+        studioLabel.snp.makeConstraints { make in
+            make.width.equalTo(104)
+            make.height.equalTo(37)
+        }
+        
+        photoInfoStackView.snp.makeConstraints { make in
+            make.top.equalTo(photoDetailView.snp.bottom).offset(14)
+            make.directionalHorizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+}
