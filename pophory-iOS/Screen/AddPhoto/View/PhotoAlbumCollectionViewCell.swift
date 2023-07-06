@@ -18,6 +18,9 @@ final class PhotoAlbumCollectionViewCell: UICollectionViewCell {
     private let photoAlbum: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .pophoryGray300
+        let rightRadius = 6.0
+        let rightCornerMask: CACornerMask = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        view.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return view
     }()
 
