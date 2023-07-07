@@ -16,6 +16,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     private let photoImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = ImageLiterals.defaultPhotoIcon
         imageView.contentMode = .scaleToFill
         return imageView
     }()
@@ -29,6 +30,11 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImage.image = ImageLiterals.defaultPhotoIcon
+    }
+    
     private func setupLayout() {
         self.addSubview(photoImage)
         
@@ -37,8 +43,14 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configCell(imageUrl: String) {
-        let imageUrl = URL(string: imageUrl)
-        photoImage.kf.setImage(with: imageUrl)
+    func configCell(
+        imageUrl: String
+    ) {
+        if imageUrl == "" {
+            photoImage.image = ImageLiterals.defaultPhotoIcon
+        } else {
+            let url = URL(string: imageUrl)
+            photoImage.kf.setImage(with: url)
+        }
     }
 }
