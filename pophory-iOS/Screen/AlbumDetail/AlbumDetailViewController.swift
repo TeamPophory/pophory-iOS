@@ -33,7 +33,7 @@ final class AlbumDetailViewController: BaseViewController {
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     
-    private let albumId: Int = 0
+    private let albumId: Int = 12
     private var photoSortStyle: PhotoSortStyle = .current {
         didSet {
             switch photoSortStyle {
@@ -52,6 +52,7 @@ final class AlbumDetailViewController: BaseViewController {
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
     }
+    private var uniquePhotoStartId: Int?
     
     override func loadView() {
         view = homeAlbumView
@@ -111,8 +112,9 @@ final class AlbumDetailViewController: BaseViewController {
     ) -> [Photo] {
         var photoItems = [Photo]()
         var verticalItemsBuffer = [Photo]()
-        var num = 1000
-
+        guard let uniquePhotoStartId = uniquePhotoStartId else { return [Photo]() }
+        var localUniquePhotoStartId = uniquePhotoStartId
+        
         for photo in photos {
             switch checkPhotoCellType(width: photo.width, height: photo.height) {
             case .vertical:
@@ -123,8 +125,8 @@ final class AlbumDetailViewController: BaseViewController {
                 }
             case .horizontal:
                 if !verticalItemsBuffer.isEmpty {
-                    num += 1
-                    verticalItemsBuffer.append(Photo(id: num, studio: "", takenAt: "", imageUrl: "", width: 0, height: 0))
+                    localUniquePhotoStartId += 1
+                    verticalItemsBuffer.append(Photo(id: localUniquePhotoStartId))
                     photoItems.append(contentsOf: verticalItemsBuffer)
                     verticalItemsBuffer.removeAll()
                 }
@@ -135,8 +137,8 @@ final class AlbumDetailViewController: BaseViewController {
         }
         
         if !verticalItemsBuffer.isEmpty {
-            num += 1
-            verticalItemsBuffer.append(Photo(id: num, studio: "", takenAt: "", imageUrl: "", width: 0, height: 0))
+            localUniquePhotoStartId += 1
+            verticalItemsBuffer.append(Photo(id: localUniquePhotoStartId))
             photoItems.append(contentsOf: verticalItemsBuffer)
         }
         
@@ -195,6 +197,7 @@ extension AlbumDetailViewController {
         ) { result in
             switch result {
             case .success(let response):
+                self.uniquePhotoStartId = (response.photos.last?.id ?? Int()) + 1
                 let mappedDefaultPhotoList = self.mappedDefaultAlbumPhoto(photos: response.photos)
                 let mappedDefaultAlbumPhotoListDTO = PatchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
                 self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
