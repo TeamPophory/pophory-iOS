@@ -11,18 +11,18 @@ final class PhotoDetailViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private var image: String!
-    private var takenAt: String!
-    private var studio: String!
-    private var photoType: PhotoCellType!
+    private var image: String?
+    private var takenAt: String?
+    private var studio: String?
+    private var photoType: PhotoCellType?
     
     // MARK: - UI Properties
     
     private lazy var photoDetailView = PhotoDetailView(frame: .zero,
-                                                       imageUrl: self.image,
-                                                       takenAt: self.takenAt,
-                                                       studio: self.studio,
-                                                       type: photoType)
+                                                       imageUrl: self.image ?? "",
+                                                       takenAt: self.takenAt ?? "",
+                                                       studio: self.studio ?? "",
+                                                       type: photoType ?? PhotoCellType.vertical)
     
     // MARK: - Life Cycle
     
@@ -33,15 +33,6 @@ final class PhotoDetailViewController: BaseViewController {
     override func viewDidLoad() {
         view = photoDetailView
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        view.addSubview(photoDetailView)
-//
-//        photoDetailView.snp.makeConstraints { make in
-//            make.bottom.leading.trailing.equalTo(view.safeAreaInsets)
-//            make.top.equalToSuperview().offset(totalNavigationBarHeight)
-//        }
-//    }
 }
 
 // MARK: - navigation bar

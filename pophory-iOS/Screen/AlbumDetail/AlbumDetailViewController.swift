@@ -31,7 +31,7 @@ final class AlbumDetailViewController: BaseViewController {
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     
-    private let albumId: Int = 0
+    private let albumId: Int = 12
     private var photoSortStyle: PhotoSortStyle = .current
     
     override func loadView() {
@@ -112,11 +112,12 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoDetailViewController = PhotoDetailViewController()
-        let photoType = checkPhotoCellType(width: albumPhotoList?.photos[indexPath.row].width ?? 0,
-                                           height: albumPhotoList?.photos[indexPath.row].height ?? 0)
-        photoDetailViewController.setData(imageUrl: albumPhotoList?.photos[indexPath.row].imageUrl ?? "",
-                                          takenAt: albumPhotoList?.photos[indexPath.row].takenAt ?? "",
-                                          studio: albumPhotoList?.photos[indexPath.row].studio ?? "",
+        guard let photoList = albumPhotoList?.photos else { return }
+        let photoType = checkPhotoCellType(width: photoList[indexPath.row].width ,
+                                           height: photoList[indexPath.row].height )
+        photoDetailViewController.setData(imageUrl: photoList[indexPath.row].imageUrl ,
+                                          takenAt: photoList[indexPath.row].takenAt ,
+                                          studio: photoList[indexPath.row].studio ,
                                           type: photoType)
         
         navigationController?.pushViewController(photoDetailViewController, animated: true)
