@@ -10,6 +10,21 @@ import UIKit
 import SnapKit
 
 final class AddPhotoView: UIView {
+    
+    // MARK: - UI Properties
+    
+    var photoType: PhotoCellType = .vertical {
+        didSet {
+            switch photoType {
+            case .vertical, .none:
+                photoView.image = ImageLiterals.addPhotoBackgroundVertical
+                setupVerticle()
+            case .horizontal:
+                photoView.image = ImageLiterals.addPhotoBackgroundHorizontal
+                setupHorizontal()
+            }
+        }
+    }
         
     // MARK: - UI Properties
     
@@ -25,11 +40,14 @@ final class AddPhotoView: UIView {
         return view
     }()
     
-    private let photoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
+    let photoView: UIImageView = {
+        let view = UIImageView()
+        view.image = ImageLiterals.addPhotoBackgroundVertical
         return view
     }()
+    
+    let photo = UIImageView()
+    
     private let photoInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -141,6 +159,7 @@ extension AddPhotoView {
         photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView, friendsStackView])
         
         scrollContentsView.addSubviews([photoView, photoInfoStackView])
+        photoView.addSubview(photo)
         
         photoView.snp.makeConstraints {
             $0.height.equalTo(325)
@@ -152,6 +171,11 @@ extension AddPhotoView {
             $0.bottom.equalToSuperview().inset(22)
         }
         
+        photo.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(94)
+            $0.top.bottom.equalToSuperview().inset(20)
+        }
+        
         albumStackView.addArrangedSubviews([albumTitle, albumCollectionView])
         
         albumCollectionView.snp.makeConstraints {
@@ -160,6 +184,22 @@ extension AddPhotoView {
         }
                 
         photoAddButton.addCenterConstraint(to: photoAddButtonView)
+    }
+    
+    // MARK: - func
+    
+    func setupVerticle() {
+        photo.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(94)
+            $0.top.bottom.equalToSuperview().inset(20)
+        }
+    }
+    
+    func setupHorizontal() {
+        photo.snp.remakeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(45)
+            $0.top.bottom.equalToSuperview().inset(69)
+        }
     }
 }
 

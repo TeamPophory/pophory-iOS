@@ -18,14 +18,13 @@ protocol StudioDataBind: AnyObject{
     func studioDataBind(text: String, forIndex: Int)
 }
 
+
 final class AddPhotoViewController: BaseViewController, Navigatable {
     
     // MARK: - Properties
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
-    var image = UIImageView()
-
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
             rootView.albumCollectionView.reloadData()
@@ -61,11 +60,6 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         setupTarget()
         setupDelegate()
-        view.addSubview(image)
-        image.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(50)
-            $0.top.bottom.equalToSuperview().inset(300)
-        }
     }
 }
 
@@ -100,6 +94,7 @@ extension AddPhotoViewController {
     @objc func onclickAddPhotoButton() {
         guard let multipartData = fetchMultiPartData() else { return }
         requestPostPhotoAPI(photoInfo: multipartData)
+//        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private Methods
@@ -123,6 +118,14 @@ extension AddPhotoViewController {
             let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
             return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
         } else { return nil }
+    }
+    
+    // MARK: - Methods
+
+    func setupRootViewImage(forImage: UIImage?, forType: PhotoCellType) {
+        rootView.photo.image = forImage
+        rootView.photoType = forType
+        photoImage = forImage ?? UIImage()
     }
 }
 
