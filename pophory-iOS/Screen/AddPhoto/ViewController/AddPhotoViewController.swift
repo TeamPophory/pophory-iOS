@@ -51,6 +51,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         requestGetAlumListAPI()
     }
@@ -60,6 +61,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         setupTarget()
         setupDelegate()
+        
     }
 }
 
