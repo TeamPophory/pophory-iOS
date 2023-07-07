@@ -11,8 +11,6 @@ import SnapKit
 
 final class TabBarController: UITabBarController {
     
-    var selectedImage = UIImage()
-    
     // MARK: - viewController properties
     
     let homeAlbumViewController = HomeAlbumViewController()
@@ -21,15 +19,15 @@ final class TabBarController: UITabBarController {
     
     let addPhotoViewController = AddPhotoViewController()
     let imagePickerViewController = BaseImagePickerViewController()
-        
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.delegate = self
         setUpTabBar()
         setuPImagePicker()
+        setupDelegate()
     }
     
     private func setUpTabBar(){
@@ -70,6 +68,9 @@ final class TabBarController: UITabBarController {
         }
     }
     
+    private func setupDelegate() {
+        self.delegate = self
+    }
 }
 
 extension TabBarController: UITabBarControllerDelegate {
@@ -84,28 +85,10 @@ extension TabBarController: UITabBarControllerDelegate {
 
 extension TabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        print("이밎")
-            var newImage: UIImage? = nil
-            
-            if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-                newImage = possibleImage
-            } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-                newImage = possibleImage
-            }
-            
-        selectedImage = newImage ?? UIImage() // 받아온 이미지를 이미지 뷰에 넣어준다.
-            
-        addPhotoViewController.image.image = selectedImage
-        self.navigationController?.pushViewController(addPhotoViewController, animated: true)
-                picker.dismiss(animated: true) // 그리고 picker를 닫아준다.
-
-    }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("이밎")
+
         var newImage: UIImage? = nil
+        var imageType: PhotoCellType = .vertical
         
         if let possibleImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
             newImage = possibleImage
@@ -113,8 +96,16 @@ extension TabBarController: UIImagePickerControllerDelegate, UINavigationControl
             newImage = possibleImage
         }
         
-        addPhotoViewController.image.image = newImage
+        if let width = newImage?.size.width, let height = newImage?.size.height {
+            if width > height {
+                imageType = .horizontal
+            } else {
+                imageType = .vertical
+            }
+        }
+        
+        addPhotoViewController.setupRootViewImage(forImage: newImage, forType: imageType)
         self.navigationController?.pushViewController(addPhotoViewController, animated: true)
-                picker.dismiss(animated: true) // 그리고 picker를 닫아준다.
+        picker.dismiss(animated: true)
     }
 }
