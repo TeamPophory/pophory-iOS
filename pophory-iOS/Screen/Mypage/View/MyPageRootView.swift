@@ -11,10 +11,6 @@ import SnapKit
 
 class MyPageRootView: UIView {
     
-    // MARK: Properties
-    
-    private var collectionViewHeight: CGFloat = 0
-    
     // MARK: - UI Properties
     
     private lazy var headerStackView: UIStackView = { createHeaderStackView() }()
@@ -327,7 +323,7 @@ extension MyPageRootView: UICollectionViewDataSource {
         }
         
 //        cell.configCell(imageUrl: photo.imageUrl)
-        cell.backgroundColor = .blue
+        cell.backgroundColor = .pophoryPurple
         
         return cell
     }
