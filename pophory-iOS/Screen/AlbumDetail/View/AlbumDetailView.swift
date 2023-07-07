@@ -28,8 +28,8 @@ final class AlbumDetailView: UIView {
     }()
     private let sortLabel: UILabel = {
         let label = UILabel()
-        label.text = "최근에 찍은 순"
         label.textColor = .pophoryGray500
+        label.text = "최근에 찍은 순"
         label.font = .c1
         return label
     }()
@@ -125,5 +125,11 @@ final class AlbumDetailView: UIView {
     ) {
         emptyPhotoExceptionIcon.isHidden = !isEmpty
         photoCollectionView.isHidden = isEmpty
+    }
+    
+    func setSortLabelText(
+        sortStyleText: String
+    ) {
+        sortLabel.text = sortStyleText
     }
 }
