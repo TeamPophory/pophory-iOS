@@ -87,6 +87,7 @@ enum ImageLiterals {
     // MARK: - MypageImg
     
     static var defaultProfile: UIImage { .load(name: "defaultProfile") }
+    static var defaultBannerAd: UIImage { .load(name: "bannerAdDefault") }
 }
 
 

@@ -23,7 +23,10 @@ class MyPageRootView: UIView {
     private lazy var headerBorderView: UIView = { createHeaderBorderView() }()
     
     private lazy var scrollView: UIScrollView = { createScrollView() }()
-        private lazy var contentView: UIView = { UIView() }()
+    private lazy var contentView: UIView = { UIView() }()
+    
+    private lazy var adView: UIView = { UIView() }()
+    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
     
     private lazy var profileView: UIView = { UIView() }()
     private lazy var profileImageView: UIImageView = { createProfileImageView() }()
@@ -58,8 +61,8 @@ extension MyPageRootView {
         setupHeaderView()
         setupScrollView()
         setupProfileView()
-        // TODO: - 광고 뷰 추가
-        setupCollectionView()
+        setupAdView()
+        setupFeedView()
     }
     
     private func setupHeaderView() {
@@ -130,7 +133,22 @@ extension MyPageRootView {
         }
     }
     
-    private func setupCollectionView() {
+    private func setupAdView() {
+        contentView.addSubview(adView)
+        adView.addSubview(adEmptyView)
+        
+        adView.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.bottom).offset(2)
+            make.leading.trailing.equalToSuperview().inset(28)
+            make.height.equalTo(100)
+        }
+        
+        adEmptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private func setupFeedView() {
         contentView.addSubviews([
             feedTitleLabel,
 //            emptyStackView,
@@ -143,7 +161,7 @@ extension MyPageRootView {
 //        ])
         
         feedTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.bottom).offset(26)
+            make.top.equalTo(adView.snp.bottom).offset(26)
             make.leading.equalToSuperview().offset(20)
         }
         
