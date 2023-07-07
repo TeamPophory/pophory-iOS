@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 protocol DateDataBind: AnyObject{
     func dateDataBind(text: String)
 }
@@ -21,6 +23,8 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
+    var image = UIImageView()
+
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
                 rootView.albumCollectionView.reloadData()
@@ -51,6 +55,11 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
 
         setupTarget()
         setupDelegate()
+        view.addSubview(image)
+        image.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(50)
+            $0.top.bottom.equalToSuperview().inset(300)
+        }
     }
 }
 
