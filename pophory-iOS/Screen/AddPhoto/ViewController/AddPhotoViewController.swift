@@ -94,7 +94,7 @@ extension AddPhotoViewController {
     @objc func onclickAddPhotoButton() {
         guard let multipartData = fetchMultiPartData() else { return }
         requestPostPhotoAPI(photoInfo: multipartData)
-//        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private Methods
