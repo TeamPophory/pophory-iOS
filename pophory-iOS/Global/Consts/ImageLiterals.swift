@@ -38,7 +38,6 @@ enum ImageLiterals {
     static var chevronRightIcon: UIImage { .load(name: "right") }
     static var chevronUpIcon: UIImage { .load(name: "up") }
     static var xIcon: UIImage { .load(name: "x") }
-    static var settingIcon: UIImage { .load(name: "settingIcon") }
     static var emptyFeedIcon: UIImage { .load(name: "emptyFeedIcon") }
     
     // MARK: - exception
@@ -65,7 +64,6 @@ enum ImageLiterals {
     
     static var albumCoverProfileList: [UIImage] = [UIImage(), albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4]
 
-    
     // MARK: - OnboardingImg
     
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
@@ -83,7 +81,6 @@ enum ImageLiterals {
     static var addPhotoBackgroundVertical: UIImage { .load(name: "img_background_height") }
     static var addPhotoBackgroundHorizontal: UIImage { .load(name: "img_background_width") }
 
-    
     // MARK: - MypageImg
     
     static var defaultProfile: UIImage { .load(name: "defaultProfile") }
