@@ -7,25 +7,32 @@
 
 import UIKit
 
+import Moya
+
 protocol DateDataBind: AnyObject{
-    func dateDataBind(text: String)
+    func dateDataBind(text: String, forPost: String)
 }
 
 protocol StudioDataBind: AnyObject{
-    func studioDataBind(text: String)
+    func studioDataBind(text: String, forIndex: Int)
 }
 
 final class AddPhotoViewController: BaseViewController, Navigatable {
-
+    
     // MARK: - Properties
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
-                rootView.albumCollectionView.reloadData()
+            rootView.albumCollectionView.reloadData()
         }
     }
+    
+    private var photoImage = UIImage()
+    private var albumID: Int = 12
+    private var dateTaken: String = DateManager.dateToStringForPOST(date: Date())
+    private var studioID: Int = 999
     
     // MARK: - UI Properties
     
@@ -48,20 +55,20 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTarget()
         setupDelegate()
     }
 }
 
 extension AddPhotoViewController {
-        
+    
     // MARK: - @objc
     
     @objc func onclickDateButton() {
         let customModalVC = CalendarModalViewController()
         customModalVC.modalPresentationStyle = .custom
-
+        
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 326)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
@@ -71,7 +78,7 @@ extension AddPhotoViewController {
     @objc func onclicStudioButton() {
         let customModalVC = StudioModalViewController()
         customModalVC.modalPresentationStyle = .custom
-
+        
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 232)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
@@ -81,17 +88,33 @@ extension AddPhotoViewController {
     @objc func onclickFriendsButton() {
         print("친구")
     }
-
+    
+    @objc func onclickAddPhotoButton() {
+        guard let multipartData = fetchMultiPartData() else { return }
+        requestPostPhotoAPI(photoInfo: multipartData)
+    }
+    
     // MARK: - Private Methods
     
     private func setupTarget() {
         rootView.dateStackView.infoButton.addTarget(self, action: #selector(onclickDateButton), for: .touchUpInside)
         rootView.studioStackView.infoButton.addTarget(self, action: #selector(onclicStudioButton), for: .touchUpInside)
         rootView.friendsStackView.infoButton.addTarget(self, action: #selector(onclickFriendsButton), for: .touchUpInside)
+        rootView.photoAddButton.addTarget(self, action: #selector(onclickAddPhotoButton), for: .touchUpInside)
     }
     
     private func setupDelegate() {
         rootView.albumCollectionView.dataSource = self
+    }
+    
+    private func fetchMultiPartData() -> [MultipartFormData]? {
+        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
+            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData), name: "photo", fileName: "image.jpg", mimeType: "image/jpeg")
+            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumID)".data(using: .utf8) ?? .empty), name: "albumId")
+            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty), name: "takenAt")
+            let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
+            return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
+        } else { return nil }
     }
 }
 
@@ -118,14 +141,16 @@ extension AddPhotoViewController: UICollectionViewDataSource {
 
 extension AddPhotoViewController: DateDataBind, StudioDataBind {
     
-    func dateDataBind(text: String) {
+    func dateDataBind(text: String, forPost: String) {
         rootView.dateStackView.setupExplain(explain: text)
         rootView.dateStackView.setupSelected(selected: true)
+        dateTaken = forPost
     }
     
-    func studioDataBind(text: String) {
+    func studioDataBind(text: String, forIndex: Int) {
         rootView.studioStackView.setupExplain(explain: text)
         rootView.studioStackView.setupSelected(selected: true)
+        studioID = forIndex
     }
 }
 
@@ -137,6 +162,19 @@ extension AddPhotoViewController {
             switch result {
             case .success(let response):
                 self.albumList = response
+            default : return
+            }
+        }
+    }
+    
+    func requestPostPhotoAPI(
+        photoInfo: [MultipartFormData]
+    ) {
+        NetworkService.shared.photoRepository.postPhoto(body: photoInfo
+        ) { result in
+            switch result {
+            case .success(_):
+                print("성공")
             default : return
             }
         }
