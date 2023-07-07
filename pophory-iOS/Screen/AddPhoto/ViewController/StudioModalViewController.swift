@@ -13,7 +13,13 @@ class StudioModalViewController: BaseViewController {
     
     private var numberOfStudio: Int = 12
     weak var delegate: StudioDataBind?
-        
+    
+    private var studioList: PatchStudiosResponseDTO? {
+        didSet {
+            studioCollectionView.reloadData()
+        }
+    }
+
     // MARK: - UI Properties
     
     private let stackView: UIStackView = {
@@ -42,6 +48,14 @@ class StudioModalViewController: BaseViewController {
         return view
     }()
     
+    // MARK: - Life Cycle
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        requestGetStudioList()
+    }
+    
     override func setupLayout() {
         super.setupLayout()
         
@@ -63,19 +77,39 @@ class StudioModalViewController: BaseViewController {
 
 extension StudioModalViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfStudio
+        guard let count = studioList?.studios?.count else { return 0 }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudioCollectionViewCell.identifier, for: indexPath) as? StudioCollectionViewCell else { return UICollectionViewCell() }
-//        cell.configCell(text: )
+        if let studioName = studioList?.studios?[indexPath.item].name {
+            cell.configureCell(text: studioName)
+        } else {
+            cell.configureCell(text: "")
+        }
         return cell
     }
 }
 
 extension StudioModalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.studioDataBind(text: String(indexPath.item))
+        delegate?.studioDataBind(text: studioList?.studios?[indexPath.item].name ?? "")
         dismiss(animated: true)
+    }
+}
+
+// MARK: - API
+
+extension StudioModalViewController {
+    func requestGetStudioList() {
+        NetworkService.shared.studioRepository.patchStudiosList() {
+            result in
+            switch result {
+            case .success(let response):
+                self.studioList = response
+            default : return
+            }
+        }
     }
 }

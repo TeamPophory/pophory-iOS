@@ -393,10 +393,9 @@
 		37DCA6922A4AB55F00FF8F90 /* AlbumDetail */ = {
 			isa = PBXGroup;
 			children = (
+				9161CAE42A546BFA002B8B77 /* View */,
 				9161CAE52A546DCC002B8B77 /* PhotoCollectionViewDataSource.swift */,
 				91F3A7AF2A52F97700C06D1B /* AlbumDetailViewController.swift */,
-				9161CAE42A546BFA002B8B77 /* View */,
-				91F3A7B52A53178B00C06D1B /* ChangeSort */,
 			);
 			path = AlbumDetail;
 			sourceTree = "<group>";
@@ -642,6 +641,7 @@
 				6B29DC522A5494A000F93EC7 /* AddPhoto */,
 				37DCA68B2A4AB45000FF8F90 /* TabBar */,
 				37DCA6922A4AB55F00FF8F90 /* AlbumDetail */,
+				91F3A7B52A53178B00C06D1B /* ChangeSort */,
 				37DCA6912A4AB53900FF8F90 /* EntireAlbums */,
 				37DCA68F2A4AB4E900FF8F90 /* HomeAlbum */,
 				37DCA68E2A4AB4C200FF8F90 /* LeaveService */,
@@ -1171,7 +1171,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pophory-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1201,7 +1201,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pophory-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
