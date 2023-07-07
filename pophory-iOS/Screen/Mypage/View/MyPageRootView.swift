@@ -151,28 +151,28 @@ extension MyPageRootView {
     private func setupFeedView() {
         contentView.addSubviews([
             feedTitleLabel,
-//            emptyStackView,
+            emptyStackView,
             feedCollectionView
         ])
         
-//        emptyStackView.addArrangedSubviews([
-//            emptyImageView,
-//            emptyDescriptionLabel
-//        ])
+        emptyStackView.addArrangedSubviews([
+            emptyImageView,
+            emptyDescriptionLabel
+        ])
         
         feedTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(adView.snp.bottom).offset(26)
             make.leading.equalToSuperview().offset(20)
         }
         
-//        emptyStackView.snp.makeConstraints { make in
-//            make.top.equalTo(feedTitleLabel.snp.bottom).offset(46)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        emptyImageView.snp.makeConstraints { make in
-//            make.size.equalTo(180)
-//        }
+        emptyStackView.snp.makeConstraints { make in
+            make.top.equalTo(feedTitleLabel.snp.bottom).offset(46)
+            make.centerX.equalToSuperview()
+        }
+
+        emptyImageView.snp.makeConstraints { make in
+            make.size.equalTo(180)
+        }
         
         feedCollectionView.snp.makeConstraints { make in
             make.top.equalTo(feedTitleLabel.snp.bottom).offset(12)
@@ -306,7 +306,7 @@ extension MyPageRootView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled = false
         
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .pophoryWhite
         
         collectionView.register(cell: PhotoCollectionViewCell.self)
         collectionView.dataSource = self
