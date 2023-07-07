@@ -11,10 +11,10 @@ import UIKit
  생성 예시:
  
  lazy var nextButton: PophoryButton = {
-     let buttonBuilder = PophoryButtonBuilder()
-         .setStyle(.primaryBlack)
-         .setTitle(.next)
-     return buttonBuilder.build()
+ let buttonBuilder = PophoryButtonBuilder()
+ .setStyle(.primaryBlack)
+ .setTitle(.next)
+ return buttonBuilder.build()
  }()
  
  레이아웃:
@@ -23,7 +23,7 @@ import UIKit
  func setupLayout() {
  
  nextButton.snp.makeConstraints {
-     $0.bottom.equalToSuperview().inset(36)
+ $0.bottom.equalToSuperview().inset(36)
  }
  
  nextButton.addCenterXConstraint(to: self)
@@ -39,9 +39,8 @@ public enum ButtonText: String {
     case addPhoto = "사진 추가하기"
     case delete = "삭제하기"
     case startWithAppleID = "Apple ID로 시작하기"
-    case back = "돌아가기"                  // 추가된 버튼 텍스트
-    case logout = "로그아웃하기"             // 추가된 버튼 텍스트
-    case withdraw = "아쉽지만, 탈퇴하기"
+    case back = "돌아가기"
+    case logout = "로그아웃하기"
 }
 
 public enum ButtonStyle {
@@ -51,15 +50,17 @@ public enum ButtonStyle {
     case secondaryGray
     
     func styler() -> PophoryButtonStyler? {
-          switch self {
-          case .primaryBlack:
-              return PrimaryBlackButtonStyler()
-          case .primaryWhite:
-              return PrimaryWhiteButtonStyler()
-          case .secondaryBlack, .secondaryGray:
-              return SecondaryBlackButtonStyler()
-          }
-      }
+        switch self {
+        case .primaryBlack:
+            return PrimaryBlackButtonStyler()
+        case .primaryWhite:
+            return PrimaryWhiteButtonStyler()
+        case .secondaryBlack:
+            return SecondaryBlackButtonStyler()
+        case .secondaryGray:
+            return SecondaryGrayButtonStyler()
+        }
+    }
     
     var size: CGSize {
         switch self {
@@ -115,17 +116,17 @@ public class PophoryButtonBuilder {
         self.size = style.size
         return self
     }
-
+    
     public func setTitle(_ title: ButtonText) -> PophoryButtonBuilder {
         self.title = title
         return self
     }
-
+    
     public func setSize(_ size: CGSize) -> PophoryButtonBuilder {
         self.size = size
         return self
     }
-
+    
     public func build() -> PophoryButton {
         let styler = style.styler()
         let button = PophoryButton(style: self.style, text: self.title, styler: styler)

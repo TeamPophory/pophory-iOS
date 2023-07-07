@@ -29,15 +29,20 @@ public class PophoryButton: UIButton {
         self.buttonTitle = text.rawValue
         self.buttonSize = style.size
         
+        var tempCornerRadius: CGFloat = 0.0
+        
         switch style {
         case .primaryBlack, .primaryWhite:
             self.buttonFont = .t1
+            tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
             self.buttonFont = .t1
+            tempCornerRadius = 25
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
         self.setupPophoryButton()
+        self.layer.cornerRadius = tempCornerRadius
         
         styler?.applyStyle(to: self)
     }
@@ -85,7 +90,6 @@ extension PophoryButton {
         setTitleColor(.lightGray, for: .disabled)
         backgroundColor = buttonBackgroundColor
         titleLabel?.font = buttonFont
-        layer.cornerRadius = 30
         
         addTarget(self, action: #selector(buttonStateChanged), for: .allEvents)
     }
