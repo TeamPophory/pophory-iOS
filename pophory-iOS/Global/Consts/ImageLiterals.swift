@@ -61,6 +61,9 @@ enum ImageLiterals {
     static var albumCoverProfile3: UIImage { .load(name: "albumCoverProfile3") }
     static var albumCoverProfile4: UIImage { .load(name: "albumCoverProfile4") }
     
+    static var albumCoverProfileList: [UIImage] = [UIImage(), albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4]
+
+    
     // MARK: - OnboardingImg
     
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }

@@ -11,9 +11,9 @@ import SnapKit
 
 final class StartPophoryView: UIView {
 
-    let ilustView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryGray300
+    let ilustView: UIImageView = {
+        let view = UIImageView()
+        view.image = ImageLiterals.img_congratuation
         return view
     }()
     
