@@ -17,8 +17,8 @@ public class PophoryButton: UIButton {
     private var buttonStyle: ButtonStyle
     private var buttonTitle: String
     private var buttonSize: CGSize
-    private let buttonBackgroundColor: UIColor = .black
-    private let disabledButtonBackgroundColor: UIColor = .systemGray
+    private let buttonBackgroundColor: UIColor = .pophoryBlack
+    private let disabledButtonBackgroundColor: UIColor = .pophoryGray400
     private let buttonTitleColor: UIColor = .white
     private var buttonFont: UIFont
     
@@ -29,16 +29,20 @@ public class PophoryButton: UIButton {
         self.buttonTitle = text.rawValue
         self.buttonSize = style.size
         
+        var tempCornerRadius: CGFloat = 0.0
+        
         switch style {
         case .primaryBlack, .primaryWhite:
-            self.buttonFont = .h3
-        case .secondary:
-            // TODO: 디자인 픽스 이후 수정
-            self.buttonFont = .h3
+            self.buttonFont = .t1
+            tempCornerRadius = 30
+        case .secondaryBlack, .secondaryGray:
+            self.buttonFont = .t1
+            tempCornerRadius = 25
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
         self.setupPophoryButton()
+        self.layer.cornerRadius = tempCornerRadius
         
         styler?.applyStyle(to: self)
     }
@@ -86,7 +90,6 @@ extension PophoryButton {
         setTitleColor(.lightGray, for: .disabled)
         backgroundColor = buttonBackgroundColor
         titleLabel?.font = buttonFont
-        layer.cornerRadius = 30
         
         addTarget(self, action: #selector(buttonStateChanged), for: .allEvents)
     }

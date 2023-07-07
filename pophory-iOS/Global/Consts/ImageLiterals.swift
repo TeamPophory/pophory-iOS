@@ -28,6 +28,15 @@ enum ImageLiterals {
     static var searchIcon: UIImage { .load(name: "searchIcon") }
     static var downIcon: UIImage { .load(name: "downIcon") }
     static var calanderIcon: UIImage { .load(name: "calanderIcon") }
+    static var settingIcon: UIImage { .load(name: "setting") }
+    static var trashCanIcon: UIImage { .load(name: "delete-1") }
+    static var alarmIcon: UIImage { .load(name: "alarm-1") }
+    static var alarmNoticeIcon: UIImage { .load(name: "alarm") }
+    static var placeholderDeleteIcon: UIImage { .load(name: "delete") }
+    static var myIcon: UIImage { .load(name: "my") }
+    static var chevronRightIcon: UIImage { .load(name: "right") }
+    static var chevronUpIcon: UIImage { .load(name: "up") }
+    static var xIcon: UIImage { .load(name: "x") }
     
     // MARK: - exception
     
@@ -56,6 +65,12 @@ enum ImageLiterals {
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
     static var OnboardingImage2: UIImage { .load(name: "onboardingImg2") }
     static var OnboardingImage3: UIImage { .load(name: "onboardingImg3") }
+    
+    static var img_congratuation: UIImage { .load(name: "img_congratuation") }
+    
+    // MARK: - PopUpImg
+    
+    static var img_albumfull: UIImage { .load(name: "img_albumfull") }
 }
 
 
