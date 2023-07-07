@@ -7,9 +7,11 @@
 
 import Foundation
 
+import Moya
+
 protocol PhotoRepository {
     func postPhoto(
-        body: PostPhotoRequestDTO,
+        body: [MultipartFormData],
         completion: @escaping (NetworkResult<Any>) -> Void
     )
     func deletePhoto(

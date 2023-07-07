@@ -14,7 +14,7 @@ final class DefaultPhotoRepository: BaseRepository, PhotoRepository {
     let provider = MoyaProvider<PhotoAPI>(plugins: [MoyaLoggerPlugin()])
     
     func postPhoto(
-        body: PostPhotoRequestDTO,
+        body: [MultipartFormData],
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         provider.request(.postPhoto(body: body)) { result in

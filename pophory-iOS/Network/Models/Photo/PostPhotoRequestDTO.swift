@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 struct PostPhotoRequestDTO: Codable {
-    let photo: String?
+    let photo: Data?
     let object: PhotoObject?
 }
 
 struct PhotoObject: Codable {
-    let albumId: Int?
-    let takenAt: String?
-    let studioId: Int?
+    var albumId: Int?
+    var takenAt: String?
+    var studioId: Int?
 }

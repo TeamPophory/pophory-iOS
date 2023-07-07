@@ -25,4 +25,14 @@ class DateManager {
         
         return dateFormat
     }
+    
+    static func dateToStringForPOST(date: Date) -> String {
+        
+        let dayformatter = DateFormatter()
+        dayformatter.dateFormat = "yyyy.MM.dd"
+        
+        let dateFormat = dayformatter.string(from: date)
+        
+        return dateFormat
+    }
 }
