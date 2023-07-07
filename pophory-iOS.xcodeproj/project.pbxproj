@@ -107,6 +107,8 @@
 		B138A3B42A55C1E1000EE81E /* MyPageRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */; };
 		B138A3B82A586EC3000EE81E /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3B72A586EC3000EE81E /* SettingsRootView.swift */; };
 		B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B138A3BA2A587751000EE81E /* RxCocoa */; };
+		B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3BD2A587A15000EE81E /* SettingsData.swift */; };
+		B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -241,6 +243,8 @@
 		91F3A7B62A53183800C06D1B /* ChangeSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSortView.swift; sourceTree = "<group>"; };
 		B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRootView.swift; sourceTree = "<group>"; };
 		B138A3B72A586EC3000EE81E /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
+		B138A3BD2A587A15000EE81E /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
+		B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		37DCA68D2A4AB48800FF8F90 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B138A3BC2A587A06000EE81E /* Model */,
 				B138A3B62A586E9C000EE81E /* View */,
 				B138A3B52A586E93000EE81E /* ViewController */,
 			);
@@ -646,8 +651,17 @@
 			isa = PBXGroup;
 			children = (
 				B138A3B72A586EC3000EE81E /* SettingsRootView.swift */,
+				B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B138A3BC2A587A06000EE81E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3BD2A587A15000EE81E /* SettingsData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B1631EFE2A1759EA0050974F = {
@@ -1001,6 +1015,7 @@
 				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
+				B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */,
 				373EEEFB2A576CC40039A22C /* PophoryPopupView.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
@@ -1022,6 +1037,7 @@
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
+				B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
 				B1631F4C2A175DC80050974F /* NSMutableAttributedString+Extension.swift in Sources */,
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
