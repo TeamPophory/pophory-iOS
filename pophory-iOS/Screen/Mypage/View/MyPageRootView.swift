@@ -7,9 +7,14 @@
 
 import UIKit
 
+import RxSwift
 import SnapKit
 
 class MyPageRootView: UIView {
+    
+    // MARK: - Properties
+    
+    let disposeBag = DisposeBag()
     
     // MARK: - UI Properties
     
@@ -309,6 +314,12 @@ extension MyPageRootView {
         collectionView.delegate = self
         
         return collectionView
+    }
+    
+    // MARK: - Logics
+    
+    func handleOnClickSetting(_ handler: @escaping () -> Void) {
+        settingButton.handleOnClick(handler: handler, disposeBag: disposeBag)
     }
 }
 

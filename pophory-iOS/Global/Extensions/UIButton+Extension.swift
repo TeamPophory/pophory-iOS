@@ -5,13 +5,17 @@
 //  Created by Danna Lee on 2023/05/19.
 //
 
+import Foundation
 import UIKit
+
+import RxCocoa
+import RxSwift
 
 extension UIButton {
     
-     /// 사용 예시:
-     /// fooButton.showLoading(true)
-    private func showLoading(_ isLoading: Bool) {
+    /// 사용 예시:
+    /// fooButton.showLoading(true)
+    func showLoading(_ isLoading: Bool) {
         if isLoading {
             var spinner = UIActivityIndicatorView(frame: bounds)
             
@@ -40,6 +44,14 @@ extension UIButton {
             
             spinner.removeFromSuperview()
         }
+    }
+    
+    func handleOnClick(handler handleOnclick: @escaping () -> Void, disposeBag: DisposeBag) {
+        rx.tap
+            .bind {
+                handleOnclick()
+            }
+            .disposed(by: disposeBag)
     }
 }
 

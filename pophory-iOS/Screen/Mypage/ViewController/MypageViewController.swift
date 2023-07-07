@@ -26,5 +26,16 @@ class MypageViewController: BaseViewController {
         super.viewDidLoad()
 
         hideNavigationBar()
+        setupHandlers()
+    }
+}
+
+extension MypageViewController {
+    private func setupHandlers() {
+        rootView.handleOnClickSetting(onClickSetting)
+    }
+    
+    private func onClickSetting() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 }
