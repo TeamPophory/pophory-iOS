@@ -214,7 +214,8 @@ extension AlbumDetailViewController {
         ) { result in
             switch result {
             case .success(let response):
-                self.uniquePhotoStartId = (response.photos.last?.id ?? Int()) + 1
+                let maxId: Int = response.photos.map { $0.id }.max() ?? 0
+                self.uniquePhotoStartId = maxId + 1
                 let mappedDefaultPhotoList = self.mappedDefaultAlbumPhoto(photos: response.photos)
                 let mappedDefaultAlbumPhotoListDTO = PatchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
                 self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
