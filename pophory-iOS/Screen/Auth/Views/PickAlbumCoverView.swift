@@ -14,10 +14,10 @@ protocol PickAlbumCoverViewDelegate: BaseSignUpViewDelegate {
 }
 
 final class PickAlbumCoverView: BaseSignUpView {
-    
-    private let albumCoverView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryGray300
+        
+    private let albumCoverView: UIImageView = {
+        let view = UIImageView()
+        view.image = ImageLiterals.albumCover1
         return view
     }()
     
@@ -86,6 +86,7 @@ extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         (self.delegate as? PickAlbumCoverViewDelegate)?.didSelectAlbumButton(at: indexPath.item)
+        albumCoverView.image = ImageLiterals.albumCoverList[indexPath.item + 1]
     }
 }
 
@@ -96,7 +97,7 @@ extension PickAlbumCoverView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let buttonCell = collectionView.dequeueReusableCell(withReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier, for: indexPath) as? PickAlbumButtonCollectionViewCell else { return UICollectionViewCell() }
-        
+        buttonCell.configureCell(forImage: ImageLiterals.albumCoverProfileList[indexPath.item + 1])
         return buttonCell
     }
 }

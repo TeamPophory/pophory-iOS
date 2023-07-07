@@ -13,8 +13,8 @@ final class PickAlbumButtonCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PickAlbumButtonCollectionViewCell"
     
-    private let selectView: UIView = {
-        let view = UIView()
+    private let selectView: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = .pophoryGray300
         view.makeRounded(radius: 25)
         return view
@@ -39,6 +39,10 @@ extension PickAlbumButtonCollectionViewCell {
         selectView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func configureCell(forImage: UIImage) {
+        selectView.image = forImage
     }
 }
 
