@@ -30,10 +30,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     }
     
     private var photoImage = UIImage()
-
     private var albumID: Int = 12
     private var dateTaken: String = DateManager.dateToStringForPOST(date: Date())
-    private var studioID: Int?
+    private var studioID: Int = 999
     
     // MARK: - UI Properties
     
@@ -91,23 +90,8 @@ extension AddPhotoViewController {
     }
     
     @objc func onclickAddPhotoButton() {
-        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
-            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData),
-                                                           name: "photo",
-                                                           fileName: "image.jpg",
-                                                           mimeType: "image/jpeg")
-            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumID)".data(using: .utf8) ?? .empty),
-                                                             name: "albumId")
-            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty),
-                                                      name: "takenAt")
-            if let studioID = studioID {
-                let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty),
-                                                              name: "studioId")
-                requestPostPhotoAPI(photoInfo: [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider])
-            } else {
-                requestPostPhotoAPI(photoInfo: [imageDataProvider, albumIDDataProvider, dateProvider])
-            }
-        }
+        guard let multipartData = fetchMultiPartData() else { return }
+        requestPostPhotoAPI(photoInfo: multipartData)
     }
     
     // MARK: - Private Methods
@@ -121,6 +105,16 @@ extension AddPhotoViewController {
     
     private func setupDelegate() {
         rootView.albumCollectionView.dataSource = self
+    }
+    
+    private func fetchMultiPartData() -> [MultipartFormData]? {
+        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
+            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData), name: "photo", fileName: "image.jpg", mimeType: "image/jpeg")
+            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumID)".data(using: .utf8) ?? .empty), name: "albumId")
+            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty), name: "takenAt")
+            let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
+            return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
+        } else { return nil }
     }
 }
 
