@@ -8,6 +8,7 @@
 import UIKit
 
 import Moya
+import SnapKit
 
 protocol DateDataBind: AnyObject{
     func dateDataBind(text: String, forPost: String)
@@ -16,6 +17,7 @@ protocol DateDataBind: AnyObject{
 protocol StudioDataBind: AnyObject{
     func studioDataBind(text: String, forIndex: Int)
 }
+
 
 final class AddPhotoViewController: BaseViewController, Navigatable {
     
@@ -49,6 +51,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         requestGetAlumListAPI()
     }
@@ -58,6 +61,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         setupTarget()
         setupDelegate()
+        
     }
 }
 
@@ -92,6 +96,7 @@ extension AddPhotoViewController {
     @objc func onclickAddPhotoButton() {
         guard let multipartData = fetchMultiPartData() else { return }
         requestPostPhotoAPI(photoInfo: multipartData)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Private Methods
@@ -115,6 +120,14 @@ extension AddPhotoViewController {
             let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
             return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
         } else { return nil }
+    }
+    
+    // MARK: - Methods
+
+    func setupRootViewImage(forImage: UIImage?, forType: PhotoCellType) {
+        rootView.photo.image = forImage
+        rootView.photoType = forType
+        photoImage = forImage ?? UIImage()
     }
 }
 

@@ -72,6 +72,12 @@ enum ImageLiterals {
     // MARK: - PopUpImg
     
     static var img_albumfull: UIImage { .load(name: "img_albumfull") }
+    
+    // MARK: - BackgroundImg
+    
+    static var addPhotoBackgroundVertical: UIImage { .load(name: "img_background_height") }
+    static var addPhotoBackgroundHorizontal: UIImage { .load(name: "img_background_width") }
+
 }
 
 
