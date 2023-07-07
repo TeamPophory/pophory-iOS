@@ -119,6 +119,7 @@ extension PhotoDetailView {
                 make.directionalHorizontalEdges.centerY.equalToSuperview()
                 make.directionalVerticalEdges.equalToSuperview().inset(20)
             }
+        case .none: return
         }
                
         bottomLine.snp.makeConstraints { make in
