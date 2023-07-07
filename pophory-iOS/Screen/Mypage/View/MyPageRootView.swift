@@ -18,11 +18,19 @@ class MyPageRootView: UIView {
     private lazy var settingButton: UIButton = { createSettingButton() }()
     private lazy var headerBorderView: UIView = { createHeaderBorderView() }()
     
+    private lazy var scrollView: UIScrollView = { createScrollView() }()
+        private lazy var contentView: UIView = { UIView() }()
+    
     private lazy var profileView: UIView = { UIView() }()
     private lazy var profileImageView: UIImageView = { createProfileImageView() }()
     private lazy var profileStackView: UIStackView = { createProfileStackView() }()
     private lazy var profileNameLabel: UILabel = { createProfileNameLabel() }()
     private lazy var photoCountLabel: UILabel = { createPhotoCountLabel() }()
+    
+    private lazy var collectionTitleLabel: UILabel = { createCollectionTitleLabel() }()
+    private lazy var emptyStackView: UIStackView = { createEmptyStackView() }()
+    private lazy var emptyImageView: UIImageView = { UIImageView(image: ImageLiterals.emptyFeedIcon) }()
+    private lazy var emptyDescriptionLabel: UILabel = { createEmptyDescriptionLabel() }()
     
     // MARK: - Life Cycle
     
@@ -43,9 +51,10 @@ extension MyPageRootView {
     
     private func setupLayout() {
         setupHeaderView()
+        setupScrollView()
         setupProfileView()
         // TODO: - 광고 뷰 추가
-        
+        setupCollectionView()
     }
     
     private func setupHeaderView() {
@@ -60,7 +69,8 @@ extension MyPageRootView {
         ])
         
         headerStackView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         headerBorderView.snp.makeConstraints { make in
@@ -70,8 +80,25 @@ extension MyPageRootView {
         }
     }
     
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(headerStackView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.centerY.equalTo(scrollView).priority(.low)
+            make.centerX.equalTo(scrollView)
+            make.height.equalTo(scrollView)
+        }
+    }
+    
     private func setupProfileView() {
-        addSubview(profileView)
+        contentView.addSubview(profileView)
         
         profileView.addSubviews([
             profileImageView,
@@ -97,6 +124,32 @@ extension MyPageRootView {
         profileStackView.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(14)
             make.centerY.equalTo(profileImageView.snp.centerY)
+        }
+    }
+    
+    private func setupCollectionView() {
+        contentView.addSubviews([
+            collectionTitleLabel,
+            emptyStackView
+        ])
+        
+        emptyStackView.addArrangedSubviews([
+            emptyImageView,
+            emptyDescriptionLabel
+        ])
+        
+        collectionTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.bottom).offset(26)
+            make.leading.equalToSuperview().offset(20)
+        }
+        
+        emptyStackView.snp.makeConstraints { make in
+            make.top.equalTo(collectionTitleLabel.snp.bottom).offset(46)
+            make.centerX.equalToSuperview()
+        }
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.size.equalTo(180)
         }
     }
     
@@ -137,6 +190,13 @@ extension MyPageRootView {
         return border
     }
     
+    private func createScrollView() -> UIScrollView {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }
+    
     private func createProfileImageView() -> UIImageView {
         let imageView = UIImageView(image: ImageLiterals.defaultProfile)
         
@@ -171,6 +231,35 @@ extension MyPageRootView {
             .regular("그동안 찍은 사진 ", color: .pophoryBlack)
             .regular("0", color: .pophoryPurple)
             .regular("장", color: .pophoryBlack)
+        
+        return label
+    }
+    
+    private func createCollectionTitleLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.font = .h2
+        label.text = "네컷사진 모아보기"
+        
+        return label
+    }
+    
+    private func createEmptyStackView() -> UIStackView {
+        let stackView = UIStackView()
+        
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.alignment = .center
+        
+        return stackView
+    }
+    
+    private func createEmptyDescriptionLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.font = .h3
+        label.textColor = .pophoryGray500
+        label.text = "네컷 사진을 추가해볼까?"
         
         return label
     }

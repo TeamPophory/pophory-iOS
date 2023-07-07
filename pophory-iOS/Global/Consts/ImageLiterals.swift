@@ -39,6 +39,7 @@ enum ImageLiterals {
     static var chevronUpIcon: UIImage { .load(name: "up") }
     static var xIcon: UIImage { .load(name: "x") }
     static var settingIcon: UIImage { .load(name: "settingIcon") }
+    static var emptyFeedIcon: UIImage { .load(name: "emptyFeedIcon") }
     
     // MARK: - exception
     
