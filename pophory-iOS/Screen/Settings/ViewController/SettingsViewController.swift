@@ -24,8 +24,11 @@ class SettingsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showNavigationBar()
     }
 }
 
