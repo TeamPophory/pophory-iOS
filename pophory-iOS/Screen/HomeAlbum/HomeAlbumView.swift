@@ -13,9 +13,14 @@ protocol GettableHomeAlbumProperty {
     var statusLabelText: String { get set }
 }
 
+protocol ImageViewDidTappedProtocol {
+    func imageDidTapped()
+}
+
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
 
     private var privateStatusLabelText: String
+    var imageDidTappedDelegate: ImageViewDidTappedProtocol?
     
     var statusLabelText: String {
         get {
@@ -36,11 +41,14 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.numberOfLines = 2
         return label
     }()
-    let albumImageView: UIImageView = {
+    lazy var albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .pophoryGray300
         let rightRadius = 26.0
         let rightCornerMask: CACornerMask = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
         imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
@@ -111,5 +119,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private func configUI() {
         self.backgroundColor = .pophoryWhite
+    }
+    
+    @objc
+    private func imageTapped() {
+        imageDidTappedDelegate?.imageDidTapped()
     }
 }
