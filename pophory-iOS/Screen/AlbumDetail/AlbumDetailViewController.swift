@@ -109,6 +109,18 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.bounds.width - 8, height: 223)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photoDetailViewController = PhotoDetailViewController()
+        let photoType = checkPhotoCellType(width: albumPhotoList?.photos[indexPath.row].width ?? 0,
+                                           height: albumPhotoList?.photos[indexPath.row].height ?? 0)
+        photoDetailViewController.setData(imageUrl: albumPhotoList?.photos[indexPath.row].imageUrl ?? "",
+                                          takenAt: albumPhotoList?.photos[indexPath.row].takenAt ?? "",
+                                          studio: albumPhotoList?.photos[indexPath.row].studio ?? "",
+                                          type: photoType)
+        
+        navigationController?.pushViewController(photoDetailViewController, animated: true)
+    }
 }
 
 // MARK: - api
