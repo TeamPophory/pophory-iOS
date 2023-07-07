@@ -64,6 +64,7 @@ final class AlbumDetailViewController: BaseViewController {
         setButtonAction()
         addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        showNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,6 +189,9 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoDetailViewController = PhotoDetailViewController()
         guard let photoList = albumPhotoList?.photos else { return }
+        
+        // MARK: - "" 빈배열 리팩토링
+        if photoList[indexPath.row].imageUrl == "" { return }
         let photoType = checkPhotoCellType(width: photoList[indexPath.row].width ,
                                            height: photoList[indexPath.row].height )
         photoDetailViewController.setData(imageUrl: photoList[indexPath.row].imageUrl ,
