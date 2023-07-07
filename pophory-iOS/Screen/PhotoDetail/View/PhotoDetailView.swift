@@ -14,10 +14,10 @@ final class PhotoDetailView: UIView {
     
     // MARK: - Properties
     
-    private var takenAt: String!
-    private var studio: String!
-    private var imageUrl: String!
-    private var photoType: PhotoCellType!
+    private var takenAt: String
+    private var studio: String
+    private var imageUrl: String
+    private var photoType: PhotoCellType
     
     // MARK: - UI Properties
     
@@ -39,10 +39,7 @@ final class PhotoDetailView: UIView {
         return view
     }()
     
-    private let photoImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+    private let photoImageView = UIImageView()
     
     private let photoInfoStackView: UIStackView = {
         let stackView = UIStackView()
@@ -79,7 +76,7 @@ final class PhotoDetailView: UIView {
         self.studio = studio
         self.photoType = type
         super.init(frame: frame)
-        configUI()
+        configureUI()
         setupLayout()
     }
     
@@ -89,7 +86,7 @@ final class PhotoDetailView: UIView {
 }
 
 extension PhotoDetailView {
-    private func configUI() {
+    private func configureUI() {
         backgroundColor = .pophoryWhite
         photoImageView.kf.setImage(with: URL(string: imageUrl))
     }
@@ -122,8 +119,6 @@ extension PhotoDetailView {
                 make.directionalHorizontalEdges.centerY.equalToSuperview()
                 make.directionalVerticalEdges.equalToSuperview().inset(20)
             }
-        case .none:
-            break
         }
                
         bottomLine.snp.makeConstraints { make in
