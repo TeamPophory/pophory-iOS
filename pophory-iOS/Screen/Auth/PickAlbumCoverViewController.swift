@@ -60,9 +60,24 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
         self.view = pickAlbumCoverView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addButtonTarget()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+    }
+    
+    private func addButtonTarget() {
+        self.pickAlbumCoverView.nextButton.addTarget(self, action: #selector(moveToStartPophoryViewController), for: .touchUpInside)
+    }
+    
+    @objc
+    private func moveToStartPophoryViewController() {
+        let nextVC = StartPophoryViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
