@@ -11,6 +11,10 @@ import SnapKit
 
 class MyPageRootView: UIView {
     
+    // MARK: Properties
+    
+    private var collectionViewHeight: CGFloat = 0
+    
     // MARK: - UI Properties
     
     private lazy var headerStackView: UIStackView = { createHeaderStackView() }()
@@ -27,10 +31,11 @@ class MyPageRootView: UIView {
     private lazy var profileNameLabel: UILabel = { createProfileNameLabel() }()
     private lazy var photoCountLabel: UILabel = { createPhotoCountLabel() }()
     
-    private lazy var collectionTitleLabel: UILabel = { createCollectionTitleLabel() }()
+    private lazy var feedTitleLabel: UILabel = { createFeedTitleLabel() }()
     private lazy var emptyStackView: UIStackView = { createEmptyStackView() }()
     private lazy var emptyImageView: UIImageView = { UIImageView(image: ImageLiterals.emptyFeedIcon) }()
     private lazy var emptyDescriptionLabel: UILabel = { createEmptyDescriptionLabel() }()
+    private lazy var feedCollectionView: UICollectionView = { createFeedCollectionView() }()
     
     // MARK: - Life Cycle
     
@@ -90,10 +95,7 @@ extension MyPageRootView {
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView)
-            make.centerY.equalTo(scrollView).priority(.low)
-            make.centerX.equalTo(scrollView)
-            make.height.equalTo(scrollView)
+            make.edges.width.equalTo(scrollView)
         }
     }
     
@@ -111,45 +113,54 @@ extension MyPageRootView {
         ])
         
         profileView.snp.makeConstraints { make in
-            make.top.equalTo(headerStackView.snp.bottom)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
+            make.height.equalTo(114)
         }
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(72)
-            make.top.equalToSuperview().offset(22)
-            make.leading.bottom.equalToSuperview().inset(20)
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(profileView).inset(20)
         }
         
         profileStackView.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(14)
-            make.centerY.equalTo(profileImageView.snp.centerY)
+            make.centerY.equalTo(profileImageView)
         }
     }
     
     private func setupCollectionView() {
         contentView.addSubviews([
-            collectionTitleLabel,
-            emptyStackView
+            feedTitleLabel,
+//            emptyStackView,
+            feedCollectionView
         ])
         
-        emptyStackView.addArrangedSubviews([
-            emptyImageView,
-            emptyDescriptionLabel
-        ])
+//        emptyStackView.addArrangedSubviews([
+//            emptyImageView,
+//            emptyDescriptionLabel
+//        ])
         
-        collectionTitleLabel.snp.makeConstraints { make in
+        feedTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(profileView.snp.bottom).offset(26)
             make.leading.equalToSuperview().offset(20)
         }
         
-        emptyStackView.snp.makeConstraints { make in
-            make.top.equalTo(collectionTitleLabel.snp.bottom).offset(46)
-            make.centerX.equalToSuperview()
-        }
+//        emptyStackView.snp.makeConstraints { make in
+//            make.top.equalTo(feedTitleLabel.snp.bottom).offset(46)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        emptyImageView.snp.makeConstraints { make in
+//            make.size.equalTo(180)
+//        }
         
-        emptyImageView.snp.makeConstraints { make in
-            make.size.equalTo(180)
+        feedCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(feedTitleLabel.snp.bottom).offset(12)
+            make.leading.trailing.equalTo(contentView).inset(20) // here
+            make.height.equalTo(1000)
+            make.bottom.equalTo(contentView).inset(20) // here
         }
     }
     
@@ -235,7 +246,7 @@ extension MyPageRootView {
         return label
     }
     
-    private func createCollectionTitleLabel() -> UILabel {
+    private func createFeedTitleLabel() -> UILabel {
         let label = UILabel()
         
         label.font = .h2
@@ -262,5 +273,51 @@ extension MyPageRootView {
         label.text = "네컷 사진을 추가해볼까?"
         
         return label
+    }
+    
+    private func createFeedCollectionView() -> UICollectionView {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
+        
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = false
+        
+        collectionView.backgroundColor = .clear
+        
+        collectionView.register(cell: PhotoCollectionViewCell.self)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        return collectionView
+    }
+}
+
+extension MyPageRootView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 19
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+//        cell.configCell(imageUrl: photo.imageUrl)
+        cell.backgroundColor = .blue
+        
+        return cell
+    }
+}
+
+extension MyPageRootView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = (collectionView.frame.width - 4) / 3
+        return CGSize(width: size, height: size)
     }
 }
