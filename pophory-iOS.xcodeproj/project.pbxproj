@@ -13,6 +13,7 @@
 		372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F372A5446390032B7BC /* KeyboardFollowable.swift */; };
 		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
 		373EEEFB2A576CC40039A22C /* PophoryPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEEFA2A576CC40039A22C /* PophoryPopupView.swift */; };
+		373EEF022A582C4C0039A22C /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEF012A582C4C0039A22C /* AppleLoginManager.swift */; };
 		376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
@@ -24,7 +25,6 @@
 		377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */; };
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
 		3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4312A51E6D200FE3846 /* KeyboardManager.swift */; };
-		3782F4342A528A3600FE3846 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4332A528A3600FE3846 /* SignInView.swift */; };
 		3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */; };
 		3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */; };
 		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
@@ -38,7 +38,6 @@
 		37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */; };
 		37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6A12A4AB6EF00FF8F90 /* TabBarViewController.swift */; };
 		37DCA6A42A4AB6F600FF8F90 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6A32A4AB6F600FF8F90 /* SplashViewController.swift */; };
-		37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6A52A4AB6FF00FF8F90 /* SignInViewController.swift */; };
 		37DCA6A82A4AB71200FF8F90 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */; };
 		37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */; };
 		37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */; };
@@ -104,6 +103,11 @@
 		91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */; };
 		91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B32A53077F00C06D1B /* ChangeSortViewController.swift */; };
 		91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7B62A53183800C06D1B /* ChangeSortView.swift */; };
+		B138A3B42A55C1E1000EE81E /* MyPageRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */; };
+		B138A3B82A586EC3000EE81E /* SettingsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3B72A586EC3000EE81E /* SettingsRootView.swift */; };
+		B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B138A3BA2A587751000EE81E /* RxCocoa */; };
+		B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3BD2A587A15000EE81E /* SettingsData.swift */; };
+		B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */; };
 		B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0A2A1759EA0050974F /* AppDelegate.swift */; };
 		B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0C2A1759EA0050974F /* SceneDelegate.swift */; };
 		B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F0E2A1759EA0050974F /* ViewController.swift */; };
@@ -148,6 +152,8 @@
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
 		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		373EEEFA2A576CC40039A22C /* PophoryPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryPopupView.swift; sourceTree = "<group>"; };
+		373EEF012A582C4C0039A22C /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
+		373EEF052A5922540039A22C /* pophory-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOS.entitlements"; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
@@ -159,7 +165,6 @@
 		377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAlbumCoverView.swift; sourceTree = "<group>"; };
 		377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationConfigurator.swift; sourceTree = "<group>"; };
 		3782F4312A51E6D200FE3846 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		3782F4332A528A3600FE3846 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryViewController.swift; sourceTree = "<group>"; };
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
@@ -171,7 +176,6 @@
 		37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		37DCA6A12A4AB6EF00FF8F90 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		37DCA6A32A4AB6F600FF8F90 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		37DCA6A52A4AB6FF00FF8F90 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLiterals.swift; sourceTree = "<group>"; };
 		37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiterals.swift; sourceTree = "<group>"; };
@@ -236,6 +240,10 @@
 		91F3A7B12A52F99F00C06D1B /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
 		91F3A7B32A53077F00C06D1B /* ChangeSortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSortViewController.swift; sourceTree = "<group>"; };
 		91F3A7B62A53183800C06D1B /* ChangeSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSortView.swift; sourceTree = "<group>"; };
+		B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRootView.swift; sourceTree = "<group>"; };
+		B138A3B72A586EC3000EE81E /* SettingsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRootView.swift; sourceTree = "<group>"; };
+		B138A3BD2A587A15000EE81E /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
+		B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		B1631F072A1759EA0050974F /* pophory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pophory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F0A2A1759EA0050974F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1631F0C2A1759EA0050974F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -270,6 +278,7 @@
 			files = (
 				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
 				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
+				B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,15 +351,6 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		37DCA68A2A4AB3F700FF8F90 /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				37DCA6A52A4AB6FF00FF8F90 /* SignInViewController.swift */,
-				3782F4332A528A3600FE3846 /* SignInView.swift */,
-			);
-			path = SignIn;
-			sourceTree = "<group>";
-		};
 		37DCA68B2A4AB45000FF8F90 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,7 +362,8 @@
 		37DCA68C2A4AB45D00FF8F90 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
-				37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */,
+				B138A3B12A55C1A9000EE81E /* View */,
+				B138A3B22A55C1B4000EE81E /* ViewController */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -370,7 +371,9 @@
 		37DCA68D2A4AB48800FF8F90 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */,
+				B138A3BC2A587A06000EE81E /* Model */,
+				B138A3B62A586E9C000EE81E /* View */,
+				B138A3B52A586E93000EE81E /* ViewController */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 		91F3A77D2A52ADCA00C06D1B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				373EEF012A582C4C0039A22C /* AppleLoginManager.swift */,
 				91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */,
 				91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */,
 				91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */,
@@ -610,6 +614,47 @@
 			path = ChangeSort;
 			sourceTree = "<group>";
 		};
+		B138A3B12A55C1A9000EE81E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B138A3B22A55C1B4000EE81E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B138A3B52A586E93000EE81E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B138A3B62A586E9C000EE81E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3B72A586EC3000EE81E /* SettingsRootView.swift */,
+				B138A3BF2A587A76000EE81E /* SettingTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B138A3BC2A587A06000EE81E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3BD2A587A15000EE81E /* SettingsData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B1631EFE2A1759EA0050974F = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +678,7 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
@@ -686,7 +732,6 @@
 				37DCA68C2A4AB45D00FF8F90 /* Mypage */,
 				37DCA6882A4AB3E200FF8F90 /* Splash */,
 				377EF7DC2A4F479800E3268D /* Auth */,
-				37DCA68A2A4AB3F700FF8F90 /* SignIn */,
 				37DCA6872A4AB3C900FF8F90 /* Onboarding */,
 				B1631F442A175BDE0050974F /* .keep */,
 			);
@@ -803,6 +848,7 @@
 				37DCA6822A4A97AF00FF8F90 /* Moya */,
 				37DCA6852A4A97CA00FF8F90 /* SnapKit */,
 				9161CADE2A5460AA002B8B77 /* Kingfisher */,
+				B138A3BA2A587751000EE81E /* RxCocoa */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -880,6 +926,7 @@
 				37DCA6812A4A97AF00FF8F90 /* XCRemoteSwiftPackageReference "Moya" */,
 				37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -928,6 +975,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */,
+				B138A3B82A586EC3000EE81E /* SettingsRootView.swift in Sources */,
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
@@ -947,7 +995,6 @@
 				6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */,
 				6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */,
 				37DCA6A42A4AB6F600FF8F90 /* SplashViewController.swift in Sources */,
-				3782F4342A528A3600FE3846 /* SignInView.swift in Sources */,
 				37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */,
 				3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */,
 				B1631F4E2A175E350050974F /* UIStackView+Extension.swift in Sources */,
@@ -958,6 +1005,7 @@
 				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
+				B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */,
 				373EEEFB2A576CC40039A22C /* PophoryPopupView.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
@@ -968,6 +1016,7 @@
 				91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */,
 				6BB37C6F2A55ADCF00E49B12 /* CalendarModalViewController.swift in Sources */,
 				6BB37C792A56000800E49B12 /* StudioCollectionViewCell.swift in Sources */,
+				373EEF022A582C4C0039A22C /* AppleLoginManager.swift in Sources */,
 				6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
@@ -979,6 +1028,7 @@
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
+				B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
 				B1631F4C2A175DC80050974F /* NSMutableAttributedString+Extension.swift in Sources */,
 				37DCA6A02A4AB6E600FF8F90 /* MypageViewController.swift in Sources */,
@@ -1009,6 +1059,7 @@
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
 				91F3A7AC2A52F23D00C06D1B /* DefaultAlbumRespository.swift in Sources */,
 				91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */,
+				B138A3B42A55C1E1000EE81E /* MyPageRootView.swift in Sources */,
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
 				6BB37C732A55EB7400E49B12 /* DateManager.swift in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
@@ -1017,7 +1068,6 @@
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
-				37DCA6A62A4AB6FF00FF8F90 /* SignInViewController.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */,
@@ -1198,9 +1248,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D96A3BCL3R;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -1217,6 +1270,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pophory Debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1228,9 +1283,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D96A3BCL3R;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -1247,6 +1305,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pophory Debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1401,6 +1461,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1418,6 +1486,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		B138A3BA2A587751000EE81E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
