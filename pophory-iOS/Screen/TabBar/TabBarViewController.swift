@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Photos
 import SnapKit
 
 final class TabBarController: UITabBarController {
@@ -26,7 +27,6 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         setUpTabBar()
-        setuPImagePicker()
         setupDelegate()
     }
     
@@ -56,20 +56,45 @@ final class TabBarController: UITabBarController {
         viewWillLayoutSubviews()
     }
     
-    private func setuPImagePicker() {
-        
-        if BaseImagePickerViewController.isSourceTypeAvailable(.photoLibrary){
-            imagePickerViewController.sourceType = .photoLibrary
-            imagePickerViewController.delegate = self
-            imagePickerViewController.allowsEditing = false
-        }
-        else {
-            print("갤러리사용 불가")
+    private func setupDelegate() {
+        self.delegate = self
+        imagePickerViewController.delegate = self
+    }
+    
+    private func setupImagePermission() {
+        PHPhotoLibrary.requestAuthorization({ status in
+            switch status{
+            case .authorized:
+                self.presentImage()
+            case .denied:
+                self.AuthSettingOpen()
+            default:
+                break
+            }
+        })
+    }
+    
+    func presentImage() {
+        DispatchQueue.main.async {
+            self.present(self.imagePickerViewController, animated: true)
         }
     }
     
-    private func setupDelegate() {
-        self.delegate = self
+    func AuthSettingOpen() {
+        DispatchQueue.main.async {
+            let titleMessage: String = "사진을 업로드하기 위해 설정을 눌러 사진 접근을 허용해주세요"
+            let alert = UIAlertController(title: titleMessage, message: nil, preferredStyle: .alert)
+            
+            let cancle = UIAlertAction(title: "확인", style: .default)
+            let confirm = UIAlertAction(title: "설정", style: .default) { (UIAlertAction) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            
+            alert.addAction(cancle)
+            alert.addAction(confirm)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -77,7 +102,7 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
-            self.present(imagePickerViewController, animated: true)
+            setupImagePermission()
             return false
         } else { return true }
     }
@@ -86,7 +111,7 @@ extension TabBarController: UITabBarControllerDelegate {
 extension TabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
+        
         var newImage: UIImage? = nil
         var imageType: PhotoCellType = .vertical
         
@@ -109,3 +134,4 @@ extension TabBarController: UIImagePickerControllerDelegate, UINavigationControl
         picker.dismiss(animated: true)
     }
 }
+
