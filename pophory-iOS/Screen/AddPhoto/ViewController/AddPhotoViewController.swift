@@ -32,9 +32,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     }
     
     private var photoImage = UIImage()
-    private var albumID: Int = 12
+    private var albumID: Int = 1
     private var dateTaken: String = DateManager.dateToStringForPOST(date: Date())
-    private var studioID: Int = 999
+    private var studioID: Int = -1
     
     // MARK: - UI Properties
     
