@@ -22,6 +22,8 @@ final class OnboardingView: UIView {
     private lazy var contentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -48,6 +50,12 @@ final class OnboardingView: UIView {
             .setTitle(.startWithAppleID)
         return buttonBuilder.build()
     }()
+    
+    let onboardingImages: [UIImage] = [
+        ImageLiterals.OnboardingImage1,
+        ImageLiterals.OnboardingImage2,
+        ImageLiterals.OnboardingImage3
+    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,16 +89,16 @@ extension OnboardingView {
     
     private func setupLayout() {
         addSubviews([pageControl, contentCollectionView, signupButton, appleSignInButton])
-
-        pageControl.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(30)
-            $0.centerX.equalToSuperview()
-        }
         
         contentCollectionView.snp.makeConstraints {
-            $0.top.equalTo(pageControl.snp.bottom).offset(22)
-            $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(20))
+            $0.top.equalTo(safeAreaLayoutGuide).offset(74)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(480)
+        }
+        
+        pageControl.snp.makeConstraints {
+            $0.top.equalTo(contentCollectionView.snp.bottom).offset(25)
+            $0.centerX.equalToSuperview()
         }
         
         signupButton.snp.makeConstraints {
@@ -117,9 +125,9 @@ extension OnboardingView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let contentWidth: CGFloat = convertByWidthRatio(335)
+        let screenWidth = UIScreen.main.bounds.width
         let contentHeight: CGFloat = convertByHeightRatio(480)
-        return CGSize(width: contentWidth, height: contentHeight)
+        return CGSize(width: screenWidth, height: contentHeight)
     }
 }
 
@@ -127,11 +135,16 @@ extension OnboardingView: UICollectionViewDelegateFlowLayout {
 
 extension OnboardingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        
+        
+        return onboardingImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingContentCollectionViewCell.identifier, for: indexPath) as? OnboardingContentCollectionViewCell else { return UICollectionViewCell() }
+        
+        contentCell.configureImage(image: onboardingImages[indexPath.item])
+        
         return contentCell
     }
 }
