@@ -109,14 +109,14 @@ final class AddPhotoView: UIView {
         stackView.setupExplain(explain: "사진관을 선택해줘")
         return stackView
     }()
-    let friendsStackView: PhotoInfoStackView = {
-        let stackView = PhotoInfoStackView()
-        stackView.setupTitle(title: "함께 찍은 친구")
-        stackView.setupSelected(selected: false)
-        stackView.setupIcon(icon: ImageLiterals.searchIcon)
-        stackView.setupExplain(explain: "열심히 준비중이야!")
-        return stackView
-    }()
+//    let friendsStackView: PhotoInfoStackView = {
+//        let stackView = PhotoInfoStackView()
+//        stackView.setupTitle(title: "함께 찍은 친구")
+//        stackView.setupSelected(selected: false)
+//        stackView.setupIcon(icon: ImageLiterals.searchIcon)
+//        stackView.setupExplain(explain: "열심히 준비중이야!")
+//        return stackView
+//    }()
     
     // MARK: - Life Cycle
     
@@ -156,7 +156,7 @@ extension AddPhotoView {
             $0.edges.width.equalToSuperview()
         }
         
-        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView, friendsStackView])
+        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView])
         
         scrollContentsView.addSubviews([photoView, photoInfoStackView])
         photoView.addSubview(photo)
