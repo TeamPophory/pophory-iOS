@@ -42,7 +42,7 @@ final class OnboardingView: UIView {
         return button
     }()
     
-    private lazy var appleSignInButton: PophoryButton = {
+    lazy var appleSignInButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.startWithAppleID)
@@ -108,6 +108,7 @@ extension OnboardingView {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
+
 extension OnboardingView: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -123,6 +124,7 @@ extension OnboardingView: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDataSource
+
 extension OnboardingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
