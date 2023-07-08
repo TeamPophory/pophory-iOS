@@ -38,4 +38,8 @@ extension OnboardingContentCollectionViewCell {
             $0.edges.equalToSuperview()
         }
     }
+    
+    func configureImage(image: UIImage) {
+        contentImageView.image = image
+    }
 }
