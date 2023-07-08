@@ -16,18 +16,10 @@ class BaseImagePickerViewController: UIImagePickerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PHPhotoLibrary.requestAuthorization({ status in
-            switch status{
-            case .authorized:
-                print("앨범; 권한 허용")
-            case .denied:
-                print("앨범; 권한 거부")
-            case .restricted, .notDetermined:
-                print("선택하지 않음")
-            default:
-                print("default")
-                break
-            }
-        })
+    }
+    
+    private func setupStyle() {
+        self.sourceType = .photoLibrary
+        self.allowsEditing = false
     }
 }
