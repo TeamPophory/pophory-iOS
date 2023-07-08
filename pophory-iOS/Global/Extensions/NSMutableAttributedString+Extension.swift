@@ -9,10 +9,12 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    func bold(_ value: String, size: CGFloat, color: UIColor? = nil) -> NSMutableAttributedString {
+    func regular(_ value: String,
+                 font: UIFont = UIFont.t1,
+                 color: UIColor? = nil) -> NSMutableAttributedString {
         
         var attributes:[NSAttributedString.Key : Any] = [
-            .font : UIFont.systemFont(ofSize: size, weight: .bold),
+            .font : font,
         ]
         
         if let color = color {
@@ -20,20 +22,7 @@ extension NSMutableAttributedString {
         }
         
         self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-    
-    func regular(_ value: String, size: CGFloat, color: UIColor? = nil) -> NSMutableAttributedString {
         
-        var attributes:[NSAttributedString.Key : Any] = [
-            .font : UIFont.systemFont(ofSize: size),
-        ]
-        
-        if let color = color {
-            attributes[.foregroundColor] = color
-        }
-        
-        self.append(NSAttributedString(string: value, attributes:attributes))
         return self
     }
     
