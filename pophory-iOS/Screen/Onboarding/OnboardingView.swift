@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import AuthenticationServices
 
 final class OnboardingView: UIView {
     
@@ -44,12 +45,12 @@ final class OnboardingView: UIView {
         return button
     }()
     
-    lazy var appleSignInButton: PophoryButton = {
-        let buttonBuilder = PophoryButtonBuilder()
-            .setStyle(.primaryBlack)
-            .setTitle(.startWithAppleID)
-        return buttonBuilder.build()
+    lazy var realAppleSignInButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+        button.makeRounded(radius: 30)
+        return button
     }()
+
     
     let onboardingImages: [UIImage] = [
         ImageLiterals.OnboardingImage1,
@@ -88,7 +89,7 @@ extension OnboardingView {
     }
     
     private func setupLayout() {
-        addSubviews([pageControl, contentCollectionView, signupButton, appleSignInButton])
+        addSubviews([pageControl, contentCollectionView, signupButton, realAppleSignInButton])
         
         contentCollectionView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(74)
@@ -104,14 +105,15 @@ extension OnboardingView {
         signupButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(contentCollectionView.snp.bottom).offset(85)
-            $0.width.equalTo(appleSignInButton)
+            $0.width.equalTo(realAppleSignInButton)
         }
         
-        appleSignInButton.snp.makeConstraints {
+        realAppleSignInButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+            $0.height.equalTo(60)
             $0.bottom.equalToSuperview().inset(43)
         }
-        appleSignInButton.addCenterXConstraint(to: self)
     }
 }
 
