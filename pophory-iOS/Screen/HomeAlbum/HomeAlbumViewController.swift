@@ -21,15 +21,33 @@ final class HomeAlbumViewController: BaseViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setDelegate()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         requestGetAlumListAPI()
+        hideNavigationBar()
     }
     
     override func setupLayout() {
         view = homeAlbumView
     }
+    
+    private func setDelegate() {
+        homeAlbumView.imageDidTappedDelegate = self
+    }
 }
+
+extension HomeAlbumViewController: ImageViewDidTappedProtocol {
+    func imageDidTapped() {
+        let albumDetailViewController = AlbumDetailViewController()
+        self.navigationController?.pushViewController(albumDetailViewController, animated: true)
+    }
+}
+
 
 extension HomeAlbumViewController  {
     func requestGetAlumListAPI() {

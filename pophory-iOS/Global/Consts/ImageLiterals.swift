@@ -17,6 +17,7 @@ enum ImageLiterals {
     
     //MARK: - logo icon
     
+    static var launchIcon: UIImage { .load(name: "launchIcon") }
     static var logIcon: UIImage { .load(name: "logIcon") }
     static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
     static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
@@ -60,6 +61,9 @@ enum ImageLiterals {
     static var albumCoverProfile3: UIImage { .load(name: "albumCoverProfile3") }
     static var albumCoverProfile4: UIImage { .load(name: "albumCoverProfile4") }
     
+    static var albumCoverProfileList: [UIImage] = [UIImage(), albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4]
+
+    
     // MARK: - OnboardingImg
     
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
@@ -71,6 +75,12 @@ enum ImageLiterals {
     // MARK: - PopUpImg
     
     static var img_albumfull: UIImage { .load(name: "img_albumfull") }
+    
+    // MARK: - BackgroundImg
+    
+    static var addPhotoBackgroundVertical: UIImage { .load(name: "img_background_height") }
+    static var addPhotoBackgroundHorizontal: UIImage { .load(name: "img_background_width") }
+
 }
 
 

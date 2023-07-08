@@ -10,11 +10,33 @@ import Foundation
 import Moya
 
 enum PhotoAPI {
-    case postPhoto(body: PostPhotoRequestDTO)
+    case postPhoto(body: [MultipartFormData])
     case deletePhoto(photoId: Int)
 }
 
-extension PhotoAPI: BaseTargetType {
+extension PhotoAPI: TargetType {
+    
+    var baseURL: URL {
+        return URL(string: BaseURLConstant.base) ?? URL(fileURLWithPath: String())
+    }
+    
+    var headers: [String : String]? {
+        switch self {
+        case .postPhoto:
+            let header = [
+                "Content-Type": "multipart/form-dat",
+                "Authorization": "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE2ODg0NTI4MjksImV4cCI6MTY5NzA5MjgyOSwibWVtYmVySWQiOjExfQ.iylvCn_Yapmwj-JYtz9B5zgmH5ZZXSpOlYj5oflru-nWqjFjkQWqxEnz2UuNplmG"
+            ]
+            return header
+        case .deletePhoto:
+            let header = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE2ODg0NTI4MjksImV4cCI6MTY5NzA5MjgyOSwibWVtYmVySWQiOjExfQ.iylvCn_Yapmwj-JYtz9B5zgmH5ZZXSpOlYj5oflru-nWqjFjkQWqxEnz2UuNplmG"
+            ]
+            return header
+        }
+    }
+    
     var path: String {
         switch self {
         case .postPhoto:
@@ -36,7 +58,7 @@ extension PhotoAPI: BaseTargetType {
     var task: Moya.Task {
         switch self {
         case .postPhoto(let body):
-            return .requestJSONEncodable(body)
+            return .uploadMultipart(body)
         case .deletePhoto:
             return .requestPlain
         }
