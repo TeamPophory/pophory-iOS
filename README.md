@@ -10,7 +10,7 @@
 ## iOS Developer 💻
 | [백준](https://github.com/joonBaek12) | [이다은](https://github.com/dannaward) | [홍준혁](https://github.com/hongjunehuke) | [김다예](https://github.com/yeahh315) |
 | --- | --- | --- | --- |
-| <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/42d00526-fda2-4683-ae34-680e74836de6" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/8c13d721-04a8-4749-a23b-b272963a415c" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/e6b29752-3b7d-4478-a258-bd40ec3431a0" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/42d00526-fda2-4683-ae34-680e74836de6" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/8dfac1ba-6ac0-4748-a15c-8302f3b864f1" width="200px"/> |
+| <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/42d00526-fda2-4683-ae34-680e74836de6" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/8c13d721-04a8-4749-a23b-b272963a415c" width="200px"/> | <img src="https://github.com/TeamPophory/pophory-iOS/assets/75093565/e6b29752-3b7d-4478-a258-bd40ec3431a0" width="200px"/> | <img src= "https://github.com/TeamPophory/pophory-iOS/assets/75093565/af4b7d33-cfb2-435c-91b0-6863761b6632)-a15c-8302f3b864f1" width="200px"/> |
 
 </br>
 
