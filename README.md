@@ -15,6 +15,9 @@
 </br>
 
 ## about Dev 🔥
+
+<img src="https://img.shields.io/badge/xcode-14.3-blue"/> <img src="https://img.shields.io/badge/swift-5.0-green"/>
+
 ### Library 📚
 | Library | Tag | Tool |
 | --- | --- | --- |
