@@ -136,20 +136,24 @@ extension NameInputView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
+        let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        let newLength = textField.text?.count ?? 0 + string.count - range.length
+
+        if !updatedText.isContainValidKorean(length: newLength) && !string.isEmpty {
+            return false
+        }
 
         if newLength > maxCharCount {
             textField.layer.borderColor = UIColor.pophoryRed.cgColor
             warningLabel.isHidden = false
             return false
         } else {
-            textField.textColor = .black
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
             warningLabel.isHidden = true
         }
         return true
     }
+
     
     @objc func textDidChange(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)
