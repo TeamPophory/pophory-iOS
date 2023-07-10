@@ -38,7 +38,7 @@ class StudioCollectionViewCell: UICollectionViewCell {
     
     private let cellLabel: UILabel = {
         let label = UILabel()
-        label.font = .t1
+        label.font = .text1
         label.text = "인생네컷"
         label.textColor = .pophoryGray500
         label.textAlignment = .center

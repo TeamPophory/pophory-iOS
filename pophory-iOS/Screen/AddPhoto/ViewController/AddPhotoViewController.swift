@@ -89,9 +89,7 @@ extension AddPhotoViewController {
         present(customModalVC, animated: true, completion: nil)
     }
     
-    @objc func onclickFriendsButton() {
-        print("친구")
-    }
+    @objc func onclickFriendsButton() { }
     
     @objc func onclickAddPhotoButton() {
         guard let multipartData = fetchMultiPartData() else { return }
