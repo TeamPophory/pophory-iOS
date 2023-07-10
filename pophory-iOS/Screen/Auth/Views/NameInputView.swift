@@ -75,6 +75,10 @@ class NameInputView: BaseSignUpView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func updateCharCountLabel(charCount: Int) {
+        charCountLabel.text = "(\(charCount)/6)"
+    }
 }
 
 // MARK: - Extensions
@@ -114,10 +118,6 @@ extension NameInputView {
     
     private func setupDelegate() {
         inputTextField.delegate = self
-    }
-    
-    func updateCharCountLabel(charCount: Int) {
-        charCountLabel.text = "(\(charCount)/6)"
     }
 }
 

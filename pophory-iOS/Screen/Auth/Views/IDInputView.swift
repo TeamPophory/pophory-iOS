@@ -30,4 +30,15 @@ final class IDInputView: NameInputView {
         charCountLabel.text = "(0/12)"
         warningLabel.text = "*사용 불가능한 특수문자입니다"
     }
+    
+    override func updateCharCountLabel(charCount: Int) {
+        charCountLabel.text = "(\(charCount)/12)"
+    }
+}
+
+extension IDInputView: UITextViewDelegate {
+    
+    @objc override func textDidChange(_ textField: UITextField) {
+        updateCharCountLabel(charCount: textField.text?.count ?? 0)
+    }
 }
