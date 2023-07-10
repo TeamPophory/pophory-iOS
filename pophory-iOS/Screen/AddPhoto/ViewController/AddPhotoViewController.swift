@@ -107,6 +107,7 @@ extension AddPhotoViewController {
     }
     
     private func setupDelegate() {
+        rootView.albumCollectionView.delegate = self
         rootView.albumCollectionView.dataSource = self
     }
     
@@ -131,7 +132,7 @@ extension AddPhotoViewController {
 
 // MARK: - UICollectionView Delegate
 
-extension AddPhotoViewController: UICollectionViewDataSource {
+extension AddPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = albumList?.albums?.count else { return 0 }
         return count
@@ -141,9 +142,12 @@ extension AddPhotoViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
         if let albumCoverInt = albumList?.albums?[indexPath.item].albumCover {
             cell.configureCell(image: ImageLiterals.albumCoverList[albumCoverInt])
-        } else {
-            cell.configureCell(image: UIImage())
         }
+        if indexPath.item == 0 {
+          cell.isSelected = true
+          collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        }
+        
         return cell
     }
 }
