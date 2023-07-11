@@ -128,6 +128,9 @@ extension NameInputView: UITextFieldDelegate {
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+            nextButton.isEnabled = true
+        } else {
+            nextButton.isEnabled = false
         }
     }
     
