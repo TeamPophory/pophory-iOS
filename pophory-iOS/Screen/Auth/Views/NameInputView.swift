@@ -43,8 +43,26 @@ class NameInputView: BaseSignUpView {
         textField.layer.borderWidth = 1
         textField.makeRounded(radius: 18)
         textField.addPadding(left: 15)
+
+        let clearTextFieldIcon: UIButton = {
+            let button = UIButton(type: .custom)
+            button.setImage(ImageLiterals.placeholderDeleteIcon, for: .normal)
+            button.addTarget(self, action: #selector(clearTextFieldTapped), for: .touchUpInside)
+            button.frame = CGRect(x: 0, y: 0, width: 18, height: 18)
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: convertByWidthRatio(15))
+            return button
+        }()
+
+        textField.rightView = clearTextFieldIcon
+        textField.rightViewMode = .always
+
         return textField
     }()
+
+    @objc private func clearTextFieldTapped() {
+        inputTextField.text = ""
+    }
+
 
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
@@ -113,6 +131,10 @@ extension NameInputView {
     }
     
     // MARK: - @objc
+    
+    @objc func clearTextFieldButtonOnClick() {
+        inputTextField.text = nil
+    }
     
     // MARK: - Private Methods
     
