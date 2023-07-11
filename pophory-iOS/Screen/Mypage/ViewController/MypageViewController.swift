@@ -25,7 +25,7 @@ class MypageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupHandlers()
+        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,11 +34,12 @@ class MypageViewController: BaseViewController {
 }
 
 extension MypageViewController {
-    private func setupHandlers() {
-        rootView.handleOnClickSetting(onClickSetting)
-    }
     
-    private func onClickSetting() {
+    // MARK: - Network
+}
+
+extension MypageViewController: MyPageRootViewDelegate {
+    func handleOnclickSetting() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 }

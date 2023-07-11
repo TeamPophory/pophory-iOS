@@ -10,11 +10,15 @@ import UIKit
 import RxSwift
 import SnapKit
 
+protocol MyPageRootViewDelegate: NSObject {
+    func handleOnclickSetting()
+}
+
 class MyPageRootView: UIView {
     
     // MARK: - Properties
     
-    let disposeBag = DisposeBag()
+    weak var delegate: MyPageRootViewDelegate?
     
     // MARK: - UI Properties
     
@@ -177,9 +181,9 @@ extension MyPageRootView {
         
         feedCollectionView.snp.makeConstraints { make in
             make.top.equalTo(feedTitleLabel.snp.bottom).offset(12)
-            make.leading.trailing.equalTo(contentView).inset(20) // here
+            make.leading.trailing.equalTo(contentView).inset(20)
             make.height.equalTo(1000)
-            make.bottom.equalTo(contentView).inset(20) // here
+            make.bottom.equalTo(contentView).inset(20)
         }
     }
     
@@ -208,6 +212,7 @@ extension MyPageRootView {
         
         button.setImage(ImageLiterals.settingIcon, for: .normal)
         button.tintColor = .pophoryBlack
+        button.addTarget(self, action: #selector(onClickSetting), for: .touchUpInside)
         
         return button
     }
@@ -318,8 +323,8 @@ extension MyPageRootView {
     
     // MARK: - Logics
     
-    func handleOnClickSetting(_ handler: @escaping () -> Void) {
-        settingButton.handleOnClick(handler: handler, disposeBag: disposeBag)
+    @objc private func onClickSetting() {
+        delegate?.handleOnclickSetting()
     }
 }
 
