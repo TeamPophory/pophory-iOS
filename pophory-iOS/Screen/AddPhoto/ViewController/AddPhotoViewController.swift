@@ -107,7 +107,6 @@ extension AddPhotoViewController {
     }
     
     private func setupDelegate() {
-        rootView.albumCollectionView.delegate = self
         rootView.albumCollectionView.dataSource = self
     }
     
@@ -132,7 +131,7 @@ extension AddPhotoViewController {
 
 // MARK: - UICollectionView Delegate
 
-extension AddPhotoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension AddPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = albumList?.albums?.count else { return 0 }
         return count
