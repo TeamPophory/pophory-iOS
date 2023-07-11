@@ -22,7 +22,7 @@ class PhotoInfoStackView: UIStackView {
     
     private let mainLabel: UILabel = {
         let label = UILabel()
-        label.font = .h3
+        label.font = .head3
         label.textColor = .pophoryBlack
         label.textAlignment = .left
         return label
@@ -39,16 +39,13 @@ class PhotoInfoStackView: UIStackView {
     
     private let infoLabel: UILabel = {
         let label = UILabel()
-        label.font = .t1
+        label.font = .text1
         label.textColor = .pophoryBlack
         label.textAlignment = .left
         return label
     }()
     
-    private lazy var infoIcon: UIImageView = {
-        let icon = UIImageView()
-        return icon
-    }()
+    private var infoIcon = UIImageView()
     
     // MARK: - Life Cycle
     

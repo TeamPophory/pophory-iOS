@@ -89,9 +89,7 @@ extension AddPhotoViewController {
         present(customModalVC, animated: true, completion: nil)
     }
     
-    @objc func onclickFriendsButton() {
-        print("친구")
-    }
+    @objc func onclickFriendsButton() { }
     
     @objc func onclickAddPhotoButton() {
         guard let multipartData = fetchMultiPartData() else { return }
@@ -142,9 +140,12 @@ extension AddPhotoViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
         if let albumCoverInt = albumList?.albums?[indexPath.item].albumCover {
             cell.configureCell(image: ImageLiterals.albumCoverList[albumCoverInt])
-        } else {
-            cell.configureCell(image: UIImage())
         }
+        if indexPath.item == 0 {
+          cell.isSelected = true
+          collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        }
+        
         return cell
     }
 }
