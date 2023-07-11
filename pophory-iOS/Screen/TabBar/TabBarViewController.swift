@@ -30,6 +30,11 @@ final class TabBarController: UITabBarController {
         setUpTabBar()
         setupDelegate()
     }
+}
+
+extension TabBarController {
+    
+    // MARK: Method
     
     private func setUpTabBar(){
         self.tabBar.tintColor = .pophoryPurple
@@ -63,6 +68,8 @@ final class TabBarController: UITabBarController {
     }
 }
 
+// MARK: UITabBarControllerDelegate
+
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -72,6 +79,8 @@ extension TabBarController: UITabBarControllerDelegate {
         } else { return true }
     }
 }
+
+// MARK: PHPickerProtocol
 
 extension TabBarController: PHPickerProtocol {
     

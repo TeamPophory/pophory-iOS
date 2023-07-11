@@ -10,6 +10,8 @@ import UIKit
 import PhotosUI
 import Photos
 
+// MARK: - Protocol
+
 protocol PHPickerProtocol: AnyObject {
     func setupPicker()
     func presentLimitedLibrary()
@@ -20,6 +22,8 @@ protocol PHPickerProtocol: AnyObject {
 }
 
 class BasePHPickerViewController {
+    
+    // MARK: - Properties
     
     weak var delegate: PHPickerProtocol?
     
@@ -76,6 +80,8 @@ class BasePHPickerViewController {
         
         return alert
     }()
+    
+    // MARK: - Method
 
     func setupImagePermission() {
         let requiredAccessLevel: PHAccessLevel = .readWrite
@@ -112,6 +118,8 @@ class BasePHPickerViewController {
         return canAccessImages
     }
 }
+
+// MARK: - PHPickerViewControllerDelegate
 
 extension BasePHPickerViewController: PHPickerViewControllerDelegate {
     

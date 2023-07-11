@@ -88,11 +88,6 @@ extension PHPickerLimitedPhotoViewController {
         limitedPhotoCollectionView.reloadData()
     }
     
-    @objc
-    func addButtonDidTap() {
-        selectLimited()
-    }
-    
     private func selectLimited() {
         DispatchQueue.main.async {
             
@@ -132,11 +127,18 @@ extension PHPickerLimitedPhotoViewController {
                 }
             }
         }
-        
+    }
+    
+    // MARK: - Objc Method
+    
+    @objc func addButtonDidTap() {
+        selectLimited()
     }
 }
 
-extension PHPickerLimitedPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+// MARK: - CollectionViewDatasource, Delegate
+
+extension PHPickerLimitedPhotoViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.imageDummy.count
@@ -147,7 +149,10 @@ extension PHPickerLimitedPhotoViewController: UICollectionViewDelegate, UICollec
         cell.configureCell(image: imageDummy[indexPath.item])
         return cell
     }
-    
+}
+
+extension PHPickerLimitedPhotoViewController: UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let secondViewController = AddPhotoViewController()
         
@@ -164,6 +169,8 @@ extension PHPickerLimitedPhotoViewController: UICollectionViewDelegate, UICollec
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
 }
+
+// MARK: - PHPhotoLibraryChangeObserver
 
 extension PHPickerLimitedPhotoViewController: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
