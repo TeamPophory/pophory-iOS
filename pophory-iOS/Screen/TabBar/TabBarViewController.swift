@@ -14,13 +14,13 @@ final class TabBarController: UITabBarController {
     
     // MARK: - viewController properties
     
-    let homeAlbumViewController = HomeAlbumViewController()
-    let plusViewController = UIViewController()
-    let myPageViewController = MypageViewController()
+    private let homeAlbumViewController = HomeAlbumViewController()
+    private let plusViewController = UIViewController()
+    private let myPageViewController = MypageViewController()
     
-    let addPhotoViewController = AddPhotoViewController()
-    let imagePHPViewController = BasePHPickerViewController()
-    let limitedViewController = PHPickerLimitedPhotoViewController()
+    private let addPhotoViewController = AddPhotoViewController()
+    private let imagePHPViewController = BasePHPickerViewController()
+    private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: Life Cycle
     

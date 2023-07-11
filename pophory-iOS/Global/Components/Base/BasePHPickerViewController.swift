@@ -25,13 +25,12 @@ class BasePHPickerViewController {
     
     var pickerImage: UIImage?
 
-    var fetchResult = PHFetchResult<PHAsset>()
-    var canAccessImages: [UIImage] = []
-    var thumbnailSize: CGSize {
+    private var fetchResult = PHFetchResult<PHAsset>()
+    private var canAccessImages: [UIImage] = []
+    private var thumbnailSize: CGSize {
         let scale = UIScreen.main.scale
         return CGSize(width: (UIScreen.main.bounds.width / 3) * scale, height: 100 * scale)
     }
-    var selectedImage: UIImage?
 
     lazy var phpickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration()

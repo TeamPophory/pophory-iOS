@@ -12,14 +12,14 @@ import Photos
 class PHPickerLimitedPhotoViewController: UIViewController {
     
     // MARK: - Properties
-    
+        
     private let screenWidth: CGFloat = UIScreen.main.bounds.size.width
     private let imageSpacing: CGFloat = 4
     
     private var imageDummy = [UIImage]()
     
-    var fetchResult = PHFetchResult<PHAsset>()
-    var thumbnailSize: CGSize {
+    private var fetchResult = PHFetchResult<PHAsset>()
+    private var thumbnailSize: CGSize {
         let scale = UIScreen.main.scale
         return CGSize(width: (UIScreen.main.bounds.width / 3) * scale, height: 100 * scale)
     }
@@ -32,6 +32,7 @@ class PHPickerLimitedPhotoViewController: UIViewController {
         flowLayout.itemSize = CGSize(width: imageSize, height: imageSize)
         flowLayout.minimumLineSpacing = imageSpacing
         flowLayout.minimumInteritemSpacing = imageSpacing
+        
         let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         view.register(PHPickerLimitedPhotoCollectionViewCell.self, forCellWithReuseIdentifier: PHPickerLimitedPhotoCollectionViewCell.identifier)
         view.dataSource = self
@@ -74,7 +75,7 @@ extension PHPickerLimitedPhotoViewController {
         }
     }
     
-    func setupNavigationItem() {
+    private func setupNavigationItem() {
         let add = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.addButtonDidTap))
         self.navigationItem.rightBarButtonItem = add
     }
@@ -92,8 +93,7 @@ extension PHPickerLimitedPhotoViewController {
         selectLimited()
     }
     
-    func selectLimited() {
-        //        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+    private func selectLimited() {
         DispatchQueue.main.async {
             
             let title: String = "pophory -ios 이(가) 사용자의 사진에 접근하려고 합니다."
@@ -115,7 +115,7 @@ extension PHPickerLimitedPhotoViewController {
         }
     }
     
-    func setLimited() {
+    private func setLimited() {
         
         self.imageDummy = []
         let requestOptions = PHImageRequestOptions()
