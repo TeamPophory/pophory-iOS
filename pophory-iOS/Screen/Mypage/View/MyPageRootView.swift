@@ -197,7 +197,7 @@ extension MyPageRootView {
     private func createNicknameLabel() -> UILabel {
         let label = UILabel()
         
-        label.text = "@pophory_12345"
+        label.text = UserDefaults.standard.getNickname()
         label.font = .h2
         
         return label
@@ -248,7 +248,7 @@ extension MyPageRootView {
     private func createProfileNameLabel() -> UILabel {
         let label = UILabel()
         
-        label.text = "한수아"
+        label.text = UserDefaults.standard.getFullName()
         label.font = .h3
         
         return label
