@@ -19,7 +19,6 @@ protocol PHPickerProtocol: AnyObject {
     func presentLimitedImageView()
 }
 
-@available(iOS 14, *)
 class BasePHPickerViewController {
     
     weak var delegate: PHPickerProtocol?
@@ -115,7 +114,6 @@ class BasePHPickerViewController {
     }
 }
 
-@available(iOS 14, *)
 extension BasePHPickerViewController: PHPickerViewControllerDelegate {
     
     // 이미지 선택 완료 시 호출될 함수
