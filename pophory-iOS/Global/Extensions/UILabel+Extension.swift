@@ -54,4 +54,20 @@ extension UILabel {
         attributedString.setAttributes([NSAttributedString.Key.font: boldFont], range: boldRange)
         self.attributedText = attributedString
     }
+
+    func applyColorAndBoldText(targetString: String, color: UIColor, font: UIFont, boldFont: UIFont) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+
+        let targetRange = (fullText as NSString).range(of: targetString)
+
+        // 색상 변경
+        attributedString.addAttribute(.foregroundColor, value: color, range: targetRange)
+
+        // 볼드 적용
+        attributedString.addAttribute(.font, value: boldFont, range: targetRange)
+
+        attributedText = attributedString
+    }
+
 }
