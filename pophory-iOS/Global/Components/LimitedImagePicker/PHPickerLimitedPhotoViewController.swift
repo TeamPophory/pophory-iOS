@@ -13,9 +13,6 @@ class PHPickerLimitedPhotoViewController: UIViewController {
     
     // MARK: - Properties
         
-    private let screenWidth: CGFloat = UIScreen.main.bounds.size.width
-    private let imageSpacing: CGFloat = 4
-    
     private var imageDummy = [UIImage]()
     
     private var fetchResult = PHFetchResult<PHAsset>()
@@ -23,11 +20,12 @@ class PHPickerLimitedPhotoViewController: UIViewController {
         let scale = UIScreen.main.scale
         return CGSize(width: (UIScreen.main.bounds.width / 3) * scale, height: 100 * scale)
     }
+    private let imageSpacing: CGFloat = 4
     
     // MARK: - UI Properties
     
     private lazy var limitedPhotoCollectionView: UICollectionView = {
-        let imageSize = (screenWidth - imageSpacing * 2) / 3
+        let imageSize = (thumbnailSize.width - imageSpacing * 2) / 3
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: imageSize, height: imageSize)
         flowLayout.minimumLineSpacing = imageSpacing
@@ -35,8 +33,6 @@ class PHPickerLimitedPhotoViewController: UIViewController {
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         view.register(PHPickerLimitedPhotoCollectionViewCell.self, forCellWithReuseIdentifier: PHPickerLimitedPhotoCollectionViewCell.identifier)
-        view.dataSource = self
-        view.delegate = self
         return view
     }()
     
@@ -55,7 +51,7 @@ class PHPickerLimitedPhotoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = false
+        showNavigationBar()
     }
 }
 
@@ -73,6 +69,11 @@ extension PHPickerLimitedPhotoViewController {
         limitedPhotoCollectionView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func setDelegate() {
+        limitedPhotoCollectionView.delegate = self
+        limitedPhotoCollectionView.dataSource = self
     }
     
     private func setupNavigationItem() {
@@ -136,7 +137,7 @@ extension PHPickerLimitedPhotoViewController {
     }
 }
 
-// MARK: - CollectionViewDatasource, Delegate
+// MARK: - CollectionViewDatasource
 
 extension PHPickerLimitedPhotoViewController: UICollectionViewDataSource {
     
@@ -150,6 +151,8 @@ extension PHPickerLimitedPhotoViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - CollectionViewDelegate
 
 extension PHPickerLimitedPhotoViewController: UICollectionViewDelegate {
 
