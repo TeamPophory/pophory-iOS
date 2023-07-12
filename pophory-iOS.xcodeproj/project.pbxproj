@@ -130,6 +130,7 @@
 		B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = B1D0297D2A5D89DD000B5B53 /* SkeletonView */; };
 		B1D029802A5D907F000B5B53 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */; };
 		B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */; };
+		B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,7 @@
 		B1631F652A1760180050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageNetworkManager.swift; sourceTree = "<group>"; };
+		B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -832,6 +834,7 @@
 				377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */,
 				3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */,
 				373EEEFA2A576CC40039A22C /* PophoryPopupView.swift */,
+				B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
+				B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
