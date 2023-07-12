@@ -18,9 +18,7 @@ class CalendarModalViewController: BaseViewController {
     private lazy var calendar: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        if #available(iOS 14.0, *) {
-            picker.preferredDatePickerStyle = .inline
-        } else { }
+        picker.preferredDatePickerStyle = .inline
         picker.addTarget(self, action: #selector(onclickCalendar), for: .valueChanged)
         picker.locale = Locale(identifier: "en-us")
         picker.tintColor = .pophoryPurple
