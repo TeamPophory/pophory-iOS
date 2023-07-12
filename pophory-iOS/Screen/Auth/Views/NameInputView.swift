@@ -37,6 +37,7 @@ class NameInputView: BaseSignUpView {
         let textField = UITextField()
         textField.placeholder = "이름"
         textField.textColor = .black
+        textField.backgroundColor = .pophoryGray100
         textField.font = .popupButton
         textField.layer.borderColor = UIColor.pophoryGray400.cgColor
         textField.layer.borderWidth = 1
