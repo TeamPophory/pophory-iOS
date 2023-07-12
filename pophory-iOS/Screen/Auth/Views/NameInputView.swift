@@ -21,7 +21,7 @@ class NameInputView: BaseSignUpView {
         stackView.distribution = .fill
         return stackView
     }()
-
+    
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class NameInputView: BaseSignUpView {
         label.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
         return label
     }()
-
+    
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "이름(성+이름)"
@@ -43,7 +43,7 @@ class NameInputView: BaseSignUpView {
         textField.layer.borderWidth = 1
         textField.makeRounded(radius: 18)
         textField.addPadding(left: 15)
-
+        
         let clearTextFieldIcon: UIButton = {
             let button = UIButton(type: .custom)
             button.setImage(ImageLiterals.placeholderDeleteIcon, for: .normal)
@@ -52,18 +52,18 @@ class NameInputView: BaseSignUpView {
             button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: convertByWidthRatio(15))
             return button
         }()
-
+        
         textField.rightView = clearTextFieldIcon
         textField.rightViewMode = .always
-
+        
         return textField
     }()
-
+    
     @objc private func clearTextFieldTapped() {
         inputTextField.text = ""
     }
-
-
+    
+    
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class NameInputView: BaseSignUpView {
         label.text = "(0/6)"
         return label
     }()
-
+    
     lazy var warningLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +85,7 @@ class NameInputView: BaseSignUpView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        inputTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        inputTextField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
         setupDelegate()
         setupViews()
     }
@@ -141,13 +141,21 @@ extension NameInputView {
     private func setupDelegate() {
         inputTextField.delegate = self
     }
+    
+    private func isContainKoreanOnly(_ text: String) -> Bool {
+        let koreanSet = CharacterSet(charactersIn: "ㄱ"..."ㅎ").union(.init(charactersIn: "ㅏ"..."ㅣ")).union(.init(charactersIn: "가"..."힣"))
+        let stringSet = CharacterSet(charactersIn: text)
+
+        // 한국어만을 포함하고 있는지 확인
+        return koreanSet.isSuperset(of: stringSet)
+    }
 }
 
 // MARK: - UITextFieldDelegate
 
 extension NameInputView: UITextFieldDelegate {
     
-    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
             nextButton.isEnabled = true
@@ -156,31 +164,42 @@ extension NameInputView: UITextFieldDelegate {
         }
     }
     
-    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.pophoryGray400.cgColor
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-        let newLength = textField.text?.count ?? 0 + string.count - range.length
-
-        if !updatedText.isContainValidKorean(length: newLength) && !string.isEmpty {
-            return false
-        }
-
-        if newLength > maxCharCount {
-            textField.layer.borderColor = UIColor.pophoryRed.cgColor
-            warningLabel.isHidden = false
-            return false
-        } else {
+        guard let oldText = textField.text, let stringRange = Range(range, in: oldText) else {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
             warningLabel.isHidden = true
+            
+            return true
         }
+        
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+        let newLength = newText.count
+        
+        if newLength > 6 {
+            textField.layer.borderColor = UIColor.pophoryRed.cgColor
+            warningLabel.text = "2-6글자 이내로 작성해주세요."
+            warningLabel.isHidden = false
+            return false
+        }
+        
+        if isContainKoreanOnly(newText) {
+             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+             warningLabel.isHidden = true
+        } else {
+            textField.layer.borderColor = UIColor.pophoryRed.cgColor
+            warningLabel.text = "현재 한국어만 지원하고 있어요."
+            warningLabel.isHidden = false
+            return false
+        }
+        
         return true
     }
-
     
-    @objc func textDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)
     }
 }

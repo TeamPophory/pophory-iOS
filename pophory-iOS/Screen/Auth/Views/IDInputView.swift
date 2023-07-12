@@ -38,7 +38,7 @@ final class IDInputView: NameInputView {
 
 extension IDInputView: UITextViewDelegate {
     
-    @objc override func textDidChange(_ textField: UITextField) {
+    @objc override func textFieldDidChangeSelection(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)
     }
 }
