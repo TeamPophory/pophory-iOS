@@ -92,9 +92,6 @@ extension PickAlbumCoverViewController {
     func didEnterNickname(nickname: String, fullName: String) {
         self.nickname = nickname
         self.fullName = fullName
-        
-        UserDefaults.standard.setNickname(nickname)
-        UserDefaults.standard.setFullName(fullName)
     }
 }
 

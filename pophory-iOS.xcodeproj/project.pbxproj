@@ -127,7 +127,9 @@
 		B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F582A175F470050974F /* Notification.Name+Extension.swift */; };
 		B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F5A2A175F850050974F /* UITextField+Extension.swift */; };
 		B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F5C2A175F9C0050974F /* Date+Extension.swift */; };
+		B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = B1D0297D2A5D89DD000B5B53 /* SkeletonView */; };
 		B1D029802A5D907F000B5B53 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */; };
+		B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,6 +273,7 @@
 		B1631F5C2A175F9C0050974F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		B1631F652A1760180050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
+		B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,7 @@
 				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
 				B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
+				B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +368,7 @@
 		37DCA68C2A4AB45D00FF8F90 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				B1D029812A5DA79C000B5B53 /* Network */,
 				B138A3B12A55C1A9000EE81E /* View */,
 				B138A3B22A55C1B4000EE81E /* ViewController */,
 			);
@@ -831,6 +836,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		B1D029812A5DA79C000B5B53 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -852,6 +865,7 @@
 				37DCA6852A4A97CA00FF8F90 /* SnapKit */,
 				9161CADE2A5460AA002B8B77 /* Kingfisher */,
 				B138A3BA2A587751000EE81E /* RxCocoa */,
+				B1D0297D2A5D89DD000B5B53 /* SkeletonView */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -930,6 +944,7 @@
 				37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -1074,6 +1089,7 @@
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
+				B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */,
 				91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */,
 				B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */,
 				37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */,
@@ -1473,6 +1489,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1495,6 +1519,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		B1D0297D2A5D89DD000B5B53 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -14,10 +14,13 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     static var identifier: String = "PhotoCollectionViewCell"
     
+    enum CellType {
+        case albumDetail, myPage
+    }
+    
     private let photoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.defaultPhotoIcon
-        imageView.contentMode = .scaleToFill
         return imageView
     }()
     
@@ -44,13 +47,15 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func configCell(
-        imageUrl: String
+        imageUrl: String,
+        cellType: CellType = .albumDetail
     ) {
         if imageUrl == "" {
             photoImage.image = ImageLiterals.defaultPhotoIcon
         } else {
             let url = URL(string: imageUrl)
             photoImage.kf.setImage(with: url)
+            photoImage.contentMode = cellType == .albumDetail ? .scaleToFill : .scaleAspectFill
         }
     }
 }

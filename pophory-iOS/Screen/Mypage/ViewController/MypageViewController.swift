@@ -12,7 +12,7 @@ class MypageViewController: BaseViewController {
     // MARK: - UI Properties
     
     private let rootView = MyPageRootView()
-    
+    private let networkManager = MyPageNetworkManager()
     
     // MARK: - Life Cycle
     
@@ -20,6 +20,7 @@ class MypageViewController: BaseViewController {
         super.loadView()
         
         view = rootView
+        rootView.delegate = self
     }
 
     override func viewDidLoad() {
@@ -36,6 +37,22 @@ class MypageViewController: BaseViewController {
 extension MypageViewController {
     
     // MARK: - Network
+    
+    private func requestData() {
+        networkManager.requestUserInfo() { [weak self] profileImageUrl in
+            self?.rootView.updateProfileImage(profileImageUrl)
+        }
+        
+        networkManager.requestAlbumData() { [weak self] albumList, photoCount in
+            self?.rootView.updatePhotoCount(photoCount)
+            
+            self?.networkManager.requestPhotoData(albumList: albumList) { photoUrlList in
+                DispatchQueue.main.async {
+                    self?.rootView.updatePhotoData(photoUrlList)
+                }
+            }
+        }
+    }
 }
 
 extension MypageViewController: MyPageRootViewDelegate {

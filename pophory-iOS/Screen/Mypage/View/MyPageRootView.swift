@@ -7,7 +7,7 @@
 
 import UIKit
 
-import RxSwift
+import SkeletonView
 import SnapKit
 
 protocol MyPageRootViewDelegate: NSObject {
@@ -19,6 +19,7 @@ class MyPageRootView: UIView {
     // MARK: - Properties
     
     weak var delegate: MyPageRootViewDelegate?
+    var photoData: [String]?
     
     // MARK: - UI Properties
     
@@ -201,7 +202,7 @@ extension MyPageRootView {
     private func createNicknameLabel() -> UILabel {
         let label = UILabel()
         
-        label.text = UserDefaults.standard.getNickname()
+        label.text = "@" + (UserDefaults.standard.getNickname() ?? "")
         label.font = .h2
         
         return label
@@ -236,6 +237,8 @@ extension MyPageRootView {
         let imageView = UIImageView(image: ImageLiterals.defaultProfile)
         
         imageView.makeRounded(radius: 36)
+        imageView.isSkeletonable = true
+        imageView.showAnimatedGradientSkeleton()
         
         return imageView
     }
@@ -318,6 +321,8 @@ extension MyPageRootView {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        collectionView.showAnimatedGradientSkeleton()
+        
         return collectionView
     }
     
@@ -326,22 +331,64 @@ extension MyPageRootView {
     @objc private func onClickSetting() {
         delegate?.handleOnclickSetting()
     }
+    
+    func updatePhotoCount(_ count: Int) {
+        photoCountLabel.attributedText = NSMutableAttributedString()
+            .regular("그동안 찍은 사진 ", color: .pophoryBlack)
+            .regular("\(count)", color: .pophoryPurple)
+            .regular("장", color: .pophoryBlack)
+        photoCountLabel.hideSkeleton()
+    }
+    
+    func updateProfileImage(_ imageUrl: String?) {
+        guard let url = imageUrl else { return }
+        
+        profileImageView.kf.setImage(with: URL(string: url))
+        profileImageView.hideSkeleton()
+    }
+    
+    func updatePhotoData(_ photoData: [String]) {
+        self.photoData = photoData
+        
+        if photoData.isEmpty {
+            feedCollectionView.isHidden = true
+        } else {
+            feedCollectionView.isHidden = false
+            feedCollectionView.reloadData()
+            feedCollectionView.hideSkeleton()
+        }
+    }
 }
 
-extension MyPageRootView: UICollectionViewDataSource {
+extension MyPageRootView: SkeletonCollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 19
+        return photoData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell,
+              let photoData = photoData else {
             return UICollectionViewCell()
         }
         
-//        cell.configCell(imageUrl: photo.imageUrl)
-        cell.backgroundColor = .pophoryPurple
+        cell.configCell(imageUrl: photoData[indexPath.item], cellType: .myPage)
+        cell.clipsToBounds = true
+        cell.contentView.isSkeletonable = true
         
         return cell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return UICollectionView.automaticNumberOfSkeletonItems
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return PhotoCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        skeletonView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath)
     }
 }
 
