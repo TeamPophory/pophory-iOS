@@ -28,13 +28,11 @@ extension String {
         return String(self[startIndex..<endIndex])
     }
     
-    func isContainValidKorean(length: Int) -> Bool {
-        if length < 2 {
-            return true
-        }
+    func isContainKoreanOnly() -> Bool {
+        let koreanSet = CharacterSet(charactersIn: "ㄱ"..."ㅎ").union(.init(charactersIn: "ㅏ"..."ㅣ")).union(.init(charactersIn: "가"..."힣"))
+        let stringSet = CharacterSet(charactersIn: self)
 
-        let pattern = "^(?=([가-힣]|[ㄱ-ㅎ]))(?<![ㄱ-ㅎ]{2,}).*$"
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return false }
-        return regex.numberOfMatches(in: self, options: [], range: NSRange(location: 0, length: length)) > 0
+        // 한국어만을 포함하고 있는지 확인
+        return koreanSet.isSuperset(of: stringSet)
     }
 }

@@ -27,7 +27,7 @@ final class IDInputView: NameInputView {
     
     private func updateNameInputViewLabels() {
         headerLabel.text = "너만의 재치있는\n포포리 아이디를 만들어줘!"
-        headerLabel.asColor(targetString: "포포리 아이디", color: .pophoryPurple)
+        headerLabel.applyColorAndBoldText(targetString: "포포리 아이디", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
         bodyLabel.text = "영문, 숫자, 특수문자 조합 4-12자리 이내로 작성해요 (특수문자는 . _ 만 가능해요)"
         bodyLabel.applyBoldTextTo("4-12자리 이내", withFont: .t2, boldFont: .h3)
         inputTextField.placeholder = "아이디"

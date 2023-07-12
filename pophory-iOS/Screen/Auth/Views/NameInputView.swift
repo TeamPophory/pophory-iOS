@@ -27,18 +27,17 @@ class NameInputView: BaseSignUpView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "원활한 포포리 사용을 위해 실명 입력이 필요해요"
         label.textColor = .pophoryGray500
-        label.font = .t2
+        label.font = .title1
         label.numberOfLines = 0
         label.setTextWithLineHeight(lineHeight: 24)
-        label.applyBoldTextTo("실명 입력", withFont: .t2, boldFont: .h3)
         return label
     }()
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "이름(성+이름)"
+        textField.placeholder = "이름"
         textField.textColor = .black
-        textField.font = .t1
+        textField.font = .popupButton
         textField.layer.borderColor = UIColor.pophoryGray400.cgColor
         textField.layer.borderWidth = 1
         textField.makeRounded(radius: 18)
@@ -67,7 +66,7 @@ class NameInputView: BaseSignUpView {
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .t1
+        label.font = .popupButton
         label.textColor = .pophoryGray400
         label.text = "(0/6)"
         return label
@@ -76,7 +75,7 @@ class NameInputView: BaseSignUpView {
     lazy var warningLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .t2
+        label.font = .popupLine
         label.textColor = .pophoryRed
         label.text = "*6글자를 초과했습니다"
         label.isHidden = true
