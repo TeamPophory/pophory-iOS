@@ -57,6 +57,7 @@ class MyPageRootView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 extension MyPageRootView {
@@ -357,6 +358,12 @@ extension MyPageRootView {
             feedCollectionView.isHidden = false
             feedCollectionView.reloadData()
             feedCollectionView.hideSkeleton()
+            
+            feedCollectionView.performBatchUpdates(nil, completion: { result in
+                self.feedCollectionView.snp.updateConstraints { make in
+                    make.height.equalTo(self.feedCollectionView.contentSize.height)
+                }
+            })
         }
     }
 }
