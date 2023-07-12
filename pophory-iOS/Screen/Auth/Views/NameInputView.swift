@@ -158,9 +158,10 @@ extension NameInputView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-            nextButton.isEnabled = true
         } else {
-            nextButton.isEnabled = false
+            if !isContainKoreanOnly(textField.text!) {
+                textField.layer.borderColor = UIColor.pophoryRed.cgColor
+            }
         }
     }
     
@@ -169,31 +170,28 @@ extension NameInputView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let oldText = textField.text, let stringRange = Range(range, in: oldText) else {
-            textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-            warningLabel.isHidden = true
+        if let oldText = textField.text, let stringRange = Range(range, in: oldText) {
+            let newText = oldText.replacingCharacters(in: stringRange, with: string)
+            let newLength = newText.count
             
-            return true
-        }
-        
-        let newText = oldText.replacingCharacters(in: stringRange, with: string)
-        let newLength = newText.count
-        
-        if newLength > 6 {
-            textField.layer.borderColor = UIColor.pophoryRed.cgColor
-            warningLabel.text = "2-6글자 이내로 작성해주세요."
-            warningLabel.isHidden = false
-            return false
-        }
-        
-        if isContainKoreanOnly(newText) {
-             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-             warningLabel.isHidden = true
-        } else {
-            textField.layer.borderColor = UIColor.pophoryRed.cgColor
-            warningLabel.text = "현재 한국어만 지원하고 있어요."
-            warningLabel.isHidden = false
-            return false
+            if newLength > 6 {
+                textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                warningLabel.text = "2-6글자 이내로 작성해주세요."
+                warningLabel.isHidden = false
+                return false
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                if self.isContainKoreanOnly(newText) {
+                    textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+                    self.warningLabel.isHidden = true
+                } else {
+                    textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                    self.warningLabel.text = "현재 한국어만 지원하고 있어요."
+                    self.warningLabel.isHidden = false
+                }
+            }
+                
         }
         
         return true

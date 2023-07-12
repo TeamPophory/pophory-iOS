@@ -11,6 +11,8 @@ import SnapKit
 
 final class IDInputView: NameInputView {
     
+    // MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         updateNameInputViewLabels()
@@ -21,6 +23,8 @@ final class IDInputView: NameInputView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private Methods
+    
     private func updateNameInputViewLabels() {
         headerLabel.text = "너만의 재치있는\n포포리 아이디를 만들어줘!"
         headerLabel.asColor(targetString: "포포리 아이디", color: .pophoryPurple)
@@ -28,11 +32,33 @@ final class IDInputView: NameInputView {
         bodyLabel.applyBoldTextTo("4-12자리 이내", withFont: .t2, boldFont: .h3)
         inputTextField.placeholder = "아이디"
         charCountLabel.text = "(0/12)"
-        warningLabel.text = "*사용 불가능한 특수문자입니다"
+    }
+    
+    private func isValidCharacters(_ text: String) -> Bool {
+        let regEx = "^[a-zA-Z0-9._]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regEx)
+        return predicate.evaluate(with: text)
     }
     
     override func updateCharCountLabel(charCount: Int) {
         charCountLabel.text = "(\(charCount)/12)"
+    }
+    
+    override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            if self.isValidCharacters(newText) {
+                textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+                self.warningLabel.isHidden = true
+            } else {
+                textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다."
+                self.warningLabel.isHidden = false
+            }
+        }
+        
+        return true
     }
 }
 
