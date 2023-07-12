@@ -341,9 +341,10 @@ extension MyPageRootView {
     }
     
     func updateProfileImage(_ imageUrl: String?) {
-        guard let url = imageUrl else { return }
+        if let url = imageUrl {
+            profileImageView.kf.setImage(with: URL(string: url))
+        }
         
-        profileImageView.kf.setImage(with: URL(string: url))
         profileImageView.hideSkeleton()
     }
     
