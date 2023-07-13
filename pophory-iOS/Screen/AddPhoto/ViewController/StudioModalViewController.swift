@@ -32,7 +32,7 @@ class StudioModalViewController: BaseViewController {
     private let studioLabel: UILabel = {
         let label = UILabel()
         label.text = "사진관 선택하기"
-        label.font = .h2
+        label.font = .modalTitle
         return label
     }()
     

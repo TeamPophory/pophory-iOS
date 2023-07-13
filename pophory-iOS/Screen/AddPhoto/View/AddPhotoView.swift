@@ -78,7 +78,7 @@ final class AddPhotoView: UIView {
     private let albumTitle: UILabel = {
         let label = UILabel()
         label.text = "내 앨범"
-        label.font = .h3
+        label.font = .head3
         label.textAlignment = .left
         return label
     }()

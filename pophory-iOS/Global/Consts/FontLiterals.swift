@@ -64,7 +64,7 @@ extension UIFont {
     }
     
     @nonobjc class var modalTitle: UIFont {
-        return UIFont.font(.pretendardBold, ofSize: 28)
+        return UIFont.font(.pretendardBold, ofSize: 20)
     }
     
     @nonobjc class var modalText: UIFont {

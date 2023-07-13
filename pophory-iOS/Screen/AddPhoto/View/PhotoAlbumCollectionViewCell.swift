@@ -7,11 +7,19 @@
 
 import UIKit
 
+import SnapKit
+
 final class PhotoAlbumCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
-
+    
     static let identifier = "AddPhotoAlbumCell"
+    
+    override var isSelected: Bool {
+        didSet{
+                selectedView.isHidden = !isSelected
+        }
+    }
     
     // MARK: - UI Properties
     
@@ -23,9 +31,23 @@ final class PhotoAlbumCollectionViewCell: UICollectionViewCell {
         view.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return view
     }()
-
+    
+    private let selectedView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryBlack.withAlphaComponent(0.3)
+        view.isHidden = true
+        return view
+    }()
+    
+    private let selectedIcon: UIImageView = {
+        let view = UIImageView()
+        view.image = ImageLiterals.checkBigIconWhite
+        return view
+    }()
+    
+    
     // MARK: - Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,10 +64,18 @@ extension PhotoAlbumCollectionViewCell {
     // MARK: - Layout
     
     private func setupLayout() {
-        contentView.addSubview(photoAlbum)
-        
+        contentView.addSubviews([photoAlbum, selectedView])
+        selectedView.addSubview(selectedIcon)
+
         photoAlbum.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        selectedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        selectedIcon.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
     

@@ -14,12 +14,13 @@ final class TabBarController: UITabBarController {
     
     // MARK: - viewController properties
     
-    let homeAlbumViewController = HomeAlbumViewController()
-    let plusViewController = UIViewController()
-    let myPageViewController = MypageViewController()
+    private let homeAlbumViewController = HomeAlbumViewController()
+    private let plusViewController = UIViewController()
+    private let myPageViewController = MypageViewController()
     
-    let addPhotoViewController = AddPhotoViewController()
-    let imagePickerViewController = BaseImagePickerViewController()
+    private let addPhotoViewController = AddPhotoViewController()
+    private let imagePHPViewController = BasePHPickerViewController()
+    private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: Life Cycle
     
@@ -29,6 +30,11 @@ final class TabBarController: UITabBarController {
         setUpTabBar()
         setupDelegate()
     }
+}
+
+extension TabBarController {
+    
+    // MARK: Method
     
     private func setUpTabBar(){
         self.tabBar.tintColor = .pophoryPurple
@@ -58,80 +64,71 @@ final class TabBarController: UITabBarController {
     
     private func setupDelegate() {
         self.delegate = self
-        imagePickerViewController.delegate = self
-    }
-    
-    private func setupImagePermission() {
-        PHPhotoLibrary.requestAuthorization({ status in
-            switch status{
-            case .authorized:
-                self.presentImage()
-            case .denied:
-                self.AuthSettingOpen()
-            default:
-                break
-            }
-        })
-    }
-    
-    func presentImage() {
-        DispatchQueue.main.async {
-            self.present(self.imagePickerViewController, animated: true)
-        }
-    }
-    
-    func AuthSettingOpen() {
-        DispatchQueue.main.async {
-            let titleMessage: String = "사진을 업로드하기 위해 설정을 눌러 사진 접근을 허용해주세요"
-            let alert = UIAlertController(title: titleMessage, message: nil, preferredStyle: .alert)
-            
-            let cancle = UIAlertAction(title: "확인", style: .default)
-            let confirm = UIAlertAction(title: "설정", style: .default) { (UIAlertAction) in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }
-            
-            alert.addAction(cancle)
-            alert.addAction(confirm)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
+        imagePHPViewController.delegate = self
     }
 }
+
+// MARK: UITabBarControllerDelegate
 
 extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
-            setupImagePermission()
+            imagePHPViewController.setupImagePermission()
             return false
         } else { return true }
     }
 }
 
-extension TabBarController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+// MARK: PHPickerProtocol
+
+extension TabBarController: PHPickerProtocol {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        var newImage: UIImage? = nil
-        var imageType: PhotoCellType = .vertical
-        
-        if let possibleImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage") ] as? UIImage {
-            newImage = possibleImage
-        } else if let possibleImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage") ] as? UIImage {
-            newImage = possibleImage
-        }
-        
-        if let width = newImage?.size.width, let height = newImage?.size.height {
-            if width > height {
+    func setupPicker() {
+        DispatchQueue.main.async {
+            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
+            
+            let secondViewController = AddPhotoViewController()
+            
+            var imageType: PhotoCellType = .vertical
+            
+            if selectedImage.size.width > selectedImage.size.height {
                 imageType = .horizontal
             } else {
                 imageType = .vertical
             }
+            
+            secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
+            self.navigationController?.pushViewController(secondViewController, animated: true)
         }
-        
-        addPhotoViewController.setupRootViewImage(forImage: newImage, forType: imageType)
-        self.navigationController?.pushViewController(addPhotoViewController, animated: true)
-        picker.dismiss(animated: true)
+    }
+    
+    func presentLimitedLibrary() {
+        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+    }
+    
+    func presentImageLibrary() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
+        }
+    }
+    
+    func presentDenidAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedImageView() {
+        DispatchQueue.main.async {
+            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
+            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
     }
 }
-
