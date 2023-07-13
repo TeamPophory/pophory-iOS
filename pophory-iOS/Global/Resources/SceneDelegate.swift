@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             appleLoginManager.delegate = rootVC
             
-            let navigationController = UINavigationController(rootViewController: rootVC)
+            let navigationController = PophoryNavigationController(rootViewController: rootVC)
             
             window.rootViewController = navigationController
             window.makeKeyAndVisible()

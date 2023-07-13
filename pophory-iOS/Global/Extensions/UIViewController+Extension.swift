@@ -18,7 +18,7 @@ extension UIViewController {
     
     func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator) {
         if let navigationController = navigationController {
-            navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController, showRightButton: false)
+            navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController)
         }
     }
     

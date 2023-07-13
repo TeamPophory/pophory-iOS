@@ -77,9 +77,9 @@ final class IDInputViewController: BaseViewController, Navigatable {
     
     // MARK: - Action Helpers
     
-    override func backButtonOnClick() {
-        self.navigationController?.popViewController(animated: true)
-    }
+//    override func backButtonOnClick() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
 }
 
 // MARK: - Extension

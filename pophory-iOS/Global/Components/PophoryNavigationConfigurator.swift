@@ -13,7 +13,7 @@
  * rightButton 없을 때:
  setupNavigationBar(with: PophoryNavigationConfigurator.shared)
  * rightButton 있을 때:
- PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, showRightButton: true, rightButtonImageType: .plus)
+ PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .plus)
  }
  */
 
@@ -23,18 +23,19 @@ protocol NavigationConfigurator {
     func configureNavigationBar(in viewController: UIViewController, navigationController: UINavigationController?, showRightButton: Bool, rightButtonImageType: PophoryNavigationConfigurator.RightButtonImageType?)
 }
 
-class PophoryNavigationConfigurator: NavigationConfigurator {
+final class PophoryNavigationConfigurator: NavigationConfigurator {
     
     static let shared = PophoryNavigationConfigurator()
     
     enum RightButtonImageType {
         case plus
         case delete
+        case setting
     }
     
     private init() {}
     
-    func configureNavigationBar(in viewController: UIViewController, navigationController: UINavigationController?, showRightButton: Bool, rightButtonImageType: RightButtonImageType? = nil) {
+    func configureNavigationBar(in viewController: UIViewController, navigationController: UINavigationController? = nil, showRightButton: Bool = false, rightButtonImageType: RightButtonImageType? = nil) {
         guard let navigationController = navigationController as? PophoryNavigationController else {
             return
         }
@@ -49,12 +50,10 @@ class PophoryNavigationConfigurator: NavigationConfigurator {
                 rightButton = UIBarButtonItem(image: ImageLiterals.myAlbumPlusButtonIcon, style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
             case .delete:
                 rightButton = UIBarButtonItem(image: ImageLiterals.trashCanIcon, style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
+            case .setting:
+                rightButton = UIBarButtonItem(image: ImageLiterals.settingIcon, style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
             }
             
-            viewController.navigationItem.rightBarButtonItem = rightButton
-            viewController.navigationItem.rightBarButtonItem?.tintColor = .pophoryBlack
-        } else if showRightButton {
-            let rightButton = UIBarButtonItem(title: "다음", style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
             viewController.navigationItem.rightBarButtonItem = rightButton
             viewController.navigationItem.rightBarButtonItem?.tintColor = .pophoryBlack
         }

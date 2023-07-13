@@ -37,7 +37,7 @@ final class NameInputViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         // TODO: 익스텐션화
-        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, showRightButton: false)
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!)
         self.navigationItem.title = "회원가입"
         setupKeyboardManager()
     }
