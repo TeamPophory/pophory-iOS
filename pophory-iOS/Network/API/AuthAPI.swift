@@ -11,7 +11,7 @@ import Moya
 
 enum AuthAPI {
     case sendAuthorizationCode(authorizationCode: String)
-    case sendIdentityToken(identityToken: String, socialType: String)
+    case sendIdentityToken(tokenDTO: sendIdentityTokenDTO)
     case withdrawUser
 }
 
@@ -19,8 +19,8 @@ extension AuthAPI: BaseTargetType {
     
     var authToken: String? {
         switch self {
-        case .sendIdentityToken(let identityToken, _):
-            return identityToken
+        case .sendIdentityToken(let tokenDTO):
+            return tokenDTO.socialType
             
         case .sendAuthorizationCode, .withdrawUser:
             return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
@@ -47,8 +47,8 @@ extension AuthAPI: BaseTargetType {
         switch self {
         case .sendAuthorizationCode(let authorizationCode):
             return .requestParameters(parameters: ["authorizationCode" : authorizationCode], encoding: JSONEncoding.default)
-        case .sendIdentityToken(let identityToken, let socialType):
-                   return .requestParameters(parameters: ["identityToken": identityToken, "socialType": socialType], encoding: JSONEncoding.default)
+        case .sendIdentityToken(let tokenDTO):
+            return .requestJSONEncodable(tokenDTO)
         case .withdrawUser:
             return .requestPlain
         }

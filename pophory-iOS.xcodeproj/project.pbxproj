@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3703F0F52A6071B50017A381 /* sendIdentityTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F0F42A6071B50017A381 /* sendIdentityTokenDTO.swift */; };
 		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
 		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
@@ -149,6 +150,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3703F0F42A6071B50017A381 /* sendIdentityTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendIdentityTokenDTO.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
@@ -304,6 +306,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3703F0F32A60714D0017A381 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				3703F0F42A6071B50017A381 /* sendIdentityTokenDTO.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,6 +813,7 @@
 				91F3A7682A52A8D000C06D1B /* Photo */,
 				91F3A76D2A52AA2400C06D1B /* Member */,
 				91F3A7742A52AB8300C06D1B /* Album */,
+				3703F0F32A60714D0017A381 /* Auth */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1042,6 +1053,7 @@
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
+				3703F0F52A6071B50017A381 /* sendIdentityTokenDTO.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
 				B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
