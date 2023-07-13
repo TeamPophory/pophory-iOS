@@ -20,7 +20,7 @@ final class StartPophoryView: UIView {
     let startLabel: UILabel = {
         let label = UILabel()
         label.text = "포포리 앨범을 만들었어!\n지금 사진을 추가해볼까?"
-        label.font = .h1
+        label.font = .head1Medium
         label.textColor = .pophoryWhite
         label.numberOfLines = 0
         label.setTextWithLineHeight(lineHeight: 34)
