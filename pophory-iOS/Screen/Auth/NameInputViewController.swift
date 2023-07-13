@@ -19,7 +19,7 @@ final class NameInputViewController: BaseViewController, Navigatable {
     
     // MARK: - UI Properties
     
-//    var navigationBarTitleText: String? { return "회원가입" }
+    var navigationBarTitleText: String? { return "회원가입" }
     
     private var bottomConstraint: NSLayoutConstraint?
     
@@ -33,17 +33,12 @@ final class NameInputViewController: BaseViewController, Navigatable {
     
     // MARK: - Life Cycle
     
-//    override func loadView() {
-//        super.loadView()
-//        
-//        nameInputView = NameInputView(frame: self.view.frame)
-//        self.view = nameInputView
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        // TODO: 익스텐션화
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, showRightButton: false)
+        self.navigationItem.title = "회원가입"
         setupKeyboardManager()
     }
     

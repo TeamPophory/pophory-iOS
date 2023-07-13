@@ -74,6 +74,12 @@ final class IDInputViewController: BaseViewController, Navigatable {
         keyboardManager?.keyboardRemoveObserver()
         keyboardManager = nil
     }
+    
+    // MARK: - Action Helpers
+    
+    override func backButtonOnClick() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - Extension

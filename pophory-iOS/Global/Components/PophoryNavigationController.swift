@@ -23,8 +23,8 @@ class PophoryNavigationController: UINavigationController {
     }
 
     func configureNavigationBar() {
-        let titleFont = UIFont.h2
-        let titleColor = UIColor.black
+        let titleFont = UIFont.head2
+        let titleColor = UIColor.pophoryBlack
         let titleText: String?
         lazy var defaultNaviBarHeight = { self.navigationBar.frame.size.height }()
         let newNaviBarHeight = defaultNaviBarHeight + 22
@@ -43,9 +43,9 @@ class PophoryNavigationController: UINavigationController {
         let backButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(BaseViewController.backButtonOnClick))
         backButton.tintColor = UIColor.white
         //TODO: 에셋 추가 후 등록예정
-        navigationBar.backIndicatorImage = UIImage(named: "")
-        navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "")
-        navigationItem.backBarButtonItem = backButton
+//        navigationBar.backIndicatorImage = UIImage(named: "")
+//        navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "")
+//        navigationItem.backBarButtonItem = backButton
         
     }
 }
