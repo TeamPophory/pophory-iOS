@@ -14,4 +14,5 @@ protocol MemberRepository {
         completion: @escaping (NetworkResult<Any>) -> Void
     )
     func patchUserInfo(completion: @escaping (NetworkResult<PatchUserInfoResponseDTO>) -> Void)
+    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
 }

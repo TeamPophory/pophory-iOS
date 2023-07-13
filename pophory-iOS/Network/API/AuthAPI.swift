@@ -10,25 +10,33 @@ import Foundation
 import Moya
 
 enum AuthAPI {
-    case appleLogin(authorizationCode: String)
-    case sendIdentityToken(identityToken: String)
-    case checkDuplicateNickname(nickname: String)
+    case sendAuthorizationCode(authorizationCode: String)
+    case sendIdentityToken(identityToken: String, socialType: String)
     case withdrawUser
 }
 
 extension AuthAPI: BaseTargetType {
+    
+    var authToken: String? {
+        switch self {
+        case .sendIdentityToken(let identityToken, _):
+            return identityToken
+            
+        case .sendAuthorizationCode, .withdrawUser:
+            return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
+        }
+    }
+    
     var path: String {
         switch self {
-        case .appleLogin, .sendIdentityToken, .withdrawUser:
+        case .sendAuthorizationCode, .sendIdentityToken, .withdrawUser:
             return URLConstants.auth
-        case .checkDuplicateNickname:
-            return URLConstants.memeber
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .appleLogin, .sendIdentityToken, .checkDuplicateNickname:
+        case .sendAuthorizationCode, .sendIdentityToken:
             return .post
         case .withdrawUser:
             return .delete
@@ -37,13 +45,10 @@ extension AuthAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .appleLogin(let authorizationCode):
+        case .sendAuthorizationCode(let authorizationCode):
             return .requestParameters(parameters: ["authorizationCode" : authorizationCode], encoding: JSONEncoding.default)
-        case .sendIdentityToken(let identityToken):
-            return .requestParameters(parameters: ["identityToken": identityToken], encoding: JSONEncoding.default)
-        case .checkDuplicateNickname(let nickname):
-            let parameters: [String: Any] = ["nickname": nickname]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .sendIdentityToken(let identityToken, let socialType):
+                   return .requestParameters(parameters: ["identityToken": identityToken, "socialType": socialType], encoding: JSONEncoding.default)
         case .withdrawUser:
             return .requestPlain
         }

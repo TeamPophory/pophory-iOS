@@ -14,6 +14,11 @@ enum StudiosAPI {
 }
 
 extension StudiosAPI: BaseTargetType {
+    var authToken: String? {
+        // TODO: 자동로그인
+        return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
+    }
+    
     var path: String {
         switch self {
         case .patchStudios:

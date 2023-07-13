@@ -9,7 +9,6 @@ import Foundation
 
 protocol AuthRepository {
     func sendAppleAuthorizationCode(code: String, completion: @escaping (NetworkResult<Any>) -> Void)
-    func sendIdentityToken(identityToken: String, completion: @escaping (NetworkResult<Any>) -> Void)
-    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
+    func sendIdentityToken(identityToken: String, socialType: String, completion: @escaping (NetworkResult<Any>) -> Void)
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void)
 }

@@ -51,12 +51,10 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         switch result {
         case .success(let authorization):
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-//                let userIdentifier = appleIDCredential.user
-//                let fullName = appleIDCredential.fullName
-//                let email = appleIDCredential.email
-                if let authorizationCode = appleIDCredential.authorizationCode, let authCodeString = String(data: authorizationCode, encoding: .utf8) {
-                    print("Authorization Code: \(authCodeString)")
-                    sendAuthorizationCodeToServer(authorizationCode: authCodeString)
+                if let identityTokenData = appleIDCredential.identityToken,
+                   let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                    print("Identity Token: \(identityTokenString)"+"✈️")
+                    sendIdentityTokenToServer(identityToken: identityTokenString)
                 }
                 
                 print("Successful Apple login")
@@ -64,30 +62,30 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             }
             
         case .failure(let error):
-            print("Failed Apple login with error: \(error.localizedDescription)")
+            print("Failed Apple login with error: \(error.localizedDescription)"+"🥹")
         }
     }
-    
-    // 클라이언트에서 백엔드 서버로 Authorization Code 전송
-    func sendAuthorizationCodeToServer(authorizationCode: String) {
-        guard let url = URL(string: "https://your-backend-server.com/apple-auth") else { return }
 
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let payload: [String: Any] = ["authorizationCode": authorizationCode]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: .prettyPrinted)
-
-        URLSession.shared.dataTask(with: request) { (_, _, error) in
-            if let error = error {
-                print("Error sending Authorization Code to server: \(error.localizedDescription)")
-            } else {
-                print("Successfully sent Authorization Code to server")
+    func sendIdentityTokenToServer(identityToken: String) {
+        let socialType = "APPLE"
+        NetworkService.shared.authRepostiory.sendIdentityToken(identityToken: identityToken, socialType: socialType) { result in
+            
+            print(result)
+            print("🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸")
+            
+            switch result {
+            case .success:
+                print("Successfully sent Identity Token to server")
+            case .requestErr(let errorMessage):
+                print("Error sending Identity Token to server: \(errorMessage)")
+            case .networkFail:
+                print("Network error")
+            case .serverErr, .pathErr:
+                print("Server or Path error")
             }
-        }.resume()
+        }
     }
-    
+
     func goToSignInViewController() {
         let nameInputVC = NameInputViewController()
         navigationController?.pushViewController(nameInputVC, animated: true)
