@@ -10,6 +10,8 @@ import UIKit
 
 final class OnboardingViewController: BaseViewController, AppleLoginManagerDelegate {
     
+    // MARK: - Properties
+    
     lazy var onboardingView: OnboardingView = {
         let view = OnboardingView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -17,6 +19,8 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     }()
     
     private let appleLoginManager: AppleLoginManager
+    
+    // MARK: - Life Cycle
     
     init(appleLoginManager: AppleLoginManager) {
         self.appleLoginManager = appleLoginManager
@@ -40,6 +44,8 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         hideNavigationBar()
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
+    
+    // MARK: - Private Methods
     
     @available(iOS 13.0, *)
     @objc private func handleAppleLoginButtonClicked() {
@@ -66,13 +72,14 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         }
     }
     
-    func sendIdentityTokenToServer(identityToken: String) {
+    private func sendIdentityTokenToServer(identityToken: String) {
         let tokenDTO = postIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
         NetworkService.shared.authRepostiory.postIdentityToken(tokenDTO: tokenDTO) { result in
             
             switch result {
             case .success:
                 print("Successfully sent Identity Token to server")
+                self.saveTokenToInternalDatabase(token: identityToken)
             case .requestErr(let errorMessage):
                 print("Error sending Identity Token to server: \(errorMessage)")
             case .networkFail:
@@ -83,7 +90,19 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         }
     }
     
-    func goToSignInViewController() {
+    private func saveLoginStatus() {
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+    }
+    
+    private func saveTokenToInternalDatabase(token: String) {
+        UserDefaults.standard.set(token, forKey: "socialLoginToken")
+    }
+
+    private func getTokenFromInternalDatabase() -> String? {
+        return UserDefaults.standard.string(forKey: "socialLoginToken")
+    }
+
+    private func goToSignInViewController() {
         let nameInputVC = NameInputViewController()
         navigationController?.pushViewController(nameInputVC, animated: true)
     }

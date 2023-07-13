@@ -19,8 +19,7 @@ enum MemberAPI {
 extension MemberAPI: BaseTargetType {
     
     var authToken: String? {
-        // TODO: 자동로그인
-        return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
+        return UserDefaults.standard.string(forKey: URLConstants.userTokenKey)
     }
     
     var path: String {

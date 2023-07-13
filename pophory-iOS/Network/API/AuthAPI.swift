@@ -22,7 +22,7 @@ extension AuthAPI: BaseTargetType {
             return tokenDTO.identityToken
                 
         case .sendAuthorizationCode, .withdrawUser:
-            return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
+            return UserDefaults.standard.string(forKey: URLConstants.userTokenKey)
         }
     }
     
