@@ -23,9 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
             
             let appleLoginManager = AppleLoginManager()
-            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+//            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
             
-            appleLoginManager.delegate = rootVC
+//            appleLoginManager.delegate = rootVC
+            
+            let rootVC = NameInputViewController()
             
             let navigationController = UINavigationController(rootViewController: rootVC)
             

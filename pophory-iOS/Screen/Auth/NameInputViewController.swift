@@ -52,6 +52,8 @@ final class NameInputViewController: BaseViewController, Navigatable {
         
         setupConstraints()
         handleNextButton()
+        hideKeyboard()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

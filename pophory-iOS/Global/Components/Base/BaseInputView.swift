@@ -35,6 +35,7 @@ class BaseSignUpView: UIView{
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.next)
+//        return buttonBuilder.build(initiallyEnabled: false)
         return buttonBuilder.build()
     }()
     
@@ -78,6 +79,12 @@ extension BaseSignUpView {
             $0.centerX.equalToSuperview()
         }
     }
+    
+    func setNextButtonEnabled(_ isEnabled: Bool) {
+        nextButton.isEnabled = isEnabled
+        nextButton.backgroundColor = isEnabled ? .pophoryPurple : .pophoryGray400
+    }
+
     
     // MARK: - @objc
     

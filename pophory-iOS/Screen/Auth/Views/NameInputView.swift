@@ -136,20 +136,41 @@ extension NameInputView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
+        if let oldText = textField.text, let stringRange = Range(range, in: oldText) {
+            let newText = oldText.replacingCharacters(in: stringRange, with: string)
+            let newLength = newText.count
 
-        if newLength > maxCharCount {
-            textField.layer.borderColor = UIColor.pophoryRed.cgColor
-            warningLabel.isHidden = false
-            return false
-        } else {
-            textField.textColor = .black
-            textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-            warningLabel.isHidden = true
+            if newLength > 6 {
+                textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                warningLabel.text = "2-6글자 이내로 작성해주세요."
+                warningLabel.isHidden = false
+                if let rootView = superview as? BaseSignUpView {
+                    rootView.setNextButtonEnabled(false)
+                }
+                return false
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                if self.isContainKoreanOnly(newText) {
+                    textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+                    self.warningLabel.isHidden = true
+                    if let rootView = self.superview as? BaseSignUpView {
+                        rootView.setNextButtonEnabled(true)
+                    }
+                } else {
+                    textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                    self.warningLabel.text = "현재 한국어만 지원하고 있어요."
+                    self.warningLabel.isHidden = false
+                    if let rootView = self.superview as? BaseSignUpView {
+                        rootView.setNextButtonEnabled(false)
+                    }
+                }
+            }
         }
+
         return true
     }
+
     
     @objc func textDidChange(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)
