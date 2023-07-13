@@ -29,21 +29,21 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
         }
     }
     
-    func sendIdentityToken(identityToken: String, socialType: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-           provider.request(.sendIdentityToken(identityToken: identityToken, socialType: socialType)) { result in
-               switch result {
-               case .success(let response):
-                   if response.statusCode < 300 {
-                       completion(.success("Identity Token sent successfully."))
-                   } else {
-                       completion(.requestErr("Failed to send Identity Token."))
-                   }
-               case .failure(let error):
-                   print(error)
-                   completion(.networkFail)
-               }
-           }
-       }
+    func postIdentityToken(tokenDTO: postIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
+        provider.request(.postIdentityToken(tokenDTO: tokenDTO)) { result in
+            switch result {
+            case .success(let response):
+                if response.statusCode < 300 {
+                    completion(.success("Identity Token sent successfully."))
+                } else {
+                    completion(.requestErr("Failed to send Identity Token."))
+                }
+            case .failure(let error):
+                print(error)
+                completion(.networkFail)
+            }
+        }
+    }
     
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void) {
         provider.request(.withdrawUser) { result in

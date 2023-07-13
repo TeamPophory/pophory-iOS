@@ -65,13 +65,10 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             print("Failed Apple login with error: \(error.localizedDescription)"+"🥹")
         }
     }
-
+    
     func sendIdentityTokenToServer(identityToken: String) {
-        let socialType = "APPLE"
-        NetworkService.shared.authRepostiory.sendIdentityToken(identityToken: identityToken, socialType: socialType) { result in
-            
-            print(result)
-            print("🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸")
+        let tokenDTO = postIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
+        NetworkService.shared.authRepostiory.postIdentityToken(tokenDTO: tokenDTO) { result in
             
             switch result {
             case .success:
@@ -85,7 +82,7 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             }
         }
     }
-
+    
     func goToSignInViewController() {
         let nameInputVC = NameInputViewController()
         navigationController?.pushViewController(nameInputVC, animated: true)

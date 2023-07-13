@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct sendIdentityTokenDTO: Codable {
+struct postIdentityTokenDTO: Codable {
     let socialType: String?
+    let identityToken: String?
 }

@@ -11,17 +11,16 @@ import Moya
 
 enum AuthAPI {
     case sendAuthorizationCode(authorizationCode: String)
-    case sendIdentityToken(tokenDTO: sendIdentityTokenDTO)
+    case postIdentityToken(tokenDTO: postIdentityTokenDTO)
     case withdrawUser
 }
 
 extension AuthAPI: BaseTargetType {
-    
     var authToken: String? {
         switch self {
-        case .sendIdentityToken(let tokenDTO):
-            return tokenDTO.socialType
-            
+        case .postIdentityToken(let tokenDTO):
+            return tokenDTO.identityToken
+                
         case .sendAuthorizationCode, .withdrawUser:
             return UserDefaults.standard.string(forKey: "YOUR_USER_TOKEN_KEY")
         }
@@ -29,14 +28,14 @@ extension AuthAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .sendAuthorizationCode, .sendIdentityToken, .withdrawUser:
+        case .sendAuthorizationCode, .postIdentityToken, .withdrawUser:
             return URLConstants.auth
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .sendAuthorizationCode, .sendIdentityToken:
+        case .sendAuthorizationCode, .postIdentityToken:
             return .post
         case .withdrawUser:
             return .delete
@@ -47,7 +46,7 @@ extension AuthAPI: BaseTargetType {
         switch self {
         case .sendAuthorizationCode(let authorizationCode):
             return .requestParameters(parameters: ["authorizationCode" : authorizationCode], encoding: JSONEncoding.default)
-        case .sendIdentityToken(let tokenDTO):
+        case .postIdentityToken(let tokenDTO):
             return .requestJSONEncodable(tokenDTO)
         case .withdrawUser:
             return .requestPlain
