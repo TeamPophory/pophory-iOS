@@ -43,7 +43,7 @@ class BaseViewController: UIViewController {
     
     /// Attributes (속성) 설정 메서드
     func setupStyle() {
-        view.backgroundColor = .white
+        view.backgroundColor = .pophoryWhite
     }
     
     /// Hierarchy, Constraints (계층 및 제약조건) 설정 메서드
@@ -51,6 +51,9 @@ class BaseViewController: UIViewController {
     
     // MARK: - @objc
     
-    @objc func backButtonOnClick() {}
+    @objc func backButtonOnClick() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func rightButtonOnClick() {}
 }
