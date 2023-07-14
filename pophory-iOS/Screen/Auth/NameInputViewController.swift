@@ -33,25 +33,28 @@ final class NameInputViewController: BaseViewController, Navigatable {
     
     // MARK: - Life Cycle
     
-    override func loadView() {
-        super.loadView()
-        
-        nameInputView = NameInputView(frame: self.view.frame)
-        self.view = nameInputView
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        // TODO: 익스텐션화
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!)
+        self.navigationItem.title = "회원가입"
         setupKeyboardManager()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupConstraints()
+//        setupConstraints()
         handleNextButton()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.addSubview(nameInputView)
+        
+        nameInputView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +77,7 @@ extension NameInputViewController {
     
     private func setupConstraints() {
         let safeArea = self.view.safeAreaLayoutGuide
-            
+        
         self.bottomConstraint = NSLayoutConstraint(item: nameInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.bottomConstraint?.isActive = true
     }
@@ -85,7 +88,7 @@ extension NameInputViewController {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         loadNextViewController(with: name)
     }
-
+    
     
     // MARK: - Private Functions
     
