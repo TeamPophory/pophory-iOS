@@ -147,7 +147,7 @@ extension IDInputViewController: IDInputViewControllerDelegate {
                         alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
                         self?.present(alertController, animated: true, completion: nil)
                     }
-                } else { // 중복이 없는 경우 다음 단계로 진행하십시오.
+                } else {
                     self?.loadNextViewController(with: nickname, fullName: fullName)
                 }
             case .requestErr, .pathErr, .serverErr, .networkFail:

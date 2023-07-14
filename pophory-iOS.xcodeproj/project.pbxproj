@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3703F0F52A6071B50017A381 /* postIdentityTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F0F42A6071B50017A381 /* postIdentityTokenDTO.swift */; };
+		3703F0F72A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */; };
 		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
 		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
@@ -155,6 +156,7 @@
 
 /* Begin PBXFileReference section */
 		3703F0F42A6071B50017A381 /* postIdentityTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postIdentityTokenDTO.swift; sourceTree = "<group>"; };
+		3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIndicatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		377EF7DC2A4F479800E3268D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */,
 				37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */,
 				377EF7E32A4F4C3D00E3268D /* Views */,
 				377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */,
@@ -1072,6 +1075,7 @@
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
+				3703F0F72A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
