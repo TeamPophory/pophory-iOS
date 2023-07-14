@@ -7,7 +7,19 @@
 
 import UIKit
 
+protocol SettingsRootViewDelegate: AnyObject {
+    func handleOnClickNotice()
+    func handleOnClickPrivacyPolicy()
+    func handleOnClickTerms()
+    func handleOnClickLogOut()
+    func handleOnClickDeleteAccount()
+}
+
 class SettingsRootView: UIView {
+    
+    // MARK: - Properties
+    
+    weak var delegate: SettingsRootViewDelegate?
     
     // MARK: - UI Properties
     
@@ -74,17 +86,19 @@ extension SettingsRootView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.row {
         case 0:
-            break
+            delegate?.handleOnClickNotice()
         case 1:
-            break
+            delegate?.handleOnClickPrivacyPolicy()
         case 2:
-            break
+            delegate?.handleOnClickTerms()
         case 3:
-            break
+            delegate?.handleOnClickLogOut()
         case 4:
-            break
+            delegate?.handleOnClickDeleteAccount()
         default:
             break
         }

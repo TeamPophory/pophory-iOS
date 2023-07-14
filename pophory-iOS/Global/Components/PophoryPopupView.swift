@@ -22,10 +22,10 @@ import SnapKit
  let alert = PophoryPopupView(header: "로그아웃하실건가요?", body: "다음에 꼭 다시보길 바라요", hasImageview: false, hasGrayButton: true, hasLeaveServiceButton: false)
  */
 
-protocol PophoryPopupViewDelegate: AnyObject {
-    func blackButtonOnClick()
-    func grayButtonOnClick()
-    func leaveServiceButtonOnClick()
+@objc protocol PophoryPopupViewDelegate: AnyObject {
+    @objc optional func blackButtonOnClick()
+    @objc optional func grayButtonOnClick()
+    @objc optional func leaveServiceButtonOnClick()
 }
 
 final class PophoryPopupView: UIView {
@@ -92,15 +92,15 @@ final class PophoryPopupView: UIView {
     }
     
     @objc private func blackButtonOnClick() {
-        delegate?.blackButtonOnClick()
+        delegate?.blackButtonOnClick?()
     }
     
     @objc private func grayButtonOnClick() {
-        delegate?.grayButtonOnClick()
+        delegate?.grayButtonOnClick?()
     }
     
     @objc private func leaveServiceButtonOnClick() {
-        delegate?.leaveServiceButtonOnClick()
+        delegate?.leaveServiceButtonOnClick?()
     }
     
     required init?(coder: NSCoder) {

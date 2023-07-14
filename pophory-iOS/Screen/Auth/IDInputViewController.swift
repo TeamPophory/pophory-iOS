@@ -75,6 +75,12 @@ final class IDInputViewController: BaseViewController, Navigatable {
         keyboardManager?.keyboardRemoveObserver()
         keyboardManager = nil
     }
+    
+    // MARK: - Action Helpers
+    
+//    override func backButtonOnClick() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
 }
 
 // MARK: - Extension
@@ -107,8 +113,13 @@ extension IDInputViewController {
     
     private func loadNextViewController(with nickName: String, fullName: String) {
         let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil)
+        
         pickAlbumCoverVC.fullName = fullName
         pickAlbumCoverVC.nickname = nickName
+        
+        UserDefaults.standard.setNickname(nickName)
+        UserDefaults.standard.setFullName(fullName)
+        
         navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
     }
     

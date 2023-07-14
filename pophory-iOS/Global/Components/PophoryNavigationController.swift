@@ -7,23 +7,28 @@
 
 import UIKit
 
-class PophoryNavigationController: UINavigationController {
+final class PophoryNavigationController: UINavigationController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewDidLayoutSubviews() {
+        configureNavigationBar()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
 
+    func configureNavigationBar() {
+        let titleFont = UIFont.head2
+        let titleColor = UIColor.pophoryBlack
+        lazy var defaultNaviBarHeight = { self.navigationBar.frame.size.height }()
+        let newNaviBarHeight = defaultNaviBarHeight + 22
+        
+        var newFrame = self.navigationBar.frame
+        newFrame.size.height = newNaviBarHeight
+        navigationBar.frame = newFrame
+        let titleAttributes: [NSAttributedString.Key: Any] = [.font: titleFont, .foregroundColor: titleColor]
+        self.navigationBar.titleTextAttributes = titleAttributes
+
+        navigationItem.title = navigationItem.title ?? "NavTitle"
+    }
 }
