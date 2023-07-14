@@ -29,4 +29,15 @@ extension UIViewController {
     func showNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+    /// 화면밖 터치시 키보드를 내려 주는 메서드
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+            action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

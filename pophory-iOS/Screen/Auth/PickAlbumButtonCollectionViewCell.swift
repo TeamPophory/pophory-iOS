@@ -13,6 +13,12 @@ final class PickAlbumButtonCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PickAlbumButtonCollectionViewCell"
     
+    var isSelectedCell: Bool = false {
+        didSet {
+            checkImageView.isHidden = !isSelectedCell
+        }
+    }
+    
     private let selectView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .pophoryGray300
@@ -20,10 +26,13 @@ final class PickAlbumButtonCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    let checkImageView = UIImageView(image: ImageLiterals.checkBigIconWhite)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupLayout()
+        setupCheckImageView()
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +47,15 @@ extension PickAlbumButtonCollectionViewCell {
         
         selectView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func setupCheckImageView() {
+        checkImageView.isHidden = true
+        addSubview(checkImageView)
+        
+        checkImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
     

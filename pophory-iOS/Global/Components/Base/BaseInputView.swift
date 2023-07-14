@@ -22,12 +22,12 @@ class BaseSignUpView: UIView {
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "만나서 반가워\n너의 이름이 궁금해!"
+        label.text = "시작할 준비가 되었다면\n너의 이름을 알려줘!"
         label.textColor = .black
-        label.font = .h1
+        label.font = .head1Medium
         label.numberOfLines = 0
         label.setTextWithLineHeight(lineHeight: 34)
-        label.asColor(targetString: "너의 이름", color: .pophoryPurple)
+        label.applyColorAndBoldText(targetString: "너의 이름", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
         return label
     }()
     
@@ -63,6 +63,8 @@ class BaseSignUpView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateCharCountLabel(charCount: Int) {}
 }
 
 // MARK: - Extensions

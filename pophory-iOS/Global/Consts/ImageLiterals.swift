@@ -23,7 +23,7 @@ enum ImageLiterals {
     static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
     static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
     static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
-    static var checkBigIconWhite: UIImage { .load(name: "ckeckBigIconWhite") }
+    static var checkBigIconWhite: UIImage { .load(name: "checkBigIconWhite") }
     
     // MARK: - icon
     
