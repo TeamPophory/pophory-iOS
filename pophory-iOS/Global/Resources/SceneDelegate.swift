@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let rootVC = NameInputViewController()
             
-            let navigationController = UINavigationController(rootViewController: rootVC)
+            let navigationController = PophoryNavigationController(rootViewController: rootVC)
             
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
