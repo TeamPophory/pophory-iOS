@@ -141,14 +141,6 @@ extension NameInputView {
     private func setupDelegate() {
         inputTextField.delegate = self
     }
-    
-    private func isContainKoreanOnly(_ text: String) -> Bool {
-        let koreanSet = CharacterSet(charactersIn: "ㄱ"..."ㅎ").union(.init(charactersIn: "ㅏ"..."ㅣ")).union(.init(charactersIn: "가"..."힣"))
-        let stringSet = CharacterSet(charactersIn: text)
-
-        // 한국어만을 포함하고 있는지 확인
-        return koreanSet.isSuperset(of: stringSet)
-    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -159,7 +151,7 @@ extension NameInputView: UITextFieldDelegate {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor
         } else {
-            if !isContainKoreanOnly(textField.text!) {
+            if !textField.text!.isContainKoreanOnly() {
                 textField.layer.borderColor = UIColor.pophoryRed.cgColor
             }
         }
@@ -182,7 +174,7 @@ extension NameInputView: UITextFieldDelegate {
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                if self.isContainKoreanOnly(newText) {
+                if newText.isContainKoreanOnly() {
                     textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                     self.warningLabel.isHidden = true
                 } else {
@@ -191,7 +183,6 @@ extension NameInputView: UITextFieldDelegate {
                     self.warningLabel.isHidden = false
                 }
             }
-                
         }
         
         return true
