@@ -11,7 +11,7 @@ protocol NameInputViewControllerDelegate: AnyObject {
     func didEnterName(name: String)
 }
 
-final class NameInputViewController: BaseViewController, Navigatable {
+final class NameInputViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -42,7 +42,6 @@ final class NameInputViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        setupNavigationBarTitle("회원가입")
         setupKeyboardManager()
     }
     
@@ -106,4 +105,8 @@ extension NameInputViewController {
     private func handleNextButton() {
         nameInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
+}
+
+extension NameInputViewController: Navigatable {
+    var navigationBarTitleText: String? { "회원가입" }
 }

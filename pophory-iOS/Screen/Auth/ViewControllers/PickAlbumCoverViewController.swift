@@ -13,7 +13,7 @@ protocol PickAlbumCoverViewControllerDelegate: AnyObject {
 
 typealias SignUpDelegates = NameInputViewControllerDelegate & IDInputViewControllerDelegate
 
-final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignUpDelegates, PickAlbumCoverViewControllerDelegate {
+final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, PickAlbumCoverViewControllerDelegate {
     
     // MARK: - Properties
     
@@ -66,7 +66,6 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        setupNavigationBarTitle("회원가입")
     }
     
     private func addButtonTarget() {
@@ -93,6 +92,11 @@ extension PickAlbumCoverViewController {
         self.fullName = fullName
     }
 }
+
+extension PickAlbumCoverViewController: Navigatable {
+    var navigationBarTitleText: String? { "회원가입" }
+}
+
 
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     

@@ -11,7 +11,7 @@ protocol IDInputViewControllerDelegate: AnyObject {
     func didEnterNickname(nickname: String, fullName: String)
 }
 
-final class IDInputViewController: BaseViewController, Navigatable {
+final class IDInputViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -53,7 +53,6 @@ final class IDInputViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        setupNavigationBarTitle("회원가입")
         setupKeyboardManager()
     }
     
@@ -121,6 +120,10 @@ extension IDInputViewController {
     private func handleNextButton() {
         iDInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
+}
+
+extension IDInputViewController: Navigatable {
+    var navigationBarTitleText: String? { "회원가입" }
 }
 
 // MARK: - Network
