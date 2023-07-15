@@ -340,16 +340,56 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		377EF7DC2A4F479800E3268D /* Auth */ = {
+		372CB1FB2A62CDBD00C56FE0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */,
 				37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */,
-				377EF7E32A4F4C3D00E3268D /* Views */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		372CB1FC2A62CDCD00C56FE0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */,
 				377EF7DF2A4F489B00E3268D /* IDInputViewController.swift */,
 				377EF7E12A4F48BE00E3268D /* PickAlbumCoverViewController.swift */,
 				3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		372CB1FD2A62CDF100C56FE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				372CB1FF2A62CE1000C56FE0 /* Cell */,
+				372F7F352A540D270032B7BC /* OnboardingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		372CB1FE2A62CDF800C56FE0 /* ViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */,
+			);
+			path = ViewContoller;
+			sourceTree = "<group>";
+		};
+		372CB1FF2A62CE1000C56FE0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		377EF7DC2A4F479800E3268D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				377EF7E32A4F4C3D00E3268D /* Views */,
+				372CB1FC2A62CDCD00C56FE0 /* ViewControllers */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -357,6 +397,7 @@
 		377EF7E32A4F4C3D00E3268D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				372CB1FB2A62CDBD00C56FE0 /* Cells */,
 				377EF7E62A4F4C8700E3268D /* NameInputView.swift */,
 				377EF7E82A4F4CA500E3268D /* IDInputView.swift */,
 				377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */,
@@ -368,9 +409,8 @@
 		37DCA6872A4AB3C900FF8F90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */,
-				37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */,
-				372F7F352A540D270032B7BC /* OnboardingView.swift */,
+				372CB1FD2A62CDF100C56FE0 /* View */,
+				372CB1FE2A62CDF800C56FE0 /* ViewContoller */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
