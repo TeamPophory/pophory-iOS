@@ -265,7 +265,6 @@
 		B1631F272A1759EB0050974F /* pophoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pophoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1631F2B2A1759EB0050974F /* pophoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pophoryUITests.swift; sourceTree = "<group>"; };
 		B1631F2D2A1759EB0050974F /* pophoryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pophoryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B1631F442A175BDE0050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
 		B1631F472A175C780050974F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B1631F492A175D5C0050974F /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		B1631F4B2A175DC80050974F /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -757,7 +756,6 @@
 				37DCA6882A4AB3E200FF8F90 /* Splash */,
 				377EF7DC2A4F479800E3268D /* Auth */,
 				37DCA6872A4AB3C900FF8F90 /* Onboarding */,
-				B1631F442A175BDE0050974F /* .keep */,
 			);
 			path = Screen;
 			sourceTree = "<group>";

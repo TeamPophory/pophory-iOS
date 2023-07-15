@@ -50,6 +50,13 @@ public class PophoryButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
+            setTitleColor(buttonTitleColor, for: .disabled) // disabled 되었을 때도 default disabled title 색이 아닌 우리가 정한 색으로 바뀌도록
+        }
+    }
 }
 
 // MARK: - Extension
@@ -97,7 +104,5 @@ extension PophoryButton {
         setTitleColor(.lightGray, for: .disabled)
         backgroundColor = buttonBackgroundColor
         titleLabel?.font = buttonFont
-        
-        addTarget(self, action: #selector(buttonStateChanged), for: .allEvents)
     }
 }
