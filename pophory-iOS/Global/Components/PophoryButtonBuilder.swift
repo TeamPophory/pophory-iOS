@@ -121,8 +121,8 @@ public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
 public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
         button.titleLabel?.font = .t1
-        button.backgroundColor = .pophoryGray400
-        button.setTitleColor(.pophoryWhite, for: .normal)
+        button.backgroundColor = .pophoryGray200
+        button.setTitleColor(.pophoryGray500, for: .normal)
     }
 }
 
