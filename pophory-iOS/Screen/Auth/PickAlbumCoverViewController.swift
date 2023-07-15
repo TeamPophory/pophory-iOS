@@ -68,6 +68,7 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        setupNavigationBarTitle("회원가입")
     }
     
     private func addButtonTarget() {

@@ -55,6 +55,7 @@ final class IDInputViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        setupNavigationBarTitle("회원가입")
         setupKeyboardManager()
     }
     
@@ -76,12 +77,6 @@ final class IDInputViewController: BaseViewController, Navigatable {
         keyboardManager?.keyboardRemoveObserver()
         keyboardManager = nil
     }
-    
-    // MARK: - Action Helpers
-    
-//    override func backButtonOnClick() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
 }
 
 // MARK: - Extension

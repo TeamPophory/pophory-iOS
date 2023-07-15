@@ -35,18 +35,32 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        super.loadView()
+//    override func loadView() {
+//        super.loadView()
+//
+//        onboardingView = OnboardingView(frame: self.view.frame)
+//        self.view = onboardingView
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        onboardingView = OnboardingView(frame: self.view.frame)
-        self.view = onboardingView
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupAppleSignInButton()
         fetchAccessToken()
-        onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.addSubview(onboardingView)
+        
+        onboardingView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
     // MARK: - Private Methods
