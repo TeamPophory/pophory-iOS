@@ -15,6 +15,11 @@ enum AlbumAPI {
 }
 
 extension AlbumAPI: BaseTargetType {
+    
+    var authToken: String? {
+        return PophoryTokenManager.shared.fetchAccessToken()
+    }
+    
     var path: String {
         switch self {
         case .patchAlbumList:

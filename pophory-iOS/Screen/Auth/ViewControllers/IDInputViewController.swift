@@ -20,8 +20,6 @@ final class IDInputViewController: BaseViewController, Navigatable {
     
     // MARK: - UI Properties
     
-    var navigationBarTitleText: String? { return "회원가입" }
-    
     private var bottomConstraint: NSLayoutConstraint?
     
     private var keyboardManager: KeyboardManager?
@@ -37,6 +35,7 @@ final class IDInputViewController: BaseViewController, Navigatable {
     init(fullName: String) {
         self.fullName = fullName
         super.init(nibName: nil, bundle: nil)
+        self.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -54,6 +53,7 @@ final class IDInputViewController: BaseViewController, Navigatable {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        setupNavigationBarTitle("회원가입")
         setupKeyboardManager()
     }
     
@@ -75,12 +75,6 @@ final class IDInputViewController: BaseViewController, Navigatable {
         keyboardManager?.keyboardRemoveObserver()
         keyboardManager = nil
     }
-    
-    // MARK: - Action Helpers
-    
-//    override func backButtonOnClick() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
 }
 
 // MARK: - Extension
@@ -101,6 +95,7 @@ extension IDInputViewController {
     @objc func nextButtonOnClick() {
         guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
+        didEnterNickname(nickname: nickName, fullName: fullName)
         loadNextViewController(with: nickName, fullName: fullName)
     }
     
@@ -127,3 +122,33 @@ extension IDInputViewController {
         iDInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
 }
+
+// MARK: - Network
+
+extension IDInputViewController: IDInputViewControllerDelegate {
+    
+    func didEnterNickname(nickname: String, fullName: String) {
+        NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { [weak self] result in
+            
+            switch result {
+            case .success(let isDuplicated):
+                if isDuplicated {
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "알림", message: "닉네임이 중복되었습니다.", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                        self?.present(alertController, animated: true, completion: nil)
+                    }
+                } else {
+                    self?.loadNextViewController(with: nickname, fullName: fullName)
+                }
+            case .requestErr, .pathErr, .serverErr, .networkFail:
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "알림", message: "오류가 발생했습니다. 다시 시도하십시오.", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+}
+

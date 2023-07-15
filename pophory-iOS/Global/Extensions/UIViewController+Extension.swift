@@ -14,12 +14,15 @@ extension UIViewController {
             let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height ?? 0
             return navigationBarHeight + statusBarHeight
         }
-
     
     func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator) {
         if let navigationController = navigationController {
             navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController)
         }
+    }
+    
+    func setupNavigationBarTitle(_ title: String) {
+        self.navigationItem.title = title
     }
     
     func hideNavigationBar() {

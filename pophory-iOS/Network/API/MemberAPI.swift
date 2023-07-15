@@ -13,12 +13,18 @@ enum MemberAPI {
     case patchMyPage
     case signUp(body: PatchSignUpRequestDTO)
     case patchUserInfo
+    case checkDuplicateNickname(nickname: String)
 }
 
 extension MemberAPI: BaseTargetType {
+    
+    var authToken: String? {
+        return PophoryTokenManager.shared.fetchAccessToken()
+    }
+    
     var path: String {
         switch self {
-        case .patchMyPage, .signUp:
+        case .patchMyPage, .signUp, .checkDuplicateNickname:
             return URLConstants.memeber
         case .patchUserInfo:
             return URLConstants.memeber + "/me"
@@ -31,6 +37,8 @@ extension MemberAPI: BaseTargetType {
             return .get
         case .signUp:
             return .patch
+        case .checkDuplicateNickname:
+            return .post
         }
     }
     
@@ -40,6 +48,9 @@ extension MemberAPI: BaseTargetType {
             return .requestPlain
         case .signUp(let body):
             return .requestJSONEncodable(body)
+        case .checkDuplicateNickname(let nickname):
+            let parameters: [String: Any] = ["nickname": nickname]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 }

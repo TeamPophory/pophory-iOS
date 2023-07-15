@@ -12,6 +12,12 @@ public class PophoryButton: UIButton {
     
     // MARK: - Properties
     
+    public override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
+        }
+    }
+    
     private var styler: PophoryButtonStyler?
     
     private var buttonStyle: ButtonStyle
@@ -24,7 +30,8 @@ public class PophoryButton: UIButton {
     
     // MARK: - Life Cycle
     
-    public init(style: ButtonStyle, text: ButtonText, styler: PophoryButtonStyler? = nil) {
+    public init(style: ButtonStyle, text: ButtonText, styler: PophoryButtonStyler? = nil, initiallyEnabled: Bool = true) {
+        self.styler = styler
         self.buttonStyle = style
         self.buttonTitle = text.rawValue
         self.buttonSize = style.size
@@ -33,18 +40,20 @@ public class PophoryButton: UIButton {
         
         switch style {
         case .primaryBlack, .primaryWhite:
-            self.buttonFont = .t1
+            self.buttonFont = .text1
             tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
-            self.buttonFont = .t1
             tempCornerRadius = 23.5
+            self.buttonFont = .text1
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
         self.setupPophoryButton()
         self.layer.cornerRadius = tempCornerRadius
+        isEnabled = initiallyEnabled
+        backgroundColor = initiallyEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
         
-        styler?.applyStyle(to: self)
+        applyStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,6 +65,9 @@ public class PophoryButton: UIButton {
             backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
             setTitleColor(buttonTitleColor, for: .disabled) // disabled 되었을 때도 default disabled title 색이 아닌 우리가 정한 색으로 바뀌도록
         }
+
+    public func applyStyle() {
+        styler?.applyStyle(to: self)
     }
 }
 

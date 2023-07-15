@@ -55,4 +55,26 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
             }
         }
     }
+    
+    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
+        provider.request(.checkDuplicateNickname(nickname: nickname)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let responseObject = try JSONDecoder().decode([String: Bool].self, from: response.data)
+                    if let isDuplicated = responseObject["isDuplicated"] {
+                        completion(.success(isDuplicated))
+                    } else {
+                        completion(.success(false))
+                    }
+                } catch {
+                    completion(.pathErr)
+                }
+                
+            case .failure(let err):
+                print(err)
+                completion(.networkFail)
+            }
+        }
+    }
 }

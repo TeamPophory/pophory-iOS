@@ -53,16 +53,20 @@ final class PickAlbumCoverView: BaseSignUpView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
+        
+        shapeAlbumCover()
     }
 }
 
 //MARK: - Extensions
 
 extension PickAlbumCoverView {
-    
     private func setupRegister() {
         selectButtonCollectionView.register(PickAlbumButtonCollectionViewCell.self, forCellWithReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier)
+    }
+    
+    private func shapeAlbumCover() {
+        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
     }
     
     private func setupLayout() {
