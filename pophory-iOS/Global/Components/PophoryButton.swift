@@ -33,10 +33,10 @@ public class PophoryButton: UIButton {
         
         switch style {
         case .primaryBlack, .primaryWhite:
-            self.buttonFont = .t1
+            self.buttonFont = .text1
             tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
-            self.buttonFont = .t1
+            self.buttonFont = .text1
             tempCornerRadius = 25
         }
         
