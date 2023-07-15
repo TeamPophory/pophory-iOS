@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum AuthAPI {
-    case sendAuthorizationCode(authorizationCode: String)
+    case postAuthorizationCode(authorizationCode: String)
     case postIdentityToken(identityToken: String, socialType: String)
     case withdrawUser
 }
@@ -21,21 +21,21 @@ extension AuthAPI: BaseTargetType {
         switch self {
         case .postIdentityToken(let identityToken, _):
             return identityToken
-        case .sendAuthorizationCode, .withdrawUser:
+        case .postAuthorizationCode, .withdrawUser:
             return PophoryTokenManager.shared.fetchAccessToken()
         }
     }
     
     var path: String {
         switch self {
-        case .sendAuthorizationCode, .postIdentityToken, .withdrawUser:
+        case .postAuthorizationCode, .postIdentityToken, .withdrawUser:
             return URLConstants.auth
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .sendAuthorizationCode, .postIdentityToken:
+        case .postAuthorizationCode, .postIdentityToken:
             return .post
         case .withdrawUser:
             return .delete
@@ -44,7 +44,7 @@ extension AuthAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .sendAuthorizationCode(let authorizationCode):
+        case .postAuthorizationCode(let authorizationCode):
             return .requestParameters(parameters: ["authorizationCode": authorizationCode], encoding: JSONEncoding.default)
         case .postIdentityToken(_, let socialType):
             return .requestParameters(parameters: ["socialType": socialType], encoding: JSONEncoding.default)

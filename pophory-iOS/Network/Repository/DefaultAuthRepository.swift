@@ -13,8 +13,8 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
     
     let provider = MoyaProvider<AuthAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func sendAppleAuthorizationCode(code: String, completion: @escaping (NetworkResult<Any>) -> Void) {
-        provider.request(.sendAuthorizationCode(authorizationCode: code)) { result in
+    func submitAppleAuthorizationCode(code: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+        provider.request(.postAuthorizationCode(authorizationCode: code)) { result in
             switch result {
             case .success(let response):
                 if response.statusCode < 300 {
@@ -29,7 +29,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
         }
     }
     
-    func postIdentityToken(tokenDTO: PostIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func submitIdentityToken(tokenDTO: PostIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
         provider.request(.postIdentityToken(identityToken: tokenDTO.identityToken , socialType: tokenDTO.socialType)) { result in
             switch result {
             case .success(let response):
