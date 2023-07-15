@@ -90,12 +90,6 @@ extension PophoryButton {
         }
     }
     
-    // MARK: - @objc
-    
-    @objc private func buttonStateChanged() {
-        backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
-    }
-    
     // MARK: - Private Methods
     
     private func setupPophoryButton() {
