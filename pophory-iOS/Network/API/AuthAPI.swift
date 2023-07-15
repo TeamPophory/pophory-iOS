@@ -21,7 +21,7 @@ extension AuthAPI: BaseTargetType {
         case .postIdentityToken(let identityToken, _):
             return identityToken
         case .sendAuthorizationCode, .withdrawUser:
-            return getAccessTokenFromUserDefaults()
+            return PophoryTokenManager.shared.fetchAccessToken()
         }
     }
     

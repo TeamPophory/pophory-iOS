@@ -13,5 +13,4 @@ struct URLConstants {
     static let memeber = "/api/v1/member"
     static let album = "/api/v1/albums"
     static let auth = "/api/v1/auth"
-    static let userTokenKey = "socialLoginToken"
 }
