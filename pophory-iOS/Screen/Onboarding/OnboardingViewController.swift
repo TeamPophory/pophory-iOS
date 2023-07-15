@@ -9,7 +9,7 @@ import AuthenticationServices
 
 import UIKit
 
-final class OnboardingViewController: BaseViewController, AppleLoginManagerDelegate {
+final class OnboardingViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -35,13 +35,6 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func loadView() {
-//        super.loadView()
-//
-//        onboardingView = OnboardingView(frame: self.view.frame)
-//        self.view = onboardingView
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,6 +44,7 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkLoginHistoryAndNavigate()
         setupAppleSignInButton()
         fetchAccessToken()
     }
@@ -63,16 +57,54 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         }
     }
     
+}
+
+// MARK: - Extensions
+
+extension OnboardingViewController {
+    
+    // MARK: - @objc
+    
+    @objc private func handleAppleLoginButtonClicked() {
+        appleLoginManager.setAppleLoginPresentationAnchorView(self)
+        appleLoginManager.handleAppleLoginButtonClicked()
+    }
+    
     // MARK: - Private Methods
     
     private func setupAppleSignInButton() {
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
     
-    @objc private func handleAppleLoginButtonClicked() {
-        appleLoginManager.setAppleLoginPresentationAnchorView(self)
-        appleLoginManager.handleAppleLoginButtonClicked()
+    private func hasLoginHistory() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
+    
+    private func goToSignInViewController() {
+        let nameInputVC = NameInputViewController()
+        navigationController?.pushViewController(nameInputVC, animated: true)
+    }
+    
+    private func navigateToTabBarController() {
+        let tabBarController = TabBarController()
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let sceneDelegate = windowScene.delegate as? SceneDelegate,
+           let window = sceneDelegate.window {
+            window.rootViewController = tabBarController
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    private func checkLoginHistoryAndNavigate() {
+        if hasLoginHistory() {
+            navigateToTabBarController()
+        }
+    }
+}
+
+// MARK: - Network
+
+extension OnboardingViewController: AppleLoginManagerDelegate {
     
     func appleLoginManager(didCompleteWithAuthResult result: Result<ASAuthorization, Error>) {
         switch result {
@@ -92,7 +124,7 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             print("Failed Apple login with error: \(error.localizedDescription)")
         }
     }
-    
+
     private func submitIdentityTokenToServer(identityToken: String) {
         let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
         NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
@@ -103,6 +135,9 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
                     
                     PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
                                    PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
+                    
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    
                 } else {
                     print("Unexpected response")
                 }
@@ -116,18 +151,9 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         }
     }
     
-    private func saveLoginStatus() {
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-    }
-
     private func fetchAccessToken() {
         if let accessToken = UserDefaults.standard.string(forKey: userDefaultsAccessTokenKey) {
             print("Access Token: \(accessToken)")
         }
-    }
-    
-    private func goToSignInViewController() {
-        let nameInputVC = NameInputViewController()
-        navigationController?.pushViewController(nameInputVC, animated: true)
     }
 }
