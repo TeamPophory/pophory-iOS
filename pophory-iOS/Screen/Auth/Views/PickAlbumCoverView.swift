@@ -45,6 +45,7 @@ final class PickAlbumCoverView: BaseSignUpView {
         setupRegister()
         setupLayoutForAlbumCoverView(albumCoverView, topOffset: 51)
         setupLayout()
+        setNextButtonEnabled(true)
     }
     
     required init?(coder: NSCoder) {
