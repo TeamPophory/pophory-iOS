@@ -59,4 +59,12 @@ extension MypageViewController: MyPageRootViewDelegate {
     func handleOnclickSetting() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
+    
+    func handleOnClickShare() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+    
+    func handleOnClickStory() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
 }

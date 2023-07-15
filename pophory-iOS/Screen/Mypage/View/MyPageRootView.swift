@@ -12,6 +12,8 @@ import SnapKit
 
 protocol MyPageRootViewDelegate: NSObject {
     func handleOnclickSetting()
+    func handleOnClickShare()
+    func handleOnClickStory()
 }
 
 class MyPageRootView: UIView {
@@ -37,6 +39,9 @@ class MyPageRootView: UIView {
     private lazy var profileStackView: UIStackView = { createProfileStackView() }()
     private lazy var profileNameLabel: UILabel = { createProfileNameLabel() }()
     private lazy var photoCountLabel: UILabel = { createPhotoCountLabel() }()
+    
+    private lazy var shareBannerView: UIView = { createShareBannerView() }()
+    private lazy var storyBannerView: UIView = { createStoryBannerView() }()
     
     private lazy var adView: UIView = { UIView() }()
     private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
@@ -69,6 +74,7 @@ extension MyPageRootView {
         setupHeaderView()
         setupScrollView()
         setupProfileView()
+        setupBannerView()
         setupAdView()
         setupFeedView()
     }
@@ -147,12 +153,31 @@ extension MyPageRootView {
         }
     }
     
+    private func setupBannerView() {
+        contentView.addSubviews([
+            shareBannerView,
+            storyBannerView
+        ])
+        
+        shareBannerView.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(138)
+        }
+        
+        storyBannerView.snp.makeConstraints { make in
+            make.top.equalTo(shareBannerView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(shareBannerView)
+            make.height.equalTo(90)
+        }
+    }
+    
     private func setupAdView() {
         contentView.addSubview(adView)
         adView.addSubview(adEmptyView)
         
         adView.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.bottom).offset(2)
+            make.top.equalTo(storyBannerView.snp.bottom).offset(22)
             make.leading.trailing.equalToSuperview().inset(28)
             make.height.equalTo(100)
         }
@@ -289,6 +314,22 @@ extension MyPageRootView {
         return label
     }
     
+    private func createShareBannerView() -> UIView {
+        let view = MyPageBannerView(frame: .zero, title: "네컷사진 공유하기", description: "포릿이 너의 네컷사진을 전달해줄게!", image: ImageLiterals.myPageShareBanner)
+        
+        view.viewButton.addTarget(self, action: #selector(onClickShare), for: .touchUpInside)
+        
+        return view
+    }
+    
+    private func createStoryBannerView() -> UIView {
+        let view = MyPageBannerView(frame: .zero, title: "포릿 이야기 들으러 가기", description: "포릿이가 들려주는 '포포리' 이야기, 들어볼래?")
+        
+        view.viewButton.addTarget(self, action: #selector(onClickStory), for: .touchUpInside)
+        
+        return view
+    }
+    
     private func createFeedTitleLabel() -> UILabel {
         let label = UILabel()
         
@@ -345,6 +386,14 @@ extension MyPageRootView {
     // MARK: - Logics
     
     @objc private func onClickSetting() {
+        delegate?.handleOnclickSetting()
+    }
+    
+    @objc private func onClickShare() {
+        delegate?.handleOnclickSetting()
+    }
+    
+    @objc private func onClickStory() {
         delegate?.handleOnclickSetting()
     }
     
