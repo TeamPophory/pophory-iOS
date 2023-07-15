@@ -50,7 +50,7 @@ final class OnboardingView: UIView {
         button.makeRounded(radius: 30)
         return button
     }()
-
+    
     
     let onboardingImages: [UIImage] = [
         ImageLiterals.OnboardingImage1,
@@ -73,10 +73,10 @@ final class OnboardingView: UIView {
         let screenWidth = UIScreen.main.bounds.width
         let baseScreenWidth: CGFloat = 375
         let baseMargin: CGFloat = 20
-
+        
         return (screenWidth / baseScreenWidth) * baseMargin
     }
-
+    
 }
 
 
@@ -89,32 +89,36 @@ extension OnboardingView {
     }
     
     private func setupLayout() {
-        addSubviews([pageControl, contentCollectionView, signupButton, realAppleSignInButton])
-        
-        contentCollectionView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(74)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(480)
-        }
-        
-        pageControl.snp.makeConstraints {
-            $0.top.equalTo(contentCollectionView.snp.bottom).offset(25)
-            $0.centerX.equalToSuperview()
-        }
-        
-        signupButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(contentCollectionView.snp.bottom).offset(85)
-            $0.width.equalTo(realAppleSignInButton)
-        }
+        addSubviews([realAppleSignInButton, signupButton, pageControl, contentCollectionView])
         
         realAppleSignInButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
-            $0.height.equalTo(60)
+            $0.height.equalTo(convertByHeightRatio(60))
             $0.bottom.equalToSuperview().inset(43)
         }
+        
+        signupButton.snp.makeConstraints {
+            $0.bottom.equalTo(realAppleSignInButton.snp.top).offset(-14)
+            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalTo(realAppleSignInButton)
+            $0.height.equalTo(convertByHeightRatio(21))
+        }
+        
+        pageControl.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(convertByWidthRatio(45))
+            $0.height.equalTo(convertByWidthRatio(9))
+            $0.bottom.equalTo(signupButton.snp.top).offset(-42)
+        }
+
+        contentCollectionView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(pageControl.snp.top).offset(convertByHeightRatio(-25))
+            $0.height.equalTo(convertByHeightRatio(480))
+        }
     }
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
