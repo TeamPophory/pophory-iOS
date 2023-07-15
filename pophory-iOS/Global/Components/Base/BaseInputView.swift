@@ -35,8 +35,6 @@ class BaseSignUpView: UIView {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.next)
-        //테스트용
-//        return buttonBuilder.build(initiallyEnabled: false)
         return buttonBuilder.build()
     }()
     
