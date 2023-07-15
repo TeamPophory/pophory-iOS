@@ -45,7 +45,13 @@ extension SettingsViewController {
         let appleLoginManager = AppleLoginManager()
         let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
         let navVC = UINavigationController(rootViewController: rootVC)
-        navigationController?.pushViewController(navVC, animated: false)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let sceneDelegate = windowScene.delegate as? SceneDelegate,
+           let window = sceneDelegate.window {
+            window.rootViewController = navVC
+            window.makeKeyAndVisible()
+        }
     }
     
     private func logOut() {
