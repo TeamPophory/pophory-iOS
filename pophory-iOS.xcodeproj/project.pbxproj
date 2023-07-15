@@ -144,6 +144,8 @@
 		B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */; };
 		B1F310EB2A629B1600BF989B /* PopupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EA2A629B1600BF989B /* PopupType.swift */; };
 		B1F310ED2A62D4E800BF989B /* MyPageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */; };
+		B1F310F02A62E66100BF989B /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */; };
+		B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +303,8 @@
 		B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryWebViewController.swift; sourceTree = "<group>"; };
 		B1F310EA2A629B1600BF989B /* PopupType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupType.swift; sourceTree = "<group>"; };
 		B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageBannerView.swift; sourceTree = "<group>"; };
+		B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
+		B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,6 +726,7 @@
 		B138A3B12A55C1A9000EE81E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B1F310F12A62E6AD00BF989B /* SharePhoto */,
 				B1F310EE2A62E60C00BF989B /* MyPage */,
 			);
 			path = View;
@@ -731,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */,
+				B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -954,6 +960,14 @@
 				B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B1F310F12A62E6AD00BF989B /* SharePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */,
+			);
+			path = SharePhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1211,6 +1225,7 @@
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
+				B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
@@ -1224,6 +1239,7 @@
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,
 				91F3A7972A52D04200C06D1B /* BaseRepository.swift in Sources */,
+				B1F310F02A62E66100BF989B /* SharePhotoViewController.swift in Sources */,
 				91F3A7A82A52D6C100C06D1B /* DefaultPhotoRepository.swift in Sources */,
 				372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */,
 				6BC63CDC2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift in Sources */,

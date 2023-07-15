@@ -41,16 +41,7 @@ extension MypageViewController {
     private func requestData() {
         networkManager.requestUserInfo() { [weak self] profileImageUrl in
             self?.rootView.updateProfileImage(profileImageUrl)
-        }
-        
-        networkManager.requestAlbumData() { [weak self] albumList, photoCount in
-            self?.rootView.updatePhotoCount(photoCount)
-            
-            self?.networkManager.requestPhotoData(albumList: albumList) { photoUrlList in
-                DispatchQueue.main.async {
-                    self?.rootView.updatePhotoData(photoUrlList)
-                }
-            }
+            // TODO: 내 사진 개수 업데이트 (그동안 찍은 사진 n장)
         }
     }
 }
@@ -61,10 +52,12 @@ extension MypageViewController: MyPageRootViewDelegate {
     }
     
     func handleOnClickShare() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        navigationController?.pushViewController(SharePhotoViewController(), animated: true)
     }
     
     func handleOnClickStory() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        // TODO: 포릿 이야기 url로 변경
+        let vc = PophoryWebViewController(urlString: "https://www.github.com/dannaward", title: "포릿 이야기")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
