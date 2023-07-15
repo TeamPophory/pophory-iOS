@@ -31,14 +31,35 @@
 import UIKit
 
 public enum ButtonText: String {
+    /// "다음으로 넘어가기"
     case next = "다음으로 넘어가기"
+    
+    /// "완료하기"
     case complete = "완료하기"
+    
+    /// "포포리 시작하기"
     case startPophory = "포포리 시작하기"
+    
+    /// "사진 추가하기"
     case addPhoto = "사진 추가하기"
+    
+    /// "삭제하기"
     case delete = "삭제하기"
+    
+    /// "Apple ID로 시작하기"
     case startWithAppleID = "Apple ID로 시작하기"
+    
+    /// "확인"
+    case confirm = "확인"
+    
+    /// "돌아가기"
     case back = "돌아가기"
+    
+    /// "로그아웃하기"
     case logout = "로그아웃하기"
+    
+    /// "아쉽지만, 탈퇴하기"
+    case deleteAccount = "아쉽지만, 탈퇴하기"
 }
 
 public enum ButtonStyle {
@@ -79,6 +100,14 @@ public struct PrimaryBlackButtonStyler: PophoryButtonStyler {
         button.titleLabel?.font = .head3
         button.backgroundColor = .black
     }
+    
+    public func handleStateChange(to button: PophoryButton) {
+        if button.isEnabled {
+            button.setTitleColor(.pophoryPurple, for: .normal)
+        } else {
+            button.setTitleColor(.pophoryGray400, for: .normal)
+        }
+    }
 }
 
 public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
@@ -97,25 +126,39 @@ public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
 
 public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = .text1
-        button.backgroundColor = .pophoryGray400
-        button.setTitleColor(.pophoryWhite, for: .normal)
+        button.titleLabel?.font = .t1
+        button.backgroundColor = .pophoryGray200
+        button.setTitleColor(.pophoryGray500, for: .normal)
+    }
+    
+    public func handleStateChange(to button: PophoryButton) {
+        if button.isEnabled {
+            button.setTitleColor(.pophoryWhite, for: .normal)
+        } else {
+            button.setTitleColor(.pophoryGray400, for: .normal)
+        }
     }
 }
 
+public func applyStyle(to button: PophoryButton) {
+    button.titleLabel?.font = .t1
+    button.backgroundColor = .pophoryGray400
+    button.setTitleColor(.pophoryWhite, for: .normal)
+}
+
 public class PophoryButtonBuilder {
-    private var style: ButtonStyle = .primaryBlack
-    private var title: ButtonText = .next
-    private var size: CGSize = .zero
+    private var buttonStyle: ButtonStyle?
+    private var buttonTitle: ButtonText?
+    private var size: CGSize?
     
     public func setStyle(_ style: ButtonStyle) -> PophoryButtonBuilder {
-        self.style = style
+        self.buttonStyle = style
         self.size = style.size
         return self
     }
     
     public func setTitle(_ title: ButtonText) -> PophoryButtonBuilder {
-        self.title = title
+        self.buttonTitle = title
         return self
     }
     
@@ -124,9 +167,13 @@ public class PophoryButtonBuilder {
         return self
     }
     
-    public func build() -> PophoryButton {
-        let styler = style.styler()
-        let button = PophoryButton(style: self.style, text: self.title, styler: styler)
+    public func build(initiallyEnabled: Bool = true) -> PophoryButton {
+        let buttonStyler = buttonStyle?.styler() ?? PrimaryBlackButtonStyler()
+        let button = PophoryButton(style: buttonStyle ?? ButtonStyle.primaryBlack,
+                                   text: buttonTitle ?? ButtonText.next,
+                                   styler: buttonStyler,
+                                   initiallyEnabled: initiallyEnabled)
+        button.applyStyle()
         return button
     }
 }

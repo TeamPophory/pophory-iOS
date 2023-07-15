@@ -14,12 +14,15 @@ extension UIViewController {
             let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height ?? 0
             return navigationBarHeight + statusBarHeight
         }
-
     
     func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator) {
         if let navigationController = navigationController {
             navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController)
         }
+    }
+    
+    func setupNavigationBarTitle(_ title: String) {
+        self.navigationItem.title = title
     }
     
     func hideNavigationBar() {
@@ -39,5 +42,27 @@ extension UIViewController {
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func showPopup(popupType: PopupType = .simple,
+                   image: UIImage? = nil,
+                   primaryText: String? = nil,
+                   secondaryText: String,
+                   firstButtonTitle: ButtonText = .confirm,
+                   secondButtonTitle: ButtonText? = nil,
+                   firstButtonHandler: (() -> Void)? = nil,
+                   secondButtonHandler: (() -> Void)? = nil) {
+        
+        let popupVC = PophoryPopupViewController(popupType: popupType,
+                                                 image: image,
+                                                 primaryText: primaryText,
+                                                 secondaryText: secondaryText,
+                                                 firstButtonTitle: firstButtonTitle,
+                                                 secondButtonTitle: secondButtonTitle,
+                                                 firstButtonHandler: firstButtonHandler,
+                                                 secondButtonHandler: secondButtonHandler)
+        
+        popupVC.modalPresentationStyle = .overFullScreen
+        present(popupVC, animated: false)
     }
 }

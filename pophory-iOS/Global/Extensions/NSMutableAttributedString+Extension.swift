@@ -10,11 +10,11 @@ import UIKit
 extension NSMutableAttributedString {
     
     func regular(_ value: String,
-                 font: UIFont = UIFont.t1,
+                 font: UIFont = UIFont.title1,
                  color: UIColor? = nil) -> NSMutableAttributedString {
         
         var attributes:[NSAttributedString.Key : Any] = [
-            .font : font,
+            .font: font,
         ]
         
         if let color = color {
@@ -26,11 +26,12 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func underlined(_ value: String, _ size: CGFloat) -> NSMutableAttributedString {
+    func underlined(_ value: String, _ font: UIFont = .title1, color: UIColor = .pophoryGray500) -> NSMutableAttributedString {
         
         let attributes:[NSAttributedString.Key : Any] = [
-            .font :  UIFont.systemFont(ofSize: size),
-            .underlineStyle : NSUnderlineStyle.single.rawValue
+            .font: font,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: color
         ]
         
         self.append(NSAttributedString(string: value, attributes:attributes))

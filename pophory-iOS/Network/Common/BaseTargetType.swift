@@ -9,23 +9,30 @@ import Foundation
 
 import Moya
 
-protocol BaseTargetType: TargetType { }
+protocol BaseTargetType: TargetType {
+    var authToken: String? { get }
+}
 
 extension BaseTargetType {
-
     var baseURL: URL {
         return URL(string: BaseURLConstant.base) ?? URL(fileURLWithPath: String())
     }
 
     var headers: [String: String]? {
-        let header = [
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE2ODg0NTI4MjksImV4cCI6MTY5NzA5MjgyOSwibWVtYmVySWQiOjExfQ.iylvCn_Yapmwj-JYtz9B5zgmH5ZZXSpOlYj5oflru-nWqjFjkQWqxEnz2UuNplmG"
+        var header = [
+            "Content-Type": "application/json"
         ]
+        if let token = authToken {
+            header["Authorization"] = "Bearer \(token)"
+        }
         return header
     }
 
     var sampleData: Data {
         return Data()
+    }
+    
+    func getAccessTokenFromUserDefaults() -> String? {
+        return UserDefaults.standard.string(forKey: "accessToken")
     }
 }

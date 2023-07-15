@@ -14,6 +14,11 @@ enum StudiosAPI {
 }
 
 extension StudiosAPI: BaseTargetType {
+    
+    var authToken: String? {
+        return PophoryTokenManager.shared.fetchAccessToken()
+    }
+    
     var path: String {
         switch self {
         case .patchStudios:

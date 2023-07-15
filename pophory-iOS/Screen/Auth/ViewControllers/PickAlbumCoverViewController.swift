@@ -28,8 +28,6 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - UI Properties
     
-    var navigationBarTitleText: String? { return "회원가입" }
-    
     private lazy var pickAlbumCoverView: PickAlbumCoverView = {
         let view = PickAlbumCoverView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +66,7 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        setupNavigationBarTitle("회원가입")
     }
     
     private func addButtonTarget() {
