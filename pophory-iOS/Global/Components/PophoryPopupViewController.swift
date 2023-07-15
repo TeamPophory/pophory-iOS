@@ -73,7 +73,7 @@ extension PophoryPopupViewController {
     
     private func createPrimaryLabel(_ text: String) -> UILabel {
         let label = UILabel()
-        label.font = .pTtl
+        label.font = .popupTitle
         label.textColor = .pophoryBlack
         label.textAlignment = .center
         label.text = text
@@ -82,7 +82,7 @@ extension PophoryPopupViewController {
     
     private func createSecondaryLabel(_ text: String) -> UILabel {
         let label = UILabel()
-        label.font = .pTxt
+        label.font = .popupText
         label.textColor = .pophoryGray500
         label.textAlignment = .center
         label.numberOfLines = 0
