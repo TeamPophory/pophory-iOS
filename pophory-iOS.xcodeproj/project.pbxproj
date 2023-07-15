@@ -722,8 +722,7 @@
 		B138A3B12A55C1A9000EE81E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */,
-				B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */,
+				B1F310EE2A62E60C00BF989B /* MyPage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -946,6 +945,15 @@
 				B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B1F310EE2A62E60C00BF989B /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */,
+				B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
