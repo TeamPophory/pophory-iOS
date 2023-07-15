@@ -10,25 +10,6 @@ import UIKit
 import SnapKit
 import RxSwift
 
-/**
- 회원가입:
- let alert = PophoryPopupView(header: "", body: "이미 있는 아이디에요! 다른 아이디를 입력해주세요!", hasImageview: false, hasGrayButton: false, hasLeaveServiceButton: false)
- 
- 사진추가:
- let alert = PophoryPopupView(header: "포포리 앨범이 가득찼어요", body: "아쉽지만,\n다음 업데이트에서 만나요!", hasImageview: true, hasGrayButton: false, hasLeaveServiceButton: false)
- 
- 마이페이지:
- let alert = PophoryPopupView(header: "정말 탈퇴하실 건가요?", body: "지금 탈퇴하면 여러분의 앨버을 다시 찾을 수 없어요", hasImageview: false, hasGrayButton: false, hasLeaveServiceButton: true)
- 
- let alert = PophoryPopupView(header: "로그아웃하실건가요?", body: "다음에 꼭 다시보길 바라요", hasImageview: false, hasGrayButton: true, hasLeaveServiceButton: false)
- */
-
-@objc protocol PophoryPopupViewDelegate: AnyObject {
-    @objc optional func blackButtonOnClick()
-    @objc optional func grayButtonOnClick()
-    @objc optional func leaveServiceButtonOnClick()
-}
-
 final class PophoryPopupViewController: UIViewController {
     
     // MARK: - Properties
@@ -169,7 +150,7 @@ extension PophoryPopupViewController {
     private func createContentImageView(_ image: UIImage) -> UIImageView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: -24, right: 0))
+        imageView.image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: -20, right: 0))
         return imageView
     }
     
@@ -181,6 +162,8 @@ extension PophoryPopupViewController {
         
         // 사용자가 정의한 핸들러가 있으면 핸들러를 실행, 아무것도 정의하지 않았다면 디폴트로 팝업 닫는 액션 실행
         button.handleOnClick(handler: handler ?? closePopup, disposeBag: disposeBag)
+        
+        button.applySize()
         
         return button
     }
@@ -194,6 +177,8 @@ extension PophoryPopupViewController {
         // 사용자가 정의한 핸들러가 있으면 핸들러를 실행, 아무것도 정의하지 않았다면 디폴트로 팝업 닫는 액션 실행
         button.handleOnClick(handler: handler ?? closePopup, disposeBag: disposeBag)
         
+        button.applySize()
+        
         return button
     }
     
@@ -205,6 +190,8 @@ extension PophoryPopupViewController {
         
         // 사용자가 정의한 핸들러가 있으면 핸들러를 실행, 아무것도 정의하지 않았다면 디폴트로 팝업 닫는 액션 실행
         button.handleOnClick(handler: handler ?? closePopup, disposeBag: disposeBag)
+        
+        button.removePadding()
         
         return button
     }

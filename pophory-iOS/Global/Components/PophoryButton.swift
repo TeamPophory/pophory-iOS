@@ -37,7 +37,7 @@ public class PophoryButton: UIButton {
             tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
             self.buttonFont = .t1
-            tempCornerRadius = 25
+            tempCornerRadius = 23.5
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
@@ -73,6 +73,13 @@ extension PophoryButton {
             $0.center.equalTo(view)
             $0.width.equalTo(buttonSize.width)
             $0.height.equalTo(buttonSize.height)
+        }
+    }
+    
+    func applySize() {
+        snp.makeConstraints { make in
+            make.width.equalTo(buttonSize.width)
+            make.height.equalTo(buttonSize.height)
         }
     }
     
