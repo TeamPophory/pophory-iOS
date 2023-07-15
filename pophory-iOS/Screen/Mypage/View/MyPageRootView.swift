@@ -31,14 +31,15 @@ class MyPageRootView: UIView {
     private lazy var scrollView: UIScrollView = { createScrollView() }()
     private lazy var contentView: UIView = { UIView() }()
     
-    private lazy var adView: UIView = { UIView() }()
-    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
-    
     private lazy var profileView: UIView = { UIView() }()
+    private lazy var profileBgImageView: UIImageView = { createProfileBgImageView() }()
     private lazy var profileImageView: UIImageView = { createProfileImageView() }()
     private lazy var profileStackView: UIStackView = { createProfileStackView() }()
     private lazy var profileNameLabel: UILabel = { createProfileNameLabel() }()
     private lazy var photoCountLabel: UILabel = { createPhotoCountLabel() }()
+    
+    private lazy var adView: UIView = { UIView() }()
+    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
     
     private lazy var feedTitleLabel: UILabel = { createFeedTitleLabel() }()
     private lazy var emptyStackView: UIStackView = { createEmptyStackView() }()
@@ -113,6 +114,7 @@ extension MyPageRootView {
         contentView.addSubview(profileView)
         
         profileView.addSubviews([
+            profileBgImageView,
             profileImageView,
             profileStackView
         ])
@@ -125,18 +127,23 @@ extension MyPageRootView {
         profileView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(114)
+            make.height.equalTo(205)
+        }
+        
+        profileBgImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(132)
         }
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(72)
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(profileView).inset(20)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(profileBgImageView).offset(13)
         }
         
         profileStackView.snp.makeConstraints { make in
-            make.leading.equalTo(profileImageView.snp.trailing).offset(14)
-            make.centerY.equalTo(profileImageView)
+            make.top.equalTo(profileImageView.snp.bottom).offset(14)
+            make.centerX.equalTo(profileImageView)
         }
     }
     
@@ -234,6 +241,14 @@ extension MyPageRootView {
         return scrollView
     }
     
+    private func createProfileBgImageView() -> UIImageView {
+        let imageView = UIImageView()
+
+        imageView.backgroundColor = .pophoryLightPurple
+        
+        return imageView
+    }
+    
     private func createProfileImageView() -> UIImageView {
         let imageView = UIImageView(image: ImageLiterals.defaultProfile)
         
@@ -248,8 +263,8 @@ extension MyPageRootView {
         let stackView = UIStackView()
         
         stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.spacing = 8
+        stackView.alignment = .center
+        stackView.spacing = 4
         
         return stackView
     }
