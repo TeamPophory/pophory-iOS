@@ -37,7 +37,6 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideNavigationBar()
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
     
