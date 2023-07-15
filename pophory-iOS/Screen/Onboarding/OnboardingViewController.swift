@@ -55,7 +55,6 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
     
-    @available(iOS 13.0, *)
     @objc private func handleAppleLoginButtonClicked() {
         appleLoginManager.setAppleLoginPresentationAnchorView(self)
         appleLoginManager.handleAppleLoginButtonClicked()
@@ -68,7 +67,7 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
                 if let identityTokenData = appleIDCredential.identityToken,
                    let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
                     print("Identity Token: \(identityTokenString)")
-                    sendIdentityTokenToServer(identityToken: identityTokenString)
+                    submitIdentityTokenToServer(identityToken: identityTokenString)
                 }
                 
                 print("Successful Apple login")
@@ -80,16 +79,16 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         }
     }
     
-    private func sendIdentityTokenToServer(identityToken: String) {
+    private func submitIdentityTokenToServer(identityToken: String) {
         let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
-        NetworkService.shared.authRepostiory.postIdentityToken(tokenDTO: tokenDTO) { result in
+        NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
             switch result {
             case .success(let response):
                 if let loginResponse = response as? LoginAPIDTO {
                     print("Successfully sent Identity Token to server")
                     
-                    self.saveAccessTokenToUserDefaults(token: loginResponse.accessToken)
-                    self.saveRefreshTokenToUserDefaults(token: loginResponse.refreshToken)
+                    PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
+                                   PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
                 } else {
                     print("Unexpected response")
                 }
@@ -105,14 +104,6 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     
     private func saveLoginStatus() {
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
-    }
-    
-    private func saveAccessTokenToUserDefaults(token: String) {
-        UserDefaults.standard.set(token, forKey: userDefaultsAccessTokenKey)
-    }
-
-    private func saveRefreshTokenToUserDefaults(token: String) {
-        UserDefaults.standard.set(token, forKey: userDefaultsRefreshTokenKey)
     }
 
     private func fetchAccessToken() {
