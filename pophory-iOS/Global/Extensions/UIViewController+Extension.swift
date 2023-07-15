@@ -40,4 +40,26 @@ extension UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func showPopup(popupType: PopupType = .simple,
+                   image: UIImage? = nil,
+                   primaryText: String? = nil,
+                   secondaryText: String,
+                   firstButtonTitle: ButtonText = .confirm,
+                   secondButtonTitle: ButtonText? = nil,
+                   firstButtonHandler: (() -> Void)? = nil,
+                   secondButtonHandler: (() -> Void)? = nil) {
+        
+        let popupVC = PophoryPopupViewController(popupType: popupType,
+                                                 image: image,
+                                                 primaryText: primaryText,
+                                                 secondaryText: secondaryText,
+                                                 firstButtonTitle: firstButtonTitle,
+                                                 secondButtonTitle: secondButtonTitle,
+                                                 firstButtonHandler: firstButtonHandler,
+                                                 secondButtonHandler: secondButtonHandler)
+        
+        popupVC.modalPresentationStyle = .overFullScreen
+        present(popupVC, animated: false)
+    }
 }
