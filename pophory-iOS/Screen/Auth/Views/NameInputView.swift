@@ -184,9 +184,9 @@ extension NameInputView: UITextFieldDelegate {
                 }
             }
         }
-        
         return true
     }
+
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)

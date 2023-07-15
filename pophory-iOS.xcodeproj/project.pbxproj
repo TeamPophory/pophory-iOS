@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3703F0F52A6071B50017A381 /* PostIdentityTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F0F42A6071B50017A381 /* PostIdentityTokenDTO.swift */; };
+		3703F0F72A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */; };
 		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
 		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
@@ -24,6 +26,9 @@
 		377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7E82A4F4CA500E3268D /* IDInputView.swift */; };
 		377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */; };
 		377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */; };
+		3780FBCC2A6187710002A0FD /* PostIsDuplicatedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780FBCB2A6187710002A0FD /* PostIsDuplicatedDTO.swift */; };
+		3780FBCE2A6265E20002A0FD /* LoginAPIDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780FBCD2A6265E20002A0FD /* LoginAPIDTO.swift */; };
+		3780FBD02A6274390002A0FD /* PophoryTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780FBCF2A6274390002A0FD /* PophoryTokenManager.swift */; };
 		3782F4322A51E6D200FE3846 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4312A51E6D200FE3846 /* KeyboardManager.swift */; };
 		3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */; };
 		3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */; };
@@ -153,6 +158,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3703F0F42A6071B50017A381 /* PostIdentityTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostIdentityTokenDTO.swift; sourceTree = "<group>"; };
+		3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIndicatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
@@ -170,6 +177,9 @@
 		377EF7E82A4F4CA500E3268D /* IDInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDInputView.swift; sourceTree = "<group>"; };
 		377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAlbumCoverView.swift; sourceTree = "<group>"; };
 		377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationConfigurator.swift; sourceTree = "<group>"; };
+		3780FBCB2A6187710002A0FD /* PostIsDuplicatedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostIsDuplicatedDTO.swift; sourceTree = "<group>"; };
+		3780FBCD2A6265E20002A0FD /* LoginAPIDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIDTO.swift; sourceTree = "<group>"; };
+		3780FBCF2A6274390002A0FD /* PophoryTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryTokenManager.swift; sourceTree = "<group>"; };
 		3782F4312A51E6D200FE3846 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryViewController.swift; sourceTree = "<group>"; };
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
@@ -312,6 +322,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3703F0F32A60714D0017A381 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				3703F0F42A6071B50017A381 /* PostIdentityTokenDTO.swift */,
+				3780FBCD2A6265E20002A0FD /* LoginAPIDTO.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,15 +340,56 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		377EF7DC2A4F479800E3268D /* Auth */ = {
+		372CB1FB2A62CDBD00C56FE0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */,
 				37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */,
-				377EF7E32A4F4C3D00E3268D /* Views */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		372CB1FC2A62CDCD00C56FE0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */,
 				377EF7DF2A4F489B00E3268D /* IDInputViewController.swift */,
 				377EF7E12A4F48BE00E3268D /* PickAlbumCoverViewController.swift */,
 				3782F4372A528BAF00FE3846 /* StartPophoryViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		372CB1FD2A62CDF100C56FE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				372CB1FF2A62CE1000C56FE0 /* Cell */,
+				372F7F352A540D270032B7BC /* OnboardingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		372CB1FE2A62CDF800C56FE0 /* ViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */,
+			);
+			path = ViewContoller;
+			sourceTree = "<group>";
+		};
+		372CB1FF2A62CE1000C56FE0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		377EF7DC2A4F479800E3268D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				377EF7E32A4F4C3D00E3268D /* Views */,
+				372CB1FC2A62CDCD00C56FE0 /* ViewControllers */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -337,6 +397,7 @@
 		377EF7E32A4F4C3D00E3268D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				372CB1FB2A62CDBD00C56FE0 /* Cells */,
 				377EF7E62A4F4C8700E3268D /* NameInputView.swift */,
 				377EF7E82A4F4CA500E3268D /* IDInputView.swift */,
 				377EF7EA2A4F4CBD00E3268D /* PickAlbumCoverView.swift */,
@@ -348,9 +409,8 @@
 		37DCA6872A4AB3C900FF8F90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */,
-				37DCA6A72A4AB71200FF8F90 /* OnboardingViewController.swift */,
-				372F7F352A540D270032B7BC /* OnboardingView.swift */,
+				372CB1FD2A62CDF100C56FE0 /* View */,
+				372CB1FE2A62CDF800C56FE0 /* ViewContoller */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -551,6 +611,7 @@
 				91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */,
 				91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */,
 				91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */,
+				3780FBCB2A6187710002A0FD /* PostIsDuplicatedDTO.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -585,6 +646,7 @@
 				91F3A7842A52AE3900C06D1B /* NetworkResult.swift */,
 				91F3A7862A52AE4600C06D1B /* NetworkService.swift */,
 				91F3A7882A52AE5A00C06D1B /* URLConstants.swift */,
+				3780FBCF2A6274390002A0FD /* PophoryTokenManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -813,6 +875,7 @@
 				91F3A7682A52A8D000C06D1B /* Photo */,
 				91F3A76D2A52AA2400C06D1B /* Member */,
 				91F3A7742A52AB8300C06D1B /* Album */,
+				3703F0F32A60714D0017A381 /* Auth */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1040,6 +1103,7 @@
 				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
+				3780FBCE2A6265E20002A0FD /* LoginAPIDTO.swift in Sources */,
 				B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */,
 				6BC63CDE2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift in Sources */,
 				373EEEFB2A576CC40039A22C /* PophoryPopupView.swift in Sources */,
@@ -1061,9 +1125,12 @@
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
+				3703F0F72A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
+				3780FBD02A6274390002A0FD /* PophoryTokenManager.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
+				3703F0F52A6071B50017A381 /* PostIdentityTokenDTO.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
 				B138A3C02A587A76000EE81E /* SettingTableViewCell.swift in Sources */,
 				377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */,
@@ -1077,6 +1144,7 @@
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				6BC63CD82A5DD0B7001DF31F /* BasePHPickerViewController.swift in Sources */,
 				3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */,
+				3780FBCC2A6187710002A0FD /* PostIsDuplicatedDTO.swift in Sources */,
 				91F3A78E2A52B38000C06D1B /* PhotoAPI.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
 				91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */,

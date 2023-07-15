@@ -81,6 +81,14 @@ public struct PrimaryBlackButtonStyler: PophoryButtonStyler {
         button.titleLabel?.font = .h3
         button.backgroundColor = .black
     }
+    
+    public func handleStateChange(to button: PophoryButton) {
+        if button.isEnabled {
+            button.setTitleColor(.pophoryPurple, for: .normal)
+        } else {
+            button.setTitleColor(.pophoryGray400, for: .normal)
+        }
+    }
 }
 
 public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
@@ -103,22 +111,35 @@ public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
         button.backgroundColor = .pophoryGray400
         button.setTitleColor(.pophoryWhite, for: .normal)
     }
+    
+    public func handleStateChange(to button: PophoryButton) {
+        if button.isEnabled {
+            button.setTitleColor(.pophoryWhite, for: .normal)
+        } else {
+            button.setTitleColor(.pophoryGray400, for: .normal)
+        }
+    }
 }
 
+public func applyStyle(to button: PophoryButton) {
+    button.titleLabel?.font = .t1
+    button.backgroundColor = .pophoryGray400
+    button.setTitleColor(.pophoryWhite, for: .normal)
+}
 
 public class PophoryButtonBuilder {
-    private var style: ButtonStyle = .primaryBlack
-    private var title: ButtonText = .next
-    private var size: CGSize = .zero
+    private var buttonStyle: ButtonStyle?
+    private var buttonTitle: ButtonText?
+    private var size: CGSize?
     
     public func setStyle(_ style: ButtonStyle) -> PophoryButtonBuilder {
-        self.style = style
+        self.buttonStyle = style
         self.size = style.size
         return self
     }
     
     public func setTitle(_ title: ButtonText) -> PophoryButtonBuilder {
-        self.title = title
+        self.buttonTitle = title
         return self
     }
     
@@ -127,9 +148,13 @@ public class PophoryButtonBuilder {
         return self
     }
     
-    public func build() -> PophoryButton {
-        let styler = style.styler()
-        let button = PophoryButton(style: self.style, text: self.title, styler: styler)
+    public func build(initiallyEnabled: Bool = true) -> PophoryButton {
+        let buttonStyler = buttonStyle?.styler() ?? PrimaryBlackButtonStyler()
+        let button = PophoryButton(style: buttonStyle ?? ButtonStyle.primaryBlack,
+                                   text: buttonTitle ?? ButtonText.next,
+                                   styler: buttonStyler,
+                                   initiallyEnabled: initiallyEnabled)
+        button.applyStyle()
         return button
     }
 }

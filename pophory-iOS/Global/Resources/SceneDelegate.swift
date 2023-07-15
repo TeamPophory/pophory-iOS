@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let appleLoginManager = AppleLoginManager()
             let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-            
+
             appleLoginManager.delegate = rootVC
             
             let navigationController = PophoryNavigationController(rootViewController: rootVC)
@@ -62,5 +62,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func setRootViewController() {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+
+        var rootViewController: UIViewController
+
+        if isLoggedIn {
+            let tabBarViewController = UITabBarController()
+            rootViewController = tabBarViewController
+        } else {
+            let loginViewController = NameInputViewController()
+            rootViewController = loginViewController
+        }
+
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+    }
+
 }
 

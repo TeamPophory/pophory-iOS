@@ -12,6 +12,12 @@ public class PophoryButton: UIButton {
     
     // MARK: - Properties
     
+    public override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
+        }
+    }
+    
     private var styler: PophoryButtonStyler?
     
     private var buttonStyle: ButtonStyle
@@ -24,7 +30,8 @@ public class PophoryButton: UIButton {
     
     // MARK: - Life Cycle
     
-    public init(style: ButtonStyle, text: ButtonText, styler: PophoryButtonStyler? = nil) {
+    public init(style: ButtonStyle, text: ButtonText, styler: PophoryButtonStyler? = nil, initiallyEnabled: Bool = true) {
+        self.styler = styler
         self.buttonStyle = style
         self.buttonTitle = text.rawValue
         self.buttonSize = style.size
@@ -33,22 +40,28 @@ public class PophoryButton: UIButton {
         
         switch style {
         case .primaryBlack, .primaryWhite:
-            self.buttonFont = .t1
+            self.buttonFont = .text1
             tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
-            self.buttonFont = .t1
+            self.buttonFont = .text1
             tempCornerRadius = 25
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
         self.setupPophoryButton()
         self.layer.cornerRadius = tempCornerRadius
+        isEnabled = initiallyEnabled
+        backgroundColor = initiallyEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
         
-        styler?.applyStyle(to: self)
+        applyStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func applyStyle() {
+        styler?.applyStyle(to: self)
     }
 }
 
@@ -91,6 +104,6 @@ extension PophoryButton {
         backgroundColor = buttonBackgroundColor
         titleLabel?.font = buttonFont
         
-        addTarget(self, action: #selector(buttonStateChanged), for: .allEvents)
+        addTarget(self, action: #selector(buttonStateChanged), for: [.touchUpInside, .touchUpOutside, .touchCancel])
     }
 }
