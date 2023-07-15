@@ -33,14 +33,35 @@ import UIKit
  **/
 
 public enum ButtonText: String {
+    /// "다음으로 넘어가기"
     case next = "다음으로 넘어가기"
+    
+    /// "완료하기"
     case complete = "완료하기"
+    
+    /// "포포리 시작하기"
     case startPophory = "포포리 시작하기"
+    
+    /// "사진 추가하기"
     case addPhoto = "사진 추가하기"
+    
+    /// "삭제하기"
     case delete = "삭제하기"
+    
+    /// "Apple ID로 시작하기"
     case startWithAppleID = "Apple ID로 시작하기"
+    
+    /// "확인"
+    case confirm = "확인"
+    
+    /// "돌아가기"
     case back = "돌아가기"
+    
+    /// "로그아웃하기"
     case logout = "로그아웃하기"
+    
+    /// "아쉽지만, 탈퇴하기"
+    case deleteAccount = "아쉽지만, 탈퇴하기"
 }
 
 public enum ButtonStyle {
@@ -108,8 +129,8 @@ public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
 public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
         button.titleLabel?.font = .t1
-        button.backgroundColor = .pophoryGray400
-        button.setTitleColor(.pophoryWhite, for: .normal)
+        button.backgroundColor = .pophoryGray200
+        button.setTitleColor(.pophoryGray500, for: .normal)
     }
     
     public func handleStateChange(to button: PophoryButton) {

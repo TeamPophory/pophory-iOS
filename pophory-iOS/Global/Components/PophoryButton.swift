@@ -43,8 +43,8 @@ public class PophoryButton: UIButton {
             self.buttonFont = .text1
             tempCornerRadius = 30
         case .secondaryBlack, .secondaryGray:
+            tempCornerRadius = 23.5
             self.buttonFont = .text1
-            tempCornerRadius = 25
         }
         
         super.init(frame: CGRect(origin: CGPoint.zero, size: buttonSize))
@@ -60,6 +60,12 @@ public class PophoryButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
+            setTitleColor(buttonTitleColor, for: .disabled) // disabled 되었을 때도 default disabled title 색이 아닌 우리가 정한 색으로 바뀌도록
+        }
+
     public func applyStyle() {
         styler?.applyStyle(to: self)
     }
@@ -89,10 +95,11 @@ extension PophoryButton {
         }
     }
     
-    // MARK: - @objc
-    
-    @objc private func buttonStateChanged() {
-        backgroundColor = isEnabled ? buttonBackgroundColor : disabledButtonBackgroundColor
+    func applySize() {
+        snp.makeConstraints { make in
+            make.width.equalTo(buttonSize.width)
+            make.height.equalTo(buttonSize.height)
+        }
     }
     
     // MARK: - Private Methods
@@ -103,7 +110,5 @@ extension PophoryButton {
         setTitleColor(.lightGray, for: .disabled)
         backgroundColor = buttonBackgroundColor
         titleLabel?.font = buttonFont
-        
-        addTarget(self, action: #selector(buttonStateChanged), for: [.touchUpInside, .touchUpOutside, .touchCancel])
     }
 }

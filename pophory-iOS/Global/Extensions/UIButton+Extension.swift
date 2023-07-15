@@ -53,5 +53,10 @@ extension UIButton {
             }
             .disposed(by: disposeBag)
     }
+    
+    func removePadding() {
+        titleEdgeInsets = UIEdgeInsets(top: .leastNormalMagnitude, left: .leastNormalMagnitude, bottom: .leastNormalMagnitude, right: .leastNormalMagnitude)
+        contentEdgeInsets = UIEdgeInsets(top: .leastNormalMagnitude, left: .leastNormalMagnitude, bottom: .leastNormalMagnitude, right: .leastNormalMagnitude)
+    }
 }
 
