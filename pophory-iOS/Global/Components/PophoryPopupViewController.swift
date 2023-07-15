@@ -120,7 +120,7 @@ extension PophoryPopupViewController {
     private func layoutPopupStackView() {
         popupStackView.makeRounded(radius: 20)
         popupStackView.backgroundColor = .pophoryWhite
-        popupStackView.edgeInsets = UIEdgeInsets(top: 36, left: 35, bottom: 36, right: 35)
+        popupStackView.edgeInsets = UIEdgeInsets(top: 36, left: 35, bottom: 24, right: 35)
         
         view.addSubview(popupStackView)
         popupStackView.snp.makeConstraints { make in
@@ -200,7 +200,7 @@ extension PophoryPopupViewController {
     private func createUnderlinedButton(_ title: ButtonText, _ handler: (() -> Void)?) -> UIButton {
         let button = UIButton()
         
-        let title = NSMutableAttributedString().underlined(title.rawValue, .title1)
+        let title = NSMutableAttributedString().underlined(title.rawValue, .popupLine)
         button.setAttributedTitle(title, for: .normal)
         
         // 사용자가 정의한 핸들러가 있으면 핸들러를 실행, 아무것도 정의하지 않았다면 디폴트로 팝업 닫는 액션 실행

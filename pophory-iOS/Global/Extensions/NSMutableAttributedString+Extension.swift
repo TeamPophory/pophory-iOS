@@ -26,11 +26,12 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func underlined(_ value: String, _ font: UIFont = .title1) -> NSMutableAttributedString {
+    func underlined(_ value: String, _ font: UIFont = .title1, color: UIColor = .pophoryGray500) -> NSMutableAttributedString {
         
         let attributes:[NSAttributedString.Key : Any] = [
             .font: font,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: color
         ]
         
         self.append(NSAttributedString(string: value, attributes:attributes))
