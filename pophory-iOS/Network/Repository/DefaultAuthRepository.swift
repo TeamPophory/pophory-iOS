@@ -29,12 +29,18 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
         }
     }
     
-    func postIdentityToken(tokenDTO: postIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
-        provider.request(.postIdentityToken(tokenDTO: tokenDTO)) { result in
+    func postIdentityToken(tokenDTO: PostIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
+        provider.request(.postIdentityToken(identityToken: tokenDTO.identityToken , socialType: tokenDTO.socialType)) { result in
             switch result {
             case .success(let response):
                 if response.statusCode < 300 {
-                    completion(.success("Identity Token sent successfully."))
+                    do {
+                        let loginResponse = try response.map(LoginAPIDTO.self)
+                        completion(.success(loginResponse))
+                    } catch {
+                        print("Error decoding the login response: \(error)")
+                        completion(.requestErr("Failed to decode the login response."))
+                    }
                 } else {
                     completion(.requestErr("Failed to send Identity Token."))
                 }
@@ -44,6 +50,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
             }
         }
     }
+
     
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void) {
         provider.request(.withdrawUser) { result in

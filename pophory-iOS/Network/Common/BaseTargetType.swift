@@ -14,7 +14,6 @@ protocol BaseTargetType: TargetType {
 }
 
 extension BaseTargetType {
-
     var baseURL: URL {
         return URL(string: BaseURLConstant.base) ?? URL(fileURLWithPath: String())
     }
@@ -28,8 +27,12 @@ extension BaseTargetType {
         }
         return header
     }
-    
+
     var sampleData: Data {
         return Data()
+    }
+    
+    func getAccessTokenFromUserDefaults() -> String? {
+        return UserDefaults.standard.string(forKey: "accessToken")
     }
 }
