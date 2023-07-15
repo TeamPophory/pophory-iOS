@@ -9,6 +9,6 @@ import Foundation
 
 protocol AuthRepository {
     func sendAppleAuthorizationCode(code: String, completion: @escaping (NetworkResult<Any>) -> Void)
-      func postIdentityToken(tokenDTO: postIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void)
+      func postIdentityToken(tokenDTO: PostIdentityTokenDTO, completion: @escaping (NetworkResult<Any>) -> Void)
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void)
 }

@@ -6,6 +6,7 @@
 //
 
 import AuthenticationServices
+
 import UIKit
 
 final class OnboardingViewController: BaseViewController, AppleLoginManagerDelegate {
@@ -19,6 +20,9 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     }()
     
     private let appleLoginManager: AppleLoginManager
+    
+    let userDefaultsAccessTokenKey = "accessToken"
+    let userDefaultsRefreshTokenKey = "refreshToken"
     
     // MARK: - Life Cycle
     
@@ -41,11 +45,15 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideNavigationBar()
+        fetchAccessToken()
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
     
     // MARK: - Private Methods
+    
+    private func setupAppleSignInButton() {
+        onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
+    }
     
     @available(iOS 13.0, *)
     @objc private func handleAppleLoginButtonClicked() {
@@ -59,7 +67,7 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 if let identityTokenData = appleIDCredential.identityToken,
                    let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
-                    print("Identity Token: \(identityTokenString)"+"✈️")
+                    print("Identity Token: \(identityTokenString)")
                     sendIdentityTokenToServer(identityToken: identityTokenString)
                 }
                 
@@ -68,20 +76,25 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
             }
             
         case .failure(let error):
-            print("Failed Apple login with error: \(error.localizedDescription)"+"🥹")
+            print("Failed Apple login with error: \(error.localizedDescription)")
         }
     }
     
     private func sendIdentityTokenToServer(identityToken: String) {
-        let tokenDTO = postIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
+        let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
         NetworkService.shared.authRepostiory.postIdentityToken(tokenDTO: tokenDTO) { result in
-            
             switch result {
-            case .success:
-                print("Successfully sent Identity Token to server")
-                self.saveTokenToInternalDatabase(token: identityToken)
-            case .requestErr(let errorMessage):
-                print("Error sending Identity Token to server: \(errorMessage)")
+            case .success(let response):
+                if let loginResponse = response as? LoginAPIDTO {
+                    print("Successfully sent Identity Token to server")
+                    
+                    self.saveAccessTokenToUserDefaults(token: loginResponse.accessToken)
+                    self.saveRefreshTokenToUserDefaults(token: loginResponse.refreshToken)
+                } else {
+                    print("Unexpected response")
+                }
+            case .requestErr(let message):
+                print("Error sending Identity Token to server: \(message)")
             case .networkFail:
                 print("Network error")
             case .serverErr, .pathErr:
@@ -94,14 +107,20 @@ final class OnboardingViewController: BaseViewController, AppleLoginManagerDeleg
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
     }
     
-    private func saveTokenToInternalDatabase(token: String) {
-        UserDefaults.standard.set(token, forKey: "socialLoginToken")
+    private func saveAccessTokenToUserDefaults(token: String) {
+        UserDefaults.standard.set(token, forKey: userDefaultsAccessTokenKey)
     }
 
-    private func getTokenFromInternalDatabase() -> String? {
-        return UserDefaults.standard.string(forKey: "socialLoginToken")
+    private func saveRefreshTokenToUserDefaults(token: String) {
+        UserDefaults.standard.set(token, forKey: userDefaultsRefreshTokenKey)
     }
 
+    private func fetchAccessToken() {
+        if let accessToken = UserDefaults.standard.string(forKey: userDefaultsAccessTokenKey) {
+            print("Access Token: \(accessToken)")
+        }
+    }
+    
     private func goToSignInViewController() {
         let nameInputVC = NameInputViewController()
         navigationController?.pushViewController(nameInputVC, animated: true)

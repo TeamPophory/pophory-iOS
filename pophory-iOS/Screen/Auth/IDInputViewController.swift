@@ -137,9 +137,6 @@ extension IDInputViewController: IDInputViewControllerDelegate {
     func didEnterNickname(nickname: String, fullName: String) {
         NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { [weak self] result in
             
-            print(result)
-            print("🥹")
-            
             switch result {
             case .success(let isDuplicated):
                 if isDuplicated {
