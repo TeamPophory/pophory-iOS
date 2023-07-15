@@ -16,6 +16,7 @@ enum AuthAPI {
 }
 
 extension AuthAPI: BaseTargetType {
+    
     var authToken: String? {
         switch self {
         case .postIdentityToken(let identityToken, _):

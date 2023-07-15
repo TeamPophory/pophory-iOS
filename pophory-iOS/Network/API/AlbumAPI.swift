@@ -17,7 +17,7 @@ enum AlbumAPI {
 extension AlbumAPI: BaseTargetType {
     
     var authToken: String? {
-        return UserDefaults.standard.string(forKey: URLConstants.userTokenKey)
+        return PophoryTokenManager.shared.fetchAccessToken()
     }
     
     var path: String {
