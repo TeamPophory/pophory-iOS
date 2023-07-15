@@ -19,8 +19,6 @@ final class NameInputViewController: BaseViewController, Navigatable {
     
     // MARK: - UI Properties
     
-    var navigationBarTitleText: String? { return "회원가입" }
-    
     private var bottomConstraint: NSLayoutConstraint?
     
     private var keyboardManager: KeyboardManager?
@@ -55,14 +53,6 @@ final class NameInputViewController: BaseViewController, Navigatable {
         handleNextButton()
         hideKeyboard()
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        view.addSubview(nameInputView)
-//        
-//        nameInputView.snp.makeConstraints { make in
-//            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-//        }
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

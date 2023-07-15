@@ -28,8 +28,6 @@ final class PickAlbumCoverViewController: BaseViewController, Navigatable, SignU
     
     // MARK: - UI Properties
     
-    var navigationBarTitleText: String? { return "회원가입" }
-    
     private lazy var pickAlbumCoverView: PickAlbumCoverView = {
         let view = PickAlbumCoverView()
         view.translatesAutoresizingMaskIntoConstraints = false

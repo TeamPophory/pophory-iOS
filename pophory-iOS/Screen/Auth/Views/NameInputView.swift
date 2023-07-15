@@ -184,7 +184,6 @@ extension NameInputView: UITextFieldDelegate {
                 }
             }
         }
-        
         return true
     }
 

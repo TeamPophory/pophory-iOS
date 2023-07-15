@@ -20,8 +20,6 @@ final class IDInputViewController: BaseViewController, Navigatable {
     
     // MARK: - UI Properties
     
-    var navigationBarTitleText: String? { return "회원가입" }
-    
     private var bottomConstraint: NSLayoutConstraint?
     
     private var keyboardManager: KeyboardManager?
