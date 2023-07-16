@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 @frozen
 enum PhotoCellType {
@@ -21,6 +22,10 @@ enum PhotoSortStyle {
 }
 
 final class AlbumDetailViewController: BaseViewController {
+    
+    private let addPhotoViewController = AddPhotoViewController()
+    private let imagePHPViewController = BasePHPickerViewController()
+    private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
@@ -62,6 +67,8 @@ final class AlbumDetailViewController: BaseViewController {
         PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .plus)
         
         showNavigationBar()
+        
+        imagePHPViewController.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +170,10 @@ extension AlbumDetailViewController {
     private func sortButtonDidTapped() {
         self.presentChangeSortViewController()
     }
+    
+    @objc func addPhotoButtonOnClick() {
+        imagePHPViewController.setupImagePermission()
+    }
 }
 
 // MARK: - delegate
@@ -234,4 +245,57 @@ extension AlbumDetailViewController {
 
 extension AlbumDetailViewController: Navigatable {
     var navigationBarTitleText: String? { return "내 앨범" }
+}
+
+// MARK: - PHPickerProtocol
+
+extension AlbumDetailViewController: PHPickerProtocol {
+    
+    func setupPicker() {
+        DispatchQueue.main.async {
+            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
+            
+            let secondViewController = AddPhotoViewController()
+            
+            var imageType: PhotoCellType = .vertical
+            
+            if selectedImage.size.width > selectedImage.size.height {
+                imageType = .horizontal
+            } else {
+                imageType = .vertical
+            }
+            
+            secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+        }
+    }
+    
+    func presentLimitedLibrary() {
+        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+    }
+    
+    func presentImageLibrary() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
+        }
+    }
+    
+    func presentDenidAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedImageView() {
+        DispatchQueue.main.async {
+            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
+            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
+    }
 }
