@@ -10,12 +10,7 @@ import UIKit
 import SnapKit
 
 final class AlbumDetailView: UIView {
-    
-    private let plusButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.myAlbumPlusButtonIcon, for: .normal)
-        return button
-    }()
+
     private let lineView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryGray300
@@ -60,22 +55,15 @@ final class AlbumDetailView: UIView {
     
     private func setupLayout() {
         self.addSubviews(
-            [ plusButton,
-              lineView,
+            [ lineView,
               sortLabel,
               sortButton,
               photoCollectionView,
               emptyPhotoExceptionIcon ]
         )
         
-        plusButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(65)
-            $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(24)
-        }
-        
         lineView.snp.makeConstraints {
-            $0.top.equalTo(plusButton.snp.bottom).offset(21)
+            $0.top.equalToSuperview()
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }

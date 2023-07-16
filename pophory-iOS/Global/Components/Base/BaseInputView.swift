@@ -35,7 +35,7 @@ class BaseSignUpView: UIView {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.next)
-        return buttonBuilder.build()
+        return buttonBuilder.build(initiallyEnabled: false)
     }()
     
     private lazy var indicatorCollectionView: UICollectionView = {
@@ -57,6 +57,7 @@ class BaseSignUpView: UIView {
         setupBaseNextButton()
         setupViews()
         setupRegister()
+        setNextButtonEnabled(false)
     }
     
     required init?(coder: NSCoder) {
@@ -87,7 +88,7 @@ extension BaseSignUpView {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(36)
+            $0.bottom.greaterThanOrEqualToSuperview().inset(36)
         }
         
         nextButton.addCenterXConstraint(to: self)
@@ -103,7 +104,6 @@ extension BaseSignUpView {
     
     func setNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
-        nextButton.backgroundColor = isEnabled ? .pophoryPurple : .pophoryGray400
     }
 
     

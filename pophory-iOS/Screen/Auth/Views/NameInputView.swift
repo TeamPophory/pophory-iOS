@@ -10,7 +10,7 @@ import SnapKit
 
 class NameInputView: BaseSignUpView {
     
-    var maxCharCount:Int = 6
+    var maxCharCount: Int = 6
     
     // TODO: Private -> Delegate 패턴 구현
     
@@ -177,16 +177,17 @@ extension NameInputView: UITextFieldDelegate {
                 if newText.isContainKoreanOnly() {
                     textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                     self.warningLabel.isHidden = true
+                    self.nextButton.isEnabled = true
                 } else {
                     textField.layer.borderColor = UIColor.pophoryRed.cgColor
                     self.warningLabel.text = "현재 한국어만 지원하고 있어요."
                     self.warningLabel.isHidden = false
+                    self.nextButton.isEnabled = false
                 }
             }
         }
         return true
     }
-
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         updateCharCountLabel(charCount: textField.text?.count ?? 0)

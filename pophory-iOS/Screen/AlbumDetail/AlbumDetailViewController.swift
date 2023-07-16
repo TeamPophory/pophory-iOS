@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 @frozen
 enum PhotoCellType {
@@ -21,6 +22,10 @@ enum PhotoSortStyle {
 }
 
 final class AlbumDetailViewController: BaseViewController {
+    
+    private let addPhotoViewController = AddPhotoViewController()
+    private let imagePHPViewController = BasePHPickerViewController()
+    private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
@@ -54,22 +59,29 @@ final class AlbumDetailViewController: BaseViewController {
     }
     private var uniquePhotoStartId: Int?
     
-    override func loadView() {
-        view = homeAlbumView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setButtonAction()
         addDelegate()
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .plus)
+        
         showNavigationBar()
+        
+        imagePHPViewController.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         requestGetAlbumPhotoList(albumId: albumId)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.addSubview(homeAlbumView)
+        
+        homeAlbumView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
     private func setButtonAction() {
@@ -158,6 +170,10 @@ extension AlbumDetailViewController {
     private func sortButtonDidTapped() {
         self.presentChangeSortViewController()
     }
+    
+    @objc func addPhotoButtonOnClick() {
+        imagePHPViewController.setupImagePermission()
+    }
 }
 
 // MARK: - delegate
@@ -229,4 +245,57 @@ extension AlbumDetailViewController {
 
 extension AlbumDetailViewController: Navigatable {
     var navigationBarTitleText: String? { return "내 앨범" }
+}
+
+// MARK: - PHPickerProtocol
+
+extension AlbumDetailViewController: PHPickerProtocol {
+    
+    func setupPicker() {
+        DispatchQueue.main.async {
+            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
+            
+            let secondViewController = AddPhotoViewController()
+            
+            var imageType: PhotoCellType = .vertical
+            
+            if selectedImage.size.width > selectedImage.size.height {
+                imageType = .horizontal
+            } else {
+                imageType = .vertical
+            }
+            
+            secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+        }
+    }
+    
+    func presentLimitedLibrary() {
+        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+    }
+    
+    func presentImageLibrary() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
+        }
+    }
+    
+    func presentDenidAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedImageView() {
+        DispatchQueue.main.async {
+            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
+            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
+    }
 }

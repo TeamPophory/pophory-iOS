@@ -51,10 +51,12 @@ final class IDInputView: NameInputView {
             if self.isValidCharacters(newText) {
                 textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                 self.warningLabel.isHidden = true
+                self.nextButton.isEnabled = true
             } else {
                 textField.layer.borderColor = UIColor.pophoryRed.cgColor
                 self.warningLabel.text = "올바른 형식의 아이디가 아닙니다."
                 self.warningLabel.isHidden = false
+                self.nextButton.isEnabled = false
             }
         }
         

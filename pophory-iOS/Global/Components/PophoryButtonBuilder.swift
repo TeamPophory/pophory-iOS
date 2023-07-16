@@ -5,8 +5,6 @@
 //  Created by Joon Baek on 2023/06/30.
 //
 
-import UIKit
-
 /***
  생성 예시:
  
@@ -27,10 +25,10 @@ import UIKit
  }
  
  nextButton.addCenterXConstraint(to: self)
- 
  }
- 
  **/
+
+import UIKit
 
 public enum ButtonText: String {
     /// "다음으로 넘어가기"
@@ -99,7 +97,7 @@ public protocol PophoryButtonStyler {
 
 public struct PrimaryBlackButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = .h3
+        button.titleLabel?.font = .head3
         button.backgroundColor = .black
     }
     
@@ -114,7 +112,7 @@ public struct PrimaryBlackButtonStyler: PophoryButtonStyler {
 
 public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = .h3
+        button.titleLabel?.font = .head3
         button.backgroundColor = .pophoryWhite
         button.setTitleColor(.pophoryPurple, for: .normal)
     }
@@ -122,7 +120,7 @@ public struct PrimaryWhiteButtonStyler: PophoryButtonStyler {
 
 public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = .t1
+        button.titleLabel?.font = .text1
     }
 }
 
