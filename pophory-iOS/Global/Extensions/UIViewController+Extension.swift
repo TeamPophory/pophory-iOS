@@ -21,10 +21,6 @@ extension UIViewController {
         }
     }
     
-    func setupNavigationBarTitle(_ title: String) {
-        self.navigationItem.title = title
-    }
-    
     func hideNavigationBar() {
         self.navigationController?.isNavigationBarHidden = true
     }

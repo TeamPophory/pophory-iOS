@@ -11,11 +11,6 @@ import SnapKit
 
 final class AlbumDetailView: UIView {
     
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.backButtonIcon, for: .normal)
-        return button
-    }()
     private let plusButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.myAlbumPlusButtonIcon, for: .normal)
@@ -65,20 +60,13 @@ final class AlbumDetailView: UIView {
     
     private func setupLayout() {
         self.addSubviews(
-            [ backButton,
-              plusButton,
+            [ plusButton,
               lineView,
               sortLabel,
               sortButton,
               photoCollectionView,
               emptyPhotoExceptionIcon ]
         )
-        
-        backButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(65)
-            $0.leading.equalToSuperview().offset(20)
-            $0.size.equalTo(24)
-        }
         
         plusButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(65)

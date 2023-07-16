@@ -61,5 +61,8 @@ final class PophoryNavigationConfigurator: NavigationConfigurator {
         let backBarButton = UIBarButtonItem(image: ImageLiterals.backButtonIcon, style: .plain, target: viewController, action: #selector(BaseViewController.backButtonOnClick))
         viewController.navigationItem.leftBarButtonItem = backBarButton
         viewController.navigationItem.leftBarButtonItem?.tintColor = .pophoryBlack
+        
+        let titleText = (viewController as? Navigatable)?.navigationBarTitleText ?? viewController.title ?? ""
+        viewController.title = titleText
     }
 }

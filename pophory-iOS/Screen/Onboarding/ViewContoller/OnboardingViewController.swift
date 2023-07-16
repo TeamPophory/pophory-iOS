@@ -86,7 +86,7 @@ extension OnboardingViewController {
     }
     
     private func navigateToTabBarController() {
-        let tabBarController = TabBarController()
+        let tabBarController = PophoryNavigationController(rootViewController: TabBarController())
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let sceneDelegate = windowScene.delegate as? SceneDelegate,
            let window = sceneDelegate.window {

@@ -184,8 +184,8 @@ extension MyPageRootView {
         feedCollectionView.snp.makeConstraints { make in
             make.top.equalTo(feedTitleLabel.snp.bottom).offset(12)
             make.leading.trailing.equalTo(contentView).inset(20)
-            make.height.equalTo(1000)
-            make.bottom.equalTo(contentView).inset(20)
+            make.height.equalTo(0) // NOTE: don't erase this
+            make.bottom.equalTo(contentView).inset(350)
         }
     }
     
@@ -362,6 +362,7 @@ extension MyPageRootView {
             feedCollectionView.performBatchUpdates(nil, completion: { result in
                 self.feedCollectionView.snp.updateConstraints { make in
                     make.height.equalTo(self.feedCollectionView.contentSize.height)
+                    make.bottom.equalTo(self.contentView).inset(20)
                 }
             })
         }
