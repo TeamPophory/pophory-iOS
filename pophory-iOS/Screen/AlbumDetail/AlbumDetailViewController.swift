@@ -64,7 +64,7 @@ final class AlbumDetailViewController: BaseViewController {
         setButtonAction()
         addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-//        showNavigationBar()
+        showNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -42,20 +42,29 @@ extension SettingsViewController {
         UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
         UserDefaults.standard.synchronize()
         
-        let appleLoginManager = AppleLoginManager()
-        let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-        let navVC = UINavigationController(rootViewController: rootVC)
-        navigationController?.pushViewController(navVC, animated: false)
+        presentRootVC()
     }
     
     private func logOut() {
         
         // TODO: 로그아웃 기능 구현
         
+        presentRootVC()
+    }
+    
+    private func presentRootVC() {
         let appleLoginManager = AppleLoginManager()
         let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-        let navVC = UINavigationController(rootViewController: rootVC)
-        navigationController?.pushViewController(navVC, animated: false)
+        let navVC = PophoryNavigationController(rootViewController: rootVC)
+        
+        appleLoginManager.delegate = rootVC
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let sceneDelegate = windowScene.delegate as? SceneDelegate,
+           let window = sceneDelegate.window {
+            window.rootViewController = navVC
+            window.makeKeyAndVisible()
+        }
     }
 }
 

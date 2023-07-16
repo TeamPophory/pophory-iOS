@@ -10,7 +10,7 @@ import WebKit
 
 import SnapKit
 
-class PophoryWebViewController: UIViewController {
+class PophoryWebViewController: BaseViewController {
     
     let urlString: String
     
@@ -31,13 +31,13 @@ class PophoryWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLayout()
+        setupView()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
 }
 
 extension PophoryWebViewController {
-    private func setupLayout() {
+    private func setupView() {
         webView = WKWebView()
         
         view.addSubview(webView)
