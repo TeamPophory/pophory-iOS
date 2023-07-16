@@ -54,22 +54,27 @@ final class AlbumDetailViewController: BaseViewController {
     }
     private var uniquePhotoStartId: Int?
     
-    override func loadView() {
-        view = homeAlbumView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setButtonAction()
         addDelegate()
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .plus)
+        
         showNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         requestGetAlbumPhotoList(albumId: albumId)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.addSubview(homeAlbumView)
+        
+        homeAlbumView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
     private func setButtonAction() {
