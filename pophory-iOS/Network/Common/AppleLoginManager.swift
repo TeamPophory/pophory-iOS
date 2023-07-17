@@ -20,10 +20,9 @@ final class AppleLoginManager: NSObject, ASAuthorizationControllerDelegate, ASAu
         self.viewController = view
     }
     
-    @objc
-    func handleAppleLoginButtonClicked() {
+    @objc func handleAppleLoginButtonClicked() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
-        request.requestedScopes = [.fullName, .email]
+        request.requestedScopes = []
         
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self
