@@ -28,7 +28,7 @@ final class PhotoDetailViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .delete)
     }
     
     override func viewDidLoad() {
