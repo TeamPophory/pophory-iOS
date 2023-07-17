@@ -41,9 +41,24 @@ final class PhotoDetailViewController: BaseViewController {
 extension PhotoDetailViewController {
     
     @objc func rightButtonOnClick() {
+        showPopup(popupType: .option,
+                  primaryText: "사진을 삭제할까요?",
+                  secondaryText: "지금 삭제하면 다시 볼 수 없어요",
+                  firstButtonTitle: .delete,
+                  secondButtonTitle: .back,
+                  firstButtonHandler: deletePhoto,
+                  secondButtonHandler: closePopup)
+    }
+    
+    private func deletePhoto() {
         if let photoID = photoID {
             requestDeletePhoto(photoId: photoID)
         }
+        dismiss(animated: false)
+    }
+    
+    private func closePopup() {
+        dismiss(animated: false)
     }
     
     func setData(photoID: Int, imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
