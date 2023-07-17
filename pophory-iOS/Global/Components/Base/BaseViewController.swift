@@ -54,6 +54,4 @@ class BaseViewController: UIViewController {
     @objc func backButtonOnClick() {
         navigationController?.popViewController(animated: true)
     }
-    
-    @objc func rightButtonOnClick() {}
 }
