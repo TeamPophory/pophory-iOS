@@ -38,7 +38,6 @@ final class AlbumDetailViewController: BaseViewController {
     }
     private lazy var albumPhotoDataSource = PhotoCollectionViewDataSource(collectionView: homeAlbumView.photoCollectionView)
     
-    private let albumId: Int = 1
     private var photoSortStyle: PhotoSortStyle = .current {
         didSet {
             switch photoSortStyle {
@@ -58,6 +57,7 @@ final class AlbumDetailViewController: BaseViewController {
         }
     }
     private var uniquePhotoStartId: Int?
+    var albumId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ final class AlbumDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: albumId)
+        requestGetAlbumPhotoList(albumId: albumId ?? 0)
     }
     
     override func viewDidLayoutSubviews() {
