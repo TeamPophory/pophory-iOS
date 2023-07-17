@@ -14,28 +14,33 @@ enum PhotoAPI {
     case deletePhoto(photoId: Int)
 }
 
-extension PhotoAPI: TargetType {
+extension PhotoAPI: BaseTargetType {
     
-    var baseURL: URL {
-        return URL(string: BaseURLConstant.base) ?? URL(fileURLWithPath: String())
+    var authToken: String? {
+        return PophoryTokenManager.shared.fetchAccessToken()
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .postPhoto:
-            let header = [
-                "Content-Type": "multipart/form-dat",
-                "Authorization": "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE2ODg0NTI4MjksImV4cCI6MTY5NzA5MjgyOSwibWVtYmVySWQiOjExfQ.iylvCn_Yapmwj-JYtz9B5zgmH5ZZXSpOlYj5oflru-nWqjFjkQWqxEnz2UuNplmG"
+            var header = [
+                "Content-Type": "application/json"
             ]
+            if let token = authToken {
+                header["Authorization"] = "Bearer \(token)"
+            }
             return header
         case .deletePhoto:
-            let header = [
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE2ODg0NTI4MjksImV4cCI6MTY5NzA5MjgyOSwibWVtYmVySWQiOjExfQ.iylvCn_Yapmwj-JYtz9B5zgmH5ZZXSpOlYj5oflru-nWqjFjkQWqxEnz2UuNplmG"
+            var header = [
+                "Content-Type": "multipart/form-dat"
             ]
+            if let token = authToken {
+                header["Authorization"] = "Bearer \(token)"
+            }
             return header
         }
     }
+    
     
     var path: String {
         switch self {
