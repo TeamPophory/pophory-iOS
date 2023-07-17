@@ -41,7 +41,7 @@ final class OnboardingView: UIView {
         let button = UIButton()
         button.setTitle("SNS로 간편 가입하기!", for: .normal)
         button.setTitleColor(UIColor.pophoryGray500, for: .normal)
-        button.titleLabel?.font = .t1
+        button.titleLabel?.font = .text1
         return button
     }()
     
