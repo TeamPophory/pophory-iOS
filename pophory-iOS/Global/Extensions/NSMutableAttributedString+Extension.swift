@@ -9,10 +9,12 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    func bold(_ value: String, size: CGFloat, color: UIColor? = nil) -> NSMutableAttributedString {
+    func regular(_ value: String,
+                 font: UIFont = UIFont.title1,
+                 color: UIColor? = nil) -> NSMutableAttributedString {
         
         var attributes:[NSAttributedString.Key : Any] = [
-            .font : UIFont.systemFont(ofSize: size, weight: .bold),
+            .font: font,
         ]
         
         if let color = color {
@@ -20,28 +22,16 @@ extension NSMutableAttributedString {
         }
         
         self.append(NSAttributedString(string: value, attributes:attributes))
+        
         return self
     }
     
-    func regular(_ value: String, size: CGFloat, color: UIColor? = nil) -> NSMutableAttributedString {
-        
-        var attributes:[NSAttributedString.Key : Any] = [
-            .font : UIFont.systemFont(ofSize: size),
-        ]
-        
-        if let color = color {
-            attributes[.foregroundColor] = color
-        }
-        
-        self.append(NSAttributedString(string: value, attributes:attributes))
-        return self
-    }
-    
-    func underlined(_ value: String, _ size: CGFloat) -> NSMutableAttributedString {
+    func underlined(_ value: String, _ font: UIFont = .title1, color: UIColor = .pophoryGray500) -> NSMutableAttributedString {
         
         let attributes:[NSAttributedString.Key : Any] = [
-            .font :  UIFont.systemFont(ofSize: size),
-            .underlineStyle : NSUnderlineStyle.single.rawValue
+            .font: font,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: color
         ]
         
         self.append(NSAttributedString(string: value, attributes:attributes))

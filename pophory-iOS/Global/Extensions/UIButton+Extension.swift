@@ -5,19 +5,17 @@
 //  Created by Danna Lee on 2023/05/19.
 //
 
+import Foundation
 import UIKit
+
+import RxCocoa
+import RxSwift
 
 extension UIButton {
     
-    func boldTitle(title: String, size: CGFloat = 16) {
-        let attributed = NSMutableAttributedString().bold(title, size: size)
-        setAttributedTitle(attributed, for: .normal)
-    }
-    
-    
-     /// 사용 예시:
-     /// fooButton.showLoading(true)
-    private func showLoading(_ isLoading: Bool) {
+    /// 사용 예시:
+    /// fooButton.showLoading(true)
+    func showLoading(_ isLoading: Bool) {
         if isLoading {
             var spinner = UIActivityIndicatorView(frame: bounds)
             
@@ -46,6 +44,19 @@ extension UIButton {
             
             spinner.removeFromSuperview()
         }
+    }
+    
+    func handleOnClick(handler handleOnclick: @escaping () -> Void, disposeBag: DisposeBag) {
+        rx.tap
+            .bind {
+                handleOnclick()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func removePadding() {
+        titleEdgeInsets = UIEdgeInsets(top: .leastNormalMagnitude, left: .leastNormalMagnitude, bottom: .leastNormalMagnitude, right: .leastNormalMagnitude)
+        contentEdgeInsets = UIEdgeInsets(top: .leastNormalMagnitude, left: .leastNormalMagnitude, bottom: .leastNormalMagnitude, right: .leastNormalMagnitude)
     }
 }
 

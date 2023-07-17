@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - BaseViewController
+
 class BaseViewController: UIViewController {
     
     // MARK: - Properties
@@ -22,30 +24,36 @@ class BaseViewController: UIViewController {
     }
     
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setStyle()
-        setLayout()
+        setupStyle()
+        setupLayout()
     }
     
     deinit {
         print("DEINIT: \(className)")
     }
-}
-
-extension BaseViewController {
+    
     // MARK: - Layout
     
     /// Attributes (속성) 설정 메서드
-    func setStyle() {
-        view.backgroundColor = .white
+    func setupStyle() {
+        view.backgroundColor = .pophoryWhite
     }
     
     /// Hierarchy, Constraints (계층 및 제약조건) 설정 메서드
-    func setLayout() {}
+    func setupLayout() {}
+    
+    // MARK: - @objc
+    
+    @objc func backButtonOnClick() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func rightButtonOnClick() {}
 }

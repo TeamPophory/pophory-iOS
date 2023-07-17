@@ -22,12 +22,4 @@ extension UIScreen {
     func headerHeightByNotch(_ height: CGFloat) -> CGFloat {
         return (UIScreen.main.hasNotch ? 44 : 10) + height
     }
-    
-    func getDeviceWidth() -> CGFloat {
-        return UIScreen.main.bounds.width
-    }
-    
-    func getDeviceHeight() -> CGFloat {
-        return UIScreen.main.bounds.height
-    }
 }
