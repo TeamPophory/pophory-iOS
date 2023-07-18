@@ -110,6 +110,7 @@ extension SettingsViewController: SettingsRootViewDelegate {
         showPopup(popupType: .biasedOption,
                   primaryText: "정말 탈퇴하실 건가요?",
                   secondaryText: "지금 탈퇴하면 여러분의 앨범을 다시 찾을 수 없어요",
+                  firstButtonTitle: .back,
                   secondButtonTitle: .deleteAccount,
                   secondButtonHandler: {
             NetworkService.shared.authRepostiory.withdraw { result in
