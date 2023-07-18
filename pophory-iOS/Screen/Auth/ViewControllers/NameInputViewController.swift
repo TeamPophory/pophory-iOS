@@ -48,6 +48,7 @@ final class NameInputViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showNavigationBar()
         setupConstraints()
         handleNextButton()
         hideKeyboard()
@@ -74,7 +75,7 @@ extension NameInputViewController {
     private func setupConstraints() {
         let safeArea = self.view.safeAreaLayoutGuide
         
-        self.bottomConstraint = NSLayoutConstraint(item: nameInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.bottomConstraint = NSLayoutConstraint(item: nameInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: -10)
         self.bottomConstraint?.isActive = true
     }
     

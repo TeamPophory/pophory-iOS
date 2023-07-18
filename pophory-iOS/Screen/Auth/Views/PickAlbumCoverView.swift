@@ -81,15 +81,15 @@ extension PickAlbumCoverView {
         
         albumCoverView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(convertByWidthRatio(220))
-            $0.height.equalTo(convertByHeightRatio(298))
+            $0.leading.equalToSuperview().offset(constraintByNotch(47, 80))
+            $0.aspectRatio(CGSize(width: 280, height: 380))
         }
         
         selectButtonCollectionView.snp.makeConstraints {
             $0.top.equalTo(albumCoverView.snp.bottom).offset(33)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(convertByWidthRatio(254))
-            $0.height.equalTo(convertByHeightRatio(50))
+            $0.height.equalTo(50)
         }
         
         initialAlbumSelection()
@@ -151,7 +151,7 @@ extension PickAlbumCoverView {
 
 extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: convertByWidthRatio(50), height: convertByHeightRatio(50))
+        return CGSize(width: collectionView.frame.height , height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
