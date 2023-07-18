@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 enum PhotoAPI {
+    case patchPresignedPhotoURL
     case postPhoto(body: [MultipartFormData])
     case deletePhoto(photoId: Int)
 }
@@ -22,6 +23,14 @@ extension PhotoAPI: BaseTargetType {
     
     var headers: [String: String]? {
         switch self {
+        case .patchPresignedPhotoURL:
+            var header = [
+                "Content-Type": "application/json"
+            ]
+            if let token = authToken {
+                header["Authorization"] = "Bearer \(token)"
+            }
+            return header
         case .postPhoto:
             var header = [
                 "Content-Type": "multipart/form-dat"
@@ -44,6 +53,8 @@ extension PhotoAPI: BaseTargetType {
     
     var path: String {
         switch self {
+        case .patchPresignedPhotoURL:
+            return URLConstantsV2.v3 + "/photo"
         case .postPhoto:
             return URLConstants.photo
         case .deletePhoto(let photoId):
@@ -53,6 +64,8 @@ extension PhotoAPI: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
+        case .patchPresignedPhotoURL:
+            return .get
         case .postPhoto:
             return .post
         case .deletePhoto:
@@ -62,6 +75,8 @@ extension PhotoAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
+        case .patchPresignedPhotoURL:
+            return .requestPlain
         case .postPhoto(let body):
             return .uploadMultipart(body)
         case .deletePhoto:
