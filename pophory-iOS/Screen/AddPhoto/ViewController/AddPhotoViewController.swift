@@ -25,15 +25,16 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     var navigationBarTitleText: String? { return "사진 추가" }
     
     private var albumID: Int?
+    private var photoCount: Int?
+    private let maxPhotoCount: Int = 15
     
-    let homeAlbumView = HomeAlbumView(statusLabelText: String())
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
             rootView.albumCollectionView.reloadData()
-            
             if let albums = albumList?.albums {
                 if albums.count != 0 {
                     self.albumID = albums[0].id
+                    self.photoCount = albums[0].photoCount
                 }
             }
         }
@@ -97,8 +98,17 @@ extension AddPhotoViewController {
     }
 
     @objc func onclickAddPhotoButton() {
-        guard let multipartData = fetchMultiPartData() else { return }
-        requestPostPhotoAPI(photoInfo: multipartData)
+        if let photoCount = photoCount {
+            if photoCount >= maxPhotoCount {
+                showPopup(popupType: .simple,
+                          image: ImageLiterals.img_albumfull,
+                          primaryText: "포포리 앨범이 가득찼어요",
+                          secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!", firstButtonHandler: goToHome)
+            } else {
+                guard let multipartData = fetchMultiPartData() else { return }
+                requestPostPhotoAPI(photoInfo: multipartData)
+            }
+        }
     }
     
     // MARK: - Private Methods
@@ -122,6 +132,11 @@ extension AddPhotoViewController {
             let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
             return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
         } else { return nil }
+    }
+    
+    private func goToHome() {
+        dismiss(animated: false)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Methods
@@ -192,7 +207,7 @@ extension AddPhotoViewController {
             switch result {
             case .success(_):
                 print("성공")
-                self.navigationController?.popViewController(animated: true)
+                self.goToHome()
             default : return
             }
         }
