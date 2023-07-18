@@ -61,7 +61,8 @@ extension StartPophoryView {
             $0.top.equalTo(safeAreaLayoutGuide).offset(179)
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(convertByWidthRatio(94))
-            $0.height.equalTo(convertByWidthRatio(187))
+//            $0.height.equalTo(ilustView.snp.width).multipliedBy(280 / 380)
+//            $0.aspectRatio(CGSize(width: 280, height: 380))
         }
         
         startLabel.snp.makeConstraints {
