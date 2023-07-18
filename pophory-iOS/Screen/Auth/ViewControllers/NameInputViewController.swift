@@ -48,6 +48,7 @@ final class NameInputViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showNavigationBar()
         setupConstraints()
         handleNextButton()
         hideKeyboard()
