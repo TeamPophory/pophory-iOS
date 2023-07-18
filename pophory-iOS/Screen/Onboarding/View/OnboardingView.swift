@@ -12,14 +12,6 @@ import AuthenticationServices
 
 final class OnboardingView: UIView {
     
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.numberOfPages = 3
-        pageControl.currentPageIndicatorTintColor = .pophoryGray500
-        pageControl.pageIndicatorTintColor = .pophoryGray400
-        return pageControl
-    }()
-    
     private lazy var contentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -35,6 +27,14 @@ final class OnboardingView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
+    }()
+    
+    private lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 3
+        pageControl.currentPageIndicatorTintColor = .pophoryGray500
+        pageControl.pageIndicatorTintColor = .pophoryGray400
+        return pageControl
     }()
     
     private lazy var signupButton: UIButton = {
@@ -118,7 +118,6 @@ extension OnboardingView {
             $0.height.equalTo(convertByHeightRatio(480))
         }
     }
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
