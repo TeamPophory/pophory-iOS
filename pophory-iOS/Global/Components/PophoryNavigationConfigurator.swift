@@ -49,7 +49,7 @@ final class PophoryNavigationConfigurator: NavigationConfigurator {
             case .plus:
                 rightButton = UIBarButtonItem(image: ImageLiterals.myAlbumPlusButtonIcon, style: .plain, target: viewController, action: #selector(AlbumDetailViewController.addPhotoButtonOnClick))
             case .delete:
-                rightButton = UIBarButtonItem(image: ImageLiterals.trashCanIcon, style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
+                rightButton = UIBarButtonItem(image: ImageLiterals.trashCanIcon, style: .plain, target: viewController, action: #selector(PhotoDetailViewController.deleteButtonOnClick))
             case .setting:
                 rightButton = UIBarButtonItem(image: ImageLiterals.settingIcon, style: .plain, target: viewController, action: #selector(BaseViewController.rightButtonOnClick))
             }

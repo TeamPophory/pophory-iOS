@@ -24,7 +24,7 @@ extension PhotoAPI: BaseTargetType {
         switch self {
         case .postPhoto:
             var header = [
-                "Content-Type": "application/json"
+                "Content-Type": "multipart/form-dat"
             ]
             if let token = authToken {
                 header["Authorization"] = "Bearer \(token)"
@@ -32,7 +32,7 @@ extension PhotoAPI: BaseTargetType {
             return header
         case .deletePhoto:
             var header = [
-                "Content-Type": "multipart/form-dat"
+                "Content-Type": "application/json"
             ]
             if let token = authToken {
                 header["Authorization"] = "Bearer \(token)"
