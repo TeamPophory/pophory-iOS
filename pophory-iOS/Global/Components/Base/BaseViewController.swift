@@ -48,10 +48,13 @@ class BaseViewController: UIViewController {
     
     /// Hierarchy, Constraints (계층 및 제약조건) 설정 메서드
     func setupLayout() {}
-    
+        
     // MARK: - @objc
     
     @objc func backButtonOnClick() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func rightButtonOnClick() {}
+
 }

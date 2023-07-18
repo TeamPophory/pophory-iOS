@@ -40,7 +40,7 @@ final class PhotoDetailViewController: BaseViewController {
 
 extension PhotoDetailViewController {
     
-    @objc func rightButtonOnClick() {
+    @objc func deleteButtonOnClick() {
         showPopup(popupType: .option,
                   primaryText: "사진을 삭제할까요?",
                   secondaryText: "지금 삭제하면 다시 볼 수 없어요",
