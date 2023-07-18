@@ -24,6 +24,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
+    private var presignedURL: PatchPresignedURLRequestDTO?
+    private let networkManager = AddPhotoNetworkManager()
+    
     private var albumID: Int?
     private var photoCount: Int?
     private let maxPhotoCount: Int = 15
@@ -61,7 +64,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        requestGetAlumListAPI()
+        networkManager.requestGetAlumListAPI() { [weak self] albumList in
+            self?.albumList = albumList
+        }
     }
     
     override func viewDidLoad() {
@@ -69,7 +74,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         setupTarget()
         setupDelegate()
-        requestGetAlumListAPI()
+        networkManager.requestGetPresignedURLAPI() { [weak self] presignedURL in
+            self?.presignedURL = presignedURL
+        }
     }
 }
 
@@ -96,7 +103,7 @@ extension AddPhotoViewController {
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
     }
-
+    
     @objc func onclickAddPhotoButton() {
         if let photoCount = photoCount {
             if photoCount >= maxPhotoCount {
@@ -105,8 +112,16 @@ extension AddPhotoViewController {
                           primaryText: "포포리 앨범이 가득찼어요",
                           secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!", firstButtonHandler: goToHome)
             } else {
-                guard let multipartData = fetchMultiPartData() else { return }
-                requestPostPhotoAPI(photoInfo: multipartData)
+                if let urlString = presignedURL?.presignedUrl, let url = URL(string: urlString) {
+                    networkManager.uploadImageToPresignedURL(image: photoImage, presignedURL: url, completion: {_ in
+                    })
+                } else {
+                    print("Invalid URL")
+                }
+                let photoInfo = PostPhotoS3RequestDTO(fileName: presignedURL?.fileName, albumId: albumID, takenAt: dateTaken, studioId: studioID, width: Int(photoImage.size.width), height: Int(photoImage.size.height))
+                networkManager.requestPostPhotoAPI(photoInfo: photoInfo) {
+                    self.goToHome()
+                }
             }
         }
     }
@@ -121,17 +136,6 @@ extension AddPhotoViewController {
     
     private func setupDelegate() {
         rootView.albumCollectionView.dataSource = self
-    }
-    
-    private func fetchMultiPartData() -> [MultipartFormData]? {
-        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
-            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData), name: "photo", fileName: "image.jpg", mimeType: "image/jpeg")
-            guard let albumId = albumID else { return nil }
-            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumId)".data(using: .utf8) ?? .empty), name: "albumId")
-            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty), name: "takenAt")
-            let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
-            return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
-        } else { return nil }
     }
     
     private func goToHome() {
@@ -183,33 +187,5 @@ extension AddPhotoViewController: DateDataBind, StudioDataBind {
         rootView.studioStackView.setupExplain(explain: text)
         rootView.studioStackView.setupSelected(selected: true)
         studioID = forIndex
-    }
-}
-
-// MARK: - API
-
-extension AddPhotoViewController {
-    func requestGetAlumListAPI() {
-        NetworkService.shared.albumRepository.patchAlbumList() { result in
-            switch result {
-            case .success(let response):
-                self.albumList = response
-            default : return
-            }
-        }
-    }
-    
-    func requestPostPhotoAPI(
-        photoInfo: [MultipartFormData]
-    ) {
-        NetworkService.shared.photoRepository.postPhoto(body: photoInfo
-        ) { result in
-            switch result {
-            case .success(_):
-                print("성공")
-                self.goToHome()
-            default : return
-            }
-        }
     }
 }

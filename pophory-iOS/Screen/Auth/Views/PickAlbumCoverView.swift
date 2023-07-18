@@ -45,7 +45,8 @@ final class PickAlbumCoverView: BaseSignUpView {
         setupRegister()
         setupLayoutForAlbumCoverView(albumCoverView, topOffset: 51)
         setupLayout()
-        setNextButtonEnabled(true)
+        updateNameInputViewLabels()
+        setupNextButtonEnabled(true)
     }
     
     required init?(coder: NSCoder) {
@@ -62,13 +63,8 @@ final class PickAlbumCoverView: BaseSignUpView {
 //MARK: - Extensions
 
 extension PickAlbumCoverView {
-    private func setupRegister() {
-        selectButtonCollectionView.register(PickAlbumButtonCollectionViewCell.self, forCellWithReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier)
-    }
     
-    private func shapeAlbumCover() {
-        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
-    }
+    // MARK: - Layout
     
     private func setupLayout() {
         
@@ -113,6 +109,19 @@ extension PickAlbumCoverView {
     }
     
     // MARK: - Private Methods
+    
+    private func updateNameInputViewLabels() {
+        headerLabel.text = "마음에 쏙 드는\n앨범 테마를 선택해줘!"
+        headerLabel.applyColorAndBoldText(targetString: "앨범 테마", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
+    }
+    
+    private func setupRegister() {
+        selectButtonCollectionView.register(PickAlbumButtonCollectionViewCell.self, forCellWithReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier)
+    }
+    
+    private func shapeAlbumCover() {
+        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
+    }
     
     private func scrollAlbumCover(next: Bool) {
         guard let indexPath = lastSelectedItemIndex else { return }

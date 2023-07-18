@@ -12,14 +12,6 @@ import AuthenticationServices
 
 final class OnboardingView: UIView {
     
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.numberOfPages = 3
-        pageControl.currentPageIndicatorTintColor = .pophoryGray500
-        pageControl.pageIndicatorTintColor = .pophoryGray400
-        return pageControl
-    }()
-    
     private lazy var contentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -37,11 +29,19 @@ final class OnboardingView: UIView {
         return collectionView
     }()
     
+    private lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 3
+        pageControl.currentPageIndicatorTintColor = .pophoryGray500
+        pageControl.pageIndicatorTintColor = .pophoryGray400
+        return pageControl
+    }()
+    
     private lazy var signupButton: UIButton = {
         let button = UIButton()
         button.setTitle("SNS로 간편 가입하기!", for: .normal)
         button.setTitleColor(UIColor.pophoryGray500, for: .normal)
-        button.titleLabel?.font = .t1
+        button.titleLabel?.font = .text1
         button.removePadding()
         return button
     }()
@@ -116,7 +116,6 @@ extension OnboardingView {
         }
 
     }
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
