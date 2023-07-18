@@ -87,14 +87,9 @@ extension BaseSignUpView {
             $0.height.equalTo(convertByHeightRatio(3))
         }
         
-        nextButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(constraintByNotch(convertByHeightRatio(36), convertByHeightRatio(45)))
-        }
-        
         nextButton.addCenterXConstraint(to: self)
     }
 
-    
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)
         subView.snp.makeConstraints {
