@@ -57,7 +57,7 @@ class BaseSignUpView: UIView {
         setupBaseNextButton()
         setupViews()
         setupRegister()
-        setNextButtonEnabled(false)
+        setupNextButtonEnabled(false)
     }
     
     required init?(coder: NSCoder) {
@@ -102,7 +102,7 @@ extension BaseSignUpView {
         }
     }
     
-    func setNextButtonEnabled(_ isEnabled: Bool) {
+    func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
 

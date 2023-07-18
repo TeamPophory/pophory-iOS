@@ -171,14 +171,14 @@ extension NameInputView: UITextFieldDelegate {
                         self.warningLabel.isHidden = true
                         self.nextButton.isEnabled = true
                     } else {
-                        self.warningLabel.text = "2-6글자 이내로 작성해주세요."
+                        self.warningLabel.text = "2-6글자 이내로 작성해주세요"
                         self.warningLabel.isHidden = false
                         self.nextButton.isEnabled = false
                     }
                     
                 } else {
                     textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                    self.warningLabel.text = "현재 한국어만 지원하고 있어요."
+                    self.warningLabel.text = "현재 한국어만 지원하고 있어요"
                     self.warningLabel.isHidden = false
                     self.nextButton.isEnabled = false
                 }
