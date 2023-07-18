@@ -24,6 +24,8 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
+    private var presignedURL: PatchPresignedURLRequestDTO?
+    
     private var albumID: Int?
     private var photoCount: Int?
     private let maxPhotoCount: Int = 15
@@ -70,6 +72,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         setupTarget()
         setupDelegate()
         requestGetAlumListAPI()
+        requestGetPresignedURLAPI()
     }
 }
 
@@ -211,5 +214,15 @@ extension AddPhotoViewController {
             default : return
             }
         }
+    }
+    
+    func requestGetPresignedURLAPI() {
+        NetworkService.shared.photoRepository.patchPresignedPhotoURL( completion: { result in
+            switch result {
+            case .success(let response):
+                self.presignedURL = response
+            default : return
+            }
+        })
     }
 }
