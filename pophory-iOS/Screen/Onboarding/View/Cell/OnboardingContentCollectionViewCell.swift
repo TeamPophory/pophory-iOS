@@ -15,7 +15,7 @@ final class OnboardingContentCollectionViewCell: UICollectionViewCell {
     
     private let contentImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .lightGray
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
