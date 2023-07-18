@@ -8,6 +8,6 @@
 import Foundation
 
 struct PatchPresignedURLRequestDTO: Codable {
-    let presignedURL: String
+    let presignedUrl: String
     let fileName: String
 }
