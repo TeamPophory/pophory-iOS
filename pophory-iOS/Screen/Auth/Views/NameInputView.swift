@@ -162,19 +162,19 @@ extension NameInputView: UITextFieldDelegate {
         if let oldText = textField.text, let stringRange = Range(range, in: oldText) {
             let newText = oldText.replacingCharacters(in: stringRange, with: string)
             let newLength = newText.count
-            
-            if newLength > 6 {
-                textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                warningLabel.text = "2-6글자 이내로 작성해주세요."
-                warningLabel.isHidden = false
-                return false
-            }
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 if newText.isContainKoreanOnly() {
                     textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                     self.warningLabel.isHidden = true
-                    self.nextButton.isEnabled = true
+                    self.nextButton.isEnabled = newLength >= 2 && newLength <= 6
+                    
+                    if newLength <= 2 || newLength >= 6 {
+                        self.warningLabel.text = "2-6글자 이내로 작성해주세요."
+                        self.warningLabel.isHidden = false
+                        self.nextButton.isEnabled = true
+                    }
+                    
                 } else {
                     textField.layer.borderColor = UIColor.pophoryRed.cgColor
                     self.warningLabel.text = "현재 한국어만 지원하고 있어요."
