@@ -43,6 +43,7 @@ final class HomeAlbumViewController: BaseViewController {
     
     private func setDelegate() {
         homeAlbumView.imageDidTappedDelegate = self
+        homeAlbumView.homeAlbumViewButtonTappedDelegate = self
     }
 }
 
@@ -53,6 +54,12 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
             albumDetailViewController.albumId = albumId
         }
         self.navigationController?.pushViewController(albumDetailViewController, animated: true)
+    }
+}
+
+extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
+    func elbumCoverEditButtonDidTapped() {
+        // MARK: - button tapped
     }
 }
 

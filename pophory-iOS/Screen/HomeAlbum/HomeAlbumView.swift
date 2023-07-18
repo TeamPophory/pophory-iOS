@@ -17,10 +17,15 @@ protocol ImageViewDidTappedProtocol {
     func imageDidTapped()
 }
 
+protocol HomeAlbumViewButtonTappedProtocol {
+    func elbumCoverEditButtonDidTapped()
+}
+
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
 
     private var privateStatusLabelText: String
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
+    var homeAlbumViewButtonTappedDelegate: HomeAlbumViewButtonTappedProtocol?
     
     var statusLabelText: String {
         get {
@@ -64,9 +69,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.textColor = .white
         return label
     }()
-    private let elbumCoverEditButton: UIButton = {
+    private lazy var elbumCoverEditButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.changeElbumCover, for: .normal)
+        button.addTarget(self, action: #selector(elbumCoverEditButtonDidTapped), for: .touchUpInside)
         return button
     }()
     
@@ -137,5 +143,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     @objc
     private func imageTapped() {
         imageDidTappedDelegate?.imageDidTapped()
+    }
+    
+    @objc
+    private func elbumCoverEditButtonDidTapped() {
+        homeAlbumViewButtonTappedDelegate?.elbumCoverEditButtonDidTapped()
     }
 }
