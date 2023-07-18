@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 
-struct PostPhotoRequestDTO: Codable {
-    let photo: Data?
-    let object: PhotoObject?
-}
-
-struct PhotoObject: Codable {
-    var albumId: Int?
-    var takenAt: String?
-    var studioId: Int?
+struct PostPhotoS3RequestDTO: Codable {
+    let fileName: String?
+    let albumId: Int?
+    let takenAt: String?
+    let studioId: Int?
+    let width: Int?
+    let height: Int?
 }
