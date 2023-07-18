@@ -77,8 +77,8 @@ extension BaseSignUpView {
         addSubviews([headerLabel, indicatorCollectionView, nextButton])
 
         headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
-            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalTo(headerHeightByNotch(62))
+            $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
         indicatorCollectionView.snp.makeConstraints {
@@ -88,11 +88,12 @@ extension BaseSignUpView {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.greaterThanOrEqualToSuperview().inset(36)
+            $0.bottom.equalToSuperview().inset(constraintByNotch(convertByHeightRatio(36), convertByHeightRatio(45)))
         }
         
         nextButton.addCenterXConstraint(to: self)
     }
+
     
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)

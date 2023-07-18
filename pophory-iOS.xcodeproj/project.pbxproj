@@ -16,6 +16,8 @@
 		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
 		373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */; };
 		373EEF022A582C4C0039A22C /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEF012A582C4C0039A22C /* AppleLoginManager.swift */; };
+		376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E62A66CB740010CF8D /* CGSize+Extension.swift */; };
+		376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */; };
 		376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
@@ -168,6 +170,8 @@
 		373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryPopupViewController.swift; sourceTree = "<group>"; };
 		373EEF012A582C4C0039A22C /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
 		373EEF052A5922540039A22C /* pophory-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOS.entitlements"; sourceTree = "<group>"; };
+		376927E62A66CB740010CF8D /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintMaker+Extension.swift"; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
@@ -842,6 +846,8 @@
 				9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */,
 				9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */,
 				B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */,
+				376927E62A66CB740010CF8D /* CGSize+Extension.swift */,
+				376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1110,6 +1116,7 @@
 				373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
+				376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
 				9161CAE32A546511002B8B77 /* ReusableView+Extesion.swift in Sources */,
 				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
@@ -1159,6 +1166,7 @@
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
+				376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */,
 				B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
@@ -1362,7 +1370,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023071701;
+				CURRENT_PROJECT_VERSION = 2023071801;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1378,7 +1386,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1401,7 +1409,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023071701;
+				CURRENT_PROJECT_VERSION = 2023071801;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1417,7 +1425,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
