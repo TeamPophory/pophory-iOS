@@ -10,6 +10,9 @@ import Foundation
 import Moya
 
 protocol PhotoRepository {
+    
+    func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void)
+
     func postPhoto(
         body: [MultipartFormData],
         completion: @escaping (NetworkResult<Any>) -> Void
