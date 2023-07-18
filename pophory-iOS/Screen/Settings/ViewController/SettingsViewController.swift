@@ -83,12 +83,12 @@ extension SettingsViewController: SettingsRootViewDelegate {
     }
     
     func handleOnClickPrivacyPolicy() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/gaeinjeongbo-ceoribangcim/%E2%80%8B%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4-%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8", title: "개인정보 처리방침")
+        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/%EC%A0%95%EC%B1%85#policy2", title: "개인정보 처리방침")
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func handleOnClickTerms() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/copy-of-gaeinjeongbo-ceoribangcim/%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%9D%B4%EC%9A%A9-%EC%95%BD%EA%B4%80", title: "이용약관")
+        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/%EC%A0%95%EC%B1%85#policy1", title: "이용약관")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -126,5 +126,4 @@ extension SettingsViewController: SettingsRootViewDelegate {
 
         present(alert, animated: true, completion: nil)
     }
-    
 }
