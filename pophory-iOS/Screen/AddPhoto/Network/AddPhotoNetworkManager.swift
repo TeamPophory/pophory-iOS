@@ -5,39 +5,39 @@
 //  Created by 김다예 on 2023/07/19.
 //
 
-import Foundation
+import UIKit
 
 class AddPhotoNetworkManager {
     
-    func requestGetAlumListAPI() {
+    func requestGetAlumListAPI(completion: @escaping (PatchAlbumListResponseDTO?) -> Void) {
         NetworkService.shared.albumRepository.patchAlbumList() { result in
             switch result {
             case .success(let response):
-                self.albumList = response
+                completion(response)
             default : return
             }
         }
     }
     
     func requestPostPhotoAPI(
-        photoInfo: PostPhotoS3RequestDTO
+        photoInfo: PostPhotoS3RequestDTO,
+        completion: @escaping () -> Void
     ) {
         NetworkService.shared.photoRepository.postPhoto(body: photoInfo
         ) { result in
             switch result {
             case .success(_):
-                print("성공")
-                self.goToHome()
+                completion()
             default : return
             }
         }
     }
     
-    func requestGetPresignedURLAPI() {
+    func requestGetPresignedURLAPI(completion: @escaping (PatchPresignedURLRequestDTO?) -> Void) {
         NetworkService.shared.photoRepository.patchPresignedPhotoURL( completion: { result in
             switch result {
             case .success(let response):
-                self.presignedURL = response
+                completion(response)
             default : return
             }
         })

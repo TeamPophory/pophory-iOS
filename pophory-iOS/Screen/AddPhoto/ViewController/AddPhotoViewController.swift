@@ -64,7 +64,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        networkManager.requestGetAlumListAPI()
+        networkManager.requestGetAlumListAPI() { [weak self] albumList in
+            self?.albumList = albumList
+        }
     }
     
     override func viewDidLoad() {
@@ -72,8 +74,9 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         
         setupTarget()
         setupDelegate()
-        networkManager.requestGetAlumListAPI()
-        networkManager.requestGetPresignedURLAPI()
+        networkManager.requestGetPresignedURLAPI() { [weak self] presignedURL in
+            self?.presignedURL = presignedURL
+        }
     }
 }
 
@@ -100,7 +103,7 @@ extension AddPhotoViewController {
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
     }
-
+    
     @objc func onclickAddPhotoButton() {
         if let photoCount = photoCount {
             if photoCount >= maxPhotoCount {
@@ -111,15 +114,17 @@ extension AddPhotoViewController {
             } else {
                 if let urlString = presignedURL?.presignedUrl, let url = URL(string: urlString) {
                     networkManager.uploadImageToPresignedURL(image: photoImage, presignedURL: url, completion: {_ in
-                        })
-                    } else {
-                        print("Invalid URL")
-                    }
+                    })
+                } else {
+                    print("Invalid URL")
+                }
                 let photoInfo = PostPhotoS3RequestDTO(fileName: presignedURL?.fileName, albumId: albumID, takenAt: dateTaken, studioId: studioID, width: Int(photoImage.size.width), height: Int(photoImage.size.height))
-                networkManager.requestPostPhotoAPI(photoInfo: photoInfo)
+                networkManager.requestPostPhotoAPI(photoInfo: photoInfo) {
+                    self.goToHome()
                 }
             }
         }
+    }
     
     // MARK: - Private Methods
     
