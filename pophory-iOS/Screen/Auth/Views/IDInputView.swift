@@ -28,8 +28,7 @@ final class IDInputView: NameInputView {
     private func updateNameInputViewLabels() {
         headerLabel.text = "너만의 재치있는\n포포리 아이디를 만들어줘!"
         headerLabel.applyColorAndBoldText(targetString: "포포리 아이디", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
-        bodyLabel.text = "영문, 숫자, 특수문자 조합 4-12자리 이내로 작성해요 (특수문자는 . _ 만 가능해요)"
-        bodyLabel.applyBoldTextTo("4-12자리 이내", withFont: .title1, boldFont: .head3)
+        bodyLabel.text = "영문, 숫자, 특수문자 조합 4-12자리 이내로\n작성해주세요 (특수문자는 . _ 만 가능해요)"
         inputTextField.placeholder = "아이디"
         charCountLabel.text = "(0/12)"
     }
@@ -51,10 +50,17 @@ final class IDInputView: NameInputView {
             if self.isValidCharacters(newText) {
                 textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                 self.warningLabel.isHidden = true
-                self.nextButton.isEnabled = true
+                
+                if newText.count >= 4 && newText.count <= 12 {
+                    self.nextButton.isEnabled = true
+                } else {
+                    self.warningLabel.text = "4-12자 이내로 작성해주세요"
+                    self.warningLabel.isHidden = false
+                    self.nextButton.isEnabled = false
+                }
             } else {
                 textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다."
+                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다"
                 self.warningLabel.isHidden = false
                 self.nextButton.isEnabled = false
             }
@@ -62,12 +68,5 @@ final class IDInputView: NameInputView {
         
         return true
     }
-}
 
-// MARK: - UITextViewDelegate
-
-extension IDInputView: UITextViewDelegate {
-    @objc override func textFieldDidChangeSelection(_ textField: UITextField) {
-        updateCharCountLabel(charCount: textField.text?.count ?? 0)
-    }
 }

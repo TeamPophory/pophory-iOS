@@ -22,7 +22,7 @@ class BaseSignUpView: UIView {
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "시작할 준비가 되었다면\n너의 이름을 알려줘!"
+        label.text = "포포리에서 사용할\n너의 이름을 알려줘!"
         label.textColor = .black
         label.font = .head1Medium
         label.numberOfLines = 0
@@ -57,7 +57,7 @@ class BaseSignUpView: UIView {
         setupBaseNextButton()
         setupViews()
         setupRegister()
-        setNextButtonEnabled(false)
+        setupNextButtonEnabled(false)
     }
     
     required init?(coder: NSCoder) {
@@ -103,7 +103,7 @@ extension BaseSignUpView {
         }
     }
     
-    func setNextButtonEnabled(_ isEnabled: Bool) {
+    func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
 
