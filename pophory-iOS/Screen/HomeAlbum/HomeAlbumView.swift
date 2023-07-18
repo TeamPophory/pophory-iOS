@@ -64,6 +64,11 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.textColor = .white
         return label
     }()
+    private let elbumCoverEditButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.changeElbumCover, for: .normal)
+        return button
+    }()
     
     init(
         statusLabelText: String
@@ -81,9 +86,11 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     private func setupLayout() {
         self.addSubviews(
             [ appLogo,
-            headTitle,
-            albumImageView,
-            statusView ]
+              headTitle,
+              albumImageView,
+              statusView,
+              elbumCoverEditButton
+            ]
         )
         
         statusView.addSubview(statusLabel)
@@ -114,6 +121,12 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         
         statusLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
+        }
+        
+        elbumCoverEditButton.snp.makeConstraints {
+            $0.bottom.equalTo(headTitle.snp.bottom)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.size.equalTo(44)
         }
     }
     
