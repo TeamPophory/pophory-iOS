@@ -166,13 +166,14 @@ extension NameInputView: UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 if newText.isContainKoreanOnly() {
                     textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-                    self.warningLabel.isHidden = true
-                    self.nextButton.isEnabled = newLength >= 2 && newLength <= 6
                     
-                    if newLength <= 2 || newLength >= 6 {
+                    if newLength >= 2 && newLength <= 6 {
+                        self.warningLabel.isHidden = true
+                        self.nextButton.isEnabled = true
+                    } else {
                         self.warningLabel.text = "2-6글자 이내로 작성해주세요."
                         self.warningLabel.isHidden = false
-                        self.nextButton.isEnabled = true
+                        self.nextButton.isEnabled = false
                     }
                     
                 } else {

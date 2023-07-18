@@ -50,10 +50,17 @@ final class IDInputView: NameInputView {
             if self.isValidCharacters(newText) {
                 textField.layer.borderColor = UIColor.pophoryPurple.cgColor
                 self.warningLabel.isHidden = true
-                self.nextButton.isEnabled = true
+                
+                if newText.count >= 4 && newText.count <= 12 {
+                    self.nextButton.isEnabled = true
+                } else {
+                    self.warningLabel.text = "4-12자 이내로 작성해주세요"
+                    self.warningLabel.isHidden = false
+                    self.nextButton.isEnabled = false
+                }
             } else {
                 textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다."
+                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다"
                 self.warningLabel.isHidden = false
                 self.nextButton.isEnabled = false
             }
@@ -61,4 +68,5 @@ final class IDInputView: NameInputView {
         
         return true
     }
+
 }
