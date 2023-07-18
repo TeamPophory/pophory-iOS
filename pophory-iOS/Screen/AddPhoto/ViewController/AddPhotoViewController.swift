@@ -116,6 +116,8 @@ extension AddPhotoViewController {
                     } else {
                         print("Invalid URL")
                     }
+                let photoInfo = PostPhotoS3RequestDTO(fileName: presignedURL?.fileName, albumId: albumID, takenAt: dateTaken, studioId: studioID, width: Int(photoImage.size.width), height: Int(photoImage.size.height))
+                requestPostPhotoAPI(photoInfo: photoInfo)
                 }
             }
         }
@@ -132,16 +134,16 @@ extension AddPhotoViewController {
         rootView.albumCollectionView.dataSource = self
     }
     
-    private func fetchMultiPartData() -> [MultipartFormData]? {
-        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
-            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData), name: "photo", fileName: "image.jpg", mimeType: "image/jpeg")
-            guard let albumId = albumID else { return nil }
-            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumId)".data(using: .utf8) ?? .empty), name: "albumId")
-            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty), name: "takenAt")
-            let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
-            return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
-        } else { return nil }
-    }
+//    private func fetchMultiPartData() -> [MultipartFormData]? {
+//        if let imageData = photoImage.jpegData(compressionQuality: 0.8) {
+//            let imageDataProvider = Moya.MultipartFormData(provider: MultipartFormData.FormDataProvider.data(imageData), name: "photo", fileName: "image.jpg", mimeType: "image/jpeg")
+//            guard let albumId = albumID else { return nil }
+//            let albumIDDataProvider = Moya.MultipartFormData(provider: .data("\(albumId)".data(using: .utf8) ?? .empty), name: "albumId")
+//            let dateProvider = Moya.MultipartFormData(provider: .data("\(dateTaken)".data(using: .utf8) ?? .empty), name: "takenAt")
+//            let studioIDProvider = Moya.MultipartFormData(provider: .data("\(studioID)".data(using: .utf8) ?? .empty), name: "studioId")
+//            return [imageDataProvider, albumIDDataProvider, dateProvider, studioIDProvider]
+//        } else { return nil }
+//    }
     
     private func goToHome() {
         dismiss(animated: false)
@@ -209,7 +211,7 @@ extension AddPhotoViewController {
     }
     
     func requestPostPhotoAPI(
-        photoInfo: [MultipartFormData]
+        photoInfo: PostPhotoS3RequestDTO
     ) {
         NetworkService.shared.photoRepository.postPhoto(body: photoInfo
         ) { result in
