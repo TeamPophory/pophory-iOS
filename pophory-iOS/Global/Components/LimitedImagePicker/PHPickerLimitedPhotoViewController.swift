@@ -46,11 +46,13 @@ class PHPickerLimitedPhotoViewController: UIViewController {
         setupNavigationItem()
         setStyle()
         setLayout()
+        setDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        reload()
         showNavigationBar()
     }
 }
@@ -123,9 +125,9 @@ extension PHPickerLimitedPhotoViewController {
             PHImageManager().requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .aspectFill, options: requestOptions) { (image, info) in
                 guard let image = image else { return }
                 self.imageDummy.append(image)
-                DispatchQueue.main.async {
-                    self.reload()
-                }
+            }
+            DispatchQueue.main.async {
+                self.reload()
             }
         }
     }

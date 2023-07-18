@@ -99,7 +99,7 @@ final class AlbumDetailViewController: BaseViewController {
         changeSortViewController.configPhotoSortSyleDelegate = self
         self.present(changeSortViewController, animated: true)
     }
-
+    
     private func checkPhotoCellType(
         width: Int,
         height: Int
@@ -116,8 +116,8 @@ final class AlbumDetailViewController: BaseViewController {
     private func sortPhoto(
         albumPhotoList: PatchAlbumPhotoListResponseDTO
     ) -> PatchAlbumPhotoListResponseDTO {
-            let reversedPhotos = albumPhotoList.photos.reversed()
-            return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
+        let reversedPhotos = albumPhotoList.photos.reversed()
+        return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
     }
     
     private func mappedDefaultAlbumPhoto(
@@ -210,7 +210,8 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
         if photoList[indexPath.row].imageUrl == "" { return }
         let photoType = checkPhotoCellType(width: photoList[indexPath.row].width ,
                                            height: photoList[indexPath.row].height )
-        photoDetailViewController.setData(imageUrl: photoList[indexPath.row].imageUrl ,
+        photoDetailViewController.setData(photoID: photoList[indexPath.row].id,
+                                          imageUrl: photoList[indexPath.row].imageUrl ,
                                           takenAt: photoList[indexPath.row].takenAt ,
                                           studio: photoList[indexPath.row].studio ,
                                           type: photoType)
