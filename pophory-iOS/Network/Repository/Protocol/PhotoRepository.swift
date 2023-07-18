@@ -14,7 +14,7 @@ protocol PhotoRepository {
     func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void)
 
     func postPhoto(
-        body: [MultipartFormData],
+        body: PostPhotoS3RequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     )
     func deletePhoto(

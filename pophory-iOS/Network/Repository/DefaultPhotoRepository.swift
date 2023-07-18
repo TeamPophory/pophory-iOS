@@ -28,7 +28,7 @@ final class DefaultPhotoRepository: BaseRepository, PhotoRepository {
     }
     
     func postPhoto(
-        body: [MultipartFormData],
+        body: PostPhotoS3RequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         provider.request(.postPhoto(body: body)) { result in
