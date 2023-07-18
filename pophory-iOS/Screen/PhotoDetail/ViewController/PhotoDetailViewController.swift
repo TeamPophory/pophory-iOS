@@ -11,6 +11,7 @@ final class PhotoDetailViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private var photoID: Int?
     private var image: String?
     private var takenAt: String?
     private var studio: String?
@@ -27,11 +28,45 @@ final class PhotoDetailViewController: BaseViewController {
     // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .delete)
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         view = photoDetailView
+    }
+}
+
+extension PhotoDetailViewController {
+    
+    @objc func deleteButtonOnClick() {
+        showPopup(popupType: .option,
+                  primaryText: "사진을 삭제할까요?",
+                  secondaryText: "지금 삭제하면 다시 볼 수 없어요",
+                  firstButtonTitle: .delete,
+                  secondButtonTitle: .back,
+                  firstButtonHandler: deletePhoto,
+                  secondButtonHandler: closePopup)
+    }
+    
+    private func deletePhoto() {
+        if let photoID = photoID {
+            requestDeletePhoto(photoId: photoID)
+        }
+        dismiss(animated: false)
+    }
+    
+    private func closePopup() {
+        dismiss(animated: false)
+    }
+    
+    func setData(photoID: Int, imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
+        self.photoID = photoID
+        self.image = imageUrl
+        self.takenAt = takenAt
+        self.studio = studio
+        self.photoType = type
     }
 }
 
@@ -42,10 +77,17 @@ extension PhotoDetailViewController: Navigatable {
 }
 
 extension PhotoDetailViewController {
-    func setData(imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
-        self.image = imageUrl
-        self.takenAt = takenAt
-        self.studio = studio
-        self.photoType = type
+    func requestDeletePhoto(
+        photoId: Int
+    ) {
+        NetworkService.shared.photoRepository.deletePhoto(
+            photoId: photoId
+        ) { result in
+            switch result {
+            case .success(let response):
+                self.navigationController?.popViewController(animated: true)
+            default : return
+            }
+        }
     }
 }
