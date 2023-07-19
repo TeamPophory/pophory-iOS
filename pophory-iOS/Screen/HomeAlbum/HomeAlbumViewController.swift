@@ -24,7 +24,8 @@ final class HomeAlbumViewController: BaseViewController {
                     // MARK: - update UI
                     homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
                     homeAlbumView.statusLabelText = String(photoCount)
-                    homeAlbumView.updateProgressBarWidth(updateWidth: Int(progressBackgroundViewWidth) * (photoCount / 15))
+                    let progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
+                    homeAlbumView.updateProgressBarWidth(updateWidth: progressValue)
                 }
             }
         }

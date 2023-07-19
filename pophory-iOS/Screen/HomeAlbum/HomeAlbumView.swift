@@ -86,6 +86,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         view.layer.cornerRadius = 3
         return view
     }()
+    private let progressBarIcon = UIImageView(image: ImageLiterals.progressBarIcon)
     
     init(
         statusLabelText: String
@@ -108,7 +109,8 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
               statusLabel,
               elbumCoverEditButton,
               progressBackgroundView,
-              progressBarView
+              progressBarView,
+              progressBarIcon
             ]
         )
         
@@ -154,6 +156,12 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.leading.equalToSuperview().inset(60)
         }
         progressBarView.bringSubviewToFront(self)
+        
+        progressBarIcon.snp.makeConstraints {
+            $0.centerY.equalTo(progressBarView)
+            $0.leading.equalTo(progressBarView.snp.trailing).inset(4)
+            $0.size.equalTo(38)
+        }
     }
     
     private func configUI() {
