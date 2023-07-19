@@ -56,6 +56,8 @@ extension ShareView {
         
         sharePhotoView.addSubviews([shareImageView])
         
+        // TODO: - View 크기 유동적
+        
         sharePhotoView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(self.safeAreaLayoutGuide).inset(34)
@@ -66,6 +68,8 @@ extension ShareView {
         shareButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
         }
+        
+        // TODO: - 가로 세로 분기 처리
         
         shareImageView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
