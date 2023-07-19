@@ -12,7 +12,7 @@ import RxSwift
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
-    var serverAlbumId = Int()
+    var albumPK = Int()
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
         didSet {
@@ -67,8 +67,8 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
 
 extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped() {
-        let patchAlbumCoverRequestDTO = PatchAlbumCoverRequestDTO(albumDesign: self.albumCoverIndex + 1)
-        self.patchAlbumCover(albumId: serverAlbumId, body: patchAlbumCoverRequestDTO)
+        let patchAlbumCoverRequestDTO = PatchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
 

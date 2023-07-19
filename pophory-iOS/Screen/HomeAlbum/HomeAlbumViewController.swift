@@ -87,7 +87,7 @@ extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped() {
         let editAlbumViewController = EditAlbumViewController()
         if let albumCoverId = self.albumCoverId {
-            editAlbumViewController.serverAlbumId = albumCoverId
+            editAlbumViewController.albumPK = albumId ?? Int()
             editAlbumViewController.albumCoverIndex = albumCoverId - 1
             editAlbumViewController.albumThemeCoverIndex = albumCoverId / 2
         }

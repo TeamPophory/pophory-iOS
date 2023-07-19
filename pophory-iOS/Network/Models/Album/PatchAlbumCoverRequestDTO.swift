@@ -8,5 +8,5 @@
 import Foundation
 
 struct PatchAlbumCoverRequestDTO: Codable {
-    let albumDesign: Int
+    let albumDesignId: Int
 }

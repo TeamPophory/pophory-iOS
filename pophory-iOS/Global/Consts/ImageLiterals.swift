@@ -61,7 +61,17 @@ enum ImageLiterals {
     static var albumCover8: UIImage { .load(name: "ic_album_cover_family_2") }
 
     /// index 맞추기 위해 0번째에 빈 이미지 삽입
-    static var albumCoverList: [UIImage] = [UIImage(), albumCover1, albumCover2, albumCover3, albumCover4]
+    static var albumCoverList: [UIImage] = [
+        UIImage(),
+        albumCover1,
+        albumCover2,
+        albumCover3,
+        albumCover4,
+        albumCover5,
+        albumCover6,
+        albumCover7,
+        albumCover8
+    ]
     
     // MARK: - AlbumCoverProfile
     
