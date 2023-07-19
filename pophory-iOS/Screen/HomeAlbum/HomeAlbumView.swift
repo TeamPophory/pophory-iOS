@@ -17,18 +17,28 @@ protocol ImageViewDidTappedProtocol {
     func imageDidTapped()
 }
 
+protocol HomeAlbumViewButtonTappedProtocol {
+    func elbumCoverEditButtonDidTapped()
+}
+
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
+
+    private let screenWidth = UIScreen.main.bounds.width
 
     private var privateStatusLabelText: String
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
+    var homeAlbumViewButtonTappedDelegate: HomeAlbumViewButtonTappedProtocol?
     
     var statusLabelText: String {
         get {
             return privateStatusLabelText
         }
         set {
-            privateStatusLabelText = newValue
-            self.statusLabel.text = privateStatusLabelText + "/30"
+            privateStatusLabelText = newValue + "/15"
+            
+            let attributedText = NSMutableAttributedString(string: privateStatusLabelText)
+            attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: newValue.count))
+            self.statusLabel.attributedText = attributedText
         }
     }
 
@@ -52,18 +62,31 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
-    private let statusView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryPurple
-        view.layer.cornerRadius = 20
-        return view
-    }()
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.font = .t1
-        label.textColor = .white
+        label.font = .head2
+        label.textColor = .pophoryGray500
         return label
     }()
+    private lazy var elbumCoverEditButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.changeElbumCover, for: .normal)
+        button.addTarget(self, action: #selector(elbumCoverEditButtonDidTapped), for: .touchUpInside)
+        return button
+    }()
+    private let progressBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryGray300
+        view.layer.cornerRadius = 3
+        return view
+    }()
+    private let progressBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .pophoryPurple
+        view.layer.cornerRadius = 3
+        return view
+    }()
+    private let progressBarIcon = UIImageView(image: ImageLiterals.progressBarIcon)
     
     init(
         statusLabelText: String
@@ -81,12 +104,15 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     private func setupLayout() {
         self.addSubviews(
             [ appLogo,
-            headTitle,
-            albumImageView,
-            statusView ]
+              headTitle,
+              albumImageView,
+              elbumCoverEditButton,
+              progressBackgroundView,
+              progressBarView,
+              progressBarIcon,
+              statusLabel
+            ]
         )
-        
-        statusView.addSubview(statusLabel)
         
         appLogo.snp.makeConstraints {
             $0.top.equalTo(headerHeightByNotch(27))
@@ -105,15 +131,36 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.centerX.equalToSuperview()
         }
         
-        statusView.snp.makeConstraints {
-            $0.top.equalTo(albumImageView.snp.bottom).offset(constraintByNotch(19, 15))
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(38)
-            $0.width.equalTo(64)
+        elbumCoverEditButton.snp.makeConstraints {
+            $0.bottom.equalTo(headTitle.snp.bottom)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.size.equalTo(44)
+        }
+        
+        progressBackgroundView.snp.makeConstraints {
+            $0.height.equalTo(6)
+            $0.width.equalTo(screenWidth - 180)
+            $0.centerY.equalTo(statusLabel)
+            $0.leading.equalToSuperview().inset(50)
+        }
+        
+        progressBarView.snp.makeConstraints {
+            $0.height.equalTo(6)
+            $0.width.equalTo(0)
+            $0.centerY.equalTo(statusLabel)
+            $0.leading.equalToSuperview().inset(50)
+        }
+        progressBarView.bringSubviewToFront(self)
+        
+        progressBarIcon.snp.makeConstraints {
+            $0.centerY.equalTo(progressBarView)
+            $0.trailing.equalTo(progressBarView.snp.trailing).offset(6)
+            $0.size.equalTo(38)
         }
         
         statusLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(albumImageView.snp.bottom).offset(30)
+            $0.leading.equalTo(progressBackgroundView.snp.trailing).offset(26)
         }
     }
     
@@ -124,5 +171,28 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     @objc
     private func imageTapped() {
         imageDidTappedDelegate?.imageDidTapped()
+    }
+    
+    @objc
+    private func elbumCoverEditButtonDidTapped() {
+        homeAlbumViewButtonTappedDelegate?.elbumCoverEditButtonDidTapped()
+    }
+    
+    func updateProgressBarWidth(
+        updateWidth: Int
+    ) {
+        progressBarView.snp.updateConstraints {
+            $0.width.equalTo(updateWidth)
+        }
+    }
+    
+    func updateProgressBarIcon(
+        isAlbumFull: Bool
+    ) {
+        if isAlbumFull {
+            progressBarIcon.image = ImageLiterals.progressBarIconFull
+        } else {
+            progressBarIcon.image = ImageLiterals.progressBarIcon
+        }
     }
 }
