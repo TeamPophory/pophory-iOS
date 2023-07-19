@@ -31,7 +31,7 @@ final class OnboardingView: UIView {
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 3
+        pageControl.numberOfPages = onboardingImages.count
         pageControl.currentPageIndicatorTintColor = .pophoryGray500
         pageControl.pageIndicatorTintColor = .pophoryGray400
         return pageControl
@@ -56,7 +56,8 @@ final class OnboardingView: UIView {
     let onboardingImages: [UIImage] = [
         ImageLiterals.OnboardingImage1,
         ImageLiterals.OnboardingImage2,
-        ImageLiterals.OnboardingImage3
+        ImageLiterals.OnboardingImage3,
+        ImageLiterals.OnboardingImage4
     ]
     
     override init(frame: CGRect) {
@@ -138,7 +139,6 @@ extension OnboardingView: UICollectionViewDelegateFlowLayout {
 
 extension OnboardingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         
         return onboardingImages.count
     }

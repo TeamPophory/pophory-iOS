@@ -11,6 +11,9 @@ extension UIColor {
     static var pophoryPurple: UIColor {
         return UIColor(hex: "#725BFF")
     }
+    static var pophoryLightPurple: UIColor {
+        return UIColor(hex: "#EBE8FF")
+    }
     static var pophoryRed: UIColor {
         return UIColor(hex: "#FC4646")
     }

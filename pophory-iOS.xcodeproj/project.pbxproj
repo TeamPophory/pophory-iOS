@@ -53,6 +53,7 @@
 		37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B22A4AC7CD00FF8F90 /* Pretendard-Regular.otf */; };
 		37DCA6B72A4ACE6200FF8F90 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */; };
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
+		37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
 		3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */; };
 		3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */; };
@@ -77,6 +78,11 @@
 		6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */; };
 		6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47522A6825000060EC78 /* FirebaseAnalytics */; };
 		6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */; };
+		6BCE475A2A684D540060EC78 /* PatchSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE47592A684D540060EC78 /* PatchSharePhotoRequestDTO.swift */; };
+		6BCE475C2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */; };
+		6BCE475E2A684E580060EC78 /* ShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475D2A684E580060EC78 /* ShareAPI.swift */; };
+		6BCE47602A684FDB0060EC78 /* ShareRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475F2A684FDB0060EC78 /* ShareRepository.swift */; };
+		6BCE47622A6850920060EC78 /* DefaultShareRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE47612A6850920060EC78 /* DefaultShareRepository.swift */; };
 		9127800E2A67BF510005BBA3 /* EditAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127800D2A67BF510005BBA3 /* EditAlbumViewController.swift */; };
 		912780102A67BF760005BBA3 /* EditAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127800F2A67BF760005BBA3 /* EditAlbumView.swift */; };
 		912780122A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */; };
@@ -93,8 +99,8 @@
 		91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7652A52A87E00C06D1B /* PatchStudiosResponseDTO.swift */; };
 		91F3A76A2A52A93600C06D1B /* PostPhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */; };
 		91F3A76F2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */; };
-		91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */; };
-		91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */; };
+		91F3A7712A52AADE00C06D1B /* FetchMyPageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7702A52AADE00C06D1B /* FetchMyPageResponseDTO.swift */; };
+		91F3A7732A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7722A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift */; };
 		91F3A7762A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */; };
 		91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7782A52AC3E00C06D1B /* Photos.swift */; };
 		91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */; };
@@ -148,11 +154,15 @@
 		B1631F592A175F470050974F /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F582A175F470050974F /* Notification.Name+Extension.swift */; };
 		B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F5A2A175F850050974F /* UITextField+Extension.swift */; };
 		B1631F5D2A175F9C0050974F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1631F5C2A175F9C0050974F /* Date+Extension.swift */; };
+		B1B7E70D2A680F5700CFE64C /* PhotoUrlResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B7E70C2A680F5700CFE64C /* PhotoUrlResponseDto.swift */; };
 		B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = B1D0297D2A5D89DD000B5B53 /* SkeletonView */; };
 		B1D029802A5D907F000B5B53 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */; };
 		B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */; };
 		B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */; };
 		B1F310EB2A629B1600BF989B /* PopupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EA2A629B1600BF989B /* PopupType.swift */; };
+		B1F310ED2A62D4E800BF989B /* MyPageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */; };
+		B1F310F02A62E66100BF989B /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */; };
+		B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +227,7 @@
 		37DCA6B22A4AC7CD00FF8F90 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		37DCA6B62A4ACE6200FF8F90 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +251,11 @@
 		6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoViewController.swift; sourceTree = "<group>"; };
 		6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BCE47592A684D540060EC78 /* PatchSharePhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchSharePhotoRequestDTO.swift; sourceTree = "<group>"; };
+		6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSharePhotoRequestDTO.swift; sourceTree = "<group>"; };
+		6BCE475D2A684E580060EC78 /* ShareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAPI.swift; sourceTree = "<group>"; };
+		6BCE475F2A684FDB0060EC78 /* ShareRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRepository.swift; sourceTree = "<group>"; };
+		6BCE47612A6850920060EC78 /* DefaultShareRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultShareRepository.swift; sourceTree = "<group>"; };
 		9127800D2A67BF510005BBA3 /* EditAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumViewController.swift; sourceTree = "<group>"; };
 		9127800F2A67BF760005BBA3 /* EditAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumView.swift; sourceTree = "<group>"; };
 		912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -255,8 +271,8 @@
 		91F3A7652A52A87E00C06D1B /* PatchStudiosResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchStudiosResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoRequestDTO.swift; sourceTree = "<group>"; };
 		91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchSignUpRequestDTO.swift; sourceTree = "<group>"; };
-		91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchMyPageResponseDTO.swift; sourceTree = "<group>"; };
-		91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchUserInfoResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7702A52AADE00C06D1B /* FetchMyPageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMyPageResponseDTO.swift; sourceTree = "<group>"; };
+		91F3A7722A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInfoResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumListResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A7782A52AC3E00C06D1B /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumPhotoListResponseDTO.swift; sourceTree = "<group>"; };
@@ -314,10 +330,14 @@
 		B1631F5A2A175F850050974F /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B1631F5C2A175F9C0050974F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		B1631F652A1760180050974F /* .keep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .keep; sourceTree = "<group>"; };
+		B1B7E70C2A680F5700CFE64C /* PhotoUrlResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUrlResponseDto.swift; sourceTree = "<group>"; };
 		B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageNetworkManager.swift; sourceTree = "<group>"; };
 		B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryWebViewController.swift; sourceTree = "<group>"; };
 		B1F310EA2A629B1600BF989B /* PopupType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupType.swift; sourceTree = "<group>"; };
+		B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageBannerView.swift; sourceTree = "<group>"; };
+		B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
+		B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +648,15 @@
 			path = LimitedImagePicker;
 			sourceTree = "<group>";
 		};
+		6BCE47562A684CAD0060EC78 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				6BCE47592A684D540060EC78 /* PatchSharePhotoRequestDTO.swift */,
+				6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		912780152A67D9ED0005BBA3 /* EditAlbumCover */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,6 +714,7 @@
 			children = (
 				91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */,
 				6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */,
+				B1B7E70C2A680F5700CFE64C /* PhotoUrlResponseDto.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -693,8 +723,8 @@
 			isa = PBXGroup;
 			children = (
 				91F3A76E2A52AA9100C06D1B /* PatchSignUpRequestDTO.swift */,
-				91F3A7702A52AADE00C06D1B /* PatchMyPageResponseDTO.swift */,
-				91F3A7722A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift */,
+				91F3A7702A52AADE00C06D1B /* FetchMyPageResponseDTO.swift */,
+				91F3A7722A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift */,
 				3780FBCB2A6187710002A0FD /* PostIsDuplicatedDTO.swift */,
 			);
 			path = Member;
@@ -743,6 +773,7 @@
 				91F3A78F2A52B5DA00C06D1B /* MemberAPI.swift */,
 				91F3A7912A52B71800C06D1B /* AlbumAPI.swift */,
 				91F3A7932A52B96F00C06D1B /* AuthAPI.swift */,
+				6BCE475D2A684E580060EC78 /* ShareAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -757,6 +788,7 @@
 				91F3A7A92A52D90800C06D1B /* DefaultMemberRepository.swift */,
 				91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */,
 				91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */,
+				6BCE47612A6850920060EC78 /* DefaultShareRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -769,6 +801,7 @@
 				91F3A79F2A52D36F00C06D1B /* MemberRepository.swift */,
 				91F3A7A12A52D40A00C06D1B /* AlbumRepository.swift */,
 				91F3A7A32A52D52200C06D1B /* AuthRepository.swift */,
+				6BCE475F2A684FDB0060EC78 /* ShareRepository.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -785,7 +818,8 @@
 		B138A3B12A55C1A9000EE81E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */,
+				B1F310F12A62E6AD00BF989B /* SharePhoto */,
+				B1F310EE2A62E60C00BF989B /* MyPage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -794,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				37DCA69F2A4AB6E600FF8F90 /* MypageViewController.swift */,
+				B1F310EF2A62E66100BF989B /* SharePhotoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -965,6 +1000,7 @@
 				91F3A76D2A52AA2400C06D1B /* Member */,
 				91F3A7742A52AB8300C06D1B /* Album */,
 				3703F0F32A60714D0017A381 /* Auth */,
+				6BCE47562A684CAD0060EC78 /* Share */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1003,6 +1039,7 @@
 				373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */,
 				B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */,
 				912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */,
+				37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1013,6 +1050,23 @@
 				B1D029822A5DA7AF000B5B53 /* MyPageNetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B1F310EE2A62E60C00BF989B /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B138A3B32A55C1E1000EE81E /* MyPageRootView.swift */,
+				B1F310EC2A62D4E800BF989B /* MyPageBannerView.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B1F310F12A62E6AD00BF989B /* SharePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				B1F310F22A62E6C000BF989B /* SharePhotoRootView.swift */,
+			);
+			path = SharePhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1178,6 +1232,7 @@
 				6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */,
 				91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */,
 				91F3A7602A517E9E00C06D1B /* ImageLiterals.swift in Sources */,
+				6BCE475A2A684D540060EC78 /* PatchSharePhotoRequestDTO.swift in Sources */,
 				B1631F0F2A1759EA0050974F /* ViewController.swift in Sources */,
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
 				6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */,
@@ -1203,6 +1258,7 @@
 				3780FBCE2A6265E20002A0FD /* LoginAPIDTO.swift in Sources */,
 				B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */,
 				6BC63CDE2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift in Sources */,
+				37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */,
 				373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
@@ -1218,15 +1274,18 @@
 				B1D029802A5D907F000B5B53 /* UserDefault+Extension.swift in Sources */,
 				6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */,
 				912780122A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift in Sources */,
+				6BCE47622A6850920060EC78 /* DefaultShareRepository.swift in Sources */,
 				91F3A7942A52B96F00C06D1B /* AuthAPI.swift in Sources */,
 				371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */,
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
+				6BCE47602A684FDB0060EC78 /* ShareRepository.swift in Sources */,
 				3703F0F72A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift in Sources */,
 				B1631F0B2A1759EA0050974F /* AppDelegate.swift in Sources */,
 				3780FBD02A6274390002A0FD /* PophoryTokenManager.swift in Sources */,
+				6BCE475E2A684E580060EC78 /* ShareAPI.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
 				3703F0F52A6071B50017A381 /* PostIdentityTokenDTO.swift in Sources */,
@@ -1260,10 +1319,11 @@
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
 				376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */,
+				B1F310ED2A62D4E800BF989B /* MyPageBannerView.swift in Sources */,
 				B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */,
-				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
+				91F3A7732A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
-				91F3A7712A52AADE00C06D1B /* PatchMyPageResponseDTO.swift in Sources */,
+				91F3A7712A52AADE00C06D1B /* FetchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
 				6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */,
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
@@ -1271,6 +1331,7 @@
 				91F3A7AA2A52D90800C06D1B /* DefaultMemberRepository.swift in Sources */,
 				B138A3B42A55C1E1000EE81E /* MyPageRootView.swift in Sources */,
 				9127801A2A67F9DA0005BBA3 /* Album.swift in Sources */,
+				6BCE475C2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift in Sources */,
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
 				6BB37C732A55EB7400E49B12 /* DateManager.swift in Sources */,
 				B1631F5B2A175F860050974F /* UITextField+Extension.swift in Sources */,
@@ -1279,6 +1340,7 @@
 				91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
+				B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
@@ -1293,10 +1355,12 @@
 				B1631F0D2A1759EA0050974F /* SceneDelegate.swift in Sources */,
 				B1631F562A175F230050974F /* UICollectionViewCell+Extension.swift in Sources */,
 				91F3A7972A52D04200C06D1B /* BaseRepository.swift in Sources */,
+				B1F310F02A62E66100BF989B /* SharePhotoViewController.swift in Sources */,
 				91F3A7A82A52D6C100C06D1B /* DefaultPhotoRepository.swift in Sources */,
 				372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */,
 				6BC63CDC2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift in Sources */,
 				377EF7EB2A4F4CBD00E3268D /* PickAlbumCoverView.swift in Sources */,
+				B1B7E70D2A680F5700CFE64C /* PhotoUrlResponseDto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

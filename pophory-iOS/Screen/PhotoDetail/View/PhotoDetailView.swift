@@ -50,7 +50,7 @@ final class PhotoDetailView: UIView {
     
     private lazy var takenAtLabel: UILabel = {
         let label = UILabel()
-        label.font = .ttl1
+        label.font = .title1
         label.textColor = .pophoryBlack
         label.text = takenAt
         return label
@@ -58,13 +58,14 @@ final class PhotoDetailView: UIView {
     
     private lazy var studioLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .pophoryBlack
-        label.layer.cornerRadius = 37 / 2
+        label.font = .text1
+        label.textColor = .pophoryBlack
+        label.text = studio
         label.clipsToBounds = true
         label.textAlignment = .center
-        label.font = .t1
-        label.textColor = .pophoryWhite
-        label.text = studio
+        label.layer.borderColor = UIColor.pophoryBlack.cgColor
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 37 / 2
         return label
     }()
     
@@ -76,6 +77,7 @@ final class PhotoDetailView: UIView {
         self.studio = studio
         self.photoType = type
         super.init(frame: frame)
+        
         configureUI()
         setupLayout()
     }
@@ -89,6 +91,10 @@ extension PhotoDetailView {
     private func configureUI() {
         backgroundColor = .pophoryWhite
         photoImageView.kf.setImage(with: URL(string: imageUrl))
+        
+        if studio == "NONE" {
+            studioLabel.isHidden = true
+        }
     }
     
     private func setupLayout() {
@@ -119,9 +125,10 @@ extension PhotoDetailView {
                 make.directionalHorizontalEdges.centerY.equalToSuperview()
                 make.directionalVerticalEdges.equalToSuperview().inset(20)
             }
-        case .none: return
+        case .none:
+            return
         }
-               
+        
         bottomLine.snp.makeConstraints { make in
             make.top.equalTo(photoDetailView.snp.bottom)
             make.directionalHorizontalEdges.equalTo(photoDetailView)
