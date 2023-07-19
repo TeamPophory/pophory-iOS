@@ -12,6 +12,7 @@ import RxSwift
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
+    var serverAlbumId = Int()
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
         didSet {
@@ -60,12 +61,14 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
         let albumCoverIndex = themeIndex * 2
         let indexPath = IndexPath(item: albumCoverIndex, section: 0)
         editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.albumCoverIndex = albumCoverIndex
     }
 }
 
 extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped() {
-        // MARK: - 앨범 변경 인덱스, albumCoverIndex
+        let patchAlbumCoverRequestDTO = PatchAlbumCoverRequestDTO(albumDesign: self.albumCoverIndex + 1)
+        self.patchAlbumCover(albumId: serverAlbumId, body: patchAlbumCoverRequestDTO)
     }
 }
 
@@ -92,4 +95,22 @@ extension EditAlbumViewController: UICollectionViewDelegate {
 
 extension EditAlbumViewController: Navigatable {
     var navigationBarTitleText: String? { return "앨범 테마" }
+}
+
+// MARK: - api
+
+extension EditAlbumViewController {
+    func patchAlbumCover(
+        albumId: Int,
+        body: PatchAlbumCoverRequestDTO
+    ) {
+        NetworkService.shared.albumRepository.patchAlbumCover(
+            albumId: albumId, body: body
+        ) { result in
+            switch result {
+            case .success(_): return
+            default : return
+            }
+        }
+    }
 }

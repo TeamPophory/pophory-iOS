@@ -12,6 +12,7 @@ import Moya
 enum AlbumAPI {
     case patchAlbumList
     case patchAlbumPhotoList(albumId: Int)
+    case patchAlbumCover(albumId: Int, body: PatchAlbumCoverRequestDTO)
 }
 
 extension AlbumAPI: BaseTargetType {
@@ -26,6 +27,8 @@ extension AlbumAPI: BaseTargetType {
             return URLConstants.album
         case .patchAlbumPhotoList(let albumId):
             return URLConstants.album + "/\(albumId)/photos"
+        case .patchAlbumCover(let albumId, _):
+            return URLConstantsV2.album + "/\(albumId)"
         }
     }
     
@@ -33,6 +36,8 @@ extension AlbumAPI: BaseTargetType {
         switch self {
         case .patchAlbumList, .patchAlbumPhotoList:
             return .get
+        case .patchAlbumCover:
+            return .patch
         }
     }
     
@@ -40,6 +45,8 @@ extension AlbumAPI: BaseTargetType {
         switch self {
         case .patchAlbumList, .patchAlbumPhotoList:
             return .requestPlain
+        case .patchAlbumCover(_, let body):
+            return .requestJSONEncodable(body)
         }
     }
 }
