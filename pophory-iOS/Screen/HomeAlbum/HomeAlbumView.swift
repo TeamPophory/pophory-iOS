@@ -24,6 +24,7 @@ protocol HomeAlbumViewButtonTappedProtocol {
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
 
     private var privateStatusLabelText: String
+    private let maxPhotoCount: Int = 15
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
     var homeAlbumViewButtonTappedDelegate: HomeAlbumViewButtonTappedProtocol?
     
@@ -32,7 +33,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             return privateStatusLabelText
         }
         set {
-            privateStatusLabelText = newValue + "/15"
+            privateStatusLabelText = newValue + "/\(maxPhotoCount)"
             
             let attributedText = NSMutableAttributedString(string: privateStatusLabelText)
             attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: newValue.count))
@@ -43,12 +44,11 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
         let label = UILabel()
-        label.font = .head1Medium
         label.numberOfLines = 2
         
-        let attributedText = NSMutableAttributedString(string: "포포리 앨범에\n소중한 추억을 보관해 봐!")
-        attributedText.addAttributes([.font: UIFont.head1Bold], range: NSRange(location: 0, length: 6))
-        attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: 6))
+        let attributedText = NSMutableAttributedString()
+            .regular("포포리 앨범", font: .head1Bold, color: .pophoryPurple)
+            .regular("에\n소중한 추억을 보관해 봐!", font: .head1Medium)
         label.attributedText = attributedText
         return label
     }()
@@ -147,10 +147,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         }
         
         progressBarView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(50)
             $0.height.equalTo(6)
             $0.width.equalTo(0)
             $0.centerY.equalTo(statusLabel)
-            $0.leading.equalToSuperview().inset(50)
         }
         progressBarView.bringSubviewToFront(self)
         

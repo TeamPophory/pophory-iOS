@@ -26,25 +26,15 @@ final class EditAlbumView: UIView {
         view.backgroundColor = .pophoryGray300
         return view
     }()
-    private let albumCoverProfile1: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.albumCoverProfile1, for: .normal)
-        return button
-    }()
-    private let albumCoverProfile2: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.albumCoverProfile2, for: .normal)
-        return button
-    }()
-    private let albumCoverProfile3: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.albumCoverProfile3, for: .normal)
-        return button
-    }()
-    private let albumCoverProfile4: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.albumCoverProfile4, for: .normal)
-        return button
+    private lazy var albumCoverProfile1 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile1)
+    private lazy var albumCoverProfile2 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile2)
+    private lazy var albumCoverProfile3 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile3)
+    private lazy var albumCoverProfile4 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile4)
+    private let albumCoverProfileStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 18
+        stackView.axis = .horizontal
+        return stackView
     }()
     lazy var albumCoverCollectionView: UICollectionView = {
         let flowLayout = HorizontalCarouselCollectionViewFlowLayout()
@@ -89,12 +79,18 @@ final class EditAlbumView: UIView {
         self.addSubviews(
             [
                 lineView,
+                albumCoverProfileStackView,
+                albumCoverCollectionView,
+                editButton
+            ]
+        )
+        
+        albumCoverProfileStackView.addArrangedSubviews(
+            [
                 albumCoverProfile1,
                 albumCoverProfile2,
                 albumCoverProfile3,
-                albumCoverProfile4,
-                albumCoverCollectionView,
-                editButton
+                albumCoverProfile4
             ]
         )
 
@@ -104,28 +100,9 @@ final class EditAlbumView: UIView {
             $0.height.equalTo(1)
         }
         
-        albumCoverProfile1.snp.makeConstraints {
+        albumCoverProfileStackView.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(52)
-            $0.leading.equalToSuperview().inset(70)
-            $0.size.equalTo(50)
-        }
-        
-        albumCoverProfile2.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(52)
-            $0.leading.equalTo(albumCoverProfile1.snp.trailing).offset(18)
-            $0.size.equalTo(50)
-        }
-        
-        albumCoverProfile3.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(52)
-            $0.leading.equalTo(albumCoverProfile2.snp.trailing).offset(18)
-            $0.size.equalTo(50)
-        }
-        
-        albumCoverProfile4.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(52)
-            $0.leading.equalTo(albumCoverProfile3.snp.trailing).offset(18)
-            $0.size.equalTo(50)
+            $0.centerX.equalToSuperview()
         }
         
         albumCoverCollectionView.snp.makeConstraints {
@@ -143,6 +120,17 @@ final class EditAlbumView: UIView {
     
     private func configUI() {
         self.backgroundColor = .pophoryWhite
+    }
+    
+    private func createAlbumCoverProfileButton(
+        image: UIImage
+    ) -> UIButton {
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.snp.makeConstraints {
+            $0.size.equalTo(50)
+        }
+        return button
     }
 }
 
