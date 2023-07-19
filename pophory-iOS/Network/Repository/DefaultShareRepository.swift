@@ -13,7 +13,7 @@ final class DefaultShareRepository: BaseRepository, ShareRepository {
     
     let provider = MoyaProvider<ShareAPI>(plugins: [MoyaLoggerPlugin()])
 
-    func patchSharePhoto(completion: @escaping (NetworkResult<PatchSharePhotoRequestDTO>) -> Void) {
+    func patchSharePhoto(shareId: String, completion: @escaping (NetworkResult<PatchSharePhotoRequestDTO>) -> Void) {
         provider.request(.patchSharePhoto) { result in
             switch result {
             case.success(let response):

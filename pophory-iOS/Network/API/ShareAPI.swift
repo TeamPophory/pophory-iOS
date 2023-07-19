@@ -11,7 +11,7 @@ import Moya
 
 enum ShareAPI {
     case patchSharePhoto
-    case postSharePhoto
+    case postSharePhoto(body: PostSharePhotoRequestDTO)
 }
 
 extension ShareAPI: BaseTargetType {
