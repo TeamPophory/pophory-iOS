@@ -23,11 +23,7 @@ final class NameInputViewController: BaseViewController {
     
     private var keyboardManager: KeyboardManager?
     
-    private lazy var nameInputView: NameInputView = {
-        let view = NameInputView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var nameInputView = NameInputView()
     
     // MARK: - Life Cycle
     

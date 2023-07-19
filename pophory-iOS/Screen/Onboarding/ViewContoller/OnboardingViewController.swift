@@ -13,11 +13,7 @@ final class OnboardingViewController: BaseViewController {
     
     // MARK: - Properties
     
-    lazy var onboardingView: OnboardingView = {
-        let view = OnboardingView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    lazy var onboardingView = OnboardingView()
     
     private let appleLoginManager: AppleLoginManager
     

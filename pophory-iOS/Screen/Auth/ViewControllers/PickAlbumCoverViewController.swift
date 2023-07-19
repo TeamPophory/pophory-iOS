@@ -28,11 +28,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     // MARK: - UI Properties
     
-    private lazy var pickAlbumCoverView: PickAlbumCoverView = {
-        let view = PickAlbumCoverView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var pickAlbumCoverView = PickAlbumCoverView()
     
     // MARK: - Life Cycle
     
