@@ -15,10 +15,8 @@ extension UIViewController {
             return navigationBarHeight + statusBarHeight
         }
     
-    func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator) {
-        if let navigationController = navigationController {
-            navigationConfigurator.configureNavigationBar(in: self, navigationController: navigationController)
-        }
+    func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator, showRightButton: Bool = false, rightButtonImageType: PophoryNavigationConfigurator.RightButtonImageType? = nil) {
+        navigationConfigurator.configureNavigationBar(in: self, showRightButton: showRightButton, rightButtonImageType: rightButtonImageType)
     }
     
     func hideNavigationBar() {
