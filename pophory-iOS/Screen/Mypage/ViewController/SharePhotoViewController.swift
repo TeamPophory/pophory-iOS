@@ -19,7 +19,7 @@ class SharePhotoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestDataV2()
+        requestData()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
@@ -38,20 +38,10 @@ class SharePhotoViewController: BaseViewController {
 
 extension SharePhotoViewController {
     private func requestData() {
-        networkManager.requestAlbumData() { [weak self] albumList, photoCount in
-            self?.networkManager.requestPhotoData(albumList: albumList) { photoUrlList in
-                DispatchQueue.main.async {
-                    self?.rootView.updatePhotoData(photoUrlList)
-                }
-            }
-        }
-    }
-    
-    private func requestDataV2() {
         networkManager.requestAllPhoto() { [weak self] photoData in
             self?.networkManager.requestAllPhoto { photoData in
-                guard let photoUrlList = photoData?.compactMap({ $0.photoUrl }) else { return }
-                self?.rootView.updatePhotoData(photoUrlList)
+                guard let photoData = photoData else { return }
+                self?.rootView.updatePhotoData(photoData)
             }
         }
     }

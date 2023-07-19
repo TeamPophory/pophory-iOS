@@ -14,7 +14,7 @@ class SharePhotoRootView: UIView {
     
     // MARK: - Properties
     
-    var photoData: [String]?
+    var photoData: [PhotoUrlResponseDto]?
     private var selectedPhotoIndex: Int?
     
     // MARK: - UI Properties
@@ -36,7 +36,7 @@ class SharePhotoRootView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updatePhotoData(_ photoData: [String]) {
+    func updatePhotoData(_ photoData: [PhotoUrlResponseDto]) {
         self.photoData = photoData
         
         if photoData.isEmpty {
@@ -159,11 +159,13 @@ extension SharePhotoRootView: SkeletonCollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell,
-              let photoData = photoData else {
+              let photoData = photoData,
+              let photoUrl = photoData[indexPath.item].photoUrl else {
             return UICollectionViewCell()
         }
         
-        cell.configCell(imageUrl: photoData[indexPath.item], cellType: .myPage)
+        cell.configCell(imageUrl: photoUrl, cellType: .myPage)
+        cell.photoMetaData = photoData[indexPath.item]
         cell.clipsToBounds = true
         cell.contentView.isSkeletonable = true
         
@@ -199,6 +201,8 @@ extension SharePhotoRootView: UICollectionViewDelegateFlowLayout {
         selectedCell.isSelected = true
         selectedPhotoIndex = indexPath.item
         
-        sharePhoto(shareId: "")
+        if let shareId = selectedCell.photoMetaData?.shareId {
+            sharePhoto(shareId: shareId)
+        }
     }
 }
