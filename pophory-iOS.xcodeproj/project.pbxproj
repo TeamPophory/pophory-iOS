@@ -83,6 +83,7 @@
 		912780122A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */; };
 		912780142A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780132A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift */; };
 		9127801A2A67F9DA0005BBA3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780192A67F9DA0005BBA3 /* Album.swift */; };
+		9127801C2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127801B2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift */; };
 		9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */; };
 		9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9161CADE2A5460AA002B8B77 /* Kingfisher */; };
 		9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */; };
@@ -252,6 +253,7 @@
 		912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		912780132A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		912780192A67F9DA0005BBA3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		9127801B2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumCoverRequestDTO.swift; sourceTree = "<group>"; };
 		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 			children = (
 				91F3A7752A52ABBE00C06D1B /* PatchAlbumListResponseDTO.swift */,
 				91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */,
+				9127801B2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -1288,6 +1291,7 @@
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
+				9127801C2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
 				376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */,

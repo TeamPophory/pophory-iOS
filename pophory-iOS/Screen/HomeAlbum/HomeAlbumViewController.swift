@@ -11,6 +11,12 @@ final class HomeAlbumViewController: BaseViewController {
     
     private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
+    private var albumCoverId: Int? {
+        didSet {
+            guard let albumCoverId = albumCoverId else { return }
+            homeAlbumView.albumImageView.image = AlbumData.albumCovers[albumCoverId-1]
+        }
+    }
     
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
     private var albumList: PatchAlbumListResponseDTO? {
@@ -18,6 +24,7 @@ final class HomeAlbumViewController: BaseViewController {
             if let albums = albumList?.albums {
                 if albums.count != 0 {
                     self.albumId = albums[0].id
+                    self.albumCoverId = albums[0].albumCover
                     let albumCover: Int = albums[0].albumCover ?? 0
                     let photoCount: Int = albums[0].photoCount ?? 0
                     
@@ -79,6 +86,11 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
 extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped() {
         let editAlbumViewController = EditAlbumViewController()
+        if let albumCoverId = self.albumCoverId {
+            editAlbumViewController.albumPK = albumId ?? Int()
+            editAlbumViewController.albumCoverIndex = albumCoverId - 1
+            editAlbumViewController.albumThemeCoverIndex = albumCoverId / 2
+        }
         self.navigationController?.pushViewController(editAlbumViewController, animated: true)
     }
 }

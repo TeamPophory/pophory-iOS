@@ -43,4 +43,20 @@ final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
             }
         }
     }
+    
+    func patchAlbumCover(
+        albumId: Int,
+        body: PatchAlbumCoverRequestDTO,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.patchAlbumCover(albumId: albumId, body: body)) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                completion(.success(()))
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
