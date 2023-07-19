@@ -169,7 +169,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         
         progressBarIcon.snp.makeConstraints {
             $0.centerY.equalTo(progressBarView)
-            $0.trailing.equalTo(progressBarView.snp.trailing).offset(6)
+            $0.leading.equalTo(progressBarView.snp.trailing).inset(5)
             $0.size.equalTo(38)
         }
         
