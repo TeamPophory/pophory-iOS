@@ -106,11 +106,11 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             [ appLogo,
               headTitle,
               albumImageView,
-              statusLabel,
               elbumCoverEditButton,
               progressBackgroundView,
               progressBarView,
-              progressBarIcon
+              progressBarIcon,
+              statusLabel
             ]
         )
         
@@ -130,11 +130,6 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.width.equalTo(280)
             $0.centerX.equalToSuperview()
         }
-
-        statusLabel.snp.makeConstraints {
-            $0.top.equalTo(albumImageView.snp.bottom).offset(30)
-            $0.trailing.equalToSuperview().inset(60)
-        }
         
         elbumCoverEditButton.snp.makeConstraints {
             $0.bottom.equalTo(headTitle.snp.bottom)
@@ -146,21 +141,26 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.height.equalTo(6)
             $0.width.equalTo(screenWidth - 180)
             $0.centerY.equalTo(statusLabel)
-            $0.leading.equalToSuperview().inset(60)
+            $0.leading.equalToSuperview().inset(50)
         }
         
         progressBarView.snp.makeConstraints {
             $0.height.equalTo(6)
             $0.width.equalTo(0)
             $0.centerY.equalTo(statusLabel)
-            $0.leading.equalToSuperview().inset(60)
+            $0.leading.equalToSuperview().inset(50)
         }
         progressBarView.bringSubviewToFront(self)
         
         progressBarIcon.snp.makeConstraints {
             $0.centerY.equalTo(progressBarView)
-            $0.leading.equalTo(progressBarView.snp.trailing).inset(4)
+            $0.trailing.equalTo(progressBarView.snp.trailing).offset(6)
             $0.size.equalTo(38)
+        }
+        
+        statusLabel.snp.makeConstraints {
+            $0.top.equalTo(albumImageView.snp.bottom).offset(30)
+            $0.leading.equalTo(progressBackgroundView.snp.trailing).offset(26)
         }
     }
     
@@ -183,6 +183,16 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     ) {
         progressBarView.snp.updateConstraints {
             $0.width.equalTo(updateWidth)
+        }
+    }
+    
+    func updateProgressBarIcon(
+        isAlbumFull: Bool
+    ) {
+        if isAlbumFull {
+            progressBarIcon.image = ImageLiterals.progressBarIconFull
+        } else {
+            progressBarIcon.image = ImageLiterals.progressBarIcon
         }
     }
 }

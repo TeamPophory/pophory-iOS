@@ -42,6 +42,7 @@ enum ImageLiterals {
     static var emptyFeedIcon: UIImage { .load(name: "emptyFeedIcon") }
     static var changeElbumCover: UIImage { .load(name: "changeElbumCover") }
     static var progressBarIcon: UIImage { .load(name: "progressBarIcon") }
+    static var progressBarIconFull: UIImage { .load(name: "progressBarIconFull") }
     
     // MARK: - exception
     
