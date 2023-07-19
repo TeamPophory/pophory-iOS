@@ -54,7 +54,7 @@ enum ImageLiterals {
     static var albumCover1: UIImage { .load(name: "ic_album_cover_friends_1") }
     static var albumCover2: UIImage { .load(name: "ic_album_cover_friends_2") }
     static var albumCover3: UIImage { .load(name: "ic_album_cover_love_1") }
-    static var albumCover4: UIImage { .load(name: "ic_album_cover_love_1") }
+    static var albumCover4: UIImage { .load(name: "ic_album_cover_love_2") }
     static var albumCover5: UIImage { .load(name: "ic_album_cover_my_1") }
     static var albumCover6: UIImage { .load(name: "ic_album_cover_my_2") }
     static var albumCover7: UIImage { .load(name: "ic_album_cover_family_1") }

@@ -33,11 +33,22 @@ final class EditAlbumViewController: BaseViewController {
     }
     
     private func setDelegate() {
+        editAlbumView.albumCoverProfileButtonDidTappedProtocol = self
+        
         editAlbumView.albumCoverCollectionView.dataSource = self
+//        editAlbumView.albumCoverCollectionView.delegate = self
     }
     
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
+    }
+}
+
+extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
+    func albumCoverThemeDidTapped(themeIndex: Int) {
+        let albumCoverIndex = themeIndex * 2
+        let indexPath = IndexPath(item: albumCoverIndex, section: 0)
+        editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -46,7 +57,6 @@ extension EditAlbumViewController: Navigatable {
 }
 
 extension EditAlbumViewController: UICollectionViewDataSource {
-  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return AlbumData.albumCovers.count
     }

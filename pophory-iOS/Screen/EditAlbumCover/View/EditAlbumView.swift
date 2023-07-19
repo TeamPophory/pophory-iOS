@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol AlbumCoverProfileButtonDidTappedProtocol {
+    func albumCoverThemeDidTapped(themeIndex: Int)
+}
+
 final class EditAlbumView: UIView {
+    
+    var albumCoverProfileButtonDidTappedProtocol: AlbumCoverProfileButtonDidTappedProtocol?
     
     private let lineView: UIView = {
         let view = UIView()
@@ -140,6 +146,7 @@ final class EditAlbumView: UIView {
         for (index, button) in [albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4].enumerated() {
             if button == sender {
                 button.setImage(AlbumData.albumCoverAlphaImages[index], for: .normal)
+                self.albumCoverProfileButtonDidTappedProtocol?.albumCoverThemeDidTapped(themeIndex: index)
             } else {
                 button.setImage(AlbumData.albumCoverImages[index], for: .normal)
             }
