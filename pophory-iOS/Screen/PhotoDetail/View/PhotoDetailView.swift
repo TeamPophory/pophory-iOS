@@ -50,7 +50,7 @@ final class PhotoDetailView: UIView {
     
     private lazy var takenAtLabel: UILabel = {
         let label = UILabel()
-        label.font = .ttl1
+        label.font = .title1
         label.textColor = .pophoryBlack
         label.text = takenAt
         return label
@@ -62,7 +62,7 @@ final class PhotoDetailView: UIView {
         label.layer.cornerRadius = 37 / 2
         label.clipsToBounds = true
         label.textAlignment = .center
-        label.font = .t1
+        label.font = .title1
         label.textColor = .pophoryWhite
         label.text = studio
         return label
