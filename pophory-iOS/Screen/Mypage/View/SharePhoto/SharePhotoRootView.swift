@@ -128,6 +128,27 @@ extension SharePhotoRootView {
         
         return collectionView
     }
+    
+    // TODO: 이거 VC로 옮기기 (리팩토링 필요)
+    private func sharePhoto(shareId: String) {
+        let parentVC = getParentViewController()
+        
+        let activityVC = UIActivityViewController(activityItems: [shareId], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = parentVC?.view
+        
+        parentVC?.present(activityVC, animated: true)
+        
+        activityVC.completionWithItemsHandler = { _, _, _, _ in
+            self.deselectPhoto()
+        }
+    }
+    
+    private func deselectPhoto() {
+        guard let index = selectedPhotoIndex,
+              let cell = feedCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) else { return }
+        
+        cell.isSelected = false
+    }
 }
 
 extension SharePhotoRootView: SkeletonCollectionViewDataSource {
@@ -177,5 +198,7 @@ extension SharePhotoRootView: UICollectionViewDelegateFlowLayout {
         
         selectedCell.isSelected = true
         selectedPhotoIndex = indexPath.item
+        
+        sharePhoto(shareId: "")
     }
 }
