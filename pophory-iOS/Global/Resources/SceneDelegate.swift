@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
 
             appleLoginManager.delegate = rootVC
-            
+                
             let navigationController = PophoryNavigationController(rootViewController: rootVC)
             
             window.rootViewController = navigationController

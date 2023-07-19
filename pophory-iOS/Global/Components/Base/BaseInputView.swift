@@ -22,7 +22,7 @@ class BaseSignUpView: UIView {
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "시작할 준비가 되었다면\n너의 이름을 알려줘!"
+        label.text = "포포리에서 사용할\n너의 이름을 알려줘!"
         label.textColor = .black
         label.font = .head1Medium
         label.numberOfLines = 0
@@ -57,7 +57,7 @@ class BaseSignUpView: UIView {
         setupBaseNextButton()
         setupViews()
         setupRegister()
-        setNextButtonEnabled(false)
+        setupNextButtonEnabled(false)
     }
     
     required init?(coder: NSCoder) {
@@ -77,8 +77,8 @@ extension BaseSignUpView {
         addSubviews([headerLabel, indicatorCollectionView, nextButton])
 
         headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
-            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalTo(headerHeightByNotch(62))
+            $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
         indicatorCollectionView.snp.makeConstraints {
@@ -87,13 +87,9 @@ extension BaseSignUpView {
             $0.height.equalTo(convertByHeightRatio(3))
         }
         
-        nextButton.snp.makeConstraints {
-            $0.bottom.greaterThanOrEqualToSuperview().inset(36)
-        }
-        
         nextButton.addCenterXConstraint(to: self)
     }
-    
+
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)
         subView.snp.makeConstraints {
@@ -102,7 +98,7 @@ extension BaseSignUpView {
         }
     }
     
-    func setNextButtonEnabled(_ isEnabled: Bool) {
+    func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
 

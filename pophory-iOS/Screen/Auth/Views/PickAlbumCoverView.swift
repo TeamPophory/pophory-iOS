@@ -45,7 +45,8 @@ final class PickAlbumCoverView: BaseSignUpView {
         setupRegister()
         setupLayoutForAlbumCoverView(albumCoverView, topOffset: 51)
         setupLayout()
-        setNextButtonEnabled(true)
+        updateNameInputViewLabels()
+        setupNextButtonEnabled(true)
     }
     
     required init?(coder: NSCoder) {
@@ -62,13 +63,8 @@ final class PickAlbumCoverView: BaseSignUpView {
 //MARK: - Extensions
 
 extension PickAlbumCoverView {
-    private func setupRegister() {
-        selectButtonCollectionView.register(PickAlbumButtonCollectionViewCell.self, forCellWithReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier)
-    }
     
-    private func shapeAlbumCover() {
-        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
-    }
+    // MARK: - Layout
     
     private func setupLayout() {
         
@@ -85,15 +81,15 @@ extension PickAlbumCoverView {
         
         albumCoverView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(convertByWidthRatio(220))
-            $0.height.equalTo(convertByHeightRatio(298))
+            $0.leading.equalToSuperview().offset(constraintByNotch(47, 80))
+            $0.aspectRatio(CGSize(width: 280, height: 380))
         }
         
         selectButtonCollectionView.snp.makeConstraints {
             $0.top.equalTo(albumCoverView.snp.bottom).offset(33)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(convertByWidthRatio(254))
-            $0.height.equalTo(convertByHeightRatio(50))
+            $0.height.equalTo(50)
         }
         
         initialAlbumSelection()
@@ -113,6 +109,19 @@ extension PickAlbumCoverView {
     }
     
     // MARK: - Private Methods
+    
+    private func updateNameInputViewLabels() {
+        headerLabel.text = "마음에 쏙 드는\n앨범 테마를 선택해줘!"
+        headerLabel.applyColorAndBoldText(targetString: "앨범 테마", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
+    }
+    
+    private func setupRegister() {
+        selectButtonCollectionView.register(PickAlbumButtonCollectionViewCell.self, forCellWithReuseIdentifier: PickAlbumButtonCollectionViewCell.identifier)
+    }
+    
+    private func shapeAlbumCover() {
+        albumCoverView.shapeWithCustomCorners(topLeftRadius: 3, topRightRadius: 20, bottomLeftRadius: 3, bottomRightRadius: 20)
+    }
     
     private func scrollAlbumCover(next: Bool) {
         guard let indexPath = lastSelectedItemIndex else { return }
@@ -142,7 +151,7 @@ extension PickAlbumCoverView {
 
 extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: convertByWidthRatio(50), height: convertByHeightRatio(50))
+        return CGSize(width: collectionView.frame.height , height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
