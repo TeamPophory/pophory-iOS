@@ -58,10 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
                         let rootVC = ShareViewController()
                         rootVC.setupShareID(forShareID: shareID)
-                        
-                        let navigationController = PophoryNavigationController(rootViewController: rootVC)
-                        
-                        window.rootViewController = navigationController
+                        rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
+                                                
+                        window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window
                     }
@@ -98,6 +97,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
+    @objc func setupRoot() {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+
+        var rootViewController: UIViewController
+
+        if isLoggedIn {
+            rootViewController = TabBarController()
+        } else {
+            let appleLoginManager = AppleLoginManager()
+            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+            
+            appleLoginManager.delegate = rootVC
+            rootViewController = rootVC
+        }
+        
+        let navigationController = PophoryNavigationController(rootViewController: rootViewController)
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+
     func setRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         

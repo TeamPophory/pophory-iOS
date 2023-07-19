@@ -30,7 +30,7 @@ class ShareViewController: UIViewController {
     
     // MARK: - UI Properties
     
-    private let rootView = ShareView()
+    let rootView = ShareView()
     
     // MARK: - Life Cycle
     
@@ -44,21 +44,18 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
         
         hideNavigationBar()
+        setUpTarget()
     }
 }
 
 extension ShareViewController {
     
     private func setUpTarget() {
-        rootView.shareButton.addTarget(self, action: #selector(onClickSharedButton), for: .touchUpInside)
+//        rootView.shareButton.addTarget(self, action: #selector(onClickSharedButton), for: .touchUpInside)
     }
     
     func setupShareID(forShareID: String?) {
         self.shareID = forShareID
-    }
-    
-    @objc func onClickSharedButton() {
-        
     }
 }
 
