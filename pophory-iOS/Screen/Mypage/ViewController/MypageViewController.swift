@@ -56,8 +56,7 @@ extension MypageViewController: MyPageRootViewDelegate {
     }
     
     func handleOnClickStory() {
-        // TODO: 포릿 이야기 url로 변경
-        let vc = PophoryWebViewController(urlString: "https://www.github.com/dannaward", title: "포릿 이야기")
+        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/porit-story", title: "포릿 이야기")
         navigationController?.pushViewController(vc, animated: true)
     }
 }
