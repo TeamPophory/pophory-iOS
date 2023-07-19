@@ -9,7 +9,17 @@ import UIKit
 
 import SnapKit
 
+protocol AlbumCoverButtonDidTappedProtocol {
+    func albumCoverProfile1DidTapped()
+    func albumCoverProfile2DidTapped()
+    func albumCoverProfile3DidTapped()
+    func albumCoverProfile4DidTapped()
+}
+
 final class EditAlbumView: UIView {
+    
+    private let screenWidth = UIScreen.main.bounds.width
+    var albumCoverButtonDidTappedProtocol: AlbumCoverButtonDidTappedProtocol?
 
     private let lineView: UIView = {
         let view = UIView()
@@ -35,6 +45,20 @@ final class EditAlbumView: UIView {
         let button = UIButton()
         button.setImage(ImageLiterals.albumCoverProfile4, for: .normal)
         return button
+    }()
+    lazy var albumCoverCollectionView: UICollectionView = {
+        let flowLayout = HorizontalCarouselCollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 280, height: 380)
+        flowLayout.minimumLineSpacing = 16
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+        flowLayout.scrollDirection = .horizontal
+        let collectionViewLayout: UICollectionViewFlowLayout = flowLayout as UICollectionViewFlowLayout
+        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView.collectionViewLayout = collectionViewLayout
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        return collectionView
     }()
     private let editButton: UIButton = {
         let button = UIButton()
@@ -62,6 +86,7 @@ final class EditAlbumView: UIView {
                 albumCoverProfile2,
                 albumCoverProfile3,
                 albumCoverProfile4,
+                albumCoverCollectionView,
                 editButton
             ]
         )
@@ -96,6 +121,12 @@ final class EditAlbumView: UIView {
             $0.size.equalTo(50)
         }
         
+        albumCoverCollectionView.snp.makeConstraints {
+            $0.top.equalTo(albumCoverProfile1.snp.bottom).offset(53)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(380)
+        }
+        
         editButton.snp.makeConstraints {
             $0.height.equalTo(60)
             $0.leading.trailing.equalToSuperview().inset(20)
@@ -105,5 +136,12 @@ final class EditAlbumView: UIView {
     
     private func configUI() {
         self.backgroundColor = .pophoryWhite
+    }
+}
+
+extension EditAlbumView {
+    @objc
+    private func albumCoverProfile1ButtonDidTapped() {
+        albumCoverButtonDidTappedProtocol?.albumCoverProfile1DidTapped()
     }
 }
