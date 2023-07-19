@@ -13,9 +13,14 @@ protocol AlbumCoverProfileButtonDidTappedProtocol {
     func albumCoverThemeDidTapped(themeIndex: Int)
 }
 
+protocol AlbumCoverEditButtonDidTappedProtocol {
+    func editButtonDidTapped()
+}
+
 final class EditAlbumView: UIView {
     
     var albumCoverProfileButtonDidTappedProtocol: AlbumCoverProfileButtonDidTappedProtocol?
+    var albumCoverEditButtonDidTappedProtocol: AlbumCoverEditButtonDidTappedProtocol?
     
     private let lineView: UIView = {
         let view = UIView()
@@ -45,10 +50,11 @@ final class EditAlbumView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private let editButton: UIButton = {
+    private lazy var editButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .pophoryBlack
         button.setTitle("수정하기", for: .normal)
+        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 30
         return button
     }()
@@ -153,17 +159,34 @@ final class EditAlbumView: UIView {
         }
     }
     
+    @objc
+    func editButtonTapped() {
+        albumCoverEditButtonDidTappedProtocol?.editButtonDidTapped()
+    }
+    
     func setAlbumCoverProfileImage(
         albumCoverIndex: Int
     ) {
         switch albumCoverIndex {
-        case 0...1:
+        case 0:
             albumCoverProfile1.setImage(AlbumData.albumCoverAlphaImages[0], for: .normal)
-        case 2...3:
+            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
+            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
+            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
+        case 1:
+            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
             albumCoverProfile2.setImage(AlbumData.albumCoverAlphaImages[1], for: .normal)
-        case 4...5:
+            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
+            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
+        case 2:
+            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
+            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
             albumCoverProfile3.setImage(AlbumData.albumCoverAlphaImages[2], for: .normal)
-        case 6...7:
+            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
+        case 3:
+            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
+            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
+            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
             albumCoverProfile4.setImage(AlbumData.albumCoverAlphaImages[3], for: .normal)
         default: return
         }

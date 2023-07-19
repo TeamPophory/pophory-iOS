@@ -82,7 +82,8 @@ extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped() {
         let editAlbumViewController = EditAlbumViewController()
         if let albumCoverId = self.albumCoverId {
-            editAlbumViewController.albumCoverIndex = albumCoverId
+            editAlbumViewController.albumCoverIndex = albumCoverId - 1
+            editAlbumViewController.albumThemeCoverIndex = albumCoverId / 2
         }
         self.navigationController?.pushViewController(editAlbumViewController, animated: true)
     }

@@ -12,10 +12,11 @@ import RxSwift
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
-    var albumCoverIndex: Int? {
+    var albumCoverIndex = Int()
+    var albumThemeCoverIndex: Int? {
         didSet {
-            guard let albumCoverIndex = albumCoverIndex else { return }
-            editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumCoverIndex)
+            guard let albumThemeCoverIndex = albumThemeCoverIndex else { return }
+            editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
         }
     }
     
@@ -34,13 +35,23 @@ final class EditAlbumViewController: BaseViewController {
     
     private func setDelegate() {
         editAlbumView.albumCoverProfileButtonDidTappedProtocol = self
+        editAlbumView.albumCoverEditButtonDidTappedProtocol = self
         
         editAlbumView.albumCoverCollectionView.dataSource = self
-//        editAlbumView.albumCoverCollectionView.delegate = self
+        editAlbumView.albumCoverCollectionView.delegate = self
     }
     
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setAlbumCover(albumIndex: albumCoverIndex)
+    }
+    
+    private func setAlbumCover(albumIndex: Int) {
+        let indexPath = IndexPath(item: albumIndex, section: 0)
+        self.editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -52,8 +63,10 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
     }
 }
 
-extension EditAlbumViewController: Navigatable {
-    var navigationBarTitleText: String? { return "앨범 테마" }
+extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
+    func editButtonDidTapped() {
+        // MARK: - 앨범 변경 인덱스, albumCoverIndex
+    }
 }
 
 extension EditAlbumViewController: UICollectionViewDataSource {
@@ -67,4 +80,16 @@ extension EditAlbumViewController: UICollectionViewDataSource {
         cell.configCell(albumCoverImage: AlbumData.albumCovers[indexPath.row])
         return cell
     }
+}
+
+extension EditAlbumViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / (self.editAlbumView.albumCoverCollectionView.frame.width - 110))
+        self.albumCoverIndex = currentIndex
+        self.albumThemeCoverIndex = currentIndex / 2
+    }
+}
+
+extension EditAlbumViewController: Navigatable {
+    var navigationBarTitleText: String? { return "앨범 테마" }
 }
