@@ -35,7 +35,7 @@ final class HomeAlbumViewController: BaseViewController {
                     
                     if isAlbumFull {
                         showPopup(
-                            image : ImageLiterals.img_albumfull,
+                            image: ImageLiterals.img_albumfull,
                             primaryText: "포포리 앨범이 가득찼어요",
                             secondaryText: "아쉬지만,\n다음 업데이트에서 만나요!"
                         )
@@ -77,8 +77,9 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
 }
 
 extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
-    func elbumCoverEditButtonDidTapped() {
-        // MARK: - button tapped
+    func albumCoverEditButtonDidTapped() {
+        let editAlbumViewController = EditAlbumViewController()
+        self.navigationController?.pushViewController(editAlbumViewController, animated: true)
     }
 }
 
