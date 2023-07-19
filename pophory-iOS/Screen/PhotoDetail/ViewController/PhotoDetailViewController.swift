@@ -48,10 +48,14 @@ extension PhotoDetailViewController {
         showPopup(popupType: .option,
                   primaryText: "사진을 삭제할까요?",
                   secondaryText: "지금 삭제하면 다시 볼 수 없어요",
-                  firstButtonTitle: .delete,
-                  secondButtonTitle: .back,
+                  firstButtonTitle: .back,
+                  secondButtonTitle: .delete,
                   firstButtonHandler: deletePhoto,
                   secondButtonHandler: closePopup)
+    }
+    
+    @objc func shareButtonOnClick() {
+        
     }
     
     private func deletePhoto() {
