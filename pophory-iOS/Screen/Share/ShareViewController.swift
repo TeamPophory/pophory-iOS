@@ -18,6 +18,7 @@ class ShareViewController: UIViewController {
             }
         }
     }
+    
     private var sharePhoto: PatchSharePhotoRequestDTO? {
         didSet {
             if let sharePhoto = sharePhoto {
@@ -48,8 +49,16 @@ class ShareViewController: UIViewController {
 
 extension ShareViewController {
     
+    private func setUpTarget() {
+        rootView.shareButton.addTarget(self, action: #selector(onClickSharedButton), for: .touchUpInside)
+    }
+    
     func setupShareID(forShareID: String?) {
         self.shareID = forShareID
+    }
+    
+    @objc func onClickSharedButton() {
+        
     }
 }
 
