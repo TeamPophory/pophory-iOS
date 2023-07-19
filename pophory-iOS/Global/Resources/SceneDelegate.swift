@@ -12,6 +12,8 @@ import FirebaseDynamicLinks
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    private var errorWindow: UIWindow?
+    private var networkMonitor: NetworkMonitor = NetworkMonitor()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        startMonitoringNetwork(on: scene)
         if let userActivity = connectionOptions.userActivities.first {
             self.scene(scene, continue: userActivity)
         }
@@ -146,4 +149,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return nil
     }
 }
+
+// MARK: network
+
+private extension SceneDelegate {
+    func startMonitoringNetwork(on scene: UIScene) {
+        networkMonitor.startMonitoring(statusUpdateHandler: { [weak self] connectionStatus in
+            switch connectionStatus {
+            case .satisfied: self?.removeNetworkErrorWindow()
+            case .unsatisfied: self?.loadNetworkErrorWindow(on: scene)
+            default: break
+            }
+        })
+    }
     
+    func removeNetworkErrorWindow() {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorWindow?.resignKey()
+            self?.errorWindow?.isHidden = true
+            self?.errorWindow = nil
+        }
+    }
+    
+    func loadNetworkErrorWindow(on scene: UIScene) {
+        if let windowScene = scene as? UIWindowScene {
+            DispatchQueue.main.async { [weak self] in
+                let window = UIWindow(windowScene: windowScene)
+                window.windowLevel = .statusBar
+                window.makeKeyAndVisible()
+                let noNetworkView = NoNetworkView(frame: window.bounds)
+                window.addSubview(noNetworkView)
+                self?.errorWindow = window
+            }
+        }
+    }
+}

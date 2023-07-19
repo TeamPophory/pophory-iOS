@@ -52,13 +52,27 @@ enum ImageLiterals {
 
     // MARK: - AlbumCover
     
-    static var albumCover1: UIImage { .load(name: "ic_album_cover_friends") }
-    static var albumCover2: UIImage { .load(name: "ic_album_cover_love") }
-    static var albumCover3: UIImage { .load(name: "ic_album_cover_myAlbum") }
-    static var albumCover4: UIImage { .load(name: "ic_album_cover_collectBook") }
+    static var albumCover1: UIImage { .load(name: "ic_album_cover_friends_1") }
+    static var albumCover2: UIImage { .load(name: "ic_album_cover_friends_2") }
+    static var albumCover3: UIImage { .load(name: "ic_album_cover_love_1") }
+    static var albumCover4: UIImage { .load(name: "ic_album_cover_love_2") }
+    static var albumCover5: UIImage { .load(name: "ic_album_cover_my_1") }
+    static var albumCover6: UIImage { .load(name: "ic_album_cover_my_2") }
+    static var albumCover7: UIImage { .load(name: "ic_album_cover_family_1") }
+    static var albumCover8: UIImage { .load(name: "ic_album_cover_family_2") }
 
     /// index 맞추기 위해 0번째에 빈 이미지 삽입
-    static var albumCoverList: [UIImage] = [UIImage(), albumCover1, albumCover2, albumCover3, albumCover4]
+    static var albumCoverList: [UIImage] = [
+        UIImage(),
+        albumCover1,
+        albumCover2,
+        albumCover3,
+        albumCover4,
+        albumCover5,
+        albumCover6,
+        albumCover7,
+        albumCover8
+    ]
     
     // MARK: - AlbumCoverProfile
     
@@ -66,6 +80,10 @@ enum ImageLiterals {
     static var albumCoverProfile2: UIImage { .load(name: "albumCoverProfile2") }
     static var albumCoverProfile3: UIImage { .load(name: "albumCoverProfile3") }
     static var albumCoverProfile4: UIImage { .load(name: "albumCoverProfile4") }
+    static var albumCoverProfile1Alpa: UIImage { .load(name: "albumCoverProfile1Alpa") }
+    static var albumCoverProfile2Alpa: UIImage { .load(name: "albumCoverProfile2Alpa") }
+    static var albumCoverProfile3Alpa: UIImage { .load(name: "albumCoverProfile3Alpa") }
+    static var albumCoverProfile4Alpa: UIImage { .load(name: "albumCoverProfile4Alpa") }
     
     static var albumCoverProfileList: [UIImage] = [UIImage(), albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4]
 
@@ -95,7 +113,7 @@ enum ImageLiterals {
     
     // MARK: - ErrorImg
 
-    static var networkError: UIImage { .load(name: "img_networkError") }
+    static var networkFail: UIImage { .load(name: "networkFail") }
 }
 
 extension UIImage {
