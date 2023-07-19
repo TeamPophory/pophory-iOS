@@ -45,10 +45,13 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
         let label = UILabel()
-        label.font = .h1
-        label.text = "포릿만의 네컷 앨범에\n소중한 추억을 보관해봐!"
-        label.asColor(targetString: "포릿만의 네컷 앨범", color: .pophoryPurple)
+        label.font = .head1Medium
         label.numberOfLines = 2
+        
+        let attributedText = NSMutableAttributedString(string: "포포리 앨범에\n소중한 추억을 보관해 봐!")
+        attributedText.addAttributes([.font: UIFont.head1Bold], range: NSRange(location: 0, length: 6))
+        attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: 6))
+        label.attributedText = attributedText
         return label
     }()
     lazy var albumImageView: UIImageView = {
