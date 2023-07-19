@@ -11,7 +11,12 @@ final class HomeAlbumViewController: BaseViewController {
     
     private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
-    private var albumCoverId: Int?
+    private var albumCoverId: Int? {
+        didSet {
+            guard let albumCoverId = albumCoverId else { return }
+            homeAlbumView.albumImageView.image = AlbumData.albumCovers[albumCoverId-1]
+        }
+    }
     
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
     private var albumList: PatchAlbumListResponseDTO? {
