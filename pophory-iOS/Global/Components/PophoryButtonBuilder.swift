@@ -60,6 +60,9 @@ public enum ButtonText: String {
     
     /// "아쉽지만, 탈퇴하기"
     case deleteAccount = "아쉽지만, 탈퇴하기"
+    
+    /// "홈으로 이동하기"
+    case goToHome = "홈으로 이동하기"
 }
 
 public enum ButtonStyle {
@@ -126,7 +129,7 @@ public struct SecondaryBlackButtonStyler: PophoryButtonStyler {
 
 public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
     public func applyStyle(to button: PophoryButton) {
-        button.titleLabel?.font = .t1
+        button.titleLabel?.font = .text1
         button.backgroundColor = .pophoryGray200
         button.setTitleColor(.pophoryGray500, for: .normal)
     }
@@ -141,7 +144,7 @@ public struct SecondaryGrayButtonStyler: PophoryButtonStyler {
 }
 
 public func applyStyle(to button: PophoryButton) {
-    button.titleLabel?.font = .t1
+    button.titleLabel?.font = .text1
     button.backgroundColor = .pophoryGray400
     button.setTitleColor(.pophoryWhite, for: .normal)
 }

@@ -73,8 +73,9 @@ enum ImageLiterals {
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
     static var OnboardingImage2: UIImage { .load(name: "onboardingImg2") }
     static var OnboardingImage3: UIImage { .load(name: "onboardingImg3") }
+    static var OnboardingImage4: UIImage { .load(name: "OnboardingImage4") }
     
-    static var img_congratuation: UIImage { .load(name: "img_congratuation") }
+    static var congratuation: UIImage { .load(name: "img_congratuation") }
     
     // MARK: - PopUpImg
     
@@ -90,8 +91,11 @@ enum ImageLiterals {
     static var defaultProfile: UIImage { .load(name: "defaultProfile") }
     static var defaultBannerAd: UIImage { .load(name: "bannerAdDefault") }
     static var myPageShareBanner: UIImage { .load(name: "myPageShareBanner") }
-}
+    
+    // MARK: - ErrorImg
 
+    static var networkError: UIImage { .load(name: "img_networkError") }
+}
 
 extension UIImage {
     static func load(name: String) -> UIImage {

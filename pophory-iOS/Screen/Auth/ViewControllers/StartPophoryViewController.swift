@@ -9,11 +9,7 @@ import UIKit
 
 class StartPophoryViewController: BaseViewController {
     
-    lazy var startPophoryView: StartPophoryView = {
-        let view = StartPophoryView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    lazy var startPophoryView = StartPophoryView()
     
     override func loadView() {
         super.loadView()
