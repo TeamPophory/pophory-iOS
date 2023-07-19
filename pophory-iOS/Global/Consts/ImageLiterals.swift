@@ -73,7 +73,7 @@ enum ImageLiterals {
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
     static var OnboardingImage2: UIImage { .load(name: "onboardingImg2") }
     static var OnboardingImage3: UIImage { .load(name: "onboardingImg3") }
-    static var OnboardingImage4: UIImage { .load(name: "onboardingImg3") }
+    static var OnboardingImage4: UIImage { .load(name: "OnboardingImage4") }
     
     static var img_congratuation: UIImage { .load(name: "img_onboarding04") }
     
