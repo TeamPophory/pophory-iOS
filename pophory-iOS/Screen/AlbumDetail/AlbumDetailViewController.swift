@@ -64,7 +64,7 @@ final class AlbumDetailViewController: BaseViewController {
         
         setButtonAction()
         addDelegate()
-        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .plus)
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared, showRightButton: true, rightButtonImageType: .plus)
         
         showNavigationBar()
         
