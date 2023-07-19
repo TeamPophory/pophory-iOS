@@ -143,9 +143,9 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         
         progressBackgroundView.snp.makeConstraints {
             $0.height.equalTo(6)
-            $0.width.equalTo(screenWidth - 180)
             $0.centerY.equalTo(statusLabel)
             $0.leading.equalToSuperview().inset(50)
+            $0.trailing.equalToSuperview().inset(118)
         }
         
         progressBarView.snp.makeConstraints {
