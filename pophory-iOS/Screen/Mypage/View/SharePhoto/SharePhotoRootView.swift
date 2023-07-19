@@ -69,7 +69,8 @@ extension SharePhotoRootView {
         }
         
         feedCollectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.verticalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
     
@@ -114,7 +115,7 @@ extension SharePhotoRootView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled = false
-        collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 30, right: 16)
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 30, right: 0)
         
         collectionView.backgroundColor = .pophoryWhite
         
@@ -162,6 +163,7 @@ extension SharePhotoRootView: SkeletonCollectionViewDataSource {
 
 extension SharePhotoRootView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print(">>> width", collectionView.frame.width)
         let size = (collectionView.frame.width - 4) / 3
         return CGSize(width: size, height: size)
     }
