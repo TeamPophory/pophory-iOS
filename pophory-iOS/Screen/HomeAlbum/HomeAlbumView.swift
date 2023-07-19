@@ -23,8 +23,6 @@ protocol HomeAlbumViewButtonTappedProtocol {
 
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
 
-    private let screenWidth = UIScreen.main.bounds.width
-
     private var privateStatusLabelText: String
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
     var homeAlbumViewButtonTappedDelegate: HomeAlbumViewButtonTappedProtocol?
