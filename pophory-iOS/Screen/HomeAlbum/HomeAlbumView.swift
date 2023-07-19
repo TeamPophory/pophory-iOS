@@ -106,14 +106,15 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private func setupLayout() {
         self.addSubviews(
-            [ appLogo,
-              headTitle,
-              albumImageView,
-              albumCoverEditButton,
-              progressBackgroundView,
-              progressBarView,
-              progressBarIcon,
-              statusLabel
+            [
+                appLogo,
+                headTitle,
+                albumImageView,
+                albumCoverEditButton,
+                progressBackgroundView,
+                progressBarView,
+                progressBarIcon,
+                statusLabel
             ]
         )
         

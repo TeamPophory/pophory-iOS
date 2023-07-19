@@ -78,7 +78,8 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
 
 extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped() {
-        // MARK: - button tapped
+        let editAlbumViewController = EditAlbumViewController()
+        self.navigationController?.pushViewController(editAlbumViewController, animated: true)
     }
 }
 
