@@ -9,6 +9,7 @@ import UIKit
 
 final class HomeAlbumViewController: BaseViewController {
     
+    private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
     
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
@@ -19,8 +20,11 @@ final class HomeAlbumViewController: BaseViewController {
                     self.albumId = albums[0].id
                     let albumCover: Int = albums[0].albumCover ?? 0
                     let photoCount: Int = albums[0].photoCount ?? 0
+                    
+                    // MARK: - update UI
                     homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
                     homeAlbumView.statusLabelText = String(photoCount)
+                    homeAlbumView.updateProgressBarWidth(updateWidth: Int(progressBackgroundViewWidth) * (photoCount / 15))
                 }
             }
         }
