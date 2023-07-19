@@ -145,4 +145,20 @@ final class EditAlbumView: UIView {
             }
         }
     }
+    
+    func setAlbumCoverProfileImage(
+        albumCoverIndex: Int
+    ) {
+        switch albumCoverIndex {
+        case 0...1:
+            albumCoverProfile1.setImage(AlbumData.albumCoverAlphaImages[0], for: .normal)
+        case 2...3:
+            albumCoverProfile2.setImage(AlbumData.albumCoverAlphaImages[1], for: .normal)
+        case 4...5:
+            albumCoverProfile3.setImage(AlbumData.albumCoverAlphaImages[2], for: .normal)
+        case 6...7:
+            albumCoverProfile4.setImage(AlbumData.albumCoverAlphaImages[3], for: .normal)
+        default: return
+        }
+    }
 }

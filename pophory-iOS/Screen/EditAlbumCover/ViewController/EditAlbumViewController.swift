@@ -12,6 +12,12 @@ import RxSwift
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
+    var albumCoverIndex: Int? {
+        didSet {
+            guard let albumCoverIndex = albumCoverIndex else { return }
+            editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumCoverIndex)
+        }
+    }
     
     override func setupLayout() {
         view = editAlbumView
