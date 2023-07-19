@@ -61,6 +61,7 @@ final class PophoryErrorViewController: UIViewController {
             .setTitle(.goToHome)
             .build()
         button.applySize()
+        button.addTarget(PophoryErrorViewController.self, action: #selector(goToHomeButtonOnClick), for: .touchUpInside)
         return button
     }()
     
@@ -100,6 +101,8 @@ extension PophoryErrorViewController {
         }
     }
     
+    // MARK: - Layout
+    
     private func setupLayout() {
         view.backgroundColor = .pophoryWhite
         
@@ -129,5 +132,17 @@ extension PophoryErrorViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    // MARK: - @objc
+    
+    @objc func goToHomeButtonOnClick() {
+        goToTabbarController()
+    }
+    
+    // MARK: - Private Methods
+    
+    private func goToTabbarController() {
+        // TODO: 탭바로 돌아가는 액션
     }
 }
