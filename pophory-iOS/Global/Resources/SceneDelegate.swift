@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseDynamicLinks
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -17,6 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        if let userActivity = connectionOptions.userActivities.first {
+            self.scene(scene, continue: userActivity)
+        }
+        
         if let windowScene = scene as? UIWindowScene {
             
             let window = UIWindow(windowScene: windowScene)
@@ -24,15 +30,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let appleLoginManager = AppleLoginManager()
             let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-
+            
             appleLoginManager.delegate = rootVC
-                
+            
             let navigationController = PophoryNavigationController(rootViewController: rootVC)
             
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
             self.window = window
         }
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        // Link 처리
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -65,9 +75,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func setRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-
+        
         var rootViewController: UIViewController
-
+        
         if isLoggedIn {
             let tabBarViewController = UITabBarController()
             rootViewController = tabBarViewController
@@ -75,10 +85,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let loginViewController = NameInputViewController()
             rootViewController = loginViewController
         }
-
+        
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
-
+    
+    func extractQueryParameters(from url: URL) -> [String: String]? {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let queryItems = components.queryItems else {
+            return nil
+        }
+        
+        var parameters: [String: String] = [:]
+        for queryItem in queryItems {
+            if let value = queryItem.value {
+                parameters[queryItem.name] = value
+            }
+        }
+        
+        return parameters
+    }
+    
 }
 
