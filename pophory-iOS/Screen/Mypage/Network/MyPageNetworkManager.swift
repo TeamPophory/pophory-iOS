@@ -9,11 +9,22 @@ import Foundation
 
 class MyPageNetworkManager {
     
-    func requestUserInfo(completion: @escaping (String?) -> Void) {
-        NetworkService.shared.memberRepository.patchUserInfo { result in
+    func requestMyPageData(version: Int, completion: @escaping (String?, Int) -> Void) {
+        NetworkService.shared.memberRepository.fetchMyPage(version: version) { result in
             switch result {
             case .success(let response):
-                completion(response.profileImageUrl)
+                completion(response.profileImage, response.photoCount ?? 0)
+            default:
+                completion(nil, 0)
+            }
+        }
+    }
+    
+    func requestAllPhoto(completion: @escaping ([PhotoUrlResponseDto]?) -> Void) {
+        NetworkService.shared.photoRepository.fetchAllPhoto { result in
+            switch result {
+            case .success(let response):
+                completion(response.photos)
             default:
                 completion(nil)
             }

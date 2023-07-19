@@ -11,6 +11,8 @@ import Moya
 
 protocol PhotoRepository {
     
+    func fetchAllPhoto(completion: @escaping (NetworkResult<PhotosResponseDto>) -> Void)
+    
     func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void)
 
     func postPhoto(

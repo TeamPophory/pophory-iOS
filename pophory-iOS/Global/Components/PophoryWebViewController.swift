@@ -32,6 +32,7 @@ class PophoryWebViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
+        showNavigationBar()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
 }

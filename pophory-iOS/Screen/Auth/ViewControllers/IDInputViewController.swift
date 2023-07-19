@@ -24,11 +24,7 @@ final class IDInputViewController: BaseViewController {
     
     private var keyboardManager: KeyboardManager?
     
-    private lazy var iDInputView: IDInputView = {
-        let view = IDInputView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var iDInputView = IDInputView()
     
     // MARK: - Life Cycle
     
