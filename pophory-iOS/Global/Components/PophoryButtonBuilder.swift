@@ -60,6 +60,9 @@ public enum ButtonText: String {
     
     /// "아쉽지만, 탈퇴하기"
     case deleteAccount = "아쉽지만, 탈퇴하기"
+    
+    /// "홈으로 이동하기"
+    case goToHome = "홈으로 이동하기"
 }
 
 public enum ButtonStyle {
