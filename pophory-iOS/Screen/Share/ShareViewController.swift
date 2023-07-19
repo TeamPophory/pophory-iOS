@@ -11,7 +11,21 @@ class ShareViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var shareID: String?
+    private var shareID: String? {
+        didSet {
+            if let shareID = shareID {
+                requestGetSharePhotoAPI(shareID: shareID)
+            }
+        }
+    }
+    private var sharePhoto: PatchSharePhotoRequestDTO? {
+        didSet {
+            if let sharePhoto = sharePhoto {
+                let url = URL(string: sharePhoto.imageUrl)
+                rootView.shareImageView.kf.setImage(with: url)
+            }
+        }
+    }
     
     // MARK: - UI Properties
     
@@ -34,7 +48,21 @@ class ShareViewController: UIViewController {
 
 extension ShareViewController {
     
-    func setupShareID(forShareID: String) {
+    func setupShareID(forShareID: String?) {
         self.shareID = forShareID
+    }
+}
+
+extension ShareViewController {
+    func requestGetSharePhotoAPI(
+        shareID: String
+    ) {
+        NetworkService.shared.shareRepository.patchSharePhoto(shareId: shareID) { result in
+            switch result {
+            case .success(let response):
+                self.sharePhoto = response
+            default : return
+            }
+        }
     }
 }
