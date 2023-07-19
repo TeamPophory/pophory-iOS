@@ -43,18 +43,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         // Link 처리
-        var shareID: String?
         if let url = userActivity.webpageURL {
             let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
-                // 👉 동적링크에서 파라미터를 다루는 함수. 아래에서 살펴보겠습니다.
-                if let cardID = self.handleDynamicLink(dynamicLink) {
-                    shareID = cardID
+                if let shareID = self.handleDynamicLink(dynamicLink) {
+                    
+                    guard let _ = (scene as? UIWindowScene) else { return }
+                    
+                    if let windowScene = scene as? UIWindowScene {
+                        
+                        let window = UIWindow(windowScene: windowScene)
+                        window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+                        let rootVC = ShareViewController()
+                        rootVC.setupShareID(forShareID: shareID)
+                        
+                        let navigationController = PophoryNavigationController(rootViewController: rootVC)
+                        
+                        window.rootViewController = navigationController
+                        window.makeKeyAndVisible()
+                        self.window = window
+                    }
                 }
             }
         }
-        let rootVC = ShareViewController()
-        
-
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
