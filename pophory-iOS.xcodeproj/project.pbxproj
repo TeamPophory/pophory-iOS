@@ -84,6 +84,8 @@
 		912780142A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780132A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift */; };
 		9127801A2A67F9DA0005BBA3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780192A67F9DA0005BBA3 /* Album.swift */; };
 		9127801C2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127801B2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift */; };
+		9127801E2A6867CA0005BBA3 /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127801D2A6867CA0005BBA3 /* NoNetworkView.swift */; };
+		912780202A68698F0005BBA3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127801F2A68698F0005BBA3 /* NetworkMonitor.swift */; };
 		9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */; };
 		9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9161CADE2A5460AA002B8B77 /* Kingfisher */; };
 		9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */; };
@@ -254,6 +256,8 @@
 		912780132A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		912780192A67F9DA0005BBA3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		9127801B2A6846A80005BBA3 /* PatchAlbumCoverRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumCoverRequestDTO.swift; sourceTree = "<group>"; };
+		9127801D2A6867CA0005BBA3 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		9127801F2A68698F0005BBA3 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		9161CADB2A545EA2002B8B77 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extesion.swift"; sourceTree = "<group>"; };
@@ -1002,6 +1006,8 @@
 				B1631F652A1760180050974F /* .keep */,
 				3782F4312A51E6D200FE3846 /* KeyboardManager.swift */,
 				6BB37C722A55EB7400E49B12 /* DateManager.swift */,
+				9127801D2A6867CA0005BBA3 /* NoNetworkView.swift */,
+				9127801F2A68698F0005BBA3 /* NetworkMonitor.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1240,6 +1246,7 @@
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
 				376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
+				9127801E2A6867CA0005BBA3 /* NoNetworkView.swift in Sources */,
 				9161CAE32A546511002B8B77 /* ReusableView+Extesion.swift in Sources */,
 				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
 				91F3A7AE2A52F2F700C06D1B /* DefaultAuthRepository.swift in Sources */,
@@ -1317,6 +1324,7 @@
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
+				912780202A68698F0005BBA3 /* NetworkMonitor.swift in Sources */,
 				6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */,

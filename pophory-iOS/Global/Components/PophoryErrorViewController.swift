@@ -39,7 +39,7 @@ final class PophoryErrorViewController: UIViewController {
     
     private let errorImageContainerView = UIView()
     
-    private let errorImageView = UIImageView(image: ImageLiterals.networkError)
+    private let errorImageView = UIImageView(image: ImageLiterals.networkFail)
     
     private let errorHeaderLabel: UILabel = {
         let label = UILabel()
