@@ -11,11 +11,7 @@ import SnapKit
 
 final class NoNetworkView: UIView {
     
-    private let networkfailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = ImageLiterals.networkFail
-        return imageView
-    }()
+    private let networkfailImageView = UIImageView(image: ImageLiterals.networkFail)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
