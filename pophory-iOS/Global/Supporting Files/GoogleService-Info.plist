@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>532166243709-km49f9d3pb1ofuhk8f18rv636gksrv6n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.532166243709-km49f9d3pb1ofuhk8f18rv636gksrv6n</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>532166243709-a34egd0fe23kvhj8kns1g8qeo6bug81s.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD7YvTxqqVcaGItHZkmYVBFDerPYFJlFlw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>532166243709</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Team.pophory-iOS</string>
+	<key>PROJECT_ID</key>
+	<string>pophory-bc373</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pophory-bc373.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:532166243709:ios:8c228535e28dd2255c4814</string>
+</dict>
+</plist>

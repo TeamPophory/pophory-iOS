@@ -74,6 +74,9 @@
 		6BC63CD82A5DD0B7001DF31F /* BasePHPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CD72A5DD0B7001DF31F /* BasePHPickerViewController.swift */; };
 		6BC63CDC2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */; };
 		6BC63CDE2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */; };
+		6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */; };
+		6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47522A6825000060EC78 /* FirebaseAnalytics */; };
+		6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */; };
 		9127800E2A67BF510005BBA3 /* EditAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127800D2A67BF510005BBA3 /* EditAlbumViewController.swift */; };
 		912780102A67BF760005BBA3 /* EditAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9127800F2A67BF760005BBA3 /* EditAlbumView.swift */; };
 		912780122A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */; };
@@ -220,6 +223,7 @@
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
 		6B09D2272A6808DA00DF4275 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		6B09D2292A6808EA00DF4275 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		6B09D2302A68192000DF4275 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
 		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
 		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 		6BC63CD72A5DD0B7001DF31F /* BasePHPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePHPickerViewController.swift; sourceTree = "<group>"; };
 		6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoViewController.swift; sourceTree = "<group>"; };
 		6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9127800D2A67BF510005BBA3 /* EditAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumViewController.swift; sourceTree = "<group>"; };
 		9127800F2A67BF760005BBA3 /* EditAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumView.swift; sourceTree = "<group>"; };
 		912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -322,8 +327,10 @@
 			files = (
 				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
 				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
+				6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */,
 				B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
+				6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */,
 				B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -839,6 +846,7 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6B09D2302A68192000DF4275 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
@@ -943,6 +951,7 @@
 			isa = PBXGroup;
 			children = (
 				B1631F182A1759EB0050974F /* Info.plist */,
+				6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1028,6 +1037,8 @@
 				9161CADE2A5460AA002B8B77 /* Kingfisher */,
 				B138A3BA2A587751000EE81E /* RxCocoa */,
 				B1D0297D2A5D89DD000B5B53 /* SkeletonView */,
+				6BCE47522A6825000060EC78 /* FirebaseAnalytics */,
+				6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -1107,6 +1118,7 @@
 				9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -1130,6 +1142,7 @@
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
+				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1489,7 +1502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOSRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1663,6 +1676,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1699,6 +1720,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6BCE47522A6825000060EC78 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
 		};
 		9161CADE2A5460AA002B8B77 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
