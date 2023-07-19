@@ -145,10 +145,10 @@ extension SharePhotoRootView {
     }
     
     private func deselectPhoto() {
-        guard let index = selectedPhotoIndex,
-              let cell = feedCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) else { return }
+        guard let index = selectedPhotoIndex else { return }
         
-        cell.isSelected = false
+        feedCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: false)
+        selectedPhotoIndex = nil
     }
 }
 
@@ -193,13 +193,8 @@ extension SharePhotoRootView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let prevCell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
-            prevCell.isSelected = false
-        }
-        
         guard let selectedCell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell else { return }
         
-        selectedCell.isSelected = true
         selectedPhotoIndex = indexPath.item
         
         if let shareId = selectedCell.photoMetaData?.shareId {

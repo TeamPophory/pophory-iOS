@@ -19,6 +19,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     enum CellType {
         case albumDetail, myPage
     }
+    private var cellType: CellType = .albumDetail
     
     private let photoImage: UIImageView = {
         let imageView = UIImageView()
@@ -36,7 +37,9 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            setSelected(isSelected)
+            if cellType == .myPage {
+                setSelected(isSelected)
+            }
         }
     }
     
@@ -58,6 +61,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         imageUrl: String,
         cellType: CellType = .albumDetail
     ) {
+        self.cellType = cellType
+        
         if imageUrl == "" {
             photoImage.image = ImageLiterals.defaultPhotoIcon
         } else {
@@ -78,6 +83,7 @@ extension PhotoCollectionViewCell {
         ])
         
         selectedView.addSubview(selectedIcon)
+        selectedView.isHidden = true
         
         photoImage.snp.makeConstraints {
             $0.edges.equalToSuperview()
