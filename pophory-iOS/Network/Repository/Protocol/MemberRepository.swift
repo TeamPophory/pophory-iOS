@@ -8,11 +8,11 @@
 import Foundation
 
 protocol MemberRepository {
-    func patchMyPage(completion: @escaping (NetworkResult<PatchMyPageResponseDTO>) -> Void)
+    func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void)
     func patchSignUp(
         body: PatchSignUpRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     )
-    func patchUserInfo(completion: @escaping (NetworkResult<PatchUserInfoResponseDTO>) -> Void)
+    func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void)
     func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
 }

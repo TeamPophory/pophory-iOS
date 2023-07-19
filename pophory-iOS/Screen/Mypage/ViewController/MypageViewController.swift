@@ -39,18 +39,9 @@ extension MypageViewController {
     // MARK: - Network
     
     private func requestData() {
-        networkManager.requestUserInfo() { [weak self] profileImageUrl in
+        networkManager.requestMyPageData(version: 2) { [weak self] profileImageUrl, photoCount in
             self?.rootView.updateProfileImage(profileImageUrl)
-        }
-        
-        networkManager.requestAlbumData() { [weak self] albumList, photoCount in
             self?.rootView.updatePhotoCount(photoCount)
-            
-            self?.networkManager.requestPhotoData(albumList: albumList) { photoUrlList in
-                DispatchQueue.main.async {
-                    self?.rootView.updatePhotoData(photoUrlList)
-                }
-            }
         }
     }
 }
@@ -58,5 +49,14 @@ extension MypageViewController {
 extension MypageViewController: MyPageRootViewDelegate {
     func handleOnclickSetting() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+    
+    func handleOnClickShare() {
+        navigationController?.pushViewController(SharePhotoViewController(), animated: true)
+    }
+    
+    func handleOnClickStory() {
+        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/porit-story", title: "포릿 이야기")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

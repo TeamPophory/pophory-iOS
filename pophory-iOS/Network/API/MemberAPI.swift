@@ -10,7 +10,8 @@ import Foundation
 import Moya
 
 enum MemberAPI {
-    case patchMyPage
+    case fetchMyPage
+    case fetchMyPageV2
     case signUp(body: PatchSignUpRequestDTO)
     case patchUserInfo
     case checkDuplicateNickname(nickname: String)
@@ -24,16 +25,18 @@ extension MemberAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .patchMyPage, .signUp, .checkDuplicateNickname:
+        case .fetchMyPage, .signUp, .checkDuplicateNickname:
             return URLConstants.memeber
         case .patchUserInfo:
             return URLConstants.memeber + "/me"
+        case .fetchMyPageV2:
+            return URLConstantsV2.memeber
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .patchMyPage, .patchUserInfo:
+        case .fetchMyPage, .fetchMyPageV2, .patchUserInfo:
             return .get
         case .signUp:
             return .patch
@@ -44,7 +47,7 @@ extension MemberAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .patchMyPage, .patchUserInfo:
+        case .fetchMyPage, .fetchMyPageV2, .patchUserInfo:
             return .requestPlain
         case .signUp(let body):
             return .requestJSONEncodable(body)

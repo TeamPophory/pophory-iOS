@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct PatchUserInfoResponseDTO: Codable {
+struct FetchUserInfoResponseDTO: Codable {
     let id: Int?
     let realName, nickname, profileImageUrl: String?
+    let photoCount: String?
 }

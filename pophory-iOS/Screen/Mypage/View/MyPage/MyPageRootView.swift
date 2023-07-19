@@ -12,6 +12,8 @@ import SnapKit
 
 protocol MyPageRootViewDelegate: NSObject {
     func handleOnclickSetting()
+    func handleOnClickShare()
+    func handleOnClickStory()
 }
 
 class MyPageRootView: UIView {
@@ -31,20 +33,18 @@ class MyPageRootView: UIView {
     private lazy var scrollView: UIScrollView = { createScrollView() }()
     private lazy var contentView: UIView = { UIView() }()
     
-    private lazy var adView: UIView = { UIView() }()
-    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
-    
     private lazy var profileView: UIView = { UIView() }()
+    private lazy var profileBgImageView: UIImageView = { createProfileBgImageView() }()
     private lazy var profileImageView: UIImageView = { createProfileImageView() }()
     private lazy var profileStackView: UIStackView = { createProfileStackView() }()
     private lazy var profileNameLabel: UILabel = { createProfileNameLabel() }()
     private lazy var photoCountLabel: UILabel = { createPhotoCountLabel() }()
     
-    private lazy var feedTitleLabel: UILabel = { createFeedTitleLabel() }()
-    private lazy var emptyStackView: UIStackView = { createEmptyStackView() }()
-    private lazy var emptyImageView: UIImageView = { UIImageView(image: ImageLiterals.emptyFeedIcon) }()
-    private lazy var emptyDescriptionLabel: UILabel = { createEmptyDescriptionLabel() }()
-    private lazy var feedCollectionView: UICollectionView = { createFeedCollectionView() }()
+    private lazy var shareBannerView: UIView = { createShareBannerView() }()
+    private lazy var storyBannerView: UIView = { createStoryBannerView() }()
+    
+    private lazy var adView: UIView = { UIView() }()
+    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
     
     // MARK: - Life Cycle
     
@@ -68,8 +68,8 @@ extension MyPageRootView {
         setupHeaderView()
         setupScrollView()
         setupProfileView()
+        setupBannerView()
         setupAdView()
-        setupFeedView()
     }
     
     private func setupHeaderView() {
@@ -113,6 +113,7 @@ extension MyPageRootView {
         contentView.addSubview(profileView)
         
         profileView.addSubviews([
+            profileBgImageView,
             profileImageView,
             profileStackView
         ])
@@ -125,18 +126,42 @@ extension MyPageRootView {
         profileView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(114)
+            make.height.equalTo(205)
+        }
+        
+        profileBgImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(132)
         }
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(72)
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(profileView).inset(20)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(profileBgImageView).offset(13)
         }
         
         profileStackView.snp.makeConstraints { make in
-            make.leading.equalTo(profileImageView.snp.trailing).offset(14)
-            make.centerY.equalTo(profileImageView)
+            make.top.equalTo(profileImageView.snp.bottom).offset(14)
+            make.centerX.equalTo(profileImageView)
+        }
+    }
+    
+    private func setupBannerView() {
+        contentView.addSubviews([
+            shareBannerView,
+            storyBannerView
+        ])
+        
+        shareBannerView.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(138)
+        }
+        
+        storyBannerView.snp.makeConstraints { make in
+            make.top.equalTo(shareBannerView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(shareBannerView)
+            make.height.equalTo(90)
         }
     }
     
@@ -145,47 +170,13 @@ extension MyPageRootView {
         adView.addSubview(adEmptyView)
         
         adView.snp.makeConstraints { make in
-            make.top.equalTo(profileView.snp.bottom).offset(2)
-            make.leading.trailing.equalToSuperview().inset(28)
+            make.top.equalTo(storyBannerView.snp.bottom).offset(22)
+            make.leading.trailing.bottom.equalToSuperview().inset(28)
             make.height.equalTo(100)
         }
         
         adEmptyView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-    }
-    
-    private func setupFeedView() {
-        contentView.addSubviews([
-            feedTitleLabel,
-            emptyStackView,
-            feedCollectionView
-        ])
-        
-        emptyStackView.addArrangedSubviews([
-            emptyImageView,
-            emptyDescriptionLabel
-        ])
-        
-        feedTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(adView.snp.bottom).offset(26)
-            make.leading.equalToSuperview().offset(20)
-        }
-        
-        emptyStackView.snp.makeConstraints { make in
-            make.top.equalTo(feedTitleLabel.snp.bottom).offset(46)
-            make.centerX.equalToSuperview()
-        }
-
-        emptyImageView.snp.makeConstraints { make in
-            make.size.equalTo(180)
-        }
-        
-        feedCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(feedTitleLabel.snp.bottom).offset(12)
-            make.leading.trailing.equalTo(contentView).inset(20)
-            make.height.equalTo(0) // NOTE: don't erase this
-            make.bottom.equalTo(contentView).inset(350)
         }
     }
     
@@ -234,6 +225,14 @@ extension MyPageRootView {
         return scrollView
     }
     
+    private func createProfileBgImageView() -> UIImageView {
+        let imageView = UIImageView()
+
+        imageView.backgroundColor = .pophoryLightPurple
+        
+        return imageView
+    }
+    
     private func createProfileImageView() -> UIImageView {
         let imageView = UIImageView(image: ImageLiterals.defaultProfile)
         
@@ -248,8 +247,8 @@ extension MyPageRootView {
         let stackView = UIStackView()
         
         stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.spacing = 8
+        stackView.alignment = .center
+        stackView.spacing = 4
         
         return stackView
     }
@@ -274,63 +273,34 @@ extension MyPageRootView {
         return label
     }
     
-    private func createFeedTitleLabel() -> UILabel {
-        let label = UILabel()
+    private func createShareBannerView() -> UIView {
+        let view = MyPageBannerView(frame: .zero, title: "네컷사진 공유하기", description: "포릿이 너의 네컷사진을 전달해줄게!", image: ImageLiterals.myPageShareBanner)
         
-        label.font = .h2
-        label.text = "네컷사진 모아보기"
+        view.viewButton.addTarget(self, action: #selector(onClickShare), for: .touchUpInside)
         
-        return label
+        return view
     }
     
-    private func createEmptyStackView() -> UIStackView {
-        let stackView = UIStackView()
+    private func createStoryBannerView() -> UIView {
+        let view = MyPageBannerView(frame: .zero, title: "포릿 이야기 들으러 가기", description: "포릿이가 들려주는 '포포리' 이야기, 들어볼래?")
         
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .center
+        view.viewButton.addTarget(self, action: #selector(onClickStory), for: .touchUpInside)
         
-        return stackView
-    }
-    
-    private func createEmptyDescriptionLabel() -> UILabel {
-        let label = UILabel()
-        
-        label.font = .h3
-        label.textColor = .pophoryGray500
-        label.text = "네컷 사진을 추가해볼까?"
-        
-        return label
-    }
-    
-    private func createFeedCollectionView() -> UICollectionView {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 2
-        
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isScrollEnabled = false
-        
-        collectionView.backgroundColor = .pophoryWhite
-        
-        collectionView.register(cell: PhotoCollectionViewCell.self)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        collectionView.showAnimatedGradientSkeleton()
-        
-        return collectionView
+        return view
     }
     
     // MARK: - Logics
     
     @objc private func onClickSetting() {
         delegate?.handleOnclickSetting()
+    }
+    
+    @objc private func onClickShare() {
+        delegate?.handleOnClickShare()
+    }
+    
+    @objc private func onClickStory() {
+        delegate?.handleOnClickStory()
     }
     
     func updatePhotoCount(_ count: Int) {
@@ -347,63 +317,5 @@ extension MyPageRootView {
         }
         
         profileImageView.hideSkeleton()
-    }
-    
-    func updatePhotoData(_ photoData: [String]) {
-        self.photoData = photoData
-        
-        if photoData.isEmpty {
-            feedCollectionView.isHidden = true
-        } else {
-            feedCollectionView.isHidden = false
-            feedCollectionView.reloadData()
-            feedCollectionView.hideSkeleton()
-            
-            feedCollectionView.performBatchUpdates(nil, completion: { result in
-                self.feedCollectionView.snp.updateConstraints { make in
-                    make.height.equalTo(self.feedCollectionView.contentSize.height)
-                    make.bottom.equalTo(self.contentView).inset(20)
-                }
-            })
-        }
-    }
-}
-
-extension MyPageRootView: SkeletonCollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoData?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell,
-              let photoData = photoData else {
-            return UICollectionViewCell()
-        }
-        
-        cell.configCell(imageUrl: photoData[indexPath.item], cellType: .myPage)
-        cell.clipsToBounds = true
-        cell.contentView.isSkeletonable = true
-        
-        return cell
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UICollectionView.automaticNumberOfSkeletonItems
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
-        return PhotoCollectionViewCell.identifier
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
-        skeletonView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath)
-    }
-}
-
-extension MyPageRootView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.frame.width - 4) / 3
-        return CGSize(width: size, height: size)
     }
 }

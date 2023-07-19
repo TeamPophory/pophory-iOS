@@ -12,6 +12,11 @@ struct Photos: Codable {
     let photos: [Photo]?
 }
 
+// MARK: - PhotosResponseDto
+struct PhotosResponseDto: Codable {
+    let photos: [PhotoUrlResponseDto]?
+}
+
 // MARK: - Photo
 struct Photo: Codable {
     let id: Int
