@@ -43,6 +43,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         // Link 처리
+        var shareID: String?
+        if let url = userActivity.webpageURL {
+            let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+                // 👉 동적링크에서 파라미터를 다루는 함수. 아래에서 살펴보겠습니다.
+                if let cardID = self.handleDynamicLink(dynamicLink) {
+                    shareID = cardID
+                }
+            }
+        }
+        let rootVC = ShareViewController()
+        
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -106,5 +118,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return parameters
     }
     
+    private func handleDynamicLink(_ dynamicLink: DynamicLink?) -> String? {
+        // 앱으로 전달되는 url 을 얻을 수 있다.(딥링크)
+        guard let dynamicLink = dynamicLink,
+              let link = dynamicLink.url else { return nil }
+        
+        // resolvingAgainstBaseURL : URL 구문을 분석하기 전에 URl 에 대해 확인하는지 여부를 제어.
+        // true 이고, url parameter 에 상대적인 URl 이 포함되어 있다면 absoluteURL 메서드를 호출해서 original URl 에 대해서 확인합니다. 그렇지 않으면, 문자열 부분이 자체적으로 사용됩니다.
+        if let components = URLComponents(url: link, resolvingAgainstBaseURL: false),
+           let queryItems = components.queryItems {
+            for item in queryItems {
+                if item.name == "u", let value = item.value {
+                    return value
+                }
+            }
+        }
+        return nil
+    }
 }
-
+    

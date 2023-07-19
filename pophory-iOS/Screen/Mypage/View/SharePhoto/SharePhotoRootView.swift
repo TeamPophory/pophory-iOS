@@ -10,6 +10,8 @@ import UIKit
 import SkeletonView
 import SnapKit
 
+import FirebaseDynamicLinks
+
 class SharePhotoRootView: UIView {
     
     // MARK: - Properties
@@ -134,7 +136,18 @@ extension SharePhotoRootView {
     private func sharePhoto(shareId: String) {
         let parentVC = getParentViewController()
         
-        let activityVC = UIActivityViewController(activityItems: [shareId], applicationActivities: nil)
+        // TODO: - 코드 정리, url 짧게
+        
+        guard let link = URL(string: "https://pophory.page.link/share?u=" + shareId) else { return }
+        let dynamicLinkComponents = DynamicLinkComponents(link: link, domainURIPrefix: "https://pophory.page.link")
+        
+        dynamicLinkComponents?.iOSParameters = DynamicLinkIOSParameters(bundleID: "Team.pophory-iOS")
+        dynamicLinkComponents?.iOSParameters?.appStoreID = "6451004060"
+        dynamicLinkComponents?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.teampophory.pophory")
+        
+        let longDynamic = dynamicLinkComponents?.url
+        
+        let activityVC = UIActivityViewController(activityItems: [longDynamic?.absoluteString], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = parentVC?.view
         
         parentVC?.present(activityVC, animated: true)

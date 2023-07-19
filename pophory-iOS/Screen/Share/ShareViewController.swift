@@ -9,6 +9,10 @@ import UIKit
 
 class ShareViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var shareID: String?
+    
     // MARK: - UI Properties
     
     private let rootView = ShareView()
@@ -25,5 +29,12 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
         
         hideNavigationBar()
+    }
+}
+
+extension ShareViewController {
+    
+    func setupShareID(forShareID: String) {
+        self.shareID = forShareID
     }
 }
