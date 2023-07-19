@@ -62,7 +62,8 @@ extension SharePhotoRootView {
         ])
         
         emptyStackView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().multipliedBy(0.8)
         }
 
         emptyImageView.snp.makeConstraints { make in
