@@ -14,6 +14,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     static var identifier: String = "PhotoCollectionViewCell"
     
+    var photoMetaData: PhotoUrlResponseDto?
+    
     enum CellType {
         case albumDetail, myPage
     }
@@ -23,6 +25,20 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.image = ImageLiterals.defaultPhotoIcon
         return imageView
     }()
+    
+    private let selectedView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        return view
+    }()
+    
+    private let selectedIcon: UIImageView = UIImageView(image: ImageLiterals.checkBigIconWhite)
+    
+    override var isSelected: Bool {
+        didSet {
+            setSelected(isSelected)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,14 +54,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         photoImage.image = ImageLiterals.defaultPhotoIcon
     }
     
-    private func setupLayout() {
-        self.addSubview(photoImage)
-        
-        photoImage.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
     func configCell(
         imageUrl: String,
         cellType: CellType = .albumDetail
@@ -57,5 +65,34 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
             photoImage.kf.setImage(with: url)
             photoImage.contentMode = cellType == .albumDetail ? .scaleToFill : .scaleAspectFill
         }
+    }
+}
+
+extension PhotoCollectionViewCell {
+    private func setupLayout() {
+        isSelected = false
+        
+        addSubviews([
+            photoImage,
+            selectedView
+        ])
+        
+        selectedView.addSubview(selectedIcon)
+        
+        photoImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        selectedView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        selectedIcon.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    private func setSelected(_ isSelected: Bool) {
+        selectedView.isHidden = !isSelected
     }
 }

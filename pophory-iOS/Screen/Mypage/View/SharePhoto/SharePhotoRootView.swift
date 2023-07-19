@@ -15,6 +15,7 @@ class SharePhotoRootView: UIView {
     // MARK: - Properties
     
     var photoData: [String]?
+    private var selectedPhotoIndex: Int?
     
     // MARK: - UI Properties
     
@@ -163,8 +164,18 @@ extension SharePhotoRootView: SkeletonCollectionViewDataSource {
 
 extension SharePhotoRootView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(">>> width", collectionView.frame.width)
         let size = (collectionView.frame.width - 4) / 3
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let prevCell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+            prevCell.isSelected = false
+        }
+        
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell else { return }
+        
+        selectedCell.isSelected = true
+        selectedPhotoIndex = indexPath.item
     }
 }

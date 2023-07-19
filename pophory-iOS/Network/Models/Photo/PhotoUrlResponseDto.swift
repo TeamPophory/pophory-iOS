@@ -12,4 +12,5 @@ import Foundation
 struct PhotoUrlResponseDto: Codable {
     let photoId: Int?
     let photoUrl: String?
+    let shareId: String?
 }
