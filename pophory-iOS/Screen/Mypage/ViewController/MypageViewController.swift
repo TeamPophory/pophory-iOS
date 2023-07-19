@@ -39,9 +39,9 @@ extension MypageViewController {
     // MARK: - Network
     
     private func requestData() {
-        networkManager.requestUserInfo() { [weak self] profileImageUrl in
+        networkManager.requestMyPageData(version: 2) { [weak self] profileImageUrl, photoCount in
             self?.rootView.updateProfileImage(profileImageUrl)
-            // TODO: 내 사진 개수 업데이트 (그동안 찍은 사진 n장)
+            self?.rootView.updatePhotoCount(photoCount)
         }
     }
 }

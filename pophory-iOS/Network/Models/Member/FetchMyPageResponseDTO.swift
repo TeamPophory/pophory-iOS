@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PatchMyPageResponseDTO: Codable {
+struct FetchMyPageResponseDTO: Codable {
     let realName, nickname, profileImage: String?
     let photoCount: Int?
     let photos: Photos?
