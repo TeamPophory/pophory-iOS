@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PhotoDetailViewController: BaseViewController, Navigatable {
+final class PhotoDetailViewController: BaseViewController, Navigatable, ShareButtonDisplayable {
     
     // MARK: - Properties
     
@@ -20,6 +20,9 @@ final class PhotoDetailViewController: BaseViewController, Navigatable {
     // MARK: - UI Properties
     
     var navigationBarTitleText: String? { return "내 사진" }
+    var shouldDisplayShareButton: Bool {
+        return true
+    }
     
     private lazy var photoDetailView = PhotoDetailView(frame: .zero,
                                                        imageUrl: self.image ?? "",
@@ -29,13 +32,10 @@ final class PhotoDetailViewController: BaseViewController, Navigatable {
     
     // MARK: - Life Cycle
     
-    override func viewWillAppear(_ animated: Bool) {
-        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .delete)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared, showRightButton: true, rightButtonImageType: .delete)
         view = photoDetailView
     }
 }
@@ -56,6 +56,26 @@ extension PhotoDetailViewController {
     
     @objc func shareButtonOnClick() {
         
+        guard let image = image else {
+            return
+        }
+        
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        activityViewController.completionWithItemsHandler = { [weak self] (activityType, completed, _, error) in
+            // 공유 완료 후 필요한 처리
+            if completed {
+                print("사진 공유 완료")
+            }
+            
+            if let error = error {
+                print("사진 공유 오류: \(error.localizedDescription)")
+            }
+            
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        present(activityViewController, animated: true, completion: nil)
     }
     
     private func deletePhoto() {
