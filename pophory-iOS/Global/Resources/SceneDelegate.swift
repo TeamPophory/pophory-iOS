@@ -19,12 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
         
-        startMonitoringNetwork(on: scene)
         if let userActivity = connectionOptions.userActivities.first {
             self.scene(scene, continue: userActivity)
         }
+        
+        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        startMonitoringNetwork(on: scene)
         
         if let windowScene = scene as? UIWindowScene {
             
@@ -53,7 +55,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     guard let _ = (scene as? UIWindowScene) else { return }
                     
                     if let windowScene = scene as? UIWindowScene {
-                        
                         let window = UIWindow(windowScene: windowScene)
                         window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
                         let rootVC = ShareViewController()
@@ -135,29 +136,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func extractQueryParameters(from url: URL) -> [String: String]? {
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-              let queryItems = components.queryItems else {
-            return nil
-        }
-        
-        var parameters: [String: String] = [:]
-        for queryItem in queryItems {
-            if let value = queryItem.value {
-                parameters[queryItem.name] = value
-            }
-        }
-        
-        return parameters
-    }
-    
     private func handleDynamicLink(_ dynamicLink: DynamicLink?) -> String? {
-        // 앱으로 전달되는 url 을 얻을 수 있다.(딥링크)
         guard let dynamicLink = dynamicLink,
               let link = dynamicLink.url else { return nil }
         
-        // resolvingAgainstBaseURL : URL 구문을 분석하기 전에 URl 에 대해 확인하는지 여부를 제어.
-        // true 이고, url parameter 에 상대적인 URl 이 포함되어 있다면 absoluteURL 메서드를 호출해서 original URl 에 대해서 확인합니다. 그렇지 않으면, 문자열 부분이 자체적으로 사용됩니다.
         if let components = URLComponents(url: link, resolvingAgainstBaseURL: false),
            let queryItems = components.queryItems {
             for item in queryItems {
