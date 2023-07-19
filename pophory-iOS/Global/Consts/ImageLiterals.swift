@@ -115,7 +115,7 @@ enum ImageLiterals {
     
     // MARK: - ErrorImg
 
-    static var networkError: UIImage { .load(name: "img_networkError") }
+    static var networkFail: UIImage { .load(name: "networkFail") }
 }
 
 extension UIImage {
