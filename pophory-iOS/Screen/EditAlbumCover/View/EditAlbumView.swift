@@ -133,10 +133,3 @@ final class EditAlbumView: UIView {
         return button
     }
 }
-
-extension EditAlbumView {
-    @objc
-    private func albumCoverProfile1ButtonDidTapped() {
-        albumCoverButtonDidTappedProtocol?.albumCoverProfile1DidTapped()
-    }
-}

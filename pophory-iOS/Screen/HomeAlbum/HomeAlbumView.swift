@@ -75,6 +75,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         button.addTarget(self, action: #selector(albumCoverEditButtonDidTapped), for: .touchUpInside)
         return button
     }()
+    private let progressView: UIView = UIView()
     private let progressBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryGray300
@@ -109,6 +110,12 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
                 headTitle,
                 albumImageView,
                 albumCoverEditButton,
+                progressView
+            ]
+        )
+        
+        progressView.addSubviews(
+            [
                 progressBackgroundView,
                 progressBarView,
                 progressBarIcon,
@@ -139,18 +146,24 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.size.equalTo(44)
         }
         
+        progressView.snp.makeConstraints {
+            $0.top.equalTo(albumImageView.snp.bottom).offset(24)
+            $0.height.equalTo(38)
+            $0.horizontalEdges.equalTo(albumImageView)
+        }
+        
         progressBackgroundView.snp.makeConstraints {
             $0.height.equalTo(6)
-            $0.centerY.equalTo(statusLabel)
-            $0.leading.equalToSuperview().inset(50)
-            $0.trailing.equalToSuperview().inset(118)
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(70)
         }
         
         progressBarView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(50)
+            $0.leading.equalTo(progressBackgroundView)
             $0.height.equalTo(6)
             $0.width.equalTo(0)
-            $0.centerY.equalTo(statusLabel)
+            $0.centerY.equalToSuperview()
         }
         progressBarView.bringSubviewToFront(self)
         
@@ -161,8 +174,8 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         }
         
         statusLabel.snp.makeConstraints {
-            $0.top.equalTo(albumImageView.snp.bottom).offset(30)
-            $0.leading.equalTo(progressBackgroundView.snp.trailing).offset(26)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
     }
     
