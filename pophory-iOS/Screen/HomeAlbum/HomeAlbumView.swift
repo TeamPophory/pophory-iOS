@@ -119,17 +119,17 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         )
         
         appLogo.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(66)
+            $0.top.equalTo(headerHeightByNotch(27))
             $0.leading.equalToSuperview().offset(20)
         }
         
         headTitle.snp.makeConstraints {
-            $0.top.equalTo(appLogo.snp.bottom).offset(20)
+            $0.top.equalTo(appLogo.snp.bottom).offset(constraintByNotch(20, 15))
             $0.leading.equalToSuperview().offset(20)
         }
         
         albumImageView.snp.makeConstraints {
-            $0.top.equalTo(headTitle.snp.bottom).offset(30)
+            $0.top.equalTo(headTitle.snp.bottom).offset(constraintByNotch(30, 25))
             $0.height.equalTo(380)
             $0.width.equalTo(280)
             $0.centerX.equalToSuperview()

@@ -30,7 +30,7 @@ final class KeyboardManager: NSObject {
     }
 
     @objc private func keyboardWillHide(notification: NSNotification) {
-        self.bottomConstraint?.constant = 0
+        self.bottomConstraint?.constant = -10
         self.viewController?.view.layoutIfNeeded()
     }
 

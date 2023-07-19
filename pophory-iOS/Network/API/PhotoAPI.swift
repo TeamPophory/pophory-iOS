@@ -10,7 +10,8 @@ import Foundation
 import Moya
 
 enum PhotoAPI {
-    case postPhoto(body: [MultipartFormData])
+    case patchPresignedPhotoURL
+    case postPhoto(body: PostPhotoS3RequestDTO)
     case deletePhoto(photoId: Int)
 }
 
@@ -20,32 +21,12 @@ extension PhotoAPI: BaseTargetType {
         return PophoryTokenManager.shared.fetchAccessToken()
     }
     
-    var headers: [String: String]? {
-        switch self {
-        case .postPhoto:
-            var header = [
-                "Content-Type": "multipart/form-dat"
-            ]
-            if let token = authToken {
-                header["Authorization"] = "Bearer \(token)"
-            }
-            return header
-        case .deletePhoto:
-            var header = [
-                "Content-Type": "application/json"
-            ]
-            if let token = authToken {
-                header["Authorization"] = "Bearer \(token)"
-            }
-            return header
-        }
-    }
-    
-    
     var path: String {
         switch self {
+        case .patchPresignedPhotoURL:
+            return URLConstantsV2.v3 + "/photo"
         case .postPhoto:
-            return URLConstants.photo
+            return URLConstantsV2.photo
         case .deletePhoto(let photoId):
             return URLConstants.photo + "/\(photoId)"
         }
@@ -53,6 +34,8 @@ extension PhotoAPI: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
+        case .patchPresignedPhotoURL:
+            return .get
         case .postPhoto:
             return .post
         case .deletePhoto:
@@ -62,8 +45,10 @@ extension PhotoAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
+        case .patchPresignedPhotoURL:
+            return .requestPlain
         case .postPhoto(let body):
-            return .uploadMultipart(body)
+            return .requestJSONEncodable(body)
         case .deletePhoto:
             return .requestPlain
         }

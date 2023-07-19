@@ -44,6 +44,7 @@ final class OnboardingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideNavigationBar()
         checkLoginHistoryAndNavigate()
         setupAppleSignInButton()
         fetchAccessToken()
@@ -53,7 +54,7 @@ final class OnboardingViewController: BaseViewController {
         view.addSubview(onboardingView)
         
         onboardingView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+            make.edges.equalTo(view.safeAreaInsets)
         }
     }
     

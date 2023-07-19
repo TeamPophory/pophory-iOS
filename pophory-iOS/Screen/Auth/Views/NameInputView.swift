@@ -17,19 +17,18 @@ class NameInputView: BaseSignUpView {
     lazy var bodyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.distribution = .fill
+        stackView.spacing = convertByWidthRatio(20)
+        stackView.distribution = .equalSpacing
         return stackView
     }()
     
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "원활한 포포리 사용을 위해 실명 입력이 필요해요"
+        label.text = "한글 2-6자리 이내로 작성해주세요\n이름은 이후에 수정이 어려워요"
         label.textColor = .pophoryGray500
         label.font = .title1
         label.numberOfLines = 0
-        label.setTextWithLineHeight(lineHeight: 24)
+        label.setTextWithLineHeight(lineHeight: convertByHeightRatio(24))
         return label
     }()
     
@@ -43,6 +42,7 @@ class NameInputView: BaseSignUpView {
         textField.layer.borderWidth = 1
         textField.makeRounded(radius: 18)
         textField.addPadding(left: 15)
+        textField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
         
         let clearTextFieldIcon: UIButton = {
             let button = UIButton(type: .custom)
@@ -54,7 +54,7 @@ class NameInputView: BaseSignUpView {
         }()
         
         textField.rightView = clearTextFieldIcon
-        textField.rightViewMode = .always
+        textField.rightViewMode = .whileEditing
         
         return textField
     }()
@@ -63,10 +63,8 @@ class NameInputView: BaseSignUpView {
         inputTextField.text = ""
     }
     
-    
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .popupButton
         label.textColor = .pophoryGray400
         label.text = "(0/6)"
@@ -75,7 +73,6 @@ class NameInputView: BaseSignUpView {
     
     lazy var warningLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .popupLine
         label.textColor = .pophoryRed
         label.text = "*6글자를 초과했습니다"
@@ -165,22 +162,23 @@ extension NameInputView: UITextFieldDelegate {
         if let oldText = textField.text, let stringRange = Range(range, in: oldText) {
             let newText = oldText.replacingCharacters(in: stringRange, with: string)
             let newLength = newText.count
-            
-            if newLength > 6 {
-                textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                warningLabel.text = "2-6글자 이내로 작성해주세요."
-                warningLabel.isHidden = false
-                return false
-            }
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 if newText.isContainKoreanOnly() {
                     textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-                    self.warningLabel.isHidden = true
-                    self.nextButton.isEnabled = true
+                    
+                    if newLength >= 2 && newLength <= 6 {
+                        self.warningLabel.isHidden = true
+                        self.nextButton.isEnabled = true
+                    } else {
+                        self.warningLabel.text = "2-6글자 이내로 작성해주세요"
+                        self.warningLabel.isHidden = false
+                        self.nextButton.isEnabled = false
+                    }
+                    
                 } else {
                     textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                    self.warningLabel.text = "현재 한국어만 지원하고 있어요."
+                    self.warningLabel.text = "현재 한국어만 지원하고 있어요"
                     self.warningLabel.isHidden = false
                     self.nextButton.isEnabled = false
                 }
@@ -190,6 +188,11 @@ extension NameInputView: UITextFieldDelegate {
     }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
-        updateCharCountLabel(charCount: textField.text?.count ?? 0)
+        let text = textField.text ?? ""
+        let charCount = text.count
+        updateCharCountLabel(charCount: charCount)
+        
+        let isTextFieldEmpty = text.isEmpty
+        textField.rightView?.isHidden = isTextFieldEmpty
     }
 }

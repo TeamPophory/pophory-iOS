@@ -16,6 +16,8 @@
 		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
 		373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */; };
 		373EEF022A582C4C0039A22C /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEF012A582C4C0039A22C /* AppleLoginManager.swift */; };
+		376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E62A66CB740010CF8D /* CGSize+Extension.swift */; };
+		376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */; };
 		376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
@@ -59,6 +61,8 @@
 		6B29DC5A2A5494A000F93EC7 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */; };
 		6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */; };
 		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
+		6BA49DEB2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */; };
+		6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DED2A66EF3000414CBF /* AddPhotoNetworkManager.swift */; };
 		6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */; };
 		6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */; };
 		6BB37C6F2A55ADCF00E49B12 /* CalendarModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C6E2A55ADCF00E49B12 /* CalendarModalViewController.swift */; };
@@ -172,6 +176,8 @@
 		373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryPopupViewController.swift; sourceTree = "<group>"; };
 		373EEF012A582C4C0039A22C /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
 		373EEF052A5922540039A22C /* pophory-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOS.entitlements"; sourceTree = "<group>"; };
+		376927E62A66CB740010CF8D /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintMaker+Extension.swift"; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
 		377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButtonBuilder.swift; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoViewController.swift; sourceTree = "<group>"; };
+		6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchPresignedURLRequestDTO.swift; sourceTree = "<group>"; };
+		6BA49DED2A66EF3000414CBF /* AddPhotoNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoNetworkManager.swift; sourceTree = "<group>"; };
 		6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalPresentationController.swift; sourceTree = "<group>"; };
 		6BB37C662A558A8B00E49B12 /* CustomModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalTransitionDelegate.swift; sourceTree = "<group>"; };
 		6BB37C6E2A55ADCF00E49B12 /* CalendarModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModalViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +552,7 @@
 		6B29DC522A5494A000F93EC7 /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				6BA49DEC2A66EED800414CBF /* Network */,
 				6B29DC532A5494A000F93EC7 /* View */,
 				6B29DC572A5494A000F93EC7 /* ViewController */,
 			);
@@ -569,6 +578,14 @@
 				6BB37C762A55FA7E00E49B12 /* StudioModalViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6BA49DEC2A66EED800414CBF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6BA49DED2A66EF3000414CBF /* AddPhotoNetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		6BB37C5F2A5579AA00E49B12 /* Modal */ = {
@@ -636,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				91F3A7692A52A93600C06D1B /* PostPhotoRequestDTO.swift */,
+				6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -877,6 +895,8 @@
 				9161CAE02A5464F0002B8B77 /* UICollectionView+Extension.swift */,
 				9161CAE22A546511002B8B77 /* ReusableView+Extesion.swift */,
 				B1D0297F2A5D907F000B5B53 /* UserDefault+Extension.swift */,
+				376927E62A66CB740010CF8D /* CGSize+Extension.swift */,
+				376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1148,6 +1168,7 @@
 				373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */,
 				377EF7E92A4F4CA500E3268D /* IDInputView.swift in Sources */,
 				91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */,
+				376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */,
 				37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */,
 				9161CAE32A546511002B8B77 /* ReusableView+Extesion.swift in Sources */,
 				91F3A7B42A53077F00C06D1B /* ChangeSortViewController.swift in Sources */,
@@ -1184,6 +1205,7 @@
 				B1631F522A175EDB0050974F /* UIResponder+Extension.swift in Sources */,
 				6BC63CD82A5DD0B7001DF31F /* BasePHPickerViewController.swift in Sources */,
 				3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */,
+				6BA49DEB2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift in Sources */,
 				3780FBCC2A6187710002A0FD /* PostIsDuplicatedDTO.swift in Sources */,
 				91F3A78E2A52B38000C06D1B /* PhotoAPI.swift in Sources */,
 				B1631F482A175C780050974F /* UIView+Extension.swift in Sources */,
@@ -1198,6 +1220,7 @@
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
+				376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */,
 				B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* PatchUserInfoResponseDTO.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
@@ -1216,6 +1239,7 @@
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
+				6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */,
 				91F3A7662A52A87E00C06D1B /* PatchStudiosResponseDTO.swift in Sources */,
 				B1D029832A5DA7AF000B5B53 /* MyPageNetworkManager.swift in Sources */,
 				91F3A7B02A52F97700C06D1B /* AlbumDetailViewController.swift in Sources */,
@@ -1402,7 +1426,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023071701;
+				CURRENT_PROJECT_VERSION = 2023071801;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1418,7 +1442,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1441,7 +1465,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023071701;
+				CURRENT_PROJECT_VERSION = 2023071801;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1457,7 +1481,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -22,7 +22,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     var fullName: String?
     var nickname: String?
     
-    private var selectedAlbumCoverIndex: Int?
+    private var selectedAlbumCoverIndex: Int = 1
     
     private let memberRepository: MemberRepository = DefaultMemberRepository()
     
@@ -101,11 +101,13 @@ extension PickAlbumCoverViewController: Navigatable {
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     
     func didSelectAlbumButton(at index: Int) {
-        selectedAlbumCoverIndex = index
+        selectedAlbumCoverIndex = index + 1
+        print(selectedAlbumCoverIndex)
     }
     
     func didTapBaseNextButton() {
-        if let fullName = fullName, let nickName = nickname, let selectedIndex = selectedAlbumCoverIndex {
+        if let fullName = fullName, let nickName = nickname {
+            let selectedIndex = selectedAlbumCoverIndex
             let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
             memberRepository.patchSignUp(body: signUpDTO) { result in
                 switch result {
