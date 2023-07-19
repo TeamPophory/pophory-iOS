@@ -11,7 +11,6 @@ import RxSwift
 
 final class EditAlbumViewController: BaseViewController {
     
-    private let albumCount: Int = 4
     private let editAlbumView = EditAlbumView()
     
     override func setupLayout() {
@@ -43,17 +42,13 @@ extension EditAlbumViewController: Navigatable {
 extension EditAlbumViewController: UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AlbumData.list.count
+        return AlbumData.albumCovers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCoverCollectionViewCell", for: indexPath) as? AlbumCoverCollectionViewCell else { return UICollectionViewCell()
         }
-        let imageData = [ ImageLiterals.albumCover1,
-                          ImageLiterals.albumCover2,
-                          ImageLiterals.albumCover3,
-                          ImageLiterals.albumCover4 ]
-        cell.configCell(albumCoverImage: imageData[indexPath.row])
+        cell.configCell(albumCoverImage: AlbumData.albumCovers[indexPath.row])
         return cell
     }
 }

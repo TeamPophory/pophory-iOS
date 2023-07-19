@@ -9,27 +9,17 @@ import UIKit
 
 import SnapKit
 
-protocol AlbumCoverButtonDidTappedProtocol {
-    func albumCoverProfile1DidTapped()
-    func albumCoverProfile2DidTapped()
-    func albumCoverProfile3DidTapped()
-    func albumCoverProfile4DidTapped()
-}
-
 final class EditAlbumView: UIView {
     
-    private let screenWidth = UIScreen.main.bounds.width
-    var albumCoverButtonDidTappedProtocol: AlbumCoverButtonDidTappedProtocol?
-
     private let lineView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryGray300
         return view
     }()
-    private lazy var albumCoverProfile1 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile1)
-    private lazy var albumCoverProfile2 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile2)
-    private lazy var albumCoverProfile3 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile3)
-    private lazy var albumCoverProfile4 = createAlbumCoverProfileButton(image: ImageLiterals.albumCoverProfile4)
+    private lazy var albumCoverProfile1 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[0])
+    private lazy var albumCoverProfile2 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[1])
+    private lazy var albumCoverProfile3 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[2])
+    private lazy var albumCoverProfile4 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[3])
     private let albumCoverProfileStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 18
@@ -47,7 +37,6 @@ final class EditAlbumView: UIView {
         collectionView.decelerationRate = .fast
         collectionView.collectionViewLayout = collectionViewLayout
         collectionView.showsHorizontalScrollIndicator = false
-        
         return collectionView
     }()
     private let editButton: UIButton = {
@@ -62,6 +51,7 @@ final class EditAlbumView: UIView {
         super.init(frame: .zero)
         setupLayout()
         configUI()
+        setButtonTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -93,7 +83,7 @@ final class EditAlbumView: UIView {
                 albumCoverProfile4
             ]
         )
-
+        
         lineView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(110)
             $0.leading.trailing.equalToSuperview()
@@ -131,5 +121,28 @@ final class EditAlbumView: UIView {
             $0.size.equalTo(50)
         }
         return button
+    }
+    
+    private func setButtonTarget() {
+        albumCoverProfile1.tag = 0
+        albumCoverProfile2.tag = 1
+        albumCoverProfile3.tag = 2
+        albumCoverProfile4.tag = 3
+        
+        albumCoverProfile1.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
+        albumCoverProfile2.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
+        albumCoverProfile3.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
+        albumCoverProfile4.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
+    }
+
+    @objc
+    func albumCoverButtonDidTapped(_ sender: UIButton) {
+        for (index, button) in [albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4].enumerated() {
+            if button == sender {
+                button.setImage(AlbumData.albumCoverAlphaImages[index], for: .normal)
+            } else {
+                button.setImage(AlbumData.albumCoverImages[index], for: .normal)
+            }
+        }
     }
 }
