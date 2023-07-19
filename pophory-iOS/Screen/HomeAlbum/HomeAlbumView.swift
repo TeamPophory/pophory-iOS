@@ -18,7 +18,7 @@ protocol ImageViewDidTappedProtocol {
 }
 
 protocol HomeAlbumViewButtonTappedProtocol {
-    func elbumCoverEditButtonDidTapped()
+    func albumCoverEditButtonDidTapped()
 }
 
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
@@ -68,10 +68,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.textColor = .pophoryGray500
         return label
     }()
-    private lazy var elbumCoverEditButton: UIButton = {
+    private lazy var albumCoverEditButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.changeElbumCover, for: .normal)
-        button.addTarget(self, action: #selector(elbumCoverEditButtonDidTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(albumCoverEditButtonDidTapped), for: .touchUpInside)
         return button
     }()
     private let progressBackgroundView: UIView = {
@@ -106,7 +106,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             [ appLogo,
               headTitle,
               albumImageView,
-              elbumCoverEditButton,
+              albumCoverEditButton,
               progressBackgroundView,
               progressBarView,
               progressBarIcon,
@@ -131,7 +131,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.centerX.equalToSuperview()
         }
         
-        elbumCoverEditButton.snp.makeConstraints {
+        albumCoverEditButton.snp.makeConstraints {
             $0.bottom.equalTo(headTitle.snp.bottom)
             $0.trailing.equalToSuperview().inset(20)
             $0.size.equalTo(44)
@@ -174,8 +174,8 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     }
     
     @objc
-    private func elbumCoverEditButtonDidTapped() {
-        homeAlbumViewButtonTappedDelegate?.elbumCoverEditButtonDidTapped()
+    private func albumCoverEditButtonDidTapped() {
+        homeAlbumViewButtonTappedDelegate?.albumCoverEditButtonDidTapped()
     }
     
     func updateProgressBarWidth(
