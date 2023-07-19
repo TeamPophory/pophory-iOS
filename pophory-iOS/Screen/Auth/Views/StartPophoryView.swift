@@ -13,7 +13,7 @@ final class StartPophoryView: UIView {
 
     let ilustView: UIImageView = {
         let view = UIImageView()
-        view.image = ImageLiterals.img_congratuation
+        view.image = ImageLiterals.congratuation
         return view
     }()
     
@@ -61,8 +61,7 @@ extension StartPophoryView {
             $0.top.equalTo(safeAreaLayoutGuide).offset(179)
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(convertByWidthRatio(94))
-//            $0.height.equalTo(ilustView.snp.width).multipliedBy(280 / 380)
-//            $0.aspectRatio(CGSize(width: 280, height: 380))
+            $0.size.equalTo(convertByWidthRatio(187))
         }
         
         startLabel.snp.makeConstraints {

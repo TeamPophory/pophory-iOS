@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PhotoDetailViewController: BaseViewController {
+final class PhotoDetailViewController: BaseViewController, Navigatable {
     
     // MARK: - Properties
     
@@ -18,6 +18,8 @@ final class PhotoDetailViewController: BaseViewController {
     private var photoType: PhotoCellType?
     
     // MARK: - UI Properties
+    
+    var navigationBarTitleText: String? { return "내 사진" }
     
     private lazy var photoDetailView = PhotoDetailView(frame: .zero,
                                                        imageUrl: self.image ?? "",
@@ -37,6 +39,8 @@ final class PhotoDetailViewController: BaseViewController {
         view = photoDetailView
     }
 }
+
+// MARK: - Extensions
 
 extension PhotoDetailViewController {
     
@@ -70,11 +74,7 @@ extension PhotoDetailViewController {
     }
 }
 
-// MARK: - navigation bar
-
-extension PhotoDetailViewController: Navigatable {
-    var navigationBarTitleText: String? { return "내 사진" }
-}
+// MARK: - Network
 
 extension PhotoDetailViewController {
     func requestDeletePhoto(
@@ -84,7 +84,7 @@ extension PhotoDetailViewController {
             photoId: photoId
         ) { result in
             switch result {
-            case .success(let response):
+            case .success(_):
                 self.navigationController?.popViewController(animated: true)
             default : return
             }
