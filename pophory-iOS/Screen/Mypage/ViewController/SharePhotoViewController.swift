@@ -15,17 +15,11 @@ class SharePhotoViewController: BaseViewController {
     private let networkManager = MyPageNetworkManager()
     
     // MARK: - Life Cycle
-    
-    override func loadView() {
-        super.loadView()
-        
-        view = rootView
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestData()
+        requestDataV2()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
@@ -33,6 +27,13 @@ class SharePhotoViewController: BaseViewController {
         showNavigationBar()
     }
     
+    override func viewDidLayoutSubviews() {
+        view.addSubview(rootView)
+        
+        rootView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
+    }
 }
 
 extension SharePhotoViewController {
@@ -42,6 +43,15 @@ extension SharePhotoViewController {
                 DispatchQueue.main.async {
                     self?.rootView.updatePhotoData(photoUrlList)
                 }
+            }
+        }
+    }
+    
+    private func requestDataV2() {
+        networkManager.requestAllPhoto() { [weak self] photoData in
+            self?.networkManager.requestAllPhoto { photoData in
+                guard let photoUrlList = photoData?.compactMap({ $0.photoUrl }) else { return }
+                self?.rootView.updatePhotoData(photoUrlList)
             }
         }
     }

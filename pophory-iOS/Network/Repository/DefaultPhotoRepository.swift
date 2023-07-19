@@ -13,6 +13,20 @@ final class DefaultPhotoRepository: BaseRepository, PhotoRepository {
     
     let provider = MoyaProvider<PhotoAPI>(plugins: [MoyaLoggerPlugin()])
     
+    func fetchAllPhoto(completion: @escaping (NetworkResult<PhotosResponseDto>) -> Void) {
+        provider.request(.fetchAllPhotos) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult: NetworkResult<PhotosResponseDto> = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
     func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void) {
         provider.request(.patchPresignedPhotoURL) { result in
             switch result {

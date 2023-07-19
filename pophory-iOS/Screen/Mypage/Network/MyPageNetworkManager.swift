@@ -20,6 +20,17 @@ class MyPageNetworkManager {
         }
     }
     
+    func requestAllPhoto(completion: @escaping ([PhotoUrlResponseDto]?) -> Void) {
+        NetworkService.shared.photoRepository.fetchAllPhoto { result in
+            switch result {
+            case .success(let response):
+                completion(response.photos)
+            default:
+                completion(nil)
+            }
+        }
+    }
+    
     func requestAlbumData(completion: @escaping ([Int], Int) -> Void) {
         NetworkService.shared.albumRepository.patchAlbumList { result in
             switch result {
