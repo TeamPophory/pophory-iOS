@@ -48,13 +48,13 @@ final class EditAlbumView: UIView {
     }()
     lazy var albumCoverCollectionView: UICollectionView = {
         let flowLayout = HorizontalCarouselCollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 280, height: 380)
         flowLayout.minimumLineSpacing = 16
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45)
         flowLayout.scrollDirection = .horizontal
         let collectionViewLayout: UICollectionViewFlowLayout = flowLayout as UICollectionViewFlowLayout
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView.decelerationRate = .fast
         collectionView.collectionViewLayout = collectionViewLayout
         collectionView.showsHorizontalScrollIndicator = false
         
@@ -76,6 +76,13 @@ final class EditAlbumView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        if let flowLayout = albumCoverCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let height = albumCoverCollectionView.frame.height
+            flowLayout.itemSize = CGSize(width: height * 280 / 380, height: height)
+        }
     }
     
     private func setupLayout() {

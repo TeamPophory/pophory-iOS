@@ -130,8 +130,8 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         
         albumImageView.snp.makeConstraints {
             $0.top.equalTo(headTitle.snp.bottom).offset(constraintByNotch(30, 25))
-            $0.height.equalTo(380)
-            $0.width.equalTo(280)
+            $0.leading.equalToSuperview().offset(45)
+            $0.aspectRatio(CGSize(width: 280, height: 380))
             $0.centerX.equalToSuperview()
         }
         
