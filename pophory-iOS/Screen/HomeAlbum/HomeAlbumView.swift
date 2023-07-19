@@ -32,8 +32,11 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             return privateStatusLabelText
         }
         set {
-            privateStatusLabelText = newValue
-            self.statusLabel.text = privateStatusLabelText + "/30"
+            privateStatusLabelText = newValue + "/15"
+            
+            let attributedText = NSMutableAttributedString(string: privateStatusLabelText)
+            attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: newValue.count))
+            self.statusLabel.attributedText = attributedText
         }
     }
 
@@ -57,16 +60,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
-    private let statusView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .pophoryPurple
-        view.layer.cornerRadius = 20
-        return view
-    }()
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.font = .t1
-        label.textColor = .white
+        label.font = .head2
+        label.textColor = .pophoryGray500
         return label
     }()
     private lazy var elbumCoverEditButton: UIButton = {
@@ -94,12 +91,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             [ appLogo,
               headTitle,
               albumImageView,
-              statusView,
+              statusLabel,
               elbumCoverEditButton
             ]
         )
-        
-        statusView.addSubview(statusLabel)
         
         appLogo.snp.makeConstraints {
             $0.top.equalToSuperview().offset(66)
@@ -117,16 +112,10 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             $0.width.equalTo(280)
             $0.centerX.equalToSuperview()
         }
-        
-        statusView.snp.makeConstraints {
-            $0.top.equalTo(albumImageView.snp.bottom).offset(19)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(38)
-            $0.width.equalTo(64)
-        }
-        
+
         statusLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(albumImageView.snp.bottom).offset(30)
+            $0.trailing.equalToSuperview().inset(50)
         }
         
         elbumCoverEditButton.snp.makeConstraints {
