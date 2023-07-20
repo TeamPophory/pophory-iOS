@@ -87,6 +87,10 @@ extension BaseSignUpView {
             $0.height.equalTo(convertByHeightRatio(3))
         }
         
+        nextButton.snp.makeConstraints {
+            $0.bottom.greaterThanOrEqualToSuperview().inset(constraintByNotch(42, 10))
+        }
+        
         nextButton.addCenterXConstraint(to: self)
     }
 
