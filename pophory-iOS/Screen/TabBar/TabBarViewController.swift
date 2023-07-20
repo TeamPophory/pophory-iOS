@@ -34,7 +34,11 @@ final class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ShareNetworkManager.shared.requestPostSharePhoto()
+        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
+            if (response?.code == 4423) {
+                print("이미 있는 사진이여요")
+            }
+        }
     }
 }
 
