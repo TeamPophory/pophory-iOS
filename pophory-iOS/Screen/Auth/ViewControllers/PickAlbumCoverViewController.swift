@@ -97,7 +97,7 @@ extension PickAlbumCoverViewController: Navigatable {
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     
     func didSelectAlbumButton(at index: Int) {
-        selectedAlbumCoverIndex = index + 1
+        selectedAlbumCoverIndex = index
         print(selectedAlbumCoverIndex)
     }
     

@@ -33,25 +33,19 @@ final class IDInputView: NameInputView {
         charCountLabel.text = "(0/12)"
     }
     
-    private func isValidCharacters(_ text: String) -> Bool {
-        let regEx = "^[a-zA-Z0-9._]+$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regEx)
-        return predicate.evaluate(with: text)
-    }
-    
     override func updateCharCountLabel(charCount: Int) {
         charCountLabel.text = "(\(charCount)/12)"
     }
     
-    override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+    override func onValueChangedTextField() {
+        guard let text = inputTextField.text else { return }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            if self.isValidCharacters(newText) {
-                textField.layer.borderColor = UIColor.pophoryPurple.cgColor
+            if text.isValidCharacters() {
+                self.inputTextField.layer.borderColor = UIColor.pophoryPurple.cgColor
                 self.warningLabel.isHidden = true
                 
-                if newText.count >= 4 && newText.count <= 12 {
+                if text.count >= 4 && text.count <= 12 {
                     self.nextButton.isEnabled = true
                 } else {
                     self.warningLabel.text = "4-12자 이내로 작성해주세요"
@@ -59,14 +53,11 @@ final class IDInputView: NameInputView {
                     self.nextButton.isEnabled = false
                 }
             } else {
-                textField.layer.borderColor = UIColor.pophoryRed.cgColor
+                self.inputTextField.layer.borderColor = UIColor.pophoryRed.cgColor
                 self.warningLabel.text = "올바른 형식의 아이디가 아닙니다"
                 self.warningLabel.isHidden = false
                 self.nextButton.isEnabled = false
             }
         }
-        
-        return true
     }
-
 }

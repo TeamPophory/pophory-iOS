@@ -5,7 +5,7 @@
 	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>앱에 사진을 업로드하기 위해 사진 라이브러리에 엑세스를 허용합니다.</string>
+	<string>포포리에 네컷사진을 업로드하기 위해 사진 라이브러리에 엑세스를 허용해 주세요.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

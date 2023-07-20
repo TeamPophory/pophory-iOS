@@ -26,11 +26,12 @@ class MypageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         hideNavigationBar()
+        
+        requestData()
     }
 }
 
@@ -39,8 +40,13 @@ extension MypageViewController {
     // MARK: - Network
     
     private func requestData() {
-        networkManager.requestMyPageData(version: 2) { [weak self] profileImageUrl, photoCount in
-            self?.rootView.updateProfileImage(profileImageUrl)
+        networkManager.requestUserInfo() { [weak self] userInfo in
+            self?.rootView.updateNickname(userInfo?.nickname)
+            self?.rootView.updateFullName(userInfo?.realName)
+            self?.rootView.updateProfileImage(userInfo?.profileImageUrl)
+        }
+        
+        networkManager.requestAlbumData() { [weak self] albumList, photoCount in
             self?.rootView.updatePhotoCount(photoCount)
         }
     }
