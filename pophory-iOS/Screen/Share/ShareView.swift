@@ -11,6 +11,8 @@ class ShareView: UIView {
     
     // MARK: - UI Properties
     
+    private let contentView = UIView()
+    
     private let sharePhotoView: UIView = {
         let view = UIView()
         view.makeRounded(radius: 20)
@@ -27,7 +29,50 @@ class ShareView: UIView {
     return buttonBuilder.build()
     }()
     
+    private let profileStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.defaultProfile
+        return imageView
+    }()
+    
+    private let userInfoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        return stackView
+    }()
+    
+    let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "장혜린"
+        label.textAlignment = .left
+        label.font = .head3
+        return label
+    }()
+    
+    let userIDLabel: UILabel = {
+        let label = UILabel()
+        label.text = "@ㅣ._."
+        label.textAlignment = .left
+        label.font = .caption2
+        label.textColor = .pophoryGray400
+        return label
+    }()
+    
     let shareImageView = UIImageView()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.shareIcon
+        return imageView
+    }()
 
     // MARK: - Life Cycle
     
@@ -52,16 +97,12 @@ extension ShareView {
     // MARK: - Layout
     
     private func setupLayout() {
-        self.addSubviews([shareButton, sharePhotoView])
-        
-        sharePhotoView.addSubviews([shareImageView])
-        
-        // TODO: - View 크기 유동적
-        
-        sharePhotoView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(34)
-            $0.bottom.equalTo(shareButton.snp.top).offset(-43)
+        self.addSubviews([shareButton, contentView])
+                        
+        contentView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(self.safeAreaLayoutGuide)
+            $0.bottom.equalTo(shareButton.snp.top).offset(-10)
         }
         
         shareButton.addCenterXConstraint(to: self)
@@ -69,12 +110,51 @@ extension ShareView {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
         }
         
-        // TODO: - 가로 세로 분기 처리
+        contentView.addSubview(sharePhotoView)
         
-        shareImageView.snp.makeConstraints {
+        sharePhotoView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.top.equalToSuperview().inset(88)
-            $0.bottom.equalToSuperview().inset(59)
+            $0.centerY.equalToSuperview()
+        }
+        
+        sharePhotoView.addSubviews([profileStackView ,shareImageView, logoImageView])
+
+        profileStackView.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.top.equalToSuperview().inset(22)
+            $0.leading.equalToSuperview().inset(20)
+        }
+                
+        shareImageView.snp.makeConstraints {
+            $0.height.equalTo(440)
+            $0.top.equalTo(profileStackView.snp.bottom).offset(16)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalTo(logoImageView.snp.top).offset(-16)
+        }
+        
+        logoImageView.snp.makeConstraints {
+            $0.height.equalTo(24)
+            $0.leading.trailing.equalToSuperview().inset(112)
+            $0.bottom.equalToSuperview().inset(16)
+        }
+        
+        profileStackView.addArrangedSubviews([profileImageView, userInfoStackView])
+        
+        profileImageView.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.width.equalTo(50)
+            $0.top.bottom.equalToSuperview()
+        }
+        userInfoStackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+        }
+        
+        userInfoStackView.addArrangedSubviews([userNameLabel, userIDLabel])
+        userNameLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+        }
+        userIDLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
         }
     }
     

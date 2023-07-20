@@ -24,6 +24,8 @@ class ShareViewController: UIViewController {
             if let sharePhoto = sharePhoto {
                 let url = URL(string: sharePhoto.imageUrl)
                 rootView.shareImageView.kf.setImage(with: url)
+                rootView.shareImageView.contentMode = .scaleAspectFit
+
             }
         }
     }
