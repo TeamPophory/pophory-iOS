@@ -26,11 +26,12 @@ class MypageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        requestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         hideNavigationBar()
+        
+        requestData()
     }
 }
 
