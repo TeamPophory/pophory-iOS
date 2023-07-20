@@ -353,8 +353,10 @@ extension MyPageRootView {
         self.photoData = photoData
         
         if photoData.isEmpty {
+            emptyStackView.isHidden = false
             feedCollectionView.isHidden = true
         } else {
+            emptyStackView.isHidden = true
             feedCollectionView.isHidden = false
             feedCollectionView.reloadData()
             feedCollectionView.hideSkeleton()
