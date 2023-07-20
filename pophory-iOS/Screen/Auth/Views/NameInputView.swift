@@ -24,7 +24,7 @@ class NameInputView: BaseSignUpView {
     
     lazy var bodyLabel: UILabel = {
         let label = UILabel()
-        label.text = "한글 2-6자리 이내로 작성해주세요\n이름은 이후에 수정이 어려워요"
+        label.text = "한글 2-6자리 이내로 작성해주세요\n닉네임은 이후에 수정이 어려워요"
         label.textColor = .pophoryGray500
         label.font = .title1
         label.numberOfLines = 0
@@ -34,7 +34,7 @@ class NameInputView: BaseSignUpView {
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "이름"
+        textField.placeholder = "닉네임"
         textField.textColor = .black
         textField.backgroundColor = .pophoryGray100
         textField.font = .popupButton
