@@ -144,6 +144,8 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                 print("Network error")
             case .serverErr, .pathErr:
                 print("Server or Path error")
+            default:
+                break
             }
         }
     }

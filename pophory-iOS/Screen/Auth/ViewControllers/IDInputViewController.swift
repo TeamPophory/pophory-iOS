@@ -146,6 +146,8 @@ extension IDInputViewController: IDInputViewControllerDelegate {
                     alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
                     self?.present(alertController, animated: true, completion: nil)
                 }
+            default:
+                break
             }
         }
     }

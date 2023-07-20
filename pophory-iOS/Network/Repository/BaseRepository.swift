@@ -15,7 +15,7 @@ class BaseRepository {
         case 200..<300:
             return isValidData(data: data, responseType: T.self)
         case 400..<500:
-            return .pathErr
+            return isValidShareData(data: data, responseType: T.self)
         case 500:
             return .serverErr
         default:
@@ -28,6 +28,16 @@ class BaseRepository {
         do {
             let decodedData = try decoder.decode(responseType, from: data)
             return .success(decodedData)
+        } catch {
+            return .pathErr
+        }
+    }
+    
+    func isValidShareData<T: Decodable>(data: Data, responseType: T.Type) -> NetworkResult<T> {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(responseType, from: data)
+            return .sharePhotoErr(decodedData)
         } catch {
             return .pathErr
         }

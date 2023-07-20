@@ -8,5 +8,5 @@
 import Foundation
 
 struct PostSharePhotoRequestDTO: Codable {
-    let albumID: Int
+    let code: Int
 }
