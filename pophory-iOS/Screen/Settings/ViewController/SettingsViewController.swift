@@ -46,10 +46,7 @@ extension SettingsViewController {
     }
     
     private func logOut() {
-        
-        // TODO: 로그아웃 기능 구현
-        
-        presentRootVC()
+        resetApp()
     }
     
     private func presentRootVC() {
