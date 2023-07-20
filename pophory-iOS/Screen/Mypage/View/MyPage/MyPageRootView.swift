@@ -303,6 +303,14 @@ extension MyPageRootView {
         delegate?.handleOnClickStory()
     }
     
+    func updateNickname(_ nickname: String?) {
+        nicknameLabel.text = nickname
+    }
+    
+    func updateFullName(_ name: String?) {
+        profileNameLabel.text = name
+    }
+    
     func updatePhotoCount(_ count: Int) {
         photoCountLabel.attributedText = NSMutableAttributedString()
             .regular("그동안 찍은 사진 ", color: .pophoryBlack)
