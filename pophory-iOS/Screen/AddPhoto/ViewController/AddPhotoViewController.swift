@@ -88,7 +88,7 @@ extension AddPhotoViewController {
         let customModalVC = CalendarModalViewController()
         customModalVC.modalPresentationStyle = .custom
         
-        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 326)
+        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 340)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
         present(customModalVC, animated: true, completion: nil)
