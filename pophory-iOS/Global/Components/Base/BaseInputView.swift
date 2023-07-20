@@ -22,12 +22,12 @@ class BaseSignUpView: UIView {
     
     lazy var headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "포포리에서 사용할\n너의 이름을 알려줘!"
+        label.text = "포포리에서 사용할\n너의 닉네임을 알려줘!"
         label.textColor = .black
         label.font = .head1Medium
         label.numberOfLines = 0
         label.setTextWithLineHeight(lineHeight: 34)
-        label.applyColorAndBoldText(targetString: "너의 이름", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
+        label.applyColorAndBoldText(targetString: "너의 닉네임", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
         return label
     }()
     
@@ -88,7 +88,7 @@ extension BaseSignUpView {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.greaterThanOrEqualToSuperview().inset(constraintByNotch(36, 10))
+            $0.bottom.greaterThanOrEqualToSuperview().inset(constraintByNotch(42, 10))
         }
         
         nextButton.addCenterXConstraint(to: self)

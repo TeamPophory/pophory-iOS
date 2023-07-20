@@ -29,10 +29,22 @@ extension String {
     }
     
     func isContainKoreanOnly() -> Bool {
-        let koreanSet = CharacterSet(charactersIn: "ㄱ"..."ㅎ").union(.init(charactersIn: "ㅏ"..."ㅣ")).union(.init(charactersIn: "가"..."힣"))
-        let stringSet = CharacterSet(charactersIn: self)
-
-        // 한국어만을 포함하고 있는지 확인
-        return koreanSet.isSuperset(of: stringSet)
+        let koreanSet = CharacterSet(charactersIn: "가"..."힣")
+        var containsOnlyKorean = true
+        
+        for scalar in self.unicodeScalars {
+            if !koreanSet.contains(scalar) {
+                containsOnlyKorean = false
+                break
+            }
+        }
+        
+        return containsOnlyKorean
+    }
+    
+    func isValidCharacters() -> Bool {
+        let regEx = "^[a-zA-Z0-9._]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regEx)
+        return predicate.evaluate(with: self)
     }
 }

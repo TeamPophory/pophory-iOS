@@ -9,13 +9,13 @@ import Foundation
 
 class MyPageNetworkManager {
     
-    func requestMyPageData(version: Int, completion: @escaping (String?, Int) -> Void) {
-        NetworkService.shared.memberRepository.fetchMyPage(version: version) { result in
+    func requestMyPageData(completion: @escaping (FetchMyPageResponseDTO?) -> Void) {
+        NetworkService.shared.memberRepository.fetchMyPage(version: 2) { result in
             switch result {
             case .success(let response):
-                completion(response.profileImage, response.photoCount ?? 0)
+                completion(response)
             default:
-                completion(nil, 0)
+                completion(nil)
             }
         }
     }
@@ -27,6 +27,21 @@ class MyPageNetworkManager {
                 completion(response.photos)
             default:
                 completion(nil)
+            }
+        }
+    }
+    
+    func isUserExists(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.memberRepository.fetchUserInfo { result in
+            switch result {
+            case .success(let response):
+                if let _ = response.nickname {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            default:
+                completion(false)
             }
         }
     }

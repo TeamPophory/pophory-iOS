@@ -21,10 +21,6 @@ final class EditAlbumViewController: BaseViewController {
         }
     }
     
-    override func setupLayout() {
-        view = editAlbumView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +43,13 @@ final class EditAlbumViewController: BaseViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        view.addSubview(editAlbumView)
+        
+        editAlbumView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
+        
+        editAlbumView.layoutSubviews()
         setAlbumCover(albumIndex: albumCoverIndex)
     }
     
