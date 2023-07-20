@@ -29,7 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         startMonitoringNetwork(on: scene)
         
         if let windowScene = scene as? UIWindowScene {
-            
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
             
@@ -47,11 +46,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        // Link 처리
         if let url = userActivity.webpageURL {
             let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
                 if let shareID = self.handleDynamicLink(dynamicLink) {
-                    
                     guard let _ = (scene as? UIWindowScene) else { return }
                     
                     if let windowScene = scene as? UIWindowScene {
@@ -60,7 +57,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         let rootVC = ShareViewController()
                         rootVC.setupShareID(forShareID: shareID)
                         rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
-                                                
+                    
+                        
                         window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window
@@ -100,7 +98,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @objc func setupRoot() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-
         var rootViewController: UIViewController
 
         if isLoggedIn {
@@ -112,7 +109,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             appleLoginManager.delegate = rootVC
             rootViewController = rootVC
         }
-        
         let navigationController = PophoryNavigationController(rootViewController: rootViewController)
 
         window?.rootViewController = navigationController
@@ -137,8 +133,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func handleDynamicLink(_ dynamicLink: DynamicLink?) -> String? {
-        guard let dynamicLink = dynamicLink,
-              let link = dynamicLink.url else { return nil }
+        guard let dynamicLink = dynamicLink, let link = dynamicLink.url else { return nil }
         
         if let components = URLComponents(url: link, resolvingAgainstBaseURL: false),
            let queryItems = components.queryItems {
