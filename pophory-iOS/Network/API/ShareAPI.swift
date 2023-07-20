@@ -11,7 +11,7 @@ import Moya
 
 enum ShareAPI {
     case patchSharePhoto(shareID: String)
-    case postSharePhoto(body: PostSharePhotoRequestDTO)
+    case postSharePhoto(photoID: Int)
 }
 
 extension ShareAPI: BaseTargetType {
@@ -24,8 +24,8 @@ extension ShareAPI: BaseTargetType {
         switch self {
         case .patchSharePhoto(let shareID):
             return URLConstantsV2.share + "/\(shareID)"
-        case .postSharePhoto:
-            return URLConstantsV2.share + "/photo"
+        case .postSharePhoto(let photoID):
+            return URLConstantsV2.share + "/photo/\(photoID)"
         }
     }
     

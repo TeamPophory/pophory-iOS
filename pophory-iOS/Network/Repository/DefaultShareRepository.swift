@@ -27,15 +27,14 @@ final class DefaultShareRepository: BaseRepository, ShareRepository {
         }
     }
     
-    func postSharePhoto(
-        body: PostSharePhotoRequestDTO,
-        completion: @escaping (NetworkResult<Any>) -> Void
-    ) {
-        provider.request(.postSharePhoto(body: body)) { result in
+    func postSharePhoto(photoID: Int, completion: @escaping (NetworkResult<PostSharePhotoRequestDTO>) -> Void) {
+        provider.request(.postSharePhoto(photoID: photoID)) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
-                completion(.success((Any).self))
+                let data = response.data
+                let networkResult: NetworkResult<PostSharePhotoRequestDTO> = self.judgeStatus(by: statusCode, data)
+                completion(networkResult)
             case .failure(let err):
                 print(err)
             }

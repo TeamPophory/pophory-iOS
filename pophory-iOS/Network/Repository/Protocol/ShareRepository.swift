@@ -11,8 +11,5 @@ protocol ShareRepository {
     
     func patchSharePhoto(shareId: String, completion: @escaping (NetworkResult<PatchSharePhotoRequestDTO>) -> Void)
 
-    func postSharePhoto(
-        body: PostSharePhotoRequestDTO,
-        completion: @escaping (NetworkResult<Any>) -> Void
-    )
+    func postSharePhoto(photoID: Int, completion: @escaping (NetworkResult<PostSharePhotoRequestDTO>) -> Void)
 }
