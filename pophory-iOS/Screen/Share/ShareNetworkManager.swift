@@ -30,14 +30,12 @@ class ShareNetworkManager {
         }
     }
     
-    func requestPostSharePhoto(
-        photoID: Int,
-        completion: @escaping (PostSharePhotoRequestDTO?) -> Void
-    ) {
+    func requestPostSharePhoto() {
+        guard let photoID = self.toPostPhotoID else { return }
         NetworkService.shared.shareRepository.postSharePhoto(photoID: photoID) { result in
             switch result {
-            case .success(let response):
-                completion(response)
+            case .success(_):
+                return
             default:
                 return
             }

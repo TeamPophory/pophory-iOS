@@ -30,6 +30,12 @@ final class TabBarController: UITabBarController {
         setUpTabBar()
         setupDelegate()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ShareNetworkManager.shared.requestPostSharePhoto()
+    }
 }
 
 extension TabBarController {
