@@ -9,13 +9,28 @@ import Foundation
 
 class MyPageNetworkManager {
     
-    func requestUserInfo(completion: @escaping (String?) -> Void) {
+    func requestUserInfo(completion: @escaping (PatchUserInfoResponseDTO?) -> Void) {
         NetworkService.shared.memberRepository.patchUserInfo { result in
             switch result {
             case .success(let response):
-                completion(response.profileImageUrl)
+                completion(response)
             default:
                 completion(nil)
+            }
+        }
+    }
+    
+    func isUserExists(completion: @escaping (Bool) -> Void) {
+        NetworkService.shared.memberRepository.patchUserInfo { result in
+            switch result {
+            case .success(let response):
+                if let _ = response.nickname {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            default:
+                completion(false)
             }
         }
     }

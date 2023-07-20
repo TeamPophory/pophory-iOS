@@ -119,7 +119,6 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                 }
                 
                 print("Successful Apple login")
-                goToSignInViewController()
             }
             
         case .failure(let error):
@@ -140,6 +139,8 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                     
                     UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     
+                    self.decideNextVC()
+                    
                 } else {
                     print("Unexpected response")
                 }
@@ -149,6 +150,17 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                 print("Network error")
             case .serverErr, .pathErr:
                 print("Server or Path error")
+            }
+        }
+    }
+    
+    private func decideNextVC() {
+        // TODO: 로그인 과정 더 나은 방법으로 리팩토링하기
+        MyPageNetworkManager().isUserExists { [weak self] isExists in
+            if isExists {
+                self?.navigateToTabBarController()
+            } else {
+                self?.goToSignInViewController()
             }
         }
     }

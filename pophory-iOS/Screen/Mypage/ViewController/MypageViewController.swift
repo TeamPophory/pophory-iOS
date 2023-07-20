@@ -39,8 +39,10 @@ extension MypageViewController {
     // MARK: - Network
     
     private func requestData() {
-        networkManager.requestUserInfo() { [weak self] profileImageUrl in
-            self?.rootView.updateProfileImage(profileImageUrl)
+        networkManager.requestUserInfo() { [weak self] userInfo in
+            self?.rootView.updateNickname(userInfo?.nickname)
+            self?.rootView.updateFullName(userInfo?.realName)
+            self?.rootView.updateProfileImage(userInfo?.profileImageUrl)
         }
         
         networkManager.requestAlbumData() { [weak self] albumList, photoCount in
