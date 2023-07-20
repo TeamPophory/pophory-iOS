@@ -125,12 +125,39 @@ extension NameInputView {
             $0.top.equalTo(charCountLabel)
             $0.leading.equalToSuperview().offset(26)
         }
+        
+        inputTextField.addTarget(self, action: #selector(onValueChangedTextField), for: .editingChanged)
     }
     
     // MARK: - @objc
     
     @objc func clearTextFieldButtonOnClick() {
         inputTextField.text = nil
+    }
+    
+    @objc func onValueChangedTextField() {
+        guard let text = inputTextField.text else { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            if text.isContainKoreanOnly() {
+                self.inputTextField.layer.borderColor = UIColor.pophoryPurple.cgColor
+                
+                if text.count >= 2 && text.count <= 6 {
+                    self.warningLabel.isHidden = true
+                    self.nextButton.isEnabled = true
+                } else {
+                    self.warningLabel.text = "2-6글자 이내로 작성해주세요"
+                    self.warningLabel.isHidden = false
+                    self.nextButton.isEnabled = false
+                }
+                
+            } else {
+                self.inputTextField.layer.borderColor = UIColor.pophoryRed.cgColor
+                self.warningLabel.text = "현재 한국어만 지원하고 있어요"
+                self.warningLabel.isHidden = false
+                self.nextButton.isEnabled = false
+            }
+        }
     }
     
     // MARK: - Private Methods
@@ -156,35 +183,6 @@ extension NameInputView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.pophoryGray400.cgColor
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let oldText = textField.text, let stringRange = Range(range, in: oldText) {
-            let newText = oldText.replacingCharacters(in: stringRange, with: string)
-            let newLength = newText.count
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                if newText.isContainKoreanOnly() {
-                    textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-                    
-                    if newLength >= 2 && newLength <= 6 {
-                        self.warningLabel.isHidden = true
-                        self.nextButton.isEnabled = true
-                    } else {
-                        self.warningLabel.text = "2-6글자 이내로 작성해주세요"
-                        self.warningLabel.isHidden = false
-                        self.nextButton.isEnabled = false
-                    }
-                    
-                } else {
-                    textField.layer.borderColor = UIColor.pophoryRed.cgColor
-                    self.warningLabel.text = "현재 한국어만 지원하고 있어요"
-                    self.warningLabel.isHidden = false
-                    self.nextButton.isEnabled = false
-                }
-            }
-        }
-        return true
     }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {

@@ -65,7 +65,7 @@ class StudioModalViewController: BaseViewController {
         stackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(34)
             $0.leading.trailing.equalToSuperview().inset(19.5)
-            $0.bottom.equalToSuperview().inset(50)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         studioCollectionView.dataSource = self
