@@ -42,7 +42,7 @@ extension TabBarController {
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = .pophoryWhite
         
-        let imageInset: CGFloat = 10.0
+        let imageInset: CGFloat = UIScreen.main.hasNotch ? 10 : 0
         homeAlbumViewController.tabBarItem.imageInsets = UIEdgeInsets(top: imageInset, left: 0, bottom: -imageInset, right: 0)
         plusViewController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         myPageViewController.tabBarItem.imageInsets = UIEdgeInsets(top: imageInset, left: 0, bottom: -imageInset, right: 0)
