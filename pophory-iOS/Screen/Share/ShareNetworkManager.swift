@@ -17,12 +17,13 @@ class ShareNetworkManager {
     
     func requestGetSharePhoto(
         shareID: String,
-        completion: @escaping (PatchSharePhotoRequestDTO) -> Void
+        completion: @escaping (PatchSharePhotoRequestDTO?) -> Void
     ) {
         NetworkService.shared.shareRepository.patchSharePhoto(shareId: shareID) { result in
             switch result {
             case .success(let response):
                 self.toPostPhotoID = response.photoId
+                completion(response)
             default:
                 return
             }

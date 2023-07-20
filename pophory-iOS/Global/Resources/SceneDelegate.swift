@@ -58,7 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         rootVC.setupShareID(forShareID: shareID)
                         rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
                     
-                        
                         window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window

@@ -14,7 +14,9 @@ class ShareViewController: UIViewController {
     private var shareID: String? {
         didSet {
             if let shareID = shareID {
-                requestGetSharePhotoAPI(shareID: shareID)
+                ShareNetworkManager.shared.requestGetSharePhoto(shareID: shareID) { [weak self] response in
+                    self?.sharePhoto = response
+                }
             }
         }
     }
