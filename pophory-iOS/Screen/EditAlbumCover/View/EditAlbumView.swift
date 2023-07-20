@@ -97,18 +97,18 @@ final class EditAlbumView: UIView {
         )
         
         lineView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(110)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
         
         albumCoverProfileStackView.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(52)
+            $0.top.equalTo(lineView.snp.bottom).offset(UIScreen.main.hasNotch ? 52 : 20)
             $0.centerX.equalToSuperview()
         }
         
         albumCoverCollectionView.snp.makeConstraints {
-            $0.top.equalTo(albumCoverProfile1.snp.bottom).offset(53)
+            $0.top.equalTo(albumCoverProfile1.snp.bottom).offset(UIScreen.main.hasNotch ? 53 : 10)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(380)
         }
@@ -116,7 +116,7 @@ final class EditAlbumView: UIView {
         editButton.snp.makeConstraints {
             $0.height.equalTo(60)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(43)
+            $0.bottom.equalToSuperview().inset(10)
         }
     }
     
