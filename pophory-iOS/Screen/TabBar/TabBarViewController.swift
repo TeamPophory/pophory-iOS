@@ -27,6 +27,14 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
+            if (response?.code == 4423) {
+                self?.showPopup(popupType: .simple,
+                          secondaryText: "이미 내 앨범에 있는 사진이에요",
+                                firstButtonTitle: .back)
+            }
+            self?.homeAlbumViewController.requestGetAlumListAPI()
+        }
         setUpTabBar()
         setupDelegate()
     }
@@ -34,11 +42,7 @@ final class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
-            if (response?.code == 4423) {
-                print("이미 있는 사진이여요")
-            }
-        }
+        
     }
 }
 

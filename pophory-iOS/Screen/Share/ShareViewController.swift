@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShareViewController: UIViewController {
+class ShareViewController: BaseViewController {
     
     // MARK: - Properties
     
