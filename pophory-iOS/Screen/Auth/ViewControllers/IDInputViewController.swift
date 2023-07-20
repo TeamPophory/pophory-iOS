@@ -95,7 +95,6 @@ extension IDInputViewController {
         guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
         didEnterNickname(nickname: nickName, fullName: fullName)
-        loadNextViewController(with: nickName, fullName: fullName)
     }
     
     // MARK: - Private Functions
