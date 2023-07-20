@@ -51,7 +51,6 @@ class ShareView: UIView {
     
     let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "장혜린"
         label.textAlignment = .left
         label.font = .head3
         return label
@@ -59,7 +58,6 @@ class ShareView: UIView {
     
     let userIDLabel: UILabel = {
         let label = UILabel()
-        label.text = "@ㅣ._."
         label.textAlignment = .left
         label.font = .caption2
         label.textColor = .pophoryGray400

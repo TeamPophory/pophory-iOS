@@ -25,7 +25,8 @@ class ShareViewController: UIViewController {
                 let url = URL(string: sharePhoto.imageUrl)
                 rootView.shareImageView.kf.setImage(with: url)
                 rootView.shareImageView.contentMode = .scaleAspectFit
-
+                rootView.userNameLabel.text = sharePhoto.realName
+                rootView.userIDLabel.text = "@" + sharePhoto.nickname
             }
         }
     }
