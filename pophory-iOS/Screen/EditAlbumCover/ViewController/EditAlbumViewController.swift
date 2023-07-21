@@ -111,7 +111,9 @@ extension EditAlbumViewController {
             albumId: albumId, body: body
         ) { result in
             switch result {
-            case .success(_): return
+            case .success(_):
+                self.navigationController?.popViewController(animated: true)
+                return
             default : return
             }
         }
