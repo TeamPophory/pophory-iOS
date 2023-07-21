@@ -11,6 +11,8 @@ import Photos
 import SnapKit
 
 final class TabBarController: UITabBarController {
+
+    private var isAlbumFull: Bool = false
     
     // MARK: - viewController properties
     
@@ -65,6 +67,7 @@ extension TabBarController {
     private func setupDelegate() {
         self.delegate = self
         imagePHPViewController.delegate = self
+        homeAlbumViewController.albumStatusDelegate = self
     }
 }
 
@@ -74,9 +77,23 @@ extension TabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
+            if isAlbumFull == true {
+                showPopup(
+                    image: ImageLiterals.img_albumfull,
+                    primaryText: "포포리 앨범이 가득찼어요",
+                    secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
+                )
+                return  false
+            }
             imagePHPViewController.setupImagePermission()
             return false
         } else { return true }
+    }
+}
+
+extension TabBarController: AlbumStatusProtocol {
+    func isAblumFull(isFull: Bool) {
+        self.isAlbumFull = isFull
     }
 }
 

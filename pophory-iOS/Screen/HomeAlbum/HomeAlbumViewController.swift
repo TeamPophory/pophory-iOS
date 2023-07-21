@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AlbumStatusProtocol: AnyObject {
+    func isAblumFull(isFull: Bool)
+}
+
 final class HomeAlbumViewController: BaseViewController {
+    
+    weak var albumStatusDelegate: AlbumStatusProtocol?
     
     private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
@@ -37,16 +43,7 @@ final class HomeAlbumViewController: BaseViewController {
                     homeAlbumView.updateProgressBarWidth(updateWidth: progressValue)
                     let isAlbumFull = (photoCount == 15) ? true : false
                     homeAlbumView.updateProgressBarIcon(isAlbumFull: isAlbumFull)
-                    
-                    // MARK: - alert
-                    
-                    if isAlbumFull {
-                        showPopup(
-                            image: ImageLiterals.img_albumfull,
-                            primaryText: "포포리 앨범이 가득찼어요",
-                            secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
-                        )
-                    }
+                    albumStatusDelegate?.isAblumFull(isFull: isAlbumFull)
                 }
             }
         }
