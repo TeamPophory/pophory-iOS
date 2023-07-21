@@ -22,17 +22,8 @@ final class NameInputViewController: BaseViewController {
     // MARK: - UI Properties
     
     private lazy var nameInputView = NameInputView()
-//    private var bottomConstraint: Constraint?
-    
     
     // MARK: - Life Cycle
-    
-//    override func loadView() {
-//        super.loadView()
-//
-//        nameInputView = NameInputView(frame: self.view.frame)
-//        self.view = nameInputView
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,7 +50,11 @@ final class NameInputViewController: BaseViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Extensions
+
+extension NameInputViewController: Navigatable {
+    var navigationBarTitleText: String? { "회원가입" }
+}
 
 extension NameInputViewController {
     
@@ -85,8 +80,4 @@ extension NameInputViewController {
     private func handleNextButton() {
         nameInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
     }
-}
-
-extension NameInputViewController: Navigatable {
-    var navigationBarTitleText: String? { "회원가입" }
 }
