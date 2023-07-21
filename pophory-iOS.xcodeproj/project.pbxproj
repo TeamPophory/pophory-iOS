@@ -447,6 +447,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		37D778B62A6857FF00F7C36C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */,
+				3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		37DCA6872A4AB3C900FF8F90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,10 +1005,9 @@
 				37EB69E72A4BEF4300075E4E /* Base */,
 				6BB37C5F2A5579AA00E49B12 /* Modal */,
 				6BC63CDA2A5DD124001DF31F /* LimitedImagePicker */,
+				37D778B62A6857FF00F7C36C /* Navigation */,
 				377EF7D42A4EFB5000E3268D /* PophoryButton.swift */,
 				377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */,
-				377EF7EE2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift */,
-				3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */,
 				373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */,
 				B1F310E82A5EC91200BF989B /* PophoryWebViewController.swift */,
 				912780112A67D0900005BBA3 /* CarouselCollectionViewFlowLayout.swift */,

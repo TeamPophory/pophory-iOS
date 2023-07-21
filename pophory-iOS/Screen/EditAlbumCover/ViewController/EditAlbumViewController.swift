@@ -24,7 +24,7 @@ final class EditAlbumViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PophoryNavigationConfigurator.shared.configureNavigationBar(in: self, navigationController: navigationController!, rightButtonImageType: .none)
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         showNavigationBar()
         setDelegate()
         setCollectionView()
