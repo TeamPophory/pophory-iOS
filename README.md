@@ -55,6 +55,10 @@
 
 >ViewController에서 Network를 분리하여 MVC-N 패턴 적용
 
+</br>
+</br>
+
+[😶‍🌫️ 팀원들 트러블 슈팅 보러가기 😶‍🌫️](https://learned-aspen-af2.notion.site/2c73001fa6974ded9b9f9a6d62906a54?pvs=4)
 
 </br>
 </br>
