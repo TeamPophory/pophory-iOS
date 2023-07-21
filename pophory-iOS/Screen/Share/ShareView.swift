@@ -66,7 +66,7 @@ class ShareView: UIView {
     
     let shareImageView = UIImageView()
     
-    private let logoImageView = UIImageView(image: ImageLiterals.shareIcon)
+    private let logoImageView = UIImageView(image: ImageLiterals.shareLogoIcon)
 
     // MARK: - Life Cycle
     
