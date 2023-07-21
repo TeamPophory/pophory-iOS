@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class NameInputView: BaseSignUpView {
@@ -59,10 +60,6 @@ class NameInputView: BaseSignUpView {
         return textField
     }()
     
-    @objc private func clearTextFieldTapped() {
-        inputTextField.text = ""
-    }
-    
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
         label.font = .popupButton
@@ -82,6 +79,8 @@ class NameInputView: BaseSignUpView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        updateIndicatorViewBackgroundColor(at: 0, color: .pophoryPurple)
         inputTextField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
         setupDelegate()
         setupViews()
@@ -133,6 +132,10 @@ extension NameInputView {
     
     @objc func clearTextFieldButtonOnClick() {
         inputTextField.text = nil
+    }
+    
+    @objc private func clearTextFieldTapped() {
+        inputTextField.text = ""
     }
     
     @objc func onValueChangedTextField() {

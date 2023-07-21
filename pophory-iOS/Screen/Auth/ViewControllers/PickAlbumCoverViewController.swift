@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 protocol PickAlbumCoverViewControllerDelegate: AnyObject {
     func didSelectAlbumButton(at index: Int)
 }
@@ -46,13 +48,13 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         }
     }
     
-    override func loadView() {
-        super.loadView()
-        
-        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
-        pickAlbumCoverView.delegate = self
-        self.view = pickAlbumCoverView
-    }
+//    override func loadView() {
+//        super.loadView()
+//        
+//        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
+//        pickAlbumCoverView.delegate = self
+//        self.view = pickAlbumCoverView
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,16 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        view.addSubview(pickAlbumCoverView)
+        
+        pickAlbumCoverView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
     private func addButtonTarget() {
@@ -93,12 +105,10 @@ extension PickAlbumCoverViewController: Navigatable {
     var navigationBarTitleText: String? { "회원가입" }
 }
 
-
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     
     func didSelectAlbumButton(at index: Int) {
         selectedAlbumCoverIndex = index
-        print(selectedAlbumCoverIndex)
     }
     
     func didTapBaseNextButton() {

@@ -15,6 +15,9 @@ final class IDInputView: NameInputView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        updateIndicatorViewBackgroundColor(at: 1, color: .pophoryPurple)
+        updateIndicatorViewBackgroundColor(at: 0, color: .pophoryGray300)
         updateNameInputViewLabels()
         maxCharCount = 12
     }

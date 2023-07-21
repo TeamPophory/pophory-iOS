@@ -35,19 +35,22 @@ class BaseSignUpView: UIView {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.next)
-        return buttonBuilder.build(initiallyEnabled: false)
+            .build(initiallyEnabled: false)
+        
+        buttonBuilder.applySize()
+        return buttonBuilder
     }()
     
-    private lazy var indicatorCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        
-        let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        //TODO: 추후 인디케이터바 구현 시 사용예정입니다...
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-        return collectionView
+    let indicatorStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
+        return stackView
     }()
+    
+    let indicatorViews = [UIView(), UIView(), UIView()]
     
     // MARK: - Life Cycle
     
@@ -55,8 +58,8 @@ class BaseSignUpView: UIView {
         super.init(frame: frame)
 
         setupBaseNextButton()
+        setupIndicatorViews()
         setupViews()
-        setupRegister()
         setupNextButtonEnabled(false)
     }
     
@@ -65,6 +68,14 @@ class BaseSignUpView: UIView {
     }
     
     func updateCharCountLabel(charCount: Int) {}
+    
+    func updateIndicatorViewBackgroundColor(at index: Int, color: UIColor) {
+        guard index >= 0 && index < indicatorViews.count else {
+            print("Invalid index.")
+            return
+        }
+        indicatorViews[index].backgroundColor = color
+    }
 }
 
 // MARK: - Extensions
@@ -74,24 +85,26 @@ extension BaseSignUpView {
     // MARK: - Layout
     
     private func setupViews() {
-        addSubviews([headerLabel, indicatorCollectionView, nextButton])
+        
+        addSubviews([headerLabel, indicatorStackView, nextButton])
 
         headerLabel.snp.makeConstraints {
-            $0.top.equalTo(headerHeightByNotch(62))
+            $0.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
             $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
-        indicatorCollectionView.snp.makeConstraints {
+        indicatorStackView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(6))
             $0.height.equalTo(convertByHeightRatio(3))
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.greaterThanOrEqualToSuperview().inset(constraintByNotch(42, 10))
+            $0.centerX.equalToSuperview()
+            if #available(iOS 15.0, *) {
+                $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
+            }
         }
-        
-        nextButton.addCenterXConstraint(to: self)
     }
 
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
@@ -105,7 +118,6 @@ extension BaseSignUpView {
     func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
-
     
     // MARK: - @objc
     
@@ -119,43 +131,16 @@ extension BaseSignUpView {
         nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
     }
     
-    private func setupRegister() {
-        indicatorCollectionView.register(SignUpIndicatorCollectionViewCell.self, forCellWithReuseIdentifier: SignUpIndicatorCollectionViewCell.identifier)
+    private func setupIndicatorViews() {
+        for view in indicatorViews {
+            view.backgroundColor = .pophoryGray300
+            
+            view.snp.makeConstraints {
+                $0.width.equalTo(convertByWidthRatio(30))
+                $0.height.equalTo(convertByHeightRatio(3))
+            }
+            
+            indicatorStackView.addArrangedSubview(view)
+        }
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-// TODO: 추후 인디케이터 바 구현때 사용 예정입니다..
-
-//extension BaseSignUpView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let deviceWidth = getDeviceWidth()
-//
-//        return CGSize(width: (deviceWidth - 20)/3, height: convertByHeightRatio(3))
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return convertByWidthRatio(4)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
-//}
-
-// MARK: - UICollectionViewDataSource
-
-// TODO: 추후 인디케이터 바 구현때 사용 예정입니다..
-
-//extension BaseSignUpView: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        3
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let indicatorCell = collectionView.dequeueReusableCell(withReuseIdentifier: SignUpIndicatorCollectionViewCell.identifier, for: indexPath) as? SignUpIndicatorCollectionViewCell else { return UICollectionViewCell() }
-//        return indicatorCell
-//    }
-//}

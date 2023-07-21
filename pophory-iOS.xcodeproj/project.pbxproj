@@ -1129,7 +1129,7 @@
 			};
 			buildConfigurationList = B1631F022A1759EA0050974F /* Build configuration list for PBXProject "pophory-iOS" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
