@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 protocol IDInputViewControllerDelegate: AnyObject {
     func didEnterNickname(nickname: String, fullName: String)
 }
@@ -20,11 +22,11 @@ final class IDInputViewController: BaseViewController {
     
     // MARK: - UI Properties
     
-    private var bottomConstraint: NSLayoutConstraint?
-    
+    private lazy var iDInputView = IDInputView()
+    private var bottomConstraint: Constraint?
     private var keyboardManager: KeyboardManager?
     
-    private lazy var iDInputView = IDInputView()
+
     
     // MARK: - Life Cycle
     
@@ -79,10 +81,9 @@ extension IDInputViewController {
     // MARK: - Layout
     
     private func setupConstraints() {
-        let safeArea = self.view.safeAreaLayoutGuide
-        
-        self.bottomConstraint = NSLayoutConstraint(item: iDInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: -10)
-        self.bottomConstraint?.isActive = true
+        iDInputView.nextButton.snp.makeConstraints { make in
+            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
+        }
     }
     
     // MARK: - objc

@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 protocol NameInputViewControllerDelegate: AnyObject {
     func didEnterName(name: String)
 }
@@ -19,11 +21,10 @@ final class NameInputViewController: BaseViewController {
     
     // MARK: - UI Properties
     
-    private var bottomConstraint: NSLayoutConstraint?
-    
-    private var keyboardManager: KeyboardManager?
-    
     private lazy var nameInputView = NameInputView()
+    private var bottomConstraint: Constraint?
+    private var keyboardManager: KeyboardManager!
+    
     
     // MARK: - Life Cycle
     
@@ -48,6 +49,8 @@ final class NameInputViewController: BaseViewController {
         setupConstraints()
         handleNextButton()
         hideKeyboard()
+        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
+        keyboardManager.keyboardAddObserver()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,10 +72,9 @@ extension NameInputViewController {
     // MARK: - Layout
     
     private func setupConstraints() {
-        let safeArea = self.view.safeAreaLayoutGuide
-        
-        self.bottomConstraint = NSLayoutConstraint(item: nameInputView.nextButton, attribute: .bottom, relatedBy: .equal, toItem: safeArea, attribute: .bottom, multiplier: 1.0, constant: -10)
-        self.bottomConstraint?.isActive = true
+        nameInputView.nextButton.snp.makeConstraints { make in
+            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
+        }
     }
     
     // MARK: - objc
