@@ -31,21 +31,6 @@ class MyPageNetworkManager {
         }
     }
     
-    func isUserExists(completion: @escaping (Bool) -> Void) {
-        NetworkService.shared.memberRepository.fetchUserInfo { result in
-            switch result {
-            case .success(let response):
-                if let _ = response.realName {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
-            default:
-                completion(false)
-            }
-        }
-    }
-    
     func requestAlbumData(completion: @escaping ([Int], Int) -> Void) {
         NetworkService.shared.albumRepository.patchAlbumList { result in
             switch result {

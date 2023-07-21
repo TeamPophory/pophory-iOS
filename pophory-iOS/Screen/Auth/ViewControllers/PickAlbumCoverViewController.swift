@@ -119,6 +119,7 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
                 switch result {
                 case .success(_):
                     print("Successful signUp")
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     self.moveToStartPophoryViewController()
                 case .requestErr(let data):
                     print("Request error: \(data)")

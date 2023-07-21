@@ -133,9 +133,7 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                     PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
                                    PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
                     
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    
-                    self.decideNextVC()
+                    self.decideNextVC(isRegistered: loginResponse.isRegistered)
                     
                 } else {
                     print("Unexpected response")
@@ -152,14 +150,11 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
         }
     }
     
-    private func decideNextVC() {
-        // TODO: 로그인 과정 더 나은 방법으로 리팩토링하기
-        MyPageNetworkManager().isUserExists { [weak self] isExists in
-            if isExists {
-                self?.navigateToTabBarController()
-            } else {
-                self?.goToSignInViewController()
-            }
+    private func decideNextVC(isRegistered: Bool) {
+        if isRegistered {
+            navigateToTabBarController()
+        } else {
+            goToSignInViewController()
         }
     }
     
