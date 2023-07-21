@@ -46,9 +46,6 @@ class BaseSignUpView: UIView {
         
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        //TODO: 추후 인디케이터바 구현 시 사용예정입니다...
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
         return collectionView
     }()
     
@@ -128,39 +125,3 @@ extension BaseSignUpView {
         indicatorCollectionView.register(SignUpIndicatorCollectionViewCell.self, forCellWithReuseIdentifier: SignUpIndicatorCollectionViewCell.identifier)
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-// TODO: 추후 인디케이터 바 구현때 사용 예정입니다..
-
-//extension BaseSignUpView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let deviceWidth = getDeviceWidth()
-//
-//        return CGSize(width: (deviceWidth - 20)/3, height: convertByHeightRatio(3))
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return convertByWidthRatio(4)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
-//}
-
-// MARK: - UICollectionViewDataSource
-
-// TODO: 추후 인디케이터 바 구현때 사용 예정입니다..
-
-//extension BaseSignUpView: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        3
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let indicatorCell = collectionView.dequeueReusableCell(withReuseIdentifier: SignUpIndicatorCollectionViewCell.identifier, for: indexPath) as? SignUpIndicatorCollectionViewCell else { return UICollectionViewCell() }
-//        return indicatorCell
-//    }
-//}
