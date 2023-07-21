@@ -19,6 +19,8 @@ final class PickAlbumCoverView: BaseSignUpView {
     
     // MARK: - Properties
     
+    var pickAlbumDelegate: PickAlbumCoverViewDelegate?
+    
     private var lastSelectedItemIndex: IndexPath? = nil
     
     // MARK: - UI Properties
@@ -161,7 +163,8 @@ extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        (self.delegate as? PickAlbumCoverViewDelegate)?.didSelectAlbumButton(at: indexPath.item)
+        pickAlbumDelegate?.didSelectAlbumButton(at: indexPath.item + 1)
+        
         if let lastSelected = lastSelectedItemIndex, let lastSelectedCell = collectionView.cellForItem(at: lastSelected) as? PickAlbumButtonCollectionViewCell {
             lastSelectedCell.isSelectedCell = false
         }

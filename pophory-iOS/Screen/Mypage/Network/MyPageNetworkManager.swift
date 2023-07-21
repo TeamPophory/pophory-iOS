@@ -35,7 +35,7 @@ class MyPageNetworkManager {
         NetworkService.shared.memberRepository.fetchUserInfo { result in
             switch result {
             case .success(let response):
-                if let _ = response.nickname {
+                if let _ = response.realName {
                     completion(true)
                 } else {
                     completion(false)

@@ -42,9 +42,13 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         
         if let pickAlbumCoverView = pickAlbumCoverView {
             self.pickAlbumCoverView = pickAlbumCoverView
+            self.pickAlbumCoverView.delegate = self
+            self.pickAlbumCoverView.pickAlbumDelegate = self
         } else {
             let view = PickAlbumCoverView()
             self.pickAlbumCoverView = view
+            self.pickAlbumCoverView.delegate = self
+            self.pickAlbumCoverView.pickAlbumDelegate = self
         }
     }
     
@@ -58,7 +62,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addButtonTarget()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,10 +78,6 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         pickAlbumCoverView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
         }
-    }
-    
-    private func addButtonTarget() {
-        self.pickAlbumCoverView.nextButton.addTarget(self, action: #selector(moveToStartPophoryViewController), for: .touchUpInside)
     }
     
     @objc
@@ -119,6 +119,7 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
                 switch result {
                 case .success(_):
                     print("Successful signUp")
+                    self.moveToStartPophoryViewController()
                 case .requestErr(let data):
                     print("Request error: \(data)")
                 case .pathErr:
