@@ -107,9 +107,7 @@ extension IDInputViewController: IDInputViewControllerDelegate {
             case .success(let isDuplicated):
                 if isDuplicated {
                     DispatchQueue.main.async {
-                        let alertController = UIAlertController(title: "알림", message: "닉네임이 중복되었습니다.", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-                        self?.present(alertController, animated: true, completion: nil)
+                        self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
                     }
                 } else {
                     self?.loadNextViewController(with: nickname, fullName: fullName)
