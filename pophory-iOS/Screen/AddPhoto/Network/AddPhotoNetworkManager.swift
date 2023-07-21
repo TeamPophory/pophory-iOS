@@ -44,6 +44,9 @@ class AddPhotoNetworkManager {
     }
     
     func uploadImageToPresignedURL(image: UIImage, presignedURL: URL, completion: @escaping (Error?) -> Void) {
+        
+        // TODO: - Moya로 변환 필요
+        
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             completion(NSError(domain: "com.example.app", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to data"]))
             return
@@ -60,10 +63,9 @@ class AddPhotoNetworkManager {
                 return
             }
             
-            // Check the response status code to ensure successful upload
             if let httpResponse = response as? HTTPURLResponse,
                 (200...299).contains(httpResponse.statusCode) {
-                completion(nil)  // Upload successful
+                completion(nil)
                 print("업로드 성공")
             }
         }
