@@ -45,7 +45,7 @@ final class ChangeSortView: UIView {
     }()
     private let oldSortLabelText: UILabel = {
         let label = UILabel()
-        label.text = "옛날에 찍은 순"
+        label.text = "과거에 찍은 순"
         label.font = .t2
         label.textColor = .pophoryBlack
         return label
