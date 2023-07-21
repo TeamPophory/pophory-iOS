@@ -46,14 +46,6 @@ final class AlbumDetailViewController: BaseViewController {
             case .old:
                 homeAlbumView.setSortLabelText(sortStyleText: "과거에 찍은 순")
             }
-            
-            guard let albumPhotoList = albumPhotoList else { return }
-            let photoAlbumPhotoList = self.sortPhoto(
-                albumPhotoList: albumPhotoList
-            )
-            self.albumPhotoList = photoAlbumPhotoList
-            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
-            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
     }
     private var uniquePhotoStartId: Int?
@@ -180,6 +172,15 @@ extension AlbumDetailViewController {
 
 extension AlbumDetailViewController: ConfigPhotoSortStyleDelegate {
     func configPhotoSortStyle(by sortStyle: PhotoSortStyle) {
+        if self.photoSortStyle != sortStyle {
+            guard let albumPhotoList = self.albumPhotoList else { return }
+            let photoAlbumPhotoList = self.sortPhoto(
+                albumPhotoList: albumPhotoList
+            )
+            self.albumPhotoList = photoAlbumPhotoList
+            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
+        }
         self.photoSortStyle = sortStyle
     }
 }
