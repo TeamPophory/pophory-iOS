@@ -127,6 +127,8 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
                     print("Server error")
                 case .networkFail:
                     print("Network failure")
+                default:
+                    break
                 }
             }
         }

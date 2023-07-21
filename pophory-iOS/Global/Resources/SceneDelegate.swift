@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseDynamicLinks
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -17,25 +19,51 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        if let userActivity = connectionOptions.userActivities.first {
+            self.scene(scene, continue: userActivity)
+        }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
         
         startMonitoringNetwork(on: scene)
         
         if let windowScene = scene as? UIWindowScene {
-            
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
             
             let appleLoginManager = AppleLoginManager()
             let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-
+            
             appleLoginManager.delegate = rootVC
-                
+            
             let navigationController = PophoryNavigationController(rootViewController: rootVC)
             
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
             self.window = window
+        }
+    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let url = userActivity.webpageURL {
+            let handled = DynamicLinks.dynamicLinks().handleUniversalLink(url) { dynamicLink, error in
+                if let shareID = self.handleDynamicLink(dynamicLink) {
+                    guard let _ = (scene as? UIWindowScene) else { return }
+                    
+                    if let windowScene = scene as? UIWindowScene {
+                        let window = UIWindow(windowScene: windowScene)
+                        window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+                        let rootVC = ShareViewController()
+                        rootVC.setupShareID(forShareID: shareID)
+                        rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
+                    
+                        window.rootViewController = rootVC
+                        window.makeKeyAndVisible()
+                        self.window = window
+                    }
+                }
+            }
         }
     }
     
@@ -67,11 +95,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    func setRootViewController() {
+    @objc func setupRoot() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-
         var rootViewController: UIViewController
 
+        if isLoggedIn {
+            rootViewController = TabBarController()
+        } else {
+            let appleLoginManager = AppleLoginManager()
+            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+            
+            appleLoginManager.delegate = rootVC
+            rootViewController = rootVC
+        }
+        let navigationController = PophoryNavigationController(rootViewController: rootViewController)
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+
+    func setRootViewController() {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        
+        var rootViewController: UIViewController
+        
         if isLoggedIn {
             let tabBarViewController = UITabBarController()
             rootViewController = tabBarViewController
@@ -79,11 +126,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let loginViewController = NameInputViewController()
             rootViewController = loginViewController
         }
-
+        
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
-
+    
+    private func handleDynamicLink(_ dynamicLink: DynamicLink?) -> String? {
+        guard let dynamicLink = dynamicLink, let link = dynamicLink.url else { return nil }
+        
+        if let components = URLComponents(url: link, resolvingAgainstBaseURL: false),
+           let queryItems = components.queryItems {
+            for item in queryItems {
+                if item.name == "u", let value = item.value {
+                    return value
+                }
+            }
+        }
+        return nil
+    }
 }
 
 // MARK: network
