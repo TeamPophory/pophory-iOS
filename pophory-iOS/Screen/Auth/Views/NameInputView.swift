@@ -59,10 +59,6 @@ class NameInputView: BaseSignUpView {
         return textField
     }()
     
-    @objc private func clearTextFieldTapped() {
-        inputTextField.text = ""
-    }
-    
     lazy var charCountLabel: UILabel = {
         let label = UILabel()
         label.font = .popupButton
@@ -133,6 +129,10 @@ extension NameInputView {
     
     @objc func clearTextFieldButtonOnClick() {
         inputTextField.text = nil
+    }
+    
+    @objc private func clearTextFieldTapped() {
+        inputTextField.text = ""
     }
     
     @objc func onValueChangedTextField() {

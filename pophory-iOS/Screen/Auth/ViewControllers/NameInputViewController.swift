@@ -23,7 +23,7 @@ final class NameInputViewController: BaseViewController {
     
     private lazy var nameInputView = NameInputView()
     private var bottomConstraint: Constraint?
-    private var keyboardManager: KeyboardManager!
+//    private var keyboardManager: KeyboardManager!
     
     
     // MARK: - Life Cycle
@@ -39,29 +39,29 @@ final class NameInputViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        setupKeyboardManager()
+//        setupKeyboardManager()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showNavigationBar()
-        setupConstraints()
+//        setupConstraints()
         handleNextButton()
         hideKeyboard()
-        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
-        keyboardManager.keyboardAddObserver()
+//        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
+//        keyboardManager.keyboardAddObserver()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        keyboardManager?.keyboardRemoveObserver()
+//        keyboardManager?.keyboardRemoveObserver()
     }
     
     deinit {
-        keyboardManager?.keyboardRemoveObserver()
-        keyboardManager = nil
+//        keyboardManager?.keyboardRemoveObserver()
+//        keyboardManager = nil
     }
 }
 
@@ -71,11 +71,11 @@ extension NameInputViewController {
     
     // MARK: - Layout
     
-    private func setupConstraints() {
-        nameInputView.nextButton.snp.makeConstraints { make in
-            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
-        }
-    }
+//    private func setupConstraints() {
+//        nameInputView.nextButton.snp.makeConstraints { make in
+//            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
+//        }
+//    }
     
     // MARK: - objc
     
@@ -87,10 +87,10 @@ extension NameInputViewController {
     
     // MARK: - Private Functions
     
-    private func setupKeyboardManager() {
-        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
-        keyboardManager?.keyboardAddObserver()
-    }
+//    private func setupKeyboardManager() {
+//        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
+//        keyboardManager?.keyboardAddObserver()
+//    }
     
     private func loadNextViewController(with name: String) {
         self.view.endEditing(true)
