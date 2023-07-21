@@ -35,7 +35,10 @@ class BaseSignUpView: UIView {
         let buttonBuilder = PophoryButtonBuilder()
             .setStyle(.primaryBlack)
             .setTitle(.next)
-        return buttonBuilder.build(initiallyEnabled: false)
+            .build(initiallyEnabled: false)
+        
+        buttonBuilder.applySize()
+        return buttonBuilder
     }()
     
     private lazy var indicatorCollectionView: UICollectionView = {
@@ -74,6 +77,7 @@ extension BaseSignUpView {
     // MARK: - Layout
     
     private func setupViews() {
+        
         addSubviews([headerLabel, indicatorCollectionView, nextButton])
 
         headerLabel.snp.makeConstraints {
@@ -88,10 +92,11 @@ extension BaseSignUpView {
         }
         
         nextButton.snp.makeConstraints {
-            $0.bottom.greaterThanOrEqualToSuperview().inset(constraintByNotch(42, 10))
+            $0.centerX.equalToSuperview()
+            if #available(iOS 15.0, *) {
+                $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
+            }
         }
-        
-        nextButton.addCenterXConstraint(to: self)
     }
 
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
