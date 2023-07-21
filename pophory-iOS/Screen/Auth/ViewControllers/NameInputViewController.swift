@@ -22,17 +22,17 @@ final class NameInputViewController: BaseViewController {
     // MARK: - UI Properties
     
     private lazy var nameInputView = NameInputView()
-    private var bottomConstraint: Constraint?
+//    private var bottomConstraint: Constraint?
     
     
     // MARK: - Life Cycle
     
-    override func loadView() {
-        super.loadView()
-        
-        nameInputView = NameInputView(frame: self.view.frame)
-        self.view = nameInputView
-    }
+//    override func loadView() {
+//        super.loadView()
+//
+//        nameInputView = NameInputView(frame: self.view.frame)
+//        self.view = nameInputView
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,6 +46,16 @@ final class NameInputViewController: BaseViewController {
         showNavigationBar()
         handleNextButton()
         hideKeyboard()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        view.addSubview(nameInputView)
+        
+        nameInputView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
 }
 

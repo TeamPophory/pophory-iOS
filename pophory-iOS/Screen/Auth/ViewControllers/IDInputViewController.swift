@@ -23,10 +23,8 @@ final class IDInputViewController: BaseViewController {
     // MARK: - UI Properties
     
     private lazy var iDInputView = IDInputView()
-    private var bottomConstraint: Constraint?
-    private var keyboardManager: KeyboardManager?
-    
-
+//    private var bottomConstraint: Constraint?
+//    private var keyboardManager: KeyboardManager?
     
     // MARK: - Life Cycle
     
@@ -40,38 +38,48 @@ final class IDInputViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        super.loadView()
-        
-        iDInputView = IDInputView(frame: self.view.frame)
-        self.view = iDInputView
-    }
+//    override func loadView() {
+//        super.loadView()
+//
+//        iDInputView = IDInputView(frame: self.view.frame)
+//        self.view = iDInputView
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
-        setupKeyboardManager()
+//        setupKeyboardManager()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupConstraints()
+//        setupConstraints()
         handleNextButton()
         hideKeyboard()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        keyboardManager?.keyboardRemoveObserver()
+        view.addSubview(iDInputView)
+        
+        iDInputView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
     
-    deinit {
-        keyboardManager?.keyboardRemoveObserver()
-        keyboardManager = nil
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        keyboardManager?.keyboardRemoveObserver()
+//    }
+    
+//    deinit {
+//        keyboardManager?.keyboardRemoveObserver()
+//        keyboardManager = nil
+//    }
 }
 
 // MARK: - Extension
@@ -80,11 +88,11 @@ extension IDInputViewController {
     
     // MARK: - Layout
     
-    private func setupConstraints() {
-        iDInputView.nextButton.snp.makeConstraints { make in
-            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
-        }
-    }
+//    private func setupConstraints() {
+//        iDInputView.nextButton.snp.makeConstraints { make in
+//            bottomConstraint = make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10).constraint
+//        }
+//    }
     
     // MARK: - objc
     
@@ -96,10 +104,10 @@ extension IDInputViewController {
     
     // MARK: - Private Functions
     
-    private func setupKeyboardManager() {
-        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
-        keyboardManager?.keyboardAddObserver()
-    }
+//    private func setupKeyboardManager() {
+//        keyboardManager = KeyboardManager(bottomConstraint: bottomConstraint, viewController: self)
+//        keyboardManager?.keyboardAddObserver()
+//    }
     
     private func loadNextViewController(with nickName: String, fullName: String) {
         let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil)

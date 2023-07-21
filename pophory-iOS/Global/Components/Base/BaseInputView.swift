@@ -81,7 +81,7 @@ extension BaseSignUpView {
         addSubviews([headerLabel, indicatorCollectionView, nextButton])
 
         headerLabel.snp.makeConstraints {
-            $0.top.equalTo(headerHeightByNotch(62))
+            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
