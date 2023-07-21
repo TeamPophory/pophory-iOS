@@ -41,13 +41,16 @@ class BaseSignUpView: UIView {
         return buttonBuilder
     }()
     
-    private lazy var indicatorCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        
-        let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        return collectionView
+    let indicatorStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
+        return stackView
     }()
+    
+    let indicatorViews = [UIView(), UIView(), UIView()]
     
     // MARK: - Life Cycle
     
@@ -55,8 +58,8 @@ class BaseSignUpView: UIView {
         super.init(frame: frame)
 
         setupBaseNextButton()
+        setupIndicatorViews()
         setupViews()
-        setupRegister()
         setupNextButtonEnabled(false)
     }
     
@@ -65,6 +68,14 @@ class BaseSignUpView: UIView {
     }
     
     func updateCharCountLabel(charCount: Int) {}
+    
+    func updateIndicatorViewBackgroundColor(at index: Int, color: UIColor) {
+        guard index >= 0 && index < indicatorViews.count else {
+            print("Invalid index.")
+            return
+        }
+        indicatorViews[index].backgroundColor = color
+    }
 }
 
 // MARK: - Extensions
@@ -75,14 +86,14 @@ extension BaseSignUpView {
     
     private func setupViews() {
         
-        addSubviews([headerLabel, indicatorCollectionView, nextButton])
+        addSubviews([headerLabel, indicatorStackView, nextButton])
 
         headerLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(32)
             $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
-        indicatorCollectionView.snp.makeConstraints {
+        indicatorStackView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(6))
             $0.height.equalTo(convertByHeightRatio(3))
@@ -107,7 +118,6 @@ extension BaseSignUpView {
     func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
-
     
     // MARK: - @objc
     
@@ -121,7 +131,16 @@ extension BaseSignUpView {
         nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
     }
     
-    private func setupRegister() {
-        indicatorCollectionView.register(SignUpIndicatorCollectionViewCell.self, forCellWithReuseIdentifier: SignUpIndicatorCollectionViewCell.identifier)
+    private func setupIndicatorViews() {
+        for view in indicatorViews {
+            view.backgroundColor = .pophoryGray300
+            
+            view.snp.makeConstraints {
+                $0.width.equalTo(convertByWidthRatio(30))
+                $0.height.equalTo(convertByHeightRatio(3))
+            }
+            
+            indicatorStackView.addArrangedSubview(view)
+        }
     }
 }
