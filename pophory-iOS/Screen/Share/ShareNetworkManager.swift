@@ -17,7 +17,8 @@ class ShareNetworkManager {
     
     func requestGetSharePhoto(
         shareID: String,
-        completion: @escaping (PatchSharePhotoRequestDTO?) -> Void
+        completion: @escaping (PatchSharePhotoRequestDTO?) -> Void,
+        completionError: @escaping () -> Void
     ) {
         NetworkService.shared.shareRepository.patchSharePhoto(shareId: shareID) { result in
             switch result {
@@ -25,7 +26,7 @@ class ShareNetworkManager {
                 self.toPostPhotoID = response.photoId
                 completion(response)
             default:
-                return
+                completionError()
             }
         }
     }

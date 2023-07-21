@@ -11,11 +11,16 @@ class ShareViewController: BaseViewController {
     
     // MARK: - Properties
     
+    var errorBool: Bool?
+    
     private var shareID: String? {
         didSet {
             if let shareID = shareID {
                 ShareNetworkManager.shared.requestGetSharePhoto(shareID: shareID) { [weak self] response in
                     self?.sharePhoto = response
+                    self?.errorBool = false
+                } completionError: {
+                    
                 }
             }
         }
@@ -49,16 +54,10 @@ class ShareViewController: BaseViewController {
         super.viewDidLoad()
         
         hideNavigationBar()
-        setUpTarget()
     }
 }
 
 extension ShareViewController {
-    
-    private func setUpTarget() {
-//        rootView.shareButton.addTarget(self, action: #selector(onClickSharedButton), for: .touchUpInside)
-    }
-    
     func setupShareID(forShareID: String?) {
         self.shareID = forShareID
     }
