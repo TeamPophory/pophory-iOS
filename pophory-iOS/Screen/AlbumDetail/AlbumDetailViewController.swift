@@ -26,12 +26,14 @@ final class AlbumDetailViewController: BaseViewController {
     private let addPhotoViewController = AddPhotoViewController()
     private let imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
+    private var albumPhotoCount = Int()
     
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
         didSet {
             guard let albumPhotoList = albumPhotoList else { return }
             
+            albumPhotoCount = albumPhotoList.photos.count
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
@@ -46,14 +48,6 @@ final class AlbumDetailViewController: BaseViewController {
             case .old:
                 homeAlbumView.setSortLabelText(sortStyleText: "과거에 찍은 순")
             }
-            
-            guard let albumPhotoList = albumPhotoList else { return }
-            let photoAlbumPhotoList = self.sortPhoto(
-                albumPhotoList: albumPhotoList
-            )
-            self.albumPhotoList = photoAlbumPhotoList
-            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
-            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
     }
     private var uniquePhotoStartId: Int?
@@ -172,6 +166,13 @@ extension AlbumDetailViewController {
     }
     
     @objc func addPhotoButtonOnClick() {
+        if albumPhotoCount >= 15 {
+            showPopup(
+                image: ImageLiterals.img_albumfull,
+                primaryText: "포포리 앨범이 가득찼어요",
+                secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
+            )
+        }
         imagePHPViewController.setupImagePermission()
     }
 }
@@ -180,6 +181,15 @@ extension AlbumDetailViewController {
 
 extension AlbumDetailViewController: ConfigPhotoSortStyleDelegate {
     func configPhotoSortStyle(by sortStyle: PhotoSortStyle) {
+        if self.photoSortStyle != sortStyle {
+            guard let albumPhotoList = self.albumPhotoList else { return }
+            let photoAlbumPhotoList = self.sortPhoto(
+                albumPhotoList: albumPhotoList
+            )
+            self.albumPhotoList = photoAlbumPhotoList
+            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
+            homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
+        }
         self.photoSortStyle = sortStyle
     }
 }

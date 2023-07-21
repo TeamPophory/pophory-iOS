@@ -88,7 +88,8 @@ final class AlbumDetailView: UIView {
         emptyPhotoExceptionIcon.snp.makeConstraints {
             $0.height.equalTo(213)
             $0.width.equalTo(180)
-            $0.center.equalToSuperview()
+            $0.top.equalTo(lineView.snp.bottom).offset(177)
+            $0.centerX.equalToSuperview()
         }
     }
     
