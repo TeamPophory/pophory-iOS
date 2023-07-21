@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_album_cover_love.svg",
+      "filename" : "앨범커버_사랑1_최종 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_album_cover_love@2x.svg",
+      "filename" : "앨범커버_사랑1_최종 1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_album_cover_love@3x.svg",
+      "filename" : "앨범커버_사랑1_최종 1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
