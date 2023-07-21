@@ -79,6 +79,8 @@ class NameInputView: BaseSignUpView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        updateIndicatorViewBackgroundColor(at: 0, color: .pophoryPurple)
         inputTextField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
         setupDelegate()
         setupViews()

@@ -87,6 +87,7 @@ extension IDInputViewController {
         UserDefaults.standard.setNickname(nickName)
         UserDefaults.standard.setFullName(fullName)
         
+        dismissKeyboard()
         navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
     }
     

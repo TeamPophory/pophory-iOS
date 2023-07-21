@@ -45,6 +45,7 @@ final class PickAlbumCoverView: BaseSignUpView {
         setupRegister()
         setupLayoutForAlbumCoverView(albumCoverView, topOffset: 51)
         setupLayout()
+        updateIndicatorViewBackgroundColor(at: 2, color: .pophoryPurple)
         updateNameInputViewLabels()
         setupNextButtonEnabled(true)
     }
@@ -80,9 +81,10 @@ extension PickAlbumCoverView {
         addSubviews([albumCoverView, selectButtonCollectionView])
         
         albumCoverView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).offset(constraintByNotch(154, 135))
             $0.centerX.equalToSuperview()
-            $0.leading.equalToSuperview().offset(constraintByNotch(47, 80))
-            $0.aspectRatio(CGSize(width: 280, height: 380))
+            $0.leading.equalToSuperview().offset(convertByWidthRatio(78))
+            $0.height.equalTo(convertByHeightRatio(298))
         }
         
         selectButtonCollectionView.snp.makeConstraints {
