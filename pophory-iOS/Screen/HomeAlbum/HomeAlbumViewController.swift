@@ -44,7 +44,7 @@ final class HomeAlbumViewController: BaseViewController {
                         showPopup(
                             image: ImageLiterals.img_albumfull,
                             primaryText: "포포리 앨범이 가득찼어요",
-                            secondaryText: "아쉬지만,\n다음 업데이트에서 만나요!"
+                            secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
                         )
                     }
                 }
