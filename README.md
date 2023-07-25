@@ -1,6 +1,6 @@
 # Pophory
 
-
+### 앱 스토어 링크 : [App Store](https://apps.apple.com/kr/app/pophory/id6451004060)
 > 짱 쉽게 공유하고 짱 오래 보관하는 내 손 안의 네컷앨범,
 > 
 > 주머니 속 잃어버릴 걱정 없는 모바일 네컷앨범 서비스 **Pophory**입니다.
