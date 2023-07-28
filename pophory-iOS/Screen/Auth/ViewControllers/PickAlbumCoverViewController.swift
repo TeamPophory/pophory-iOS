@@ -52,13 +52,13 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         }
     }
     
-//    override func loadView() {
-//        super.loadView()
-//        
-//        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
-//        pickAlbumCoverView.delegate = self
-//        self.view = pickAlbumCoverView
-//    }
+    //    override func loadView() {
+    //        super.loadView()
+    //
+    //        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
+    //        pickAlbumCoverView.delegate = self
+    //        self.view = pickAlbumCoverView
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,24 +115,31 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
         if let fullName = fullName, let nickName = nickname {
             let selectedIndex = selectedAlbumCoverIndex
             let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
-            memberRepository.patchSignUp(body: signUpDTO) { result in
-                switch result {
-                case .success(_):
-                    print("Successful signUp")
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    self.moveToStartPophoryViewController()
-                case .requestErr(let data):
-                    print("Request error: \(data)")
-                case .pathErr:
-                    print("Path error")
-                case .serverErr:
-                    print("Server error")
-                case .networkFail:
-                    print("Network failure")
-                default:
-                    break
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                self?.memberRepository.patchSignUp(body: signUpDTO) { result in
+                    switch result {
+                    case .success(_):
+                        print("Successful signUp")
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        DispatchQueue.main.async {
+                            self?.moveToStartPophoryViewController()
+                        }
+                    case .requestErr(let data):
+                        print("Request error: \(data)")
+                    case .pathErr:
+                        print("Path error")
+                    case .serverErr:
+                        print("Server error")
+                    case .networkFail:
+                        print("Network failure")
+                    default:
+                        break
+                    }
                 }
             }
         }
     }
 }
+
+// MARK: - Network
+

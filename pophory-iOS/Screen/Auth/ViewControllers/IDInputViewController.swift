@@ -101,27 +101,28 @@ extension IDInputViewController {
 extension IDInputViewController: IDInputViewControllerDelegate {
     
     func didEnterNickname(nickname: String, fullName: String) {
-        NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { [weak self] result in
-            
-            switch result {
-            case .success(let isDuplicated):
-                if isDuplicated {
-                    DispatchQueue.main.async {
-                        self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { result in
+
+                switch result {
+                case .success(let isDuplicated):
+                    if isDuplicated {
+                        DispatchQueue.main.async {
+                            self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+                        }
+                    } else {
+                        self?.loadNextViewController(with: nickname, fullName: fullName)
                     }
-                } else {
-                    self?.loadNextViewController(with: nickname, fullName: fullName)
+                case .requestErr, .pathErr, .serverErr, .networkFail:
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "알림", message: "오류가 발생했습니다. 다시 시도하십시오.", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                        self?.present(alertController, animated: true, completion: nil)
+                    }
+                default:
+                    break
                 }
-            case .requestErr, .pathErr, .serverErr, .networkFail:
-                DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: "알림", message: "오류가 발생했습니다. 다시 시도하십시오.", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-                    self?.present(alertController, animated: true, completion: nil)
-                }
-            default:
-                break
             }
         }
     }
 }
-
