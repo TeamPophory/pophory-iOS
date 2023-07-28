@@ -39,26 +39,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         self.nickname = nickname
         
         super.init(nibName: nibName, bundle: bundle)
-        
-        if let pickAlbumCoverView = pickAlbumCoverView {
-            self.pickAlbumCoverView = pickAlbumCoverView
-            self.pickAlbumCoverView.delegate = self
-            self.pickAlbumCoverView.pickAlbumDelegate = self
-        } else {
-            let view = PickAlbumCoverView()
-            self.pickAlbumCoverView = view
-            self.pickAlbumCoverView.delegate = self
-            self.pickAlbumCoverView.pickAlbumDelegate = self
-        }
     }
-    
-    //    override func loadView() {
-    //        super.loadView()
-    //
-    //        pickAlbumCoverView = PickAlbumCoverView(frame: self.view.frame)
-    //        pickAlbumCoverView.delegate = self
-    //        self.view = pickAlbumCoverView
-    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +61,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
         }
     }
     
-    @objc
-    private func moveToStartPophoryViewController() {
+    @objc private func moveToStartPophoryViewController() {
         let nextVC = StartPophoryViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -89,7 +69,16 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
 
 // MARK: - Extensions
 
+extension PickAlbumCoverViewController: Navigatable {
+    var navigationBarTitleText: String? { "회원가입" }
+}
+
 extension PickAlbumCoverViewController {
+    
+    private func setupDelegate() {
+        self.pickAlbumCoverView.delegate = self
+        self.pickAlbumCoverView.pickAlbumDelegate = self
+    }
     
     func didEnterName(name: String) {
         fullName = name
@@ -101,9 +90,7 @@ extension PickAlbumCoverViewController {
     }
 }
 
-extension PickAlbumCoverViewController: Navigatable {
-    var navigationBarTitleText: String? { "회원가입" }
-}
+// MARK: - PickAlbumCoverViewDelegate
 
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     
@@ -114,32 +101,38 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     func didTapBaseNextButton() {
         if let fullName = fullName, let nickName = nickname {
             let selectedIndex = selectedAlbumCoverIndex
-            let signUpDTO = PatchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                self?.memberRepository.patchSignUp(body: signUpDTO) { result in
-                    switch result {
-                    case .success(_):
-                        print("Successful signUp")
-                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                        DispatchQueue.main.async {
-                            self?.moveToStartPophoryViewController()
-                        }
-                    case .requestErr(let data):
-                        print("Request error: \(data)")
-                    case .pathErr:
-                        print("Path error")
-                    case .serverErr:
-                        print("Server error")
-                    case .networkFail:
-                        print("Network failure")
-                    default:
-                        break
-                    }
-                }
-            }
+            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
+            submitSignUP(dto: signUpDTO)
         }
     }
 }
 
 // MARK: - Network
 
+extension PickAlbumCoverViewController {
+    
+    private func submitSignUP(dto: FetchSignUpRequestDTO) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.memberRepository.fetchSignUp(body: dto) { result in
+                switch result {
+                case .success(_):
+                    print("Successful signUp")
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    DispatchQueue.main.async {
+                        self?.moveToStartPophoryViewController()
+                    }
+                case .requestErr(let data):
+                    print("Request error: \(data)")
+                case .pathErr:
+                    print("Path error")
+                case .serverErr:
+                    print("Server error")
+                case .networkFail:
+                    print("Network failure")
+                default:
+                    break
+                }
+            }
+        }
+    }
+}
