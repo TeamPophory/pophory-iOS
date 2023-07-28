@@ -12,7 +12,7 @@ import Moya
 enum MemberAPI {
     case fetchMyPage
     case fetchMyPageV2
-    case signUp(body: PatchSignUpRequestDTO)
+    case signUp(body: FetchSignUpRequestDTO)
     case patchUserInfo
     case checkDuplicateNickname(nickname: String)
 }

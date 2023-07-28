@@ -9,8 +9,8 @@ import Foundation
 
 protocol MemberRepository {
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void)
-    func patchSignUp(
-        body: PatchSignUpRequestDTO,
+    func fetchSignUp(
+        body: FetchSignUpRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     )
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void)

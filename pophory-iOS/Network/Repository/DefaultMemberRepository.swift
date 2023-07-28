@@ -37,8 +37,8 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func patchSignUp(
-        body: PatchSignUpRequestDTO,
+    func fetchSignUp(
+        body: FetchSignUpRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         provider.request(.signUp(body: body)) { result in
