@@ -19,6 +19,8 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     // MARK: - Properties
     
+    private let networkManager: AuthNetworkManagerProtocol
+    
     private var delegate: SignUpDelegates?
     
     var fullName: String?
@@ -26,17 +28,16 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     private var selectedAlbumCoverIndex: Int = 1
     
-    private let memberRepository: MemberRepository = DefaultMemberRepository()
-    
     // MARK: - UI Properties
     
     private lazy var pickAlbumCoverView = PickAlbumCoverView()
     
     // MARK: - Life Cycle
     
-    init(fullName: String?, nickname: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?) {
+    init(fullName: String?, nickname: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?, networkManager: AuthNetworkManagerProtocol) {
         self.fullName = fullName
         self.nickname = nickname
+        self.networkManager = networkManager
         
         super.init(nibName: nibName, bundle: bundle)
     }
@@ -44,6 +45,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +76,6 @@ extension PickAlbumCoverViewController: Navigatable {
 }
 
 extension PickAlbumCoverViewController {
-    
     private func setupDelegate() {
         self.pickAlbumCoverView.delegate = self
         self.pickAlbumCoverView.pickAlbumDelegate = self
@@ -93,16 +94,21 @@ extension PickAlbumCoverViewController {
 // MARK: - PickAlbumCoverViewDelegate
 
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
-    
     func didSelectAlbumButton(at index: Int) {
         selectedAlbumCoverIndex = index
     }
     
-    func didTapBaseNextButton() {
+    func OnClickBaseNextButton() {
         if let fullName = fullName, let nickName = nickname {
             let selectedIndex = selectedAlbumCoverIndex
             let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
-            submitSignUP(dto: signUpDTO)
+            processSignUp(dto: signUpDTO)
+        }
+    }
+    
+    func processSignUp(dto: FetchSignUpRequestDTO) {
+        handleSignUpResult(dto: dto) { [weak self] in
+            self?.moveToStartPophoryViewController()
         }
     }
 }
@@ -110,28 +116,17 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 // MARK: - Network
 
 extension PickAlbumCoverViewController {
-    
-    private func submitSignUP(dto: FetchSignUpRequestDTO) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.memberRepository.fetchSignUp(body: dto) { result in
-                switch result {
-                case .success(_):
-                    print("Successful signUp")
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    DispatchQueue.main.async {
-                        self?.moveToStartPophoryViewController()
-                    }
-                case .requestErr(let data):
-                    print("Request error: \(data)")
-                case .pathErr:
-                    print("Path error")
-                case .serverErr:
-                    print("Server error")
-                case .networkFail:
-                    print("Network failure")
-                default:
-                    break
-                }
+    private func handleSignUpResult(dto: FetchSignUpRequestDTO, completion: @escaping () -> Void) {
+        networkManager.submitSignUp(dto: dto) { result in
+            switch result {
+            case .success(_):
+                completion()
+                // 추가 확인용 로그
+                print("handleSignUpResult 클로저 실행됨")
+            case .networkFail:
+                print("Network failure")
+            default:
+                break
             }
         }
     }

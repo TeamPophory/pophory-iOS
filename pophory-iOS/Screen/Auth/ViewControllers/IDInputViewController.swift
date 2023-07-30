@@ -79,7 +79,7 @@ extension IDInputViewController {
     // MARK: - Private Functions
     
     private func loadNextViewController(with nickName: String, fullName: String) {
-        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil)
+        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil, networkManager: AuthNetworkManager())
         
         pickAlbumCoverVC.fullName = fullName
         pickAlbumCoverVC.nickname = nickName

@@ -14,6 +14,7 @@
 		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
 		372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F372A5446390032B7BC /* KeyboardFollowable.swift */; };
 		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
+		373A74D42A74126500CBE8B6 /* AuthNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */; };
 		373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */; };
 		373EEF022A582C4C0039A22C /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEF012A582C4C0039A22C /* AppleLoginManager.swift */; };
 		376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E62A66CB740010CF8D /* CGSize+Extension.swift */; };
@@ -191,6 +192,7 @@
 		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
 		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkManager.swift; sourceTree = "<group>"; };
 		373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryPopupViewController.swift; sourceTree = "<group>"; };
 		373EEF012A582C4C0039A22C /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
 		373EEF052A5922540039A22C /* pophory-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOS.entitlements"; sourceTree = "<group>"; };
@@ -439,9 +441,18 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		373A74D22A74113F00CBE8B6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		377EF7DC2A4F479800E3268D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				373A74D22A74113F00CBE8B6 /* Network */,
 				377EF7E32A4F4C3D00E3268D /* Views */,
 				372CB1FC2A62CDCD00C56FE0 /* ViewControllers */,
 			);
@@ -1221,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				912780142A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift in Sources */,
+				373A74D42A74126500CBE8B6 /* AuthNetworkManager.swift in Sources */,
 				91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */,
 				B138A3B82A586EC3000EE81E /* SettingsRootView.swift in Sources */,
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
