@@ -7,13 +7,23 @@
 
 import UIKit
 
+import SnapKit
+
 extension UIViewController {
     
     var totalNavigationBarHeight: CGFloat {
-            let navigationBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
-            let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height ?? 0
-            return navigationBarHeight + statusBarHeight
+        let navigationBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.size.height ?? 0
+        return navigationBarHeight + statusBarHeight
+    }
+    
+    func setupViewConstraints(_ subView: UIView) {
+        self.view.addSubview(subView)
+        
+        subView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
         }
+    }
     
     func setupNavigationBar(with navigationConfigurator: PophoryNavigationConfigurator, showRightButton: Bool = false, rightButtonImageType: PophoryNavigationConfigurator.RightButtonImageType? = nil) {
         navigationConfigurator.configureNavigationBar(in: self, showRightButton: showRightButton, rightButtonImageType: rightButtonImageType)
@@ -30,7 +40,7 @@ extension UIViewController {
     /// 화면밖 터치시 키보드를 내려 주는 메서드
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-            action: #selector(UIViewController.dismissKeyboard))
+                                                                 action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

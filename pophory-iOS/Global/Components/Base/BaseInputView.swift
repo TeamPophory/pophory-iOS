@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol BaseSignUpViewDelegate: AnyObject {
-    func didTapBaseNextButton()
+    func OnClickBaseNextButton()
 }
 
 class BaseSignUpView: UIView {
@@ -121,14 +121,14 @@ extension BaseSignUpView {
     
     // MARK: - @objc
     
-    @objc func didTapBaseNextButton() {
-        self.delegate?.didTapBaseNextButton()
+    @objc func OnClickBaseNextButton() {
+        self.delegate?.OnClickBaseNextButton()
     }
     
     // MARK: - Private Methods
     
     private func setupBaseNextButton() {
-        nextButton.addTarget(self, action: #selector(didTapBaseNextButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(OnClickBaseNextButton), for: .touchUpInside)
     }
     
     private func setupIndicatorViews() {
