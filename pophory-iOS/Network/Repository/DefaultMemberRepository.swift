@@ -37,20 +37,17 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func fetchSignUp(
-        body: FetchSignUpRequestDTO,
-        completion: @escaping (NetworkResult<Any>) -> Void
-    ) {
+    func fetchSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
         provider.request(.signUp(body: body)) { result in
             switch result {
-            case.success(let response):
-                let statusCode = response.statusCode
+            case.success:
                 completion(.success(()))
             case .failure(let err):
-                completion(.networkFail)
+                print(err)
             }
         }
     }
+
     
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void) {
         provider.request(.patchUserInfo) { result in

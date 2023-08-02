@@ -7,8 +7,6 @@
 
 import UIKit
 
-import SnapKit
-
 protocol PickAlbumCoverViewControllerDelegate: AnyObject {
     func didSelectAlbumButton(at index: Int)
 }
@@ -19,7 +17,7 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     // MARK: - Properties
     
-    private let networkManager: AuthNetworkManagerProtocol
+    private let networkManager: AuthNetworkManager
     
     private var delegate: SignUpDelegates?
     
@@ -34,12 +32,12 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     // MARK: - Life Cycle
     
-    init(fullName: String?, nickname: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, nibName: String?, bundle: Bundle?, networkManager: AuthNetworkManagerProtocol) {
+    init(fullName: String?, nickname: String?, pickAlbumCoverView: PickAlbumCoverView? = nil, networkManager: AuthNetworkManager = AuthNetworkManager()) {
         self.fullName = fullName
         self.nickname = nickname
         self.networkManager = networkManager
         
-        super.init(nibName: nibName, bundle: bundle)
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
@@ -50,22 +48,14 @@ final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, P
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        view.addSubview(pickAlbumCoverView)
-        
-        pickAlbumCoverView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
-    }
-    
-    @objc private func moveToStartPophoryViewController() {
-        let nextVC = StartPophoryViewController()
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        setupViewConstraints(pickAlbumCoverView)
     }
 }
 
@@ -107,24 +97,26 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     }
     
     func processSignUp(dto: FetchSignUpRequestDTO) {
-        handleSignUpResult(dto: dto) { [weak self] in
-            self?.moveToStartPophoryViewController()
-        }
+        handleSignUpResult(dto: dto)
+    }
+    
+    func moveToStartPophoryViewController() {
+        let nextVC = StartPophoryViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
 // MARK: - Network
 
 extension PickAlbumCoverViewController {
-    private func handleSignUpResult(dto: FetchSignUpRequestDTO, completion: @escaping () -> Void) {
-        networkManager.submitSignUp(dto: dto) { result in
+    private func handleSignUpResult(dto: FetchSignUpRequestDTO) {
+        networkManager.submitSignUp(dto: dto) { [weak self] result in
             switch result {
             case .success(_):
-                completion()
-                // 추가 확인용 로그
-                print("handleSignUpResult 클로저 실행됨")
+                self?.moveToStartPophoryViewController()
             case .networkFail:
-                print("Network failure")
+                let networkErrorVC = PophoryErrorViewController(viewType: .networkError)
+                self?.present(networkErrorVC, animated: true, completion: nil)
             default:
                 break
             }

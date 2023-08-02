@@ -7,28 +7,21 @@
 
 import Foundation
 
-protocol AuthNetworkManagerProtocol {
-    func submitSignUp(dto: FetchSignUpRequestDTO, completion: @escaping(NetworkResult<Void>) -> Void)
-}
-
-class AuthNetworkManager: AuthNetworkManagerProtocol {
+class AuthNetworkManager {
     
     private let memberRepository: MemberRepository = DefaultMemberRepository()
     
-    func submitSignUp(dto: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+    func submitSignUp(dto: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Any>) -> Void) {
+        DispatchQueue.main.async { [weak self] in
             self?.memberRepository.fetchSignUp(body: dto) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        print("Successful signUp")
-                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                        completion(.success(()))
-                    case .networkFail:
-                        print("Network failure")
-                    default:
-                        break
-                    }
+                switch result {
+                case .success(_):
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    completion(.success(()))
+                case .networkFail:
+                    print("Network failure")
+                default:
+                    break
                 }
             }
         }
