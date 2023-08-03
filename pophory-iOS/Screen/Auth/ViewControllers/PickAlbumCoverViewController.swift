@@ -89,15 +89,11 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     }
     
     func OnClickBaseNextButton() {
-        if let fullName = fullName, let nickName = nickname {
+        if let fullName = fullName, let nickname = nickname {
             let selectedIndex = selectedAlbumCoverIndex
-            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickName, albumCover: selectedIndex)
-            processSignUp(dto: signUpDTO)
+            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
+            handleSignUpResult(dto: signUpDTO)
         }
-    }
-    
-    func processSignUp(dto: FetchSignUpRequestDTO) {
-        handleSignUpResult(dto: dto)
     }
     
     func moveToStartPophoryViewController() {
@@ -110,7 +106,7 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 
 extension PickAlbumCoverViewController {
     private func handleSignUpResult(dto: FetchSignUpRequestDTO) {
-        networkManager.submitSignUp(dto: dto) { [weak self] result in
+        networkManager.requestSignUpProcess(dto: dto) { [weak self] result in
             switch result {
             case .success(_):
                 self?.moveToStartPophoryViewController()
