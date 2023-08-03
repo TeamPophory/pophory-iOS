@@ -42,11 +42,7 @@ final class NameInputViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        view.addSubview(nameInputView)
-        
-        nameInputView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
+        setupViewConstraints(nameInputView)
     }
 }
 
@@ -64,7 +60,6 @@ extension NameInputViewController {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         loadNextViewController(with: name)
     }
-    
     
     // MARK: - Private Functions
     
