@@ -115,8 +115,7 @@ extension PickAlbumCoverViewController {
             case .success(_):
                 self?.moveToStartPophoryViewController()
             case .networkFail:
-                let networkErrorVC = PophoryErrorViewController(viewType: .networkError)
-                self?.present(networkErrorVC, animated: true, completion: nil)
+                self?.presentErrorViewController(with: .networkError)
             default:
                 break
             }

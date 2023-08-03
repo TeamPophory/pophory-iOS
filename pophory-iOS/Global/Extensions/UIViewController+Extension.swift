@@ -69,4 +69,9 @@ extension UIViewController {
         popupVC.modalPresentationStyle = .overFullScreen
         present(popupVC, animated: false)
     }
+    
+    func presentErrorViewController(with viewType: ErrorViewType) {
+        let errorVC = PophoryErrorViewController(viewType: viewType)
+        self.present(errorVC, animated: true, completion: nil)
+    }
 }
