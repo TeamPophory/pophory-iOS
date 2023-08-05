@@ -54,7 +54,7 @@ extension NameInputViewController: Navigatable {
 
 extension NameInputViewController {
     
-    // MARK: - objc
+    // MARK: - @objc
     
     @objc private func nextButtonOnClick() {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }

@@ -37,7 +37,7 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func fetchSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
+    func submitSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
         provider.request(.signUp(body: body)) { result in
             switch result {
             case.success:
@@ -63,7 +63,7 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
+    func requestDuplicateNicknameCheck(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
         provider.request(.checkDuplicateNickname(nickname: nickname)) { result in
             switch result {
             case .success(let response):

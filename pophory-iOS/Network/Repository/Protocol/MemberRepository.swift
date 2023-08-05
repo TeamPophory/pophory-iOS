@@ -9,7 +9,7 @@ import Foundation
 
 protocol MemberRepository {
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void)
-    func fetchSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void)
+    func submitSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void)
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void)
-    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
+    func requestDuplicateNicknameCheck(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
 }
