@@ -10,24 +10,28 @@ import UIKit
 import SnapKit
 
 protocol IDInputViewControllerDelegate: AnyObject {
-    func didEnterNickname(nickname: String, fullName: String)
+    func checkNicknameAndProceed(nickname: String, fullName: String)
 }
 
 final class IDInputViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private let networkManager: AuthNetworkManager
+    
     weak var delegate: IDInputViewControllerDelegate?
+    
     var fullName: String?
     
     // MARK: - UI Properties
     
-    private lazy var iDInputView = IDInputView()
+    private let iDInputView = IDInputView()
     
     // MARK: - Life Cycle
     
-    init(fullName: String) {
+    init(fullName: String, networkManager: AuthNetworkManager = AuthNetworkManager()) {
         self.fullName = fullName
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
         self.delegate = self
     }
@@ -52,11 +56,7 @@ final class IDInputViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        view.addSubview(iDInputView)
-        
-        iDInputView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
+        setupViewConstraints(iDInputView)
     }
 }
 
@@ -68,26 +68,33 @@ extension IDInputViewController: Navigatable {
 
 extension IDInputViewController {
     
-    // MARK: - objc
+    // MARK: - @objc
     
     @objc func nextButtonOnClick() {
-        guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
-        delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
-        didEnterNickname(nickname: nickName, fullName: fullName)
+        guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
+        delegate?.checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+        checkNicknameAndProceed(nickname: nickname, fullName: fullName)
     }
     
     // MARK: - Private Functions
     
-    private func loadNextViewController(with nickName: String, fullName: String) {
-        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName)
+    private func goToPickAlbumCoverViewController(with nickname: String, fullName: String) {
+        createUserProfile(nickname: nickname, fullName: fullName)
+        dismissKeyboard()
+        presentPickAlbumCoverViewController(with: nickname, fullName: fullName)
+    }
+    
+    private func createUserProfile(nickname: String, fullName: String) {
+        UserDefaults.standard.setNickname(nickname)
+        UserDefaults.standard.setFullName(fullName)
+    }
+    
+    private func presentPickAlbumCoverViewController(with nickname: String, fullName: String) {
+        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickname)
         
         pickAlbumCoverVC.fullName = fullName
-        pickAlbumCoverVC.nickname = nickName
+        pickAlbumCoverVC.nickname = nickname
         
-        UserDefaults.standard.setNickname(nickName)
-        UserDefaults.standard.setFullName(fullName)
-        
-        dismissKeyboard()
         navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
     }
     
@@ -99,25 +106,21 @@ extension IDInputViewController {
 // MARK: - Network
 
 extension IDInputViewController: IDInputViewControllerDelegate {
-    
-    func didEnterNickname(nickname: String, fullName: String) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { result in
-
-                switch result {
-                case .success(let isDuplicated):
-                    if isDuplicated {
-                            self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
-                    } else {
-                        self?.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
-                    }
-                case .requestErr, .pathErr, .networkFail:
-                    self?.presentErrorViewController(with: .networkError)
-                case .serverErr:
-                    self?.presentErrorViewController(with: .serverError)
-                default:
-                    break
+    func checkNicknameAndProceed(nickname: String, fullName: String) {
+        networkManager.requestNicknameCheck(nickname: nickname) { [weak self] result in
+            switch result {
+            case .success(let isDuplicated):
+                if isDuplicated {
+                    self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+                } else {
+                    self?.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
                 }
+            case .requestErr, .pathErr, .networkFail:
+                self?.presentErrorViewController(with: .networkError)
+            case .serverErr:
+                self?.presentErrorViewController(with: .serverError)
+            default:
+                break
             }
         }
     }

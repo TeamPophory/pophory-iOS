@@ -75,7 +75,7 @@ extension PickAlbumCoverViewController {
         fullName = name
     }
     
-    func didEnterNickname(nickname: String, fullName: String) {
+    func checkNicknameAndProceed(nickname: String, fullName: String) {
         self.nickname = nickname
         self.fullName = fullName
     }
@@ -107,13 +107,15 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 extension PickAlbumCoverViewController {
     private func handleSignUpResult(dto: FetchSignUpRequestDTO) {
         networkManager.requestSignUpProcess(dto: dto) { [weak self] result in
-            switch result {
-            case .success(_):
-                self?.moveToStartPophoryViewController()
-            case .networkFail:
-                self?.presentErrorViewController(with: .networkError)
-            default:
-                break
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    self?.moveToStartPophoryViewController()
+                case .networkFail:
+                    self?.presentErrorViewController(with: .networkError)
+                default:
+                    break
+                }
             }
         }
     }
