@@ -11,15 +11,11 @@ protocol PickAlbumCoverViewControllerDelegate: AnyObject {
     func didSelectAlbumButton(at index: Int)
 }
 
-typealias SignUpDelegates = NameInputViewControllerDelegate & IDInputViewControllerDelegate
-
-final class PickAlbumCoverViewController: BaseViewController, SignUpDelegates, PickAlbumCoverViewControllerDelegate {
+final class PickAlbumCoverViewController: BaseViewController, PickAlbumCoverViewControllerDelegate {
     
     // MARK: - Properties
     
     private let networkManager: AuthNetworkManager
-    
-    private var delegate: SignUpDelegates?
     
     var fullName: String?
     var nickname: String?

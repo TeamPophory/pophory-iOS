@@ -9,15 +9,11 @@ import UIKit
 
 import SnapKit
 
-protocol NameInputViewControllerDelegate: AnyObject {
-    func didEnterName(name: String)
-}
-
 final class NameInputViewController: BaseViewController {
     
     // MARK: - Properties
     
-    weak var delegate: NameInputViewControllerDelegate?
+    var onNameEntered: ((String) -> Void)?
     
     // MARK: - UI Properties
     
@@ -66,9 +62,9 @@ extension NameInputViewController {
     private func loadNextViewController(with name: String) {
         self.view.endEditing(true)
         
-        delegate?.didEnterName(name: name)
+        onNameEntered?(name)
         let idViewController = IDInputViewController(fullName: name)
-        idViewController.delegate = self.navigationController?.viewControllers.first as? IDInputViewControllerDelegate
+        
         self.navigationController?.pushViewController(idViewController, animated: true)
     }
     

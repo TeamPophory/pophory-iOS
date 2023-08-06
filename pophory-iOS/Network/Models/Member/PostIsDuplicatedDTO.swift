@@ -8,5 +8,5 @@
 import Foundation
 
 struct PostIsDuplicatedDTO: Codable {
-    let nickname: String?
+    let isDuplicated: Bool
 }

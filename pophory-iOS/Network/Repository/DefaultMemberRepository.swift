@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultMemberRepository: BaseRepository, MemberRepository {
     
-    let provider = MoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = AsyncMoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])
     
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void) {
         let api: MemberAPI
@@ -47,7 +47,7 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
             }
         }
     }
-
+    
     
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void) {
         provider.request(.patchUserInfo) { result in
@@ -63,25 +63,17 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func requestDuplicateNicknameCheck(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
-        provider.request(.checkDuplicateNickname(nickname: nickname)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let responseObject = try JSONDecoder().decode([String: Bool].self, from: response.data)
-                    if let isDuplicated = responseObject["isDuplicated"] {
-                        completion(.success(isDuplicated))
-                    } else {
-                        completion(.success(false))
-                    }
-                } catch {
-                    completion(.pathErr)
-                }
-                
-            case .failure(let err):
-                print(err)
-                completion(.networkFail)
-            }
+    func requestDuplicateNicknameCheck(nickname: String) async throws -> Bool {
+        let response: Response
+        
+        if #available(iOS 15.0, *) {
+            response = try await provider.request(.checkDuplicateNickname(nickname: nickname))
+            print("Raw response data: \(String(data: response.data, encoding: .utf8) ?? "No data")")
+        } else {
+            fatalError("Fallback implementation for iOS < 15 is not provided")
         }
+        
+        let boolResponse = try response.map(PostIsDuplicatedDTO.self)
+        return boolResponse.isDuplicated
     }
 }

@@ -9,19 +9,15 @@ import UIKit
 
 import SnapKit
 
-protocol IDInputViewControllerDelegate: AnyObject {
-    func checkNicknameAndProceed(nickname: String, fullName: String)
-}
-
 final class IDInputViewController: BaseViewController {
     
     // MARK: - Properties
     
     private let networkManager: AuthNetworkManager
     
-    weak var delegate: IDInputViewControllerDelegate?
-    
     var fullName: String?
+    
+    var onNicknameEntered: ((String, String) -> Void)?
     
     // MARK: - UI Properties
     
@@ -33,7 +29,6 @@ final class IDInputViewController: BaseViewController {
         self.fullName = fullName
         self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -70,10 +65,9 @@ extension IDInputViewController {
     
     // MARK: - @objc
     
-    @objc func nextButtonOnClick() {
+    private func nextButtonOnTouchUpInsideAsync() async {
         guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
-        delegate?.checkNicknameAndProceed(nickname: nickname, fullName: fullName)
-        checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+        await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
     }
     
     // MARK: - Private Functions
@@ -99,29 +93,30 @@ extension IDInputViewController {
     }
     
     private func handleNextButton() {
-        iDInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
+        let nextButtonAction = UIAction { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                await self.nextButtonOnTouchUpInsideAsync()
+            }
+        }
+        iDInputView.nextButton.addAction(nextButtonAction, for: .touchUpInside)
     }
 }
 
 // MARK: - Network
 
-extension IDInputViewController: IDInputViewControllerDelegate {
-    func checkNicknameAndProceed(nickname: String, fullName: String) {
-        networkManager.requestNicknameCheck(nickname: nickname) { [weak self] result in
-            switch result {
-            case .success(let isDuplicated):
-                if isDuplicated {
-                    self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
-                } else {
-                    self?.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
-                }
-            case .requestErr, .pathErr, .networkFail:
-                self?.presentErrorViewController(with: .networkError)
-            case .serverErr:
-                self?.presentErrorViewController(with: .serverError)
-            default:
-                break
+extension IDInputViewController {
+    func checkNicknameAndProceed(nickname: String, fullName: String) async {
+        do {
+            let isDuplicated = try await networkManager.requestNicknameCheck(nickname: nickname)
+
+            if isDuplicated {
+                self.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+            } else {
+                self.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
             }
+        } catch {
+            self.presentErrorViewController(with: .serverError)
         }
     }
 }

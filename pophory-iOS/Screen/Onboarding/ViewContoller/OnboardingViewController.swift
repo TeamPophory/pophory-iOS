@@ -143,9 +143,9 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                     case .requestErr(let message):
                         print("Error sending Identity Token to server: \(message)")
                     case .networkFail:
-                        print("Network error")
+                        self.presentErrorViewController(with: .networkError)
                     case .serverErr, .pathErr:
-                        print("Server or Path error")
+                        self.presentErrorViewController(with: .serverError)
                     default:
                         break
                     }

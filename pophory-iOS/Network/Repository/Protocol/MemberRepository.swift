@@ -11,5 +11,5 @@ protocol MemberRepository {
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void)
     func submitSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void)
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void)
-    func requestDuplicateNicknameCheck(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void)
+    func requestDuplicateNicknameCheck(nickname: String) async throws -> Bool
 }

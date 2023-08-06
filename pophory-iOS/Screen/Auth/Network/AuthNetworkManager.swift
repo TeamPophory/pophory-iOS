@@ -11,19 +11,14 @@ class AuthNetworkManager {
     
     private let memberRepository: MemberRepository = DefaultMemberRepository()
     
-    func requestNicknameCheck(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.memberRepository.requestDuplicateNicknameCheck(nickname: nickname) { result in
-                completion(result)
-            }
-        }
+    func requestNicknameCheck(nickname: String) async throws -> Bool {
+        return try await memberRepository.requestDuplicateNicknameCheck(nickname: nickname)
     }
     
     func requestSignUpProcess(dto: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
-        DispatchQueue.main.async { [weak self] in
-            self?.memberRepository.submitSignUp(body: dto) { result in
-                completion(result)
-            }
+        memberRepository.submitSignUp(body: dto) { result in
+            completion(result)
         }
     }
 }
+
