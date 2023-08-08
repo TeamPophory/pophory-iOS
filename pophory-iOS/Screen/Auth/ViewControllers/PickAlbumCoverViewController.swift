@@ -11,7 +11,7 @@ protocol PickAlbumCoverViewControllerDelegate: AnyObject {
     func didSelectAlbumButton(at index: Int)
 }
 
-final class PickAlbumCoverViewController: BaseViewController, PickAlbumCoverViewControllerDelegate {
+final class PickAlbumCoverViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -40,7 +40,6 @@ final class PickAlbumCoverViewController: BaseViewController, PickAlbumCoverView
         super.viewDidLoad()
         
         setupDelegate()
-        handleNextButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,9 +61,25 @@ extension PickAlbumCoverViewController: Navigatable {
     var navigationBarTitleText: String? { "회원가입" }
 }
 
+extension PickAlbumCoverViewController: NextButtonDelegate {
+    func onClickNextButton(sender: UIView) {
+        guard let _ = sender as? PickAlbumCoverView else { return }
+        
+        if let fullName = fullName, let nickname = nickname {
+            let selectedIndex = selectedAlbumCoverIndex
+            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
+            
+            Task {
+                await handleSignUpResult(dto: signUpDTO)
+            }
+        }
+    }
+}
+
 extension PickAlbumCoverViewController {
     private func setupDelegate() {
-        self.pickAlbumCoverView.pickAlbumDelegate = self
+        pickAlbumCoverView.delegate = self
+        pickAlbumCoverView.pickAlbumDelegate = self
     }
     
     func didEnterName(name: String) {
@@ -75,24 +90,6 @@ extension PickAlbumCoverViewController {
     func checkNicknameAndProceed(nickname: String, fullName: String) {
         self.nickname = nickname
         self.fullName = fullName
-    }
-    
-    private func onClickNextButtonAsync() async {
-        if let fullName = fullName, let nickname = nickname {
-            let selectedIndex = selectedAlbumCoverIndex
-            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
-            await handleSignUpResult(dto: signUpDTO)
-        }
-    }
-    
-    private func handleNextButton() {
-        let nextButtonAction = UIAction { [weak self] _ in
-            guard let self = self else { return }
-            Task {
-                await self.onClickNextButtonAsync()
-            }
-        }
-        pickAlbumCoverView.nextButton.addAction(nextButtonAction, for: .touchUpInside)
     }
 }
 

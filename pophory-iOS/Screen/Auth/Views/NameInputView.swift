@@ -13,6 +13,8 @@ class NameInputView: BaseSignUpView {
     
     var maxCharCount: Int = 6
     
+    // MARK: - UI Properties
+    
     // TODO: Private -> Delegate 패턴 구현
     
     lazy var bodyStackView: UIStackView = {

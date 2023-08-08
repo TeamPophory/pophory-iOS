@@ -44,7 +44,7 @@ final class IDInputViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        handleNextButton()
+        setupDelegate()
         hideKeyboard()
     }
     
@@ -61,10 +61,21 @@ extension IDInputViewController: Navigatable {
     var navigationBarTitleText: String? { "회원가입" }
 }
 
-extension IDInputViewController {
-    private func onClickNextButtonAsync() async {
+extension IDInputViewController: NextButtonDelegate {
+    func onClickNextButton(sender: UIView) {
+        guard let _ = sender as? IDInputView else { return }
+        
         guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
-        await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+        
+        Task {
+            await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+        }
+    }
+}
+
+extension IDInputViewController {
+    private func setupDelegate() {
+        iDInputView.delegate = self
     }
     
     private func goToPickAlbumCoverViewController(with nickname: String, fullName: String) {
@@ -85,16 +96,6 @@ extension IDInputViewController {
         pickAlbumCoverVC.nickname = nickname
         
         navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
-    }
-    
-    private func handleNextButton() {
-        let nextButtonAction = UIAction { [weak self] _ in
-            guard let self = self else { return }
-            Task {
-                await self.onClickNextButtonAsync()
-            }
-        }
-        iDInputView.nextButton.addAction(nextButtonAction, for: .touchUpInside)
     }
 }
 

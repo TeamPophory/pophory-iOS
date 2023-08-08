@@ -11,6 +11,10 @@ import SnapKit
 
 class BaseSignUpView: UIView {
     
+    // MARK: - Properties
+    
+    weak var delegate: NextButtonDelegate?
+    
     // MARK: - UI Properties
     
     lazy var headerLabel: UILabel = {
@@ -52,7 +56,7 @@ class BaseSignUpView: UIView {
 
         setupIndicatorViews()
         setupViews()
-        setupNextButtonEnabled(false)
+        configureNextButton()
     }
     
     required init?(coder: NSCoder) {
@@ -107,11 +111,21 @@ extension BaseSignUpView {
         }
     }
     
+    // MARK: - @objc
+    
+    @objc func onClickNextButton() {
+        delegate?.onClickNextButton(sender: self)
+    }
+    
+    // MARK: - Methods
+    
+    private func configureNextButton() {
+        nextButton.addTarget(self, action: #selector(onClickNextButton), for: .touchUpInside)
+    }
+    
     func setupNextButtonEnabled(_ isEnabled: Bool) {
         nextButton.isEnabled = isEnabled
     }
-    
-    // MARK: - Private Methods
     
     private func setupIndicatorViews() {
         for view in indicatorViews {
