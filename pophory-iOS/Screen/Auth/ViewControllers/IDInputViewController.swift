@@ -63,14 +63,10 @@ extension IDInputViewController: Navigatable {
 
 extension IDInputViewController {
     
-    // MARK: - @objc
-    
-    private func nextButtonOnTouchUpInsideAsync() async {
+    private func onClickNextButtonAsync() async {
         guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
     }
-    
-    // MARK: - Private Functions
     
     private func goToPickAlbumCoverViewController(with nickname: String, fullName: String) {
         createUserProfile(nickname: nickname, fullName: fullName)
@@ -96,7 +92,7 @@ extension IDInputViewController {
         let nextButtonAction = UIAction { [weak self] _ in
             guard let self = self else { return }
             Task {
-                await self.nextButtonOnTouchUpInsideAsync()
+                await self.onClickNextButtonAsync()
             }
         }
         iDInputView.nextButton.addAction(nextButtonAction, for: .touchUpInside)

@@ -6,17 +6,10 @@
 //
 
 import UIKit
+
 import SnapKit
 
-protocol BaseSignUpViewDelegate: AnyObject {
-    func OnClickBaseNextButton()
-}
-
 class BaseSignUpView: UIView {
-    
-    // MARK: - Properties
-    
-    weak var delegate: BaseSignUpViewDelegate?
     
     // MARK: - UI Properties
     
@@ -57,7 +50,6 @@ class BaseSignUpView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        setupBaseNextButton()
         setupIndicatorViews()
         setupViews()
         setupNextButtonEnabled(false)
@@ -119,17 +111,7 @@ extension BaseSignUpView {
         nextButton.isEnabled = isEnabled
     }
     
-    // MARK: - @objc
-    
-    @objc func OnClickBaseNextButton() {
-        self.delegate?.OnClickBaseNextButton()
-    }
-    
     // MARK: - Private Methods
-    
-    private func setupBaseNextButton() {
-        nextButton.addTarget(self, action: #selector(OnClickBaseNextButton), for: .touchUpInside)
-    }
     
     private func setupIndicatorViews() {
         for view in indicatorViews {
