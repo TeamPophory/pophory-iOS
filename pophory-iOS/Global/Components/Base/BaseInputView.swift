@@ -114,7 +114,7 @@ extension BaseSignUpView {
     // MARK: - @objc
     
     @objc func onClickNextButton() {
-        delegate?.onClickNextButton(sender: self)
+        delegate?.onClickNextButton()
     }
     
     // MARK: - Methods

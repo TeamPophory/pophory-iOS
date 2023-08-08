@@ -11,7 +11,11 @@ import Moya
 
 final class DefaultMemberRepository: BaseRepository, MemberRepository {
     
-    let provider = AsyncMoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider: AsyncMoyaProvider<MemberAPI>
+
+    init(provider: AsyncMoyaProvider<MemberAPI> = AsyncMoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])) {
+        self.provider = provider
+    }
     
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void) {
         let api: MemberAPI

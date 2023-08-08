@@ -61,35 +61,31 @@ extension PickAlbumCoverViewController: Navigatable {
     var navigationBarTitleText: String? { "회원가입" }
 }
 
-extension PickAlbumCoverViewController: NextButtonDelegate {
-    func onClickNextButton(sender: UIView) {
-        guard let _ = sender as? PickAlbumCoverView else { return }
-        
-        if let fullName = fullName, let nickname = nickname {
-            let selectedIndex = selectedAlbumCoverIndex
-            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
-            
-            Task {
-                await handleSignUpResult(dto: signUpDTO)
-            }
-        }
-    }
-}
-
 extension PickAlbumCoverViewController {
     private func setupDelegate() {
         pickAlbumCoverView.delegate = self
         pickAlbumCoverView.pickAlbumDelegate = self
     }
-    
-    func didEnterName(name: String) {
-        fullName = name
-    }
-    
-    //TODO: 함수명 변경
-    func checkNicknameAndProceed(nickname: String, fullName: String) {
-        self.nickname = nickname
-        self.fullName = fullName
+}
+
+// MARK: - NextButtonDelegate
+
+extension PickAlbumCoverViewController: NextButtonDelegate {
+    func onClickNextButton() {
+        guard let fullName = fullName,
+              let nickname = nickname else { return }
+        
+        let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedAlbumCoverIndex)
+        
+        Task {
+            let signUpResult = await handleSignUpResult(dto: signUpDTO)
+            
+            if signUpResult {
+                self.moveToStartPophoryViewController()
+            } else {
+                self.presentErrorViewController(with: .networkError)
+            }
+        }
     }
 }
 
@@ -109,16 +105,12 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 // MARK: - Network
 
 extension PickAlbumCoverViewController {
-    private func handleSignUpResult(dto: FetchSignUpRequestDTO) async {
+    private func handleSignUpResult(dto: FetchSignUpRequestDTO) async -> Bool{
         do {
             try await networkManager.requestSignUpProcess(dto: dto)
-            DispatchQueue.main.async {
-                self.moveToStartPophoryViewController()
-            }
+            return true
         } catch {
-            DispatchQueue.main.async {
-                self.presentErrorViewController(with: .serverError)
-            }
+            return false
         }
     }
 }

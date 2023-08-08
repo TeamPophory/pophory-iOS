@@ -17,8 +17,6 @@ final class IDInputViewController: BaseViewController {
     
     var fullName: String?
     
-    var onNicknameEntered: ((String, String) -> Void)?
-    
     // MARK: - UI Properties
     
     private let iDInputView = IDInputView()
@@ -39,13 +37,13 @@ final class IDInputViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        hideKeyboard()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupDelegate()
-        hideKeyboard()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,13 +60,17 @@ extension IDInputViewController: Navigatable {
 }
 
 extension IDInputViewController: NextButtonDelegate {
-    func onClickNextButton(sender: UIView) {
-        guard let _ = sender as? IDInputView else { return }
+    func onClickNextButton() {
         
         guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         
         Task {
-            await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+            let isDuplicated = await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+            if isDuplicated {
+                self.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+            } else {
+                self.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
+            }
         }
     }
 }
@@ -102,17 +104,12 @@ extension IDInputViewController {
 // MARK: - Network
 
 extension IDInputViewController {
-    func checkNicknameAndProceed(nickname: String, fullName: String) async {
+    func checkNicknameAndProceed(nickname: String, fullName: String) async -> Bool {
         do {
             let isDuplicated = try await networkManager.requestNicknameCheck(nickname: nickname)
-
-            if isDuplicated {
-                self.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
-            } else {
-                self.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
-            }
+            return isDuplicated
         } catch {
-            self.presentErrorViewController(with: .serverError)
+            return false
         }
     }
 }

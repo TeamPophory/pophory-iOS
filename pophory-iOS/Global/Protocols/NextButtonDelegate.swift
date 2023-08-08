@@ -8,6 +8,6 @@
 import UIKit
 
 public protocol NextButtonDelegate: AnyObject {
-    func onClickNextButton(sender: UIView)
+    func onClickNextButton()
 }
 
