@@ -40,6 +40,7 @@ final class PickAlbumCoverViewController: BaseViewController, PickAlbumCoverView
         super.viewDidLoad()
         
         setupDelegate()
+        handleNextButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +64,6 @@ extension PickAlbumCoverViewController: Navigatable {
 
 extension PickAlbumCoverViewController {
     private func setupDelegate() {
-        self.pickAlbumCoverView.delegate = self
         self.pickAlbumCoverView.pickAlbumDelegate = self
     }
     
@@ -71,9 +71,28 @@ extension PickAlbumCoverViewController {
         fullName = name
     }
     
+    //TODO: 함수명 변경
     func checkNicknameAndProceed(nickname: String, fullName: String) {
         self.nickname = nickname
         self.fullName = fullName
+    }
+    
+    private func onClickNextButtonAsync() async {
+        if let fullName = fullName, let nickname = nickname {
+            let selectedIndex = selectedAlbumCoverIndex
+            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
+            await handleSignUpResult(dto: signUpDTO)
+        }
+    }
+    
+    private func handleNextButton() {
+        let nextButtonAction = UIAction { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                await self.onClickNextButtonAsync()
+            }
+        }
+        pickAlbumCoverView.nextButton.addAction(nextButtonAction, for: .touchUpInside)
     }
 }
 
@@ -82,14 +101,6 @@ extension PickAlbumCoverViewController {
 extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
     func didSelectAlbumButton(at index: Int) {
         selectedAlbumCoverIndex = index
-    }
-    
-    func OnClickBaseNextButton() {
-        if let fullName = fullName, let nickname = nickname {
-            let selectedIndex = selectedAlbumCoverIndex
-            let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedIndex)
-            handleSignUpResult(dto: signUpDTO)
-        }
     }
     
     func moveToStartPophoryViewController() {
@@ -101,17 +112,15 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 // MARK: - Network
 
 extension PickAlbumCoverViewController {
-    private func handleSignUpResult(dto: FetchSignUpRequestDTO) {
-        networkManager.requestSignUpProcess(dto: dto) { [weak self] result in
+    private func handleSignUpResult(dto: FetchSignUpRequestDTO) async {
+        do {
+            try await networkManager.requestSignUpProcess(dto: dto)
             DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    self?.moveToStartPophoryViewController()
-                case .networkFail:
-                    self?.presentErrorViewController(with: .networkError)
-                default:
-                    break
-                }
+                self.moveToStartPophoryViewController()
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.presentErrorViewController(with: .serverError)
             }
         }
     }

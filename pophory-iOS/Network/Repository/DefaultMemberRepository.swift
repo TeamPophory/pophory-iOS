@@ -37,17 +37,15 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func submitSignUp(body: FetchSignUpRequestDTO, completion: @escaping (NetworkResult<Void>) -> Void) {
-        provider.request(.signUp(body: body)) { result in
-            switch result {
-            case.success:
-                completion(.success(()))
-            case .failure(let err):
-                print(err)
+    func submitSignUp(body: FetchSignUpRequestDTO) async throws {
+        if #available(iOS 15.0, *) {
+            do {
+                let response = try await provider.request(.signUp(body: body))
+            } catch {
+                throw error
             }
         }
     }
-    
     
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void) {
         provider.request(.patchUserInfo) { result in
@@ -68,9 +66,8 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         
         if #available(iOS 15.0, *) {
             response = try await provider.request(.checkDuplicateNickname(nickname: nickname))
-            print("Raw response data: \(String(data: response.data, encoding: .utf8) ?? "No data")")
         } else {
-            fatalError("Fallback implementation for iOS < 15 is not provided")
+            fatalError("iOS 15버전으로 올립시다")
         }
         
         let boolResponse = try response.map(PostIsDuplicatedDTO.self)

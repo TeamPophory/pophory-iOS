@@ -172,8 +172,7 @@ extension NameInputView {
 
 // MARK: - UITextFieldDelegate
 
-extension NameInputView: UITextFieldDelegate {
-    
+extension NameInputView: UITextFieldDelegate {    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor

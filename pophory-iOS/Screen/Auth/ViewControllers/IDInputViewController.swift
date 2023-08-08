@@ -62,7 +62,6 @@ extension IDInputViewController: Navigatable {
 }
 
 extension IDInputViewController {
-    
     private func onClickNextButtonAsync() async {
         guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         await checkNicknameAndProceed(nickname: nickname, fullName: fullName)

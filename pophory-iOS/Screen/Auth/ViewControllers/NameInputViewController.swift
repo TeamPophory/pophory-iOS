@@ -49,16 +49,11 @@ extension NameInputViewController: Navigatable {
 }
 
 extension NameInputViewController {
-    
-    // MARK: - @objc
-    
-    @objc private func nextButtonOnClick() {
+    @objc private func onClickNextButton() {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         loadNextViewController(with: name)
     }
-    
-    // MARK: - Private Functions
-    
+
     private func loadNextViewController(with name: String) {
         self.view.endEditing(true)
         
@@ -69,6 +64,6 @@ extension NameInputViewController {
     }
     
     private func handleNextButton() {
-        nameInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
+        nameInputView.nextButton.addTarget(self, action: #selector(onClickNextButton), for: .touchUpInside)
     }
 }
