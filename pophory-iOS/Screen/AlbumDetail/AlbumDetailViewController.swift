@@ -33,7 +33,7 @@ final class AlbumDetailViewController: BaseViewController {
         didSet {
             guard let albumPhotoList = albumPhotoList else { return }
             
-            albumPhotoCount = albumPhotoList.photos.count
+            albumPhotoCount = albumPhotoList.photos.filter{$0.imageUrl != ""}.count
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
@@ -216,8 +216,6 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
         let photoDetailViewController = PhotoDetailViewController()
         guard let photoList = albumPhotoList?.photos else { return }
         
-        // MARK: - "" 빈배열 리팩토링
-        if photoList[indexPath.row].imageUrl == "" { return }
         let photoType = checkPhotoCellType(width: photoList[indexPath.row].width ,
                                            height: photoList[indexPath.row].height )
         photoDetailViewController.setData(photoID: photoList[indexPath.row].id,
