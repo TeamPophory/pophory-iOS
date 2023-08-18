@@ -25,6 +25,9 @@ final class AddPhotoView: UIView {
             }
         }
     }
+    
+    // iphone 13 mini 기준 verticle 이미지 height
+    private var imageConstraint: CGFloat = 285
         
     // MARK: - UI Properties
     
@@ -149,15 +152,27 @@ extension AddPhotoView {
     
     func setupVerticle() {
         photo.snp.remakeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(94)
+            var width: CGFloat = 188
+            // 세로 제약조건을 superView에 20씩 걸어놓고 사진의 원본 비율에 따라 width를 구함
+            if let imageWidth = photo.image?.size.width, let imageHeight = photo.image?.size.height {
+                width = imageWidth * (imageConstraint / imageHeight)
+            }
+            $0.width.equalTo(width)
+            $0.centerX.equalToSuperview()
             $0.top.bottom.equalToSuperview().inset(20)
         }
     }
     
     func setupHorizontal() {
         photo.snp.remakeConstraints {
+            var height: CGFloat = 188
+            // 가로 제약조건을 superView에 45씩 걸어놓고 사진의 원본 비율에 따라 height를 구함
+            if let imageWidth = photo.image?.size.width, let imageHeight = photo.image?.size.height {
+                height = imageHeight * (imageConstraint / imageWidth)
+            }
+            $0.height.equalTo(height)
+            $0.centerY.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(45)
-            $0.top.bottom.equalToSuperview().inset(69)
         }
     }
 }
