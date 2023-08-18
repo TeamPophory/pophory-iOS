@@ -224,7 +224,8 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
                                           imageUrl: photoList[indexPath.row].imageUrl ,
                                           takenAt: photoList[indexPath.row].takenAt ,
                                           studio: photoList[indexPath.row].studio ,
-                                          type: photoType)
+                                          type: photoType,
+                                          shareID: photoList[indexPath.row].shareId)
         
         navigationController?.pushViewController(photoDetailViewController, animated: true)
     }

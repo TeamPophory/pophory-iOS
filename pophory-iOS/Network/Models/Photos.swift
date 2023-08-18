@@ -23,6 +23,7 @@ struct Photo: Codable {
     let studio, takenAt: String
     let imageUrl: String
     let width, height: Int
+    let shareId: String
     
     init(
         id: Int
@@ -33,5 +34,6 @@ struct Photo: Codable {
         self.imageUrl = ""
         self.width = 0
         self.height = 0
+        self.shareId = ""
     }
 }

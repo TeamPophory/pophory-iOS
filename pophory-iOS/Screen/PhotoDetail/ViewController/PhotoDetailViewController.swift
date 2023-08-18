@@ -7,6 +7,8 @@
 
 import UIKit
 
+import FirebaseDynamicLinks
+
 final class PhotoDetailViewController: BaseViewController, Navigatable, ShareButtonDisplayable {
     
     // MARK: - Properties
@@ -16,6 +18,7 @@ final class PhotoDetailViewController: BaseViewController, Navigatable, ShareBut
     private var takenAt: String?
     private var studio: String?
     private var photoType: PhotoCellType?
+    private var shareID: String?
     
     // MARK: - UI Properties
     
@@ -56,26 +59,29 @@ extension PhotoDetailViewController {
     
     @objc func shareButtonOnClick() {
         
-        guard let image = image else {
-            return
-        }
+        guard let shareId = shareID else { return }
+        guard let link = URL(string: "https://pophory.page.link/share?u=" + shareId) else { return }
+        let dynamicLinkComponents = DynamicLinkComponents(link: link, domainURIPrefix: "https://pophory.page.link")
         
-        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        dynamicLinkComponents?.iOSParameters = DynamicLinkIOSParameters(bundleID: "Team.pophory-iOS")
+        dynamicLinkComponents?.iOSParameters?.appStoreID = "6451004060"
+        dynamicLinkComponents?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.teampophory.pophory")
         
-        activityViewController.completionWithItemsHandler = { [weak self] (activityType, completed, _, error) in
-            // 공유 완료 후 필요한 처리
+        let longDynamic = dynamicLinkComponents?.url
+        
+        let activityVC = UIActivityViewController(activityItems: [longDynamic?.absoluteString], applicationActivities: nil)
+        
+        activityVC.completionWithItemsHandler = { [weak self] (activityType, completed, _, error) in
             if completed {
                 print("사진 공유 완료")
             }
-            
             if let error = error {
                 print("사진 공유 오류: \(error.localizedDescription)")
             }
-            
             self?.dismiss(animated: true, completion: nil)
         }
         
-        present(activityViewController, animated: true, completion: nil)
+        present(activityVC, animated: true, completion: nil)
     }
     
     private func deletePhoto() {
@@ -89,12 +95,13 @@ extension PhotoDetailViewController {
         dismiss(animated: false)
     }
     
-    func setData(photoID: Int, imageUrl: String, takenAt: String, studio: String, type: PhotoCellType) {
+    func setData(photoID: Int, imageUrl: String, takenAt: String, studio: String, type: PhotoCellType, shareID: String) {
         self.photoID = photoID
         self.image = imageUrl
         self.takenAt = takenAt
         self.studio = studio
         self.photoType = type
+        self.shareID = shareID
     }
 }
 
