@@ -19,6 +19,7 @@ protocol PHPickerProtocol: AnyObject {
     func presentDenidAlert()
     func presentLimitedAlert()
     func presentLimitedImageView()
+    func presentOverSize()
 }
 
 class BasePHPickerViewController {
@@ -28,22 +29,22 @@ class BasePHPickerViewController {
     weak var delegate: PHPickerProtocol?
     
     var pickerImage: UIImage?
-
+    
     private var fetchResult = PHFetchResult<PHAsset>()
     private var canAccessImages: [UIImage] = []
     private var thumbnailSize: CGSize {
         let scale = UIScreen.main.scale
         return CGSize(width: (UIScreen.main.bounds.width / 3) * scale, height: 100 * scale)
     }
-
+    
     lazy var phpickerViewController: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1 // 최대로 선택할 사진 및 영상의 개수
-
+        
         // 라이브에 접근할 때 적용될 필터
         /// images, livePhotos, videos, any 존재함
         configuration.filter = .images
-
+        
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         return picker
@@ -74,7 +75,7 @@ class BasePHPickerViewController {
         let cancle = UIAlertAction(title: "현재 선택 항목 유지", style: .default) { (UIAlertAction) in
             self.delegate?.presentLimitedImageView()
         }
-
+        
         alert.addAction(confirm)
         alert.addAction(cancle)
         
@@ -82,7 +83,7 @@ class BasePHPickerViewController {
     }()
     
     // MARK: - Method
-
+    
     func setupImagePermission() {
         let requiredAccessLevel: PHAccessLevel = .readWrite
         PHPhotoLibrary.requestAuthorization(for: requiredAccessLevel) { authorizationStatus in
@@ -100,18 +101,18 @@ class BasePHPickerViewController {
     }
     
     func fetchLimitedImages() -> [UIImage] {
-
+        
         self.canAccessImages = []
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
-
+        
         let fetchOptions = PHFetchOptions()
         self.fetchResult = PHAsset.fetchAssets(with: fetchOptions)
         self.fetchResult.enumerateObjects { (asset, _, _) in
             PHImageManager().requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .aspectFill, options: requestOptions) { (image, info) in
                 guard let image = image else { return }
                 self.canAccessImages.append(image)
-
+                
             }
         }
         
@@ -127,17 +128,22 @@ extension BasePHPickerViewController: PHPickerViewControllerDelegate {
     public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         picker.dismiss(animated: true, completion: nil) // 갤러리 dismiss
-        
+                
         let itemProvider = results.first?.itemProvider // result의 첫 번째 배열의 값 - ‼️ itemProvider
         
         if let itemProvider = itemProvider,                     // itemProvider가 존재하고,
            itemProvider.canLoadObject(ofClass: UIImage.self) { // itemProvider가 불러온 이미지 값 가져올 수 있다면 실행
             
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                
+                                
                 guard let selectedImage = image as? UIImage else { return }
-                self.pickerImage = selectedImage
-                self.delegate?.setupPicker()
+                print(selectedImage.getSizeIn(.megabyte))
+                if selectedImage.getSizeIn(.megabyte) <= 3.0 {
+                    self.pickerImage = selectedImage
+                    self.delegate?.setupPicker()
+                } else {
+                    self.delegate?.presentOverSize()
+                }
             }
         }
     }
