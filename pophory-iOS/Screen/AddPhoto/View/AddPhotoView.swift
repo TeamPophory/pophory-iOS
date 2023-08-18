@@ -67,32 +67,6 @@ final class AddPhotoView: UIView {
         return buttonBuilder.build()
     }()
     
-    private let albumStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .leading
-        return stackView
-    }()
-    
-    private let albumTitle: UILabel = {
-        let label = UILabel()
-        label.text = "내 앨범"
-        label.font = .head3
-        label.textAlignment = .left
-        return label
-    }()
-    let albumCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 70, height: 95)
-        flowLayout.minimumLineSpacing = 8
-        flowLayout.scrollDirection = .horizontal
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        view.register(PhotoAlbumCollectionViewCell.self, forCellWithReuseIdentifier: PhotoAlbumCollectionViewCell.identifier)
-        return view
-    }()
-    
     let dateStackView: PhotoInfoStackView = {
         let stackView = PhotoInfoStackView()
         stackView.setupTitle(title: "찍은 날짜")
@@ -109,14 +83,6 @@ final class AddPhotoView: UIView {
         stackView.setupExplain(explain: "사진관을 선택해줘")
         return stackView
     }()
-//    let friendsStackView: PhotoInfoStackView = {
-//        let stackView = PhotoInfoStackView()
-//        stackView.setupTitle(title: "함께 찍은 친구")
-//        stackView.setupSelected(selected: false)
-//        stackView.setupIcon(icon: ImageLiterals.searchIcon)
-//        stackView.setupExplain(explain: "열심히 준비중이야!")
-//        return stackView
-//    }()
     
     // MARK: - Life Cycle
     
@@ -156,7 +122,7 @@ extension AddPhotoView {
             $0.edges.width.equalToSuperview()
         }
         
-        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView])
+        photoInfoStackView.addArrangedSubviews([dateStackView, studioStackView])
         
         scrollContentsView.addSubviews([photoView, photoInfoStackView])
         photoView.addSubview(photo)
@@ -174,13 +140,6 @@ extension AddPhotoView {
         photo.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(94)
             $0.top.bottom.equalToSuperview().inset(20)
-        }
-        
-        albumStackView.addArrangedSubviews([albumTitle, albumCollectionView])
-        
-        albumCollectionView.snp.makeConstraints {
-            $0.height.equalTo(95)
-            $0.leading.trailing.equalToSuperview()
         }
                 
         photoAddButton.addCenterConstraint(to: photoAddButtonView)

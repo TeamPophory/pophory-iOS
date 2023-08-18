@@ -33,7 +33,6 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
-            rootView.albumCollectionView.reloadData()
             if let albums = albumList?.albums {
                 if albums.count != 0 {
                     self.albumID = albums[0].id
@@ -73,7 +72,6 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         super.viewDidLoad()
         
         setupTarget()
-        setupDelegate()
         networkManager.requestGetPresignedURLAPI() { [weak self] presignedURL in
             self?.presignedURL = presignedURL
         }
@@ -134,10 +132,6 @@ extension AddPhotoViewController {
         rootView.photoAddButton.addTarget(self, action: #selector(onclickAddPhotoButton), for: .touchUpInside)
     }
     
-    private func setupDelegate() {
-        rootView.albumCollectionView.dataSource = self
-    }
-    
     private func goToHome() {
         dismiss(animated: false)
         navigationController?.popViewController(animated: true)
@@ -149,27 +143,6 @@ extension AddPhotoViewController {
         rootView.photo.image = forImage
         rootView.photoType = forType
         photoImage = forImage ?? UIImage()
-    }
-}
-
-// MARK: - UICollectionView Delegate
-
-extension AddPhotoViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = albumList?.albums?.count else { return 0 }
-        return count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
-        if let albumCoverInt = albumList?.albums?[indexPath.item].albumCover {
-            cell.configureCell(image: ImageLiterals.albumCoverList[albumCoverInt])
-        }
-        if indexPath.item == 0 {
-            cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-        }
-        return cell
     }
 }
 
