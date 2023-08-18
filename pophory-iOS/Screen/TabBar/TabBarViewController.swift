@@ -21,7 +21,7 @@ final class TabBarController: UITabBarController {
     private let myPageViewController = MypageViewController()
     
     private let addPhotoViewController = AddPhotoViewController()
-    private let imagePHPViewController = BasePHPickerViewController()
+    private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: Life Cycle
@@ -140,6 +140,8 @@ extension TabBarController: PHPickerProtocol {
     
     func presentImageLibrary() {
         DispatchQueue.main.async {
+            self.imagePHPViewController = BasePHPickerViewController()
+            self.imagePHPViewController.delegate = self
             self.present(self.imagePHPViewController.phpickerViewController, animated: true)
         }
     }
