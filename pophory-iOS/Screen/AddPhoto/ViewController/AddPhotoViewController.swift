@@ -11,7 +11,7 @@ import Moya
 import SnapKit
 
 protocol DateDataBind: AnyObject{
-    func dateDataBind(text: String, forPost: String)
+    func dateDataBind(text: String)
 }
 
 protocol StudioDataBind: AnyObject{
@@ -88,7 +88,9 @@ extension AddPhotoViewController {
         
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 340)
         customModalVC.transitioningDelegate = customTransitionDelegate
+        
         customModalVC.delegate = self
+        customModalVC.setPickerDate(fordate: DateManager.stringToDate(date: rootView.dateStackView.getExplain()))
         present(customModalVC, animated: true, completion: nil)
     }
     
@@ -150,10 +152,10 @@ extension AddPhotoViewController {
 
 extension AddPhotoViewController: DateDataBind, StudioDataBind {
     
-    func dateDataBind(text: String, forPost: String) {
+    func dateDataBind(text: String) {
         rootView.dateStackView.setupExplain(explain: text)
         rootView.dateStackView.setupSelected(selected: true)
-        dateTaken = forPost
+        dateTaken = text
     }
     
     func studioDataBind(text: String, forIndex: Int) {

@@ -43,7 +43,14 @@ extension CalendarModalViewController {
     // MARK: - @objc
     
     @objc func onclickCalendar() {
-        delegate?.dateDataBind(text:DateManager.dateToString(date: calendar.date), forPost: DateManager.dateToString(date: calendar.date))
+        delegate?.dateDataBind(text:DateManager.dateToString(date: calendar.date))
         dismiss(animated: true)
+    }
+    
+    // MARK: - method
+    
+    func setPickerDate(fordate: Date?) {
+        guard let date = fordate else { return }
+        calendar.date = date
     }
 }

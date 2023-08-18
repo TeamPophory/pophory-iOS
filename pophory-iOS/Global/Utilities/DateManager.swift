@@ -18,4 +18,15 @@ class DateManager {
         
         return dateFormat
     }
+    
+    static func stringToDate(date: String?) -> Date? {
+        
+        let dayformatter = DateFormatter()
+        dayformatter.dateFormat = "yyyy.MM.dd"
+        
+        guard let date = date else { return nil }
+        
+        let dateFormat = dayformatter.date(from: date)
+        return dateFormat
+    }
 }
