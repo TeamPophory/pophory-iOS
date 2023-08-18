@@ -18,11 +18,9 @@ class StudioCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                cellView.backgroundColor = .pophoryBlack
-                cellLabel.textColor = .pophoryWhite
+                selectedCell()
             } else {
-                cellView.backgroundColor = .pophoryGray200
-                cellLabel.textColor = .pophoryGray500
+                unSelectedCell()
             }
         }
     }
@@ -80,5 +78,15 @@ extension StudioCollectionViewCell {
     
     func configureCell(text: String) {
         cellLabel.text = text
+    }
+    
+    func selectedCell() {
+        cellView.backgroundColor = .pophoryBlack
+        cellLabel.textColor = .pophoryWhite
+    }
+    
+    func unSelectedCell() {
+        cellView.backgroundColor = .pophoryGray200
+        cellLabel.textColor = .pophoryGray500
     }
 }

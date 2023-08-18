@@ -12,7 +12,9 @@ class StudioModalViewController: BaseViewController {
     // MARK: - Properties
     
     private var numberOfStudio: Int = 12
+    
     weak var delegate: StudioDataBind?
+    var selectedStudioIndex: Int = -1
     
     private var studioList: PatchStudiosResponseDTO? {
         didSet {
@@ -87,6 +89,11 @@ extension StudioModalViewController: UICollectionViewDataSource {
             cell.configureCell(text: studioName)
         } else {
             cell.configureCell(text: "")
+        }
+        if indexPath.item + 1 == selectedStudioIndex {
+            cell.selectedCell()
+        } else {
+            cell.unSelectedCell()
         }
         return cell
     }

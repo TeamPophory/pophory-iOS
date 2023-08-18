@@ -101,6 +101,7 @@ extension AddPhotoViewController {
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 232)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
+        customModalVC.selectedStudioIndex = studioID
         present(customModalVC, animated: true, completion: nil)
     }
     
