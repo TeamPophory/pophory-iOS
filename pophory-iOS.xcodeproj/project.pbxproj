@@ -64,6 +64,7 @@
 		6B29DC5B2A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */; };
 		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
 		6B4D91CD2A6976F100FE5636 /* ShareNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4D91CC2A6976F100FE5636 /* ShareNetworkManager.swift */; };
+		6B5EF4E62A9122D100D20E04 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 6B5EF4E52A9122D100D20E04 /* Sentry */; };
 		6BA49DEB2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */; };
 		6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DED2A66EF3000414CBF /* AddPhotoNetworkManager.swift */; };
 		6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */; };
@@ -352,6 +353,7 @@
 				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
 				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
 				6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */,
+				6B5EF4E62A9122D100D20E04 /* Sentry in Frameworks */,
 				B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
 				6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */,
@@ -1091,6 +1093,7 @@
 				B1D0297D2A5D89DD000B5B53 /* SkeletonView */,
 				6BCE47522A6825000060EC78 /* FirebaseAnalytics */,
 				6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */,
+				6B5EF4E52A9122D100D20E04 /* Sentry */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -1172,6 +1175,7 @@
 				B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6B5EF4E42A9122D100D20E04 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -1743,6 +1747,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		6B5EF4E42A9122D100D20E04 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1787,6 +1799,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6B5EF4E52A9122D100D20E04 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B5EF4E42A9122D100D20E04 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
 		};
 		6BCE47522A6825000060EC78 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
