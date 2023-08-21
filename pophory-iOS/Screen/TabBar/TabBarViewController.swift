@@ -164,4 +164,11 @@ extension TabBarController: PHPickerProtocol {
             self.navigationController?.pushViewController(self.limitedViewController, animated: true)
         }
     }
+    
+    func presentOverSize() {
+        DispatchQueue.main.async {
+            self.showPopup(popupType: .simple,
+                      secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
+        }
+    }
 }
