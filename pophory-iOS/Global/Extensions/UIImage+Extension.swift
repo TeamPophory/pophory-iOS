@@ -8,30 +8,13 @@
 import UIKit
 
 extension UIImage {
-
-    public enum DataUnits: String {
-        case byte, kilobyte, megabyte, gigabyte
-    }
-
-    func getSizeIn(_ type: DataUnits)-> CGFloat {
-
-        guard let data = self.pngData() else {
-            return 0.0
+    var megabytesSize: Double {
+        if let imageData = self.jpegData(compressionQuality: 0.8) {
+            print(imageData)
+            let bytesInMB = 1024.0 * 1024.0
+            let imageSizeInMB = Double(imageData.count) / bytesInMB
+            return imageSizeInMB
         }
-
-        var size: Double = 0.0
-
-        switch type {
-        case .byte:
-            size = CGFloat(data.count)
-        case .kilobyte:
-            size = CGFloat(data.count) / 1024
-        case .megabyte:
-            size = CGFloat(data.count) / 1024 / 1024
-        case .gigabyte:
-            size = CGFloat(data.count) / 1024 / 1024 / 1024
-        }
-
-        return size
+        return 0.0
     }
 }
