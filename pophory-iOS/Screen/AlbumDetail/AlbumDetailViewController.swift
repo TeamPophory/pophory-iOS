@@ -24,7 +24,7 @@ enum PhotoSortStyle {
 final class AlbumDetailViewController: BaseViewController {
     
     private let addPhotoViewController = AddPhotoViewController()
-    private let imagePHPViewController = BasePHPickerViewController()
+    private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     private var albumPhotoCount = Int()
     
@@ -288,6 +288,8 @@ extension AlbumDetailViewController: PHPickerProtocol {
     
     func presentImageLibrary() {
         DispatchQueue.main.async {
+            self.imagePHPViewController = BasePHPickerViewController()
+            self.imagePHPViewController.delegate = self
             self.present(self.imagePHPViewController.phpickerViewController, animated: true)
         }
     }

@@ -11,7 +11,7 @@ import Moya
 import SnapKit
 
 protocol DateDataBind: AnyObject{
-    func dateDataBind(text: String, forPost: String)
+    func dateDataBind(text: String)
 }
 
 protocol StudioDataBind: AnyObject{
@@ -33,7 +33,6 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
-            rootView.albumCollectionView.reloadData()
             if let albums = albumList?.albums {
                 if albums.count != 0 {
                     self.albumID = albums[0].id
@@ -44,7 +43,7 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     }
     
     private var photoImage = UIImage()
-    private var dateTaken: String = DateManager.dateToStringForPOST(date: Date())
+    private var dateTaken: String = DateManager.dateToString(date: Date())
     private var studioID: Int = -1
     
     // MARK: - UI Properties
@@ -73,7 +72,6 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
         super.viewDidLoad()
         
         setupTarget()
-        setupDelegate()
         networkManager.requestGetPresignedURLAPI() { [weak self] presignedURL in
             self?.presignedURL = presignedURL
         }
@@ -90,7 +88,9 @@ extension AddPhotoViewController {
         
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 340)
         customModalVC.transitioningDelegate = customTransitionDelegate
+        
         customModalVC.delegate = self
+        customModalVC.setPickerDate(fordate: DateManager.stringToDate(date: rootView.dateStackView.getExplain()))
         present(customModalVC, animated: true, completion: nil)
     }
     
@@ -101,6 +101,7 @@ extension AddPhotoViewController {
         let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 232)
         customModalVC.transitioningDelegate = customTransitionDelegate
         customModalVC.delegate = self
+        customModalVC.selectedStudioIndex = studioID
         present(customModalVC, animated: true, completion: nil)
     }
     
@@ -134,10 +135,6 @@ extension AddPhotoViewController {
         rootView.photoAddButton.addTarget(self, action: #selector(onclickAddPhotoButton), for: .touchUpInside)
     }
     
-    private func setupDelegate() {
-        rootView.albumCollectionView.dataSource = self
-    }
-    
     private func goToHome() {
         dismiss(animated: false)
         navigationController?.popViewController(animated: true)
@@ -152,35 +149,14 @@ extension AddPhotoViewController {
     }
 }
 
-// MARK: - UICollectionView Delegate
-
-extension AddPhotoViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = albumList?.albums?.count else { return 0 }
-        return count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoAlbumCollectionViewCell.identifier, for: indexPath) as? PhotoAlbumCollectionViewCell else { return UICollectionViewCell() }
-        if let albumCoverInt = albumList?.albums?[indexPath.item].albumCover {
-            cell.configureCell(image: ImageLiterals.albumCoverList[albumCoverInt])
-        }
-        if indexPath.item == 0 {
-            cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-        }
-        return cell
-    }
-}
-
 // MARK: - DataBind Protocol
 
 extension AddPhotoViewController: DateDataBind, StudioDataBind {
     
-    func dateDataBind(text: String, forPost: String) {
+    func dateDataBind(text: String) {
         rootView.dateStackView.setupExplain(explain: text)
         rootView.dateStackView.setupSelected(selected: true)
-        dateTaken = forPost
+        dateTaken = text
     }
     
     func studioDataBind(text: String, forIndex: Int) {
