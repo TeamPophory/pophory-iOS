@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-protocol PickAlbumCoverViewDelegate: BaseSignUpViewDelegate {
+protocol PickAlbumCoverViewDelegate {
     func didSelectAlbumButton(at index: Int)
 }
 

@@ -13,6 +13,8 @@ class NameInputView: BaseSignUpView {
     
     var maxCharCount: Int = 6
     
+    // MARK: - UI Properties
+    
     // TODO: Private -> Delegate 패턴 구현
     
     lazy var bodyStackView: UIStackView = {
@@ -172,8 +174,7 @@ extension NameInputView {
 
 // MARK: - UITextFieldDelegate
 
-extension NameInputView: UITextFieldDelegate {
-    
+extension NameInputView: UITextFieldDelegate {    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             textField.layer.borderColor = UIColor.pophoryPurple.cgColor

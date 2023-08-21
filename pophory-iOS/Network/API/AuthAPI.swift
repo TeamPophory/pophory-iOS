@@ -29,7 +29,7 @@ extension AuthAPI: BaseTargetType {
     var path: String {
         switch self {
         case .postAuthorizationCode, .postIdentityToken, .withdrawUser:
-            return URLConstants.auth
+            return URLConstantsV2.auth
         }
     }
     

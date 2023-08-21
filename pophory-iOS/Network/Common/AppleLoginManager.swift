@@ -11,7 +11,6 @@ protocol AppleLoginManagerDelegate: AnyObject {
     func appleLoginManager(didCompleteWithAuthResult result: Result<ASAuthorization, Error>)
 }
 
-@available(iOS 13.0, *)
 final class AppleLoginManager: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     weak var viewController: UIViewController?
     weak var delegate: AppleLoginManagerDelegate?

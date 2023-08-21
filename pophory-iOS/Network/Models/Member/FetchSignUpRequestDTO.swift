@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PatchSignUpRequestDTO: Codable {
+struct FetchSignUpRequestDTO: Codable {
     let realName, nickname: String?
     let albumCover: Int?
 }

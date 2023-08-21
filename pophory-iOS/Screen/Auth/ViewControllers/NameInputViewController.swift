@@ -9,15 +9,11 @@ import UIKit
 
 import SnapKit
 
-protocol NameInputViewControllerDelegate: AnyObject {
-    func didEnterName(name: String)
-}
-
 final class NameInputViewController: BaseViewController {
     
     // MARK: - Properties
     
-    weak var delegate: NameInputViewControllerDelegate?
+    var onNameEntered: ((String) -> Void)?
     
     // MARK: - UI Properties
     
@@ -42,11 +38,7 @@ final class NameInputViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        view.addSubview(nameInputView)
-        
-        nameInputView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
+        setupViewConstraints(nameInputView)
     }
 }
 
@@ -57,27 +49,21 @@ extension NameInputViewController: Navigatable {
 }
 
 extension NameInputViewController {
-    
-    // MARK: - objc
-    
-    @objc private func nextButtonOnClick() {
+    @objc private func onClickNextButton() {
         guard let name = nameInputView.inputTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         loadNextViewController(with: name)
     }
-    
-    
-    // MARK: - Private Functions
-    
+
     private func loadNextViewController(with name: String) {
         self.view.endEditing(true)
         
-        delegate?.didEnterName(name: name)
+        onNameEntered?(name)
         let idViewController = IDInputViewController(fullName: name)
-        idViewController.delegate = self.navigationController?.viewControllers.first as? IDInputViewControllerDelegate
+        
         self.navigationController?.pushViewController(idViewController, animated: true)
     }
     
     private func handleNextButton() {
-        nameInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
+        nameInputView.nextButton.addTarget(self, action: #selector(onClickNextButton), for: .touchUpInside)
     }
 }
