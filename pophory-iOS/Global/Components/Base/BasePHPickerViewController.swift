@@ -137,8 +137,8 @@ extension BasePHPickerViewController: PHPickerViewControllerDelegate {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                                 
                 guard let selectedImage = image as? UIImage else { return }
-                print(selectedImage.getSizeIn(.megabyte))
-                if selectedImage.getSizeIn(.megabyte) <= 3.0 {
+                print(selectedImage.megabytesSize)
+                if selectedImage.megabytesSize <= 3.0 {
                     self.pickerImage = selectedImage
                     self.delegate?.setupPicker()
                 } else {
