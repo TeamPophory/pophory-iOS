@@ -22,7 +22,7 @@ protocol HomeAlbumViewButtonTappedProtocol {
 }
 
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
-
+    
     private var privateStatusLabelText: String
     private let maxPhotoCount: Int = 15
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
@@ -40,7 +40,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             self.statusLabel.attributedText = attributedText
         }
     }
-
+    
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
         let label = UILabel()
@@ -93,9 +93,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private let progressBarIcon = UIImageView(image: ImageLiterals.progressBarIcon)
     
-    init(
-        statusLabelText: String
-    ) {
+    init(statusLabelText: String) {
         privateStatusLabelText = statusLabelText
         super.init(frame: .zero)
         setupLayout()
@@ -202,17 +200,13 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         homeAlbumViewButtonTappedDelegate?.albumCoverEditButtonDidTapped()
     }
     
-    func updateProgressBarWidth(
-        updateWidth: Int
-    ) {
+    func updateProgressBarWidth(updateWidth: Int) {
         progressBarView.snp.updateConstraints {
             $0.width.equalTo(updateWidth)
         }
     }
     
-    func updateProgressBarIcon(
-        isAlbumFull: Bool
-    ) {
+    func updateProgressBarIcon(isAlbumFull: Bool) {
         if isAlbumFull {
             progressBarIcon.image = ImageLiterals.progressBarIconFull
         } else {
