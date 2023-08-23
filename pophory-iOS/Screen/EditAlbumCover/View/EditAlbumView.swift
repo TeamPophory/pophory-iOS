@@ -27,6 +27,7 @@ final class EditAlbumView: UIView {
         view.backgroundColor = .pophoryGray300
         return view
     }()
+    
     private lazy var albumCoverProfile1 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[0])
     private lazy var albumCoverProfile2 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[1])
     private lazy var albumCoverProfile3 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[2])
@@ -37,6 +38,7 @@ final class EditAlbumView: UIView {
         stackView.axis = .horizontal
         return stackView
     }()
+    
     lazy var albumCoverCollectionView: UICollectionView = {
         let flowLayout = HorizontalCarouselCollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 16
@@ -50,13 +52,14 @@ final class EditAlbumView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    private lazy var editButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .pophoryBlack
-        button.setTitle("수정하기", for: .normal)
-        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
-        button.layer.cornerRadius = 30
-        return button
+    
+    private lazy var editButton: PophoryButton = {
+        let buttonBuilder = PophoryButtonBuilder()
+            .setStyle(.primaryBlack)
+            .setTitle(.edit)
+            .build()
+        buttonBuilder.applySize()
+        return buttonBuilder
     }()
     
     init() {
@@ -64,6 +67,7 @@ final class EditAlbumView: UIView {
         setupLayout()
         configUI()
         setButtonTarget()
+        handleEditButton()
     }
     
     required init?(coder: NSCoder) {
@@ -114,9 +118,8 @@ final class EditAlbumView: UIView {
         }
         
         editButton.snp.makeConstraints {
-            $0.height.equalTo(60)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(43)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
         }
     }
     
@@ -190,5 +193,11 @@ final class EditAlbumView: UIView {
             albumCoverProfile4.setImage(AlbumData.albumCoverAlphaImages[3], for: .normal)
         default: return
         }
+    }
+}
+
+extension EditAlbumView {
+    private func handleEditButton() {
+        editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
     }
 }
