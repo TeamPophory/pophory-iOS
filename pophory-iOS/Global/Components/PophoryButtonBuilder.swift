@@ -43,6 +43,9 @@ public enum ButtonText: String {
     /// "사진 추가하기"
     case addPhoto = "사진 추가하기"
     
+    /// "수정하기"
+    case edit = "수정하기"
+    
     /// "삭제하기"
     case delete = "삭제하기"
     
@@ -63,6 +66,7 @@ public enum ButtonText: String {
     
     /// "수락하기"
     case share = "수락하기"
+    
     /// "홈으로 이동하기"
     case goToHome = "홈으로 이동하기"
 }
@@ -154,7 +158,6 @@ public func applyStyle(to button: PophoryButton) {
 public class PophoryButtonBuilder {
     private var buttonStyle: ButtonStyle?
     private var buttonTitle: ButtonText?
-    private var size: CGSize?
     private var buttonImage: String?
     private var imageInsets: UIEdgeInsets?
     private var titleInsets: UIEdgeInsets?
@@ -163,17 +166,11 @@ public class PophoryButtonBuilder {
     
     public func setStyle(_ style: ButtonStyle) -> PophoryButtonBuilder {
         self.buttonStyle = style
-        self.size = style.size
         return self
     }
     
     public func setTitle(_ title: ButtonText) -> PophoryButtonBuilder {
         self.buttonTitle = title
-        return self
-    }
-    
-    public func setSize(_ size: CGSize) -> PophoryButtonBuilder {
-        self.size = size
         return self
     }
     
