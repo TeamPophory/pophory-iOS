@@ -13,13 +13,7 @@ final class AlbumCoverCollectionViewCell: UICollectionViewCell {
     
     static var identifier: String = "AlbumCoverCollectionViewCell"
     
-    private let albumCoverImageView: UIImageView = {
-        let imageView = UIImageView()
-        let rightRadius = 26.0
-        let rightCornerMask: CACornerMask = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
-        return imageView
-    }()
+    private let albumCoverImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +22,12 @@ final class AlbumCoverCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        albumCoverImageView.shapeWithCustomCorners(topLeftRadius: 4, topRightRadius: 26, bottomLeftRadius: 4, bottomRightRadius: 26)
+        albumCoverImageView.clipsToBounds = true
     }
     
     private func setupLayout() {

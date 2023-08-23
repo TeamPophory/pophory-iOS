@@ -52,29 +52,30 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         label.attributedText = attributedText
         return label
     }()
+    
     lazy var albumImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .pophoryGray300
-        let rightRadius = 26.0
-        let rightCornerMask: CACornerMask = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        imageView.backgroundColor = .pophoryGray300
         imageView.addGestureRecognizer(tapGesture)
         imageView.isUserInteractionEnabled = true
-        imageView.makeRounded(radius: rightRadius, maskedCorners: rightCornerMask)
         return imageView
     }()
+    
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.font = .head2
         label.textColor = .pophoryGray500
         return label
     }()
+    
     private lazy var albumCoverEditButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.changeElbumCover, for: .normal)
         button.addTarget(self, action: #selector(albumCoverEditButtonDidTapped), for: .touchUpInside)
         return button
     }()
+    
     private let progressView: UIView = UIView()
     private let progressBackgroundView: UIView = {
         let view = UIView()
@@ -82,12 +83,14 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         view.layer.cornerRadius = 3
         return view
     }()
+    
     private let progressBarView: UIView = {
         let view = UIView()
         view.backgroundColor = .pophoryPurple
         view.layer.cornerRadius = 3
         return view
     }()
+    
     private let progressBarIcon = UIImageView(image: ImageLiterals.progressBarIcon)
     
     init(
@@ -101,6 +104,12 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        albumImageView.shapeWithCustomCorners(topLeftRadius: 4, topRightRadius: 26, bottomLeftRadius: 4, bottomRightRadius: 26)
+        albumImageView.clipsToBounds = true
     }
     
     private func setupLayout() {

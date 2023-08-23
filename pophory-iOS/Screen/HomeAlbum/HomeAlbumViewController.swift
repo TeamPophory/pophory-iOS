@@ -92,7 +92,6 @@ extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     }
 }
 
-
 extension HomeAlbumViewController  {
     func requestGetAlumListAPI() {
         NetworkService.shared.albumRepository.patchAlbumList() { result in

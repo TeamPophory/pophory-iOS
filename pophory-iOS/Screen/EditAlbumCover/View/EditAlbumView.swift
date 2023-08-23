@@ -119,7 +119,7 @@ final class EditAlbumView: UIView {
         
         editButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(10)
+            $0.bottom.equalToSuperview().inset(43)
         }
     }
     
