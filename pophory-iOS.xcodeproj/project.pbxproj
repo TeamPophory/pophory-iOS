@@ -38,7 +38,6 @@
 		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
 		3782F4462A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */; };
 		37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */; };
-		37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6822A4A97AF00FF8F90 /* Moya */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
 		37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */; };
 		37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */; };
@@ -57,9 +56,15 @@
 		37DEF3902A822561000068A1 /* NextButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */; };
 		37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
+		3B15D0E42A9627940007E330 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3B15D0E32A9627940007E330 /* Moya */; };
+		3B15D0E72A9627F40007E330 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 3B15D0E62A9627F40007E330 /* Sentry */; };
 		3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */; };
 		3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */; };
 		3B3BE7192A56CC820064E716 /* PophoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */; };
+		3B5CDBD52A94DDDB001382C4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD42A94DDDB001382C4 /* FirebaseAnalytics */; };
+		3B5CDBD72A94DDDB001382C4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */; };
+		3B5CDBD92A94DDDB001382C4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */; };
+		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
 		6B09D2282A6808DA00DF4275 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2272A6808DA00DF4275 /* ShareViewController.swift */; };
 		6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2292A6808EA00DF4275 /* ShareView.swift */; };
 		6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */; };
@@ -68,6 +73,7 @@
 		6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC582A5494A000F93EC7 /* AddPhotoViewController.swift */; };
 		6B4D91CD2A6976F100FE5636 /* ShareNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4D91CC2A6976F100FE5636 /* ShareNetworkManager.swift */; };
 		6B5EF4E32A8FF87600D20E04 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5EF4E22A8FF87600D20E04 /* UIImage+Extension.swift */; };
+		6B5EF4E62A9122D100D20E04 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		6BA49DEB2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DEA2A66D7F500414CBF /* PatchPresignedURLRequestDTO.swift */; };
 		6BA49DEE2A66EF3000414CBF /* AddPhotoNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA49DED2A66EF3000414CBF /* AddPhotoNetworkManager.swift */; };
 		6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C642A5589F400E49B12 /* CustomModalPresentationController.swift */; };
@@ -80,8 +86,6 @@
 		6BC63CDC2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */; };
 		6BC63CDE2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */; };
 		6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */; };
-		6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47522A6825000060EC78 /* FirebaseAnalytics */; };
-		6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */; };
 		6BCE475A2A684D540060EC78 /* PatchSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE47592A684D540060EC78 /* PatchSharePhotoRequestDTO.swift */; };
 		6BCE475C2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */; };
 		6BCE475E2A684E580060EC78 /* ShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475D2A684E580060EC78 /* ShareAPI.swift */; };
@@ -358,11 +362,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
-				37DCA6832A4A97AF00FF8F90 /* Moya in Frameworks */,
-				6BCE47532A6825000060EC78 /* FirebaseAnalytics in Frameworks */,
+				3B5CDBD52A94DDDB001382C4 /* FirebaseAnalytics in Frameworks */,
+				6B5EF4E62A9122D100D20E04 /* (null) in Frameworks */,
 				B138A3BB2A587751000EE81E /* RxCocoa in Frameworks */,
+				3B5CDBD72A94DDDB001382C4 /* FirebaseAnalyticsSwift in Frameworks */,
+				3B15D0E72A9627F40007E330 /* Sentry in Frameworks */,
+				3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */,
+				3B5CDBD92A94DDDB001382C4 /* FirebaseCrashlytics in Frameworks */,
 				37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */,
-				6BCE47552A6825000060EC78 /* FirebaseDynamicLinks in Frameworks */,
+				3B15D0E42A9627940007E330 /* Moya in Frameworks */,
 				B1D0297E2A5D89DD000B5B53 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1097,6 +1105,7 @@
 				B1631F032A1759EA0050974F /* Sources */,
 				B1631F042A1759EA0050974F /* Frameworks */,
 				B1631F052A1759EA0050974F /* Resources */,
+				3B5CDBC32A94CEA9001382C4 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -1104,13 +1113,16 @@
 			);
 			name = "pophory-iOS";
 			packageProductDependencies = (
-				37DCA6822A4A97AF00FF8F90 /* Moya */,
 				37DCA6852A4A97CA00FF8F90 /* SnapKit */,
 				9161CADE2A5460AA002B8B77 /* Kingfisher */,
 				B138A3BA2A587751000EE81E /* RxCocoa */,
 				B1D0297D2A5D89DD000B5B53 /* SkeletonView */,
-				6BCE47522A6825000060EC78 /* FirebaseAnalytics */,
-				6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */,
+				3B5CDBD42A94DDDB001382C4 /* FirebaseAnalytics */,
+				3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */,
+				3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */,
+				3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */,
+				3B15D0E32A9627940007E330 /* Moya */,
+				3B15D0E62A9627F40007E330 /* Sentry */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -1186,12 +1198,13 @@
 			);
 			mainGroup = B1631EFE2A1759EA0050974F;
 			packageReferences = (
-				37DCA6812A4A97AF00FF8F90 /* XCRemoteSwiftPackageReference "Moya" */,
 				37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				B138A3B92A587751000EE81E /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B1D0297C2A5D89DD000B5B53 /* XCRemoteSwiftPackageReference "SkeletonView" */,
-				6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3B15D0E22A9627940007E330 /* XCRemoteSwiftPackageReference "Moya" */,
+				3B15D0E52A9627F40007E330 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -1234,6 +1247,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3B5CDBC32A94CEA9001382C4 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B1631F032A1759EA0050974F /* Sources */ = {
@@ -1555,12 +1594,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2023072203;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -1578,7 +1616,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pophory Debug";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1594,12 +1631,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOSRelease.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Distribution: YunSeo Kang (CQJ9UKUU35)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2023072203;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -1617,7 +1653,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Pophory Release";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1751,14 +1786,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		37DCA6812A4A97AF00FF8F90 /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.0;
-			};
-		};
 		37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1767,9 +1794,25 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		3B15D0E22A9627940007E330 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+		3B15D0E52A9627F40007E330 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+		3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.0.0;
@@ -1802,24 +1845,39 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		37DCA6822A4A97AF00FF8F90 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37DCA6812A4A97AF00FF8F90 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
 		37DCA6852A4A97CA00FF8F90 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		6BCE47522A6825000060EC78 /* FirebaseAnalytics */ = {
+		3B15D0E32A9627940007E330 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 3B15D0E22A9627940007E330 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		3B15D0E62A9627F40007E330 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B15D0E52A9627F40007E330 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		3B5CDBD42A94DDDB001382C4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		6BCE47542A6825000060EC78 /* FirebaseDynamicLinks */ = {
+		3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6BCE47512A6825000060EC78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
 		9161CADE2A5460AA002B8B77 /* Kingfisher */ = {
