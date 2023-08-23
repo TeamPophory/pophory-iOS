@@ -16,6 +16,14 @@ final class AlbumDetailView: UIView {
         view.backgroundColor = .pophoryGray300
         return view
     }()
+    
+    let sortStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        return stackView
+    }()
+    
     private let sortLabel: UILabel = {
         let label = UILabel()
         label.textColor = .pophoryGray500
@@ -23,11 +31,13 @@ final class AlbumDetailView: UIView {
         label.font = .c1
         return label
     }()
+    
     let sortButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.arrowUpDown, for: .normal)
         return button
     }()
+    
     lazy var photoCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 8
@@ -39,11 +49,10 @@ final class AlbumDetailView: UIView {
         collectionView.backgroundColor = .pophoryWhite
         return collectionView
     }()
+    
     private let emptyPhotoExceptionIcon: UIImageView = UIImageView(image: ImageLiterals.emptyPhotoExceptionIcon)
 
-    override init(
-        frame: CGRect
-    ) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
         configUI()
@@ -56,11 +65,12 @@ final class AlbumDetailView: UIView {
     private func setupLayout() {
         self.addSubviews(
             [ lineView,
-              sortLabel,
-              sortButton,
+              sortStackView,
               photoCollectionView,
               emptyPhotoExceptionIcon ]
         )
+        
+        sortStackView.addArrangedSubviews([sortLabel,sortButton])
         
         lineView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -68,15 +78,9 @@ final class AlbumDetailView: UIView {
             $0.leading.trailing.equalToSuperview()
         }
         
-        sortLabel.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(13)
-            $0.trailing.equalToSuperview().inset(45)
-        }
-        
-        sortButton.snp.makeConstraints {
-            $0.centerY.equalTo(sortLabel)
+        sortStackView.snp.makeConstraints {
+            $0.top.equalTo(lineView.snp.bottom).offset(11)
             $0.trailing.equalToSuperview().inset(17)
-            $0.size.equalTo(24)
         }
         
         photoCollectionView.snp.makeConstraints {
@@ -97,16 +101,12 @@ final class AlbumDetailView: UIView {
         self.backgroundColor = .pophoryWhite
     }
     
-    func setEmptyPhotoExceptionImageView(
-        isEmpty: Bool
-    ) {
+    func setEmptyPhotoExceptionImageView(isEmpty: Bool) {
         emptyPhotoExceptionIcon.isHidden = !isEmpty
         photoCollectionView.isHidden = isEmpty
     }
     
-    func setSortLabelText(
-        sortStyleText: String
-    ) {
+    func setSortLabelText(sortStyleText: String) {
         sortLabel.text = sortStyleText
     }
 }

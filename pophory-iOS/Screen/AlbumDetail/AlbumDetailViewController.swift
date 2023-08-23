@@ -79,7 +79,8 @@ final class AlbumDetailViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        homeAlbumView.sortButton.addTarget(self, action: #selector(sortButtonDidTapped), for: .touchUpInside)
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(sortButtonDidTapped))
+        homeAlbumView.sortStackView.addGestureRecognizer(tapGuesture)
     }
     
     private func presentChangeSortViewController() {

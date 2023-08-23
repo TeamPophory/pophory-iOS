@@ -20,9 +20,7 @@ final class ChangeSortViewController: BaseViewController {
     private var photoSortStyle: PhotoSortStyle
     var configPhotoSortSyleDelegate: ConfigPhotoSortStyleDelegate?
     
-    init(
-        photoSortStyle: PhotoSortStyle
-    ) {
+    init(photoSortStyle: PhotoSortStyle) {
         self.photoSortStyle = photoSortStyle
         self.changeSortView.configCheckImage(photoSortSytle: photoSortStyle)
         super.init(nibName: String(), bundle: Bundle())
@@ -50,9 +48,7 @@ final class ChangeSortViewController: BaseViewController {
 }
 
 extension ChangeSortViewController: ChangeSortViewButtonTappedDelegate {
-    func sortButtonTapped(
-        by sortStyle: PhotoSortStyle
-    ) {
+    func sortButtonTapped(by sortStyle: PhotoSortStyle) {
         switch sortStyle {
         case .current:
             photoSortStyle = .current
