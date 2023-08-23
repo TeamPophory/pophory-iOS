@@ -11,7 +11,11 @@ import Moya
 
 final class DefaultMemberRepository: BaseRepository, MemberRepository {
     
-    let provider = MoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider: AsyncMoyaProvider<MemberAPI>
+
+    init(provider: AsyncMoyaProvider<MemberAPI> = AsyncMoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])) {
+        self.provider = provider
+    }
     
     func fetchMyPage(version: Int, completion: @escaping (NetworkResult<FetchMyPageResponseDTO>) -> Void) {
         let api: MemberAPI
@@ -37,17 +41,12 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func patchSignUp(
-        body: PatchSignUpRequestDTO,
-        completion: @escaping (NetworkResult<Any>) -> Void
-    ) {
-        provider.request(.signUp(body: body)) { result in
-            switch result {
-            case.success(let response):
-                let statusCode = response.statusCode
-                completion(.success(()))
-            case .failure(let err):
-                completion(.networkFail)
+    func submitSignUp(body: FetchSignUpRequestDTO) async throws {
+        if #available(iOS 15.0, *) {
+            do {
+                let response = try await provider.request(.signUp(body: body))
+            } catch {
+                throw error
             }
         }
     }
@@ -66,25 +65,16 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func checkDuplicateNickname(nickname: String, completion: @escaping (NetworkResult<Bool>) -> Void) {
-        provider.request(.checkDuplicateNickname(nickname: nickname)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let responseObject = try JSONDecoder().decode([String: Bool].self, from: response.data)
-                    if let isDuplicated = responseObject["isDuplicated"] {
-                        completion(.success(isDuplicated))
-                    } else {
-                        completion(.success(false))
-                    }
-                } catch {
-                    completion(.pathErr)
-                }
-                
-            case .failure(let err):
-                print(err)
-                completion(.networkFail)
-            }
+    func requestDuplicateNicknameCheck(nickname: String) async throws -> Bool {
+        let response: Response
+        
+        if #available(iOS 15.0, *) {
+            response = try await provider.request(.checkDuplicateNickname(nickname: nickname))
+        } else {
+            fatalError("iOS 15버전으로 올립시다")
         }
+        
+        let boolResponse = try response.map(PostIsDuplicatedDTO.self)
+        return boolResponse.isDuplicated
     }
 }

@@ -121,31 +121,35 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
             print("Failed Apple login with error: \(error.localizedDescription)")
         }
     }
-
+    
     private func submitIdentityTokenToServer(identityToken: String) {
         let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
-        NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
-            switch result {
-            case .success(let response):
-                if let loginResponse = response as? LoginAPIDTO {
-                    print("Successfully sent Identity Token to server")
-                    
-                    PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
-                                   PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
-                    
-                    self.decideNextVC(isRegistered: loginResponse.isRegistered)
-                    
-                } else {
-                    print("Unexpected response")
+        DispatchQueue.global(qos: .userInitiated).async {
+            NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let response):
+                        if let loginResponse = response as? LoginAPIDTO {
+                            print("Successfully sent Identity Token to server")
+                            
+                            PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
+                            PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
+                            
+                            self.decideNextVC(isRegistered: loginResponse.isRegistered)
+                            
+                        } else {
+                            print("Unexpected response")
+                        }
+                    case .requestErr(let message):
+                        print("Error sending Identity Token to server: \(message)")
+                    case .networkFail:
+                        self.presentErrorViewController(with: .networkError)
+                    case .serverErr, .pathErr:
+                        self.presentErrorViewController(with: .serverError)
+                    default:
+                        break
+                    }
                 }
-            case .requestErr(let message):
-                print("Error sending Identity Token to server: \(message)")
-            case .networkFail:
-                print("Network error")
-            case .serverErr, .pathErr:
-                print("Server or Path error")
-            default:
-                break
             }
         }
     }

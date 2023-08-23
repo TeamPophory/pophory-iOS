@@ -21,7 +21,7 @@ final class TabBarController: UITabBarController {
     private let myPageViewController = MypageViewController()
     
     private let addPhotoViewController = AddPhotoViewController()
-    private let imagePHPViewController = BasePHPickerViewController()
+    private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: Life Cycle
@@ -140,6 +140,8 @@ extension TabBarController: PHPickerProtocol {
     
     func presentImageLibrary() {
         DispatchQueue.main.async {
+            self.imagePHPViewController = BasePHPickerViewController()
+            self.imagePHPViewController.delegate = self
             self.present(self.imagePHPViewController.phpickerViewController, animated: true)
         }
     }
@@ -160,6 +162,13 @@ extension TabBarController: PHPickerProtocol {
         DispatchQueue.main.async {
             self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
             self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
+    }
+    
+    func presentOverSize() {
+        DispatchQueue.main.async {
+            self.showPopup(popupType: .simple,
+                      secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
         }
     }
 }

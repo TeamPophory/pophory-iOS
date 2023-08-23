@@ -25,6 +25,9 @@ final class AddPhotoView: UIView {
             }
         }
     }
+    
+    // iphone 13 mini 기준 verticle 이미지 height
+    private var imageConstraint: CGFloat = 285
         
     // MARK: - UI Properties
     
@@ -67,32 +70,6 @@ final class AddPhotoView: UIView {
         return buttonBuilder.build()
     }()
     
-    private let albumStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .leading
-        return stackView
-    }()
-    
-    private let albumTitle: UILabel = {
-        let label = UILabel()
-        label.text = "내 앨범"
-        label.font = .head3
-        label.textAlignment = .left
-        return label
-    }()
-    let albumCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 70, height: 95)
-        flowLayout.minimumLineSpacing = 8
-        flowLayout.scrollDirection = .horizontal
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        view.register(PhotoAlbumCollectionViewCell.self, forCellWithReuseIdentifier: PhotoAlbumCollectionViewCell.identifier)
-        return view
-    }()
-    
     let dateStackView: PhotoInfoStackView = {
         let stackView = PhotoInfoStackView()
         stackView.setupTitle(title: "찍은 날짜")
@@ -109,14 +86,6 @@ final class AddPhotoView: UIView {
         stackView.setupExplain(explain: "사진관을 선택해줘")
         return stackView
     }()
-//    let friendsStackView: PhotoInfoStackView = {
-//        let stackView = PhotoInfoStackView()
-//        stackView.setupTitle(title: "함께 찍은 친구")
-//        stackView.setupSelected(selected: false)
-//        stackView.setupIcon(icon: ImageLiterals.searchIcon)
-//        stackView.setupExplain(explain: "열심히 준비중이야!")
-//        return stackView
-//    }()
     
     // MARK: - Life Cycle
     
@@ -156,7 +125,7 @@ extension AddPhotoView {
             $0.edges.width.equalToSuperview()
         }
         
-        photoInfoStackView.addArrangedSubviews([albumStackView, dateStackView, studioStackView])
+        photoInfoStackView.addArrangedSubviews([dateStackView, studioStackView])
         
         scrollContentsView.addSubviews([photoView, photoInfoStackView])
         photoView.addSubview(photo)
@@ -175,13 +144,6 @@ extension AddPhotoView {
             $0.leading.trailing.equalToSuperview().inset(94)
             $0.top.bottom.equalToSuperview().inset(20)
         }
-        
-        albumStackView.addArrangedSubviews([albumTitle, albumCollectionView])
-        
-        albumCollectionView.snp.makeConstraints {
-            $0.height.equalTo(95)
-            $0.leading.trailing.equalToSuperview()
-        }
                 
         photoAddButton.addCenterConstraint(to: photoAddButtonView)
     }
@@ -190,15 +152,27 @@ extension AddPhotoView {
     
     func setupVerticle() {
         photo.snp.remakeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(94)
+            var width: CGFloat = 188
+            // 세로 제약조건을 superView에 20씩 걸어놓고 사진의 원본 비율에 따라 width를 구함
+            if let imageWidth = photo.image?.size.width, let imageHeight = photo.image?.size.height {
+                width = imageWidth * (imageConstraint / imageHeight)
+            }
+            $0.width.equalTo(width)
+            $0.centerX.equalToSuperview()
             $0.top.bottom.equalToSuperview().inset(20)
         }
     }
     
     func setupHorizontal() {
         photo.snp.remakeConstraints {
+            var height: CGFloat = 188
+            // 가로 제약조건을 superView에 45씩 걸어놓고 사진의 원본 비율에 따라 height를 구함
+            if let imageWidth = photo.image?.size.width, let imageHeight = photo.image?.size.height {
+                height = imageHeight * (imageConstraint / imageWidth)
+            }
+            $0.height.equalTo(height)
+            $0.centerY.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(45)
-            $0.top.bottom.equalToSuperview().inset(69)
         }
     }
 }

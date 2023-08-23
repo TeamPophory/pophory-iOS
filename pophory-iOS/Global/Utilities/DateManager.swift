@@ -8,31 +8,25 @@
 import UIKit
 
 class DateManager {
-        
-    static func dateToString(date: Date) -> String {
-        
-        let koreaWeekdays = ["일", "월", "화", "수", "목", "금", "토"]
-
-        let dayformatter = DateFormatter()
-        dayformatter.dateFormat = "yyyy.MM.dd"
-        
-        let weekFormatter = DateFormatter()
-        weekFormatter.dateFormat = "e"
-        
-        guard let integerWeekdays = Int(weekFormatter.string(from: date)) else { return dayformatter.string(from: date) }
-        
-        let dateFormat = dayformatter.string(from: date) + "(" + koreaWeekdays[integerWeekdays - 1] + ")"
-        
-        return dateFormat
-    }
     
-    static func dateToStringForPOST(date: Date) -> String {
+    static func dateToString(date: Date) -> String {
         
         let dayformatter = DateFormatter()
         dayformatter.dateFormat = "yyyy.MM.dd"
         
         let dateFormat = dayformatter.string(from: date)
         
+        return dateFormat
+    }
+    
+    static func stringToDate(date: String?) -> Date? {
+        
+        let dayformatter = DateFormatter()
+        dayformatter.dateFormat = "yyyy.MM.dd"
+        
+        guard let date = date else { return nil }
+        
+        let dateFormat = dayformatter.date(from: date)
         return dateFormat
     }
 }

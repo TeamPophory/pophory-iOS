@@ -24,7 +24,7 @@ enum PhotoSortStyle {
 final class AlbumDetailViewController: BaseViewController {
     
     private let addPhotoViewController = AddPhotoViewController()
-    private let imagePHPViewController = BasePHPickerViewController()
+    private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     private var albumPhotoCount = Int()
     
@@ -33,7 +33,7 @@ final class AlbumDetailViewController: BaseViewController {
         didSet {
             guard let albumPhotoList = albumPhotoList else { return }
             
-            albumPhotoCount = albumPhotoList.photos.count
+            albumPhotoCount = albumPhotoList.photos.filter{$0.imageUrl != ""}.count
             albumPhotoDataSource.update(photos: albumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
@@ -216,8 +216,6 @@ extension AlbumDetailViewController: UICollectionViewDelegateFlowLayout {
         let photoDetailViewController = PhotoDetailViewController()
         guard let photoList = albumPhotoList?.photos else { return }
         
-        // MARK: - "" 빈배열 리팩토링
-        if photoList[indexPath.row].imageUrl == "" { return }
         let photoType = checkPhotoCellType(width: photoList[indexPath.row].width ,
                                            height: photoList[indexPath.row].height )
         photoDetailViewController.setData(photoID: photoList[indexPath.row].id,
@@ -288,6 +286,8 @@ extension AlbumDetailViewController: PHPickerProtocol {
     
     func presentImageLibrary() {
         DispatchQueue.main.async {
+            self.imagePHPViewController = BasePHPickerViewController()
+            self.imagePHPViewController.delegate = self
             self.present(self.imagePHPViewController.phpickerViewController, animated: true)
         }
     }
@@ -308,6 +308,13 @@ extension AlbumDetailViewController: PHPickerProtocol {
         DispatchQueue.main.async {
             self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
             self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
+    }
+    
+    func presentOverSize() {
+        DispatchQueue.main.async {
+            self.showPopup(popupType: .simple,
+                      secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
         }
     }
 }

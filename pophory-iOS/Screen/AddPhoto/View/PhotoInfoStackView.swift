@@ -122,4 +122,8 @@ extension PhotoInfoStackView {
     public func setupExplain(explain: String) {
         infoLabel.text = explain
     }
+    
+    func getExplain() -> String? {
+        return infoLabel.text
+    }
 }

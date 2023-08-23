@@ -12,7 +12,7 @@ import Moya
 enum MemberAPI {
     case fetchMyPage
     case fetchMyPageV2
-    case signUp(body: PatchSignUpRequestDTO)
+    case signUp(body: FetchSignUpRequestDTO)
     case patchUserInfo
     case checkDuplicateNickname(nickname: String)
 }
@@ -25,11 +25,11 @@ extension MemberAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .fetchMyPage, .signUp, .checkDuplicateNickname:
+        case .fetchMyPage:
             return URLConstants.memeber
         case .patchUserInfo:
             return URLConstants.memeber + "/me"
-        case .fetchMyPageV2:
+        case .fetchMyPageV2, .signUp, .checkDuplicateNickname:
             return URLConstantsV2.memeber
         }
     }

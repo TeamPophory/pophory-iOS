@@ -9,27 +9,24 @@ import UIKit
 
 import SnapKit
 
-protocol IDInputViewControllerDelegate: AnyObject {
-    func didEnterNickname(nickname: String, fullName: String)
-}
-
 final class IDInputViewController: BaseViewController {
     
     // MARK: - Properties
     
-    weak var delegate: IDInputViewControllerDelegate?
+    private let networkManager: AuthNetworkManager
+    
     var fullName: String?
     
     // MARK: - UI Properties
     
-    private lazy var iDInputView = IDInputView()
+    private let iDInputView = IDInputView()
     
     // MARK: - Life Cycle
     
-    init(fullName: String) {
+    init(fullName: String, networkManager: AuthNetworkManager = AuthNetworkManager()) {
         self.fullName = fullName
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -40,23 +37,19 @@ final class IDInputViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        hideKeyboard()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        handleNextButton()
-        hideKeyboard()
+        setupDelegate()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        view.addSubview(iDInputView)
-        
-        iDInputView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
+        setupViewConstraints(iDInputView)
     }
 }
 
@@ -66,62 +59,57 @@ extension IDInputViewController: Navigatable {
     var navigationBarTitleText: String? { "회원가입" }
 }
 
-extension IDInputViewController {
-    
-    // MARK: - objc
-    
-    @objc func nextButtonOnClick() {
-        guard let nickName = iDInputView.inputTextField.text, !nickName.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
-        delegate?.didEnterNickname(nickname: nickName, fullName: fullName)
-        didEnterNickname(nickname: nickName, fullName: fullName)
-    }
-    
-    // MARK: - Private Functions
-    
-    private func loadNextViewController(with nickName: String, fullName: String) {
-        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickName, nibName: nil, bundle: nil)
+extension IDInputViewController: NextButtonDelegate {
+    func onClickNextButton() {
         
-        pickAlbumCoverVC.fullName = fullName
-        pickAlbumCoverVC.nickname = nickName
+        guard let nickname = iDInputView.inputTextField.text, !nickname.trimmingCharacters(in: .whitespaces).isEmpty, let fullName = self.fullName else { return }
         
-        UserDefaults.standard.setNickname(nickName)
-        UserDefaults.standard.setFullName(fullName)
-        
-        dismissKeyboard()
-        navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
-    }
-    
-    private func handleNextButton() {
-        iDInputView.nextButton.addTarget(self, action: #selector(nextButtonOnClick), for: .touchUpInside)
-    }
-}
-
-// MARK: - Network
-
-extension IDInputViewController: IDInputViewControllerDelegate {
-    
-    func didEnterNickname(nickname: String, fullName: String) {
-        NetworkService.shared.memberRepository.checkDuplicateNickname(nickname: nickname) { [weak self] result in
-            
-            switch result {
-            case .success(let isDuplicated):
-                if isDuplicated {
-                    DispatchQueue.main.async {
-                        self?.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
-                    }
-                } else {
-                    self?.loadNextViewController(with: nickname, fullName: fullName)
-                }
-            case .requestErr, .pathErr, .serverErr, .networkFail:
-                DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: "알림", message: "오류가 발생했습니다. 다시 시도하십시오.", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
-                    self?.present(alertController, animated: true, completion: nil)
-                }
-            default:
-                break
+        Task {
+            let isDuplicated = await checkNicknameAndProceed(nickname: nickname, fullName: fullName)
+            if isDuplicated {
+                self.showPopup(popupType: .simple, secondaryText: "이미 있는 아이디예요.\n다른 아이디를 입력해 주세요!")
+            } else {
+                self.goToPickAlbumCoverViewController(with: nickname, fullName: fullName)
             }
         }
     }
 }
 
+extension IDInputViewController {
+    private func setupDelegate() {
+        iDInputView.delegate = self
+    }
+    
+    private func goToPickAlbumCoverViewController(with nickname: String, fullName: String) {
+        createUserProfile(nickname: nickname, fullName: fullName)
+        dismissKeyboard()
+        presentPickAlbumCoverViewController(with: nickname, fullName: fullName)
+    }
+    
+    private func createUserProfile(nickname: String, fullName: String) {
+        UserDefaults.standard.setNickname(nickname)
+        UserDefaults.standard.setFullName(fullName)
+    }
+    
+    private func presentPickAlbumCoverViewController(with nickname: String, fullName: String) {
+        let pickAlbumCoverVC = PickAlbumCoverViewController(fullName: fullName, nickname: nickname)
+        
+        pickAlbumCoverVC.fullName = fullName
+        pickAlbumCoverVC.nickname = nickname
+        
+        navigationController?.pushViewController(pickAlbumCoverVC, animated: true)
+    }
+}
+
+// MARK: - Network
+
+extension IDInputViewController {
+    func checkNicknameAndProceed(nickname: String, fullName: String) async -> Bool {
+        do {
+            let isDuplicated = try await networkManager.requestNicknameCheck(nickname: nickname)
+            return isDuplicated
+        } catch {
+            return false
+        }
+    }
+}
