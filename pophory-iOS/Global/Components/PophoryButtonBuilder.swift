@@ -155,6 +155,11 @@ public class PophoryButtonBuilder {
     private var buttonStyle: ButtonStyle?
     private var buttonTitle: ButtonText?
     private var size: CGSize?
+    private var buttonImage: String?
+    private var imageInsets: UIEdgeInsets?
+    private var titleInsets: UIEdgeInsets?
+    private var tintColor: UIColor?
+    private var font: UIFont?
     
     public func setStyle(_ style: ButtonStyle) -> PophoryButtonBuilder {
         self.buttonStyle = style
@@ -172,6 +177,31 @@ public class PophoryButtonBuilder {
         return self
     }
     
+    public func setImage(_ name: String) -> PophoryButtonBuilder {
+        self.buttonImage = name
+        return self
+    }
+    
+    public func setImageInset(_ insets: UIEdgeInsets) -> PophoryButtonBuilder {
+        self.imageInsets = insets
+        return self
+    }
+    
+    public func setTitleInset(_ insets: UIEdgeInsets) -> PophoryButtonBuilder {
+        self.titleInsets = insets
+        return self
+    }
+    
+    public func setTintColor(_ color: UIColor) -> PophoryButtonBuilder {
+        self.tintColor = color
+        return self
+    }
+    
+    public func setFont(_ font: UIFont) -> PophoryButtonBuilder {
+        self.font = font
+        return self
+    }
+    
     public func build(initiallyEnabled: Bool = true) -> PophoryButton {
         let buttonStyler = buttonStyle?.styler() ?? PrimaryBlackButtonStyler()
         let button = PophoryButton(style: buttonStyle ?? ButtonStyle.primaryBlack,
@@ -179,6 +209,25 @@ public class PophoryButtonBuilder {
                                    styler: buttonStyler,
                                    initiallyEnabled: initiallyEnabled)
         button.applyStyle()
+        
+        guard let imageName = self.buttonImage, let image = UIImage(systemName: imageName) else { return button }
+        button.setImage(image, for: .normal)
+        
+        if let insets = self.imageInsets {
+            button.imageEdgeInsets = insets
+        }
+        
+        if let insets = self.titleInsets {
+            button.titleEdgeInsets = insets
+        }
+        
+        if let color = self.tintColor {
+            button.tintColor = color
+        }
+        
+        if let font = self.font {
+            button.titleLabel?.font = font
+        }
         return button
     }
 }
