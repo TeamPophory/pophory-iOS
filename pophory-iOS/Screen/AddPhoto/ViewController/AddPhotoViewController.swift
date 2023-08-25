@@ -137,7 +137,7 @@ extension AddPhotoViewController {
     
     private func goToHome() {
         dismiss(animated: false)
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     // MARK: - Methods
