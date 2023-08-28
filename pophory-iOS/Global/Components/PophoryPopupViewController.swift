@@ -59,6 +59,17 @@ final class PophoryPopupViewController: UIViewController {
         setupLayout()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        let touch = touches.first!
+        let location = touch.location(in: self.view)
+        
+        if !popupStackView.frame.contains(location) {
+            self.modalTransitionStyle = .crossDissolve
+            dismiss(animated: true)
+        }
+    }
+    
 }
 
 extension PophoryPopupViewController {
