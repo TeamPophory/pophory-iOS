@@ -24,12 +24,16 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     private let photoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.defaultPhotoIcon
+        imageView.layer.cornerRadius = 2
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     private let selectedView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        view.layer.cornerRadius = 2
+        view.clipsToBounds = true
         return view
     }()
     

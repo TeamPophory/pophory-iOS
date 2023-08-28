@@ -46,12 +46,17 @@ final class OnboardingView: UIView {
         return button
     }()
     
-    lazy var realAppleSignInButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
-        button.makeRounded(radius: 30)
-        return button
+    lazy var realAppleSignInButton: PophoryButton = {
+        let buttonBuilder = PophoryButtonBuilder()
+            .setStyle(.primaryBlack)
+            .setTitle(.startWithAppleID)
+            .setImage("apple.logo")
+            .setImageInset(UIEdgeInsets(top: 0, left: -125, bottom: 0, right: 0))
+            .setTitleInset(UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0))
+            .setTintColor(.pophoryWhite)
+            .setFont(.head3)
+        return buttonBuilder.build()
     }()
-    
     
     let onboardingImages: [UIImage] = [
         ImageLiterals.OnboardingImage1,

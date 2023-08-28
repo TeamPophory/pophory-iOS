@@ -39,7 +39,12 @@ final class PhotoDetailView: UIView {
         return view
     }()
     
-    private let photoImageView = UIImageView()
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 2
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
     private let photoInfoStackView: UIStackView = {
         let stackView = UIStackView()

@@ -12,9 +12,11 @@ import SnapKit
 
 final class TabBarController: UITabBarController {
 
+    // MARK: - Properties
+    
     private var isAlbumFull: Bool = false
     
-    // MARK: - viewController properties
+    // MARK: - ViewController properties
     
     private let homeAlbumViewController = HomeAlbumViewController()
     private let plusViewController = UIViewController()
@@ -37,20 +39,17 @@ final class TabBarController: UITabBarController {
             }
             self?.homeAlbumViewController.requestGetAlumListAPI()
         }
+        
         setUpTabBar()
         setupDelegate()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-    }
 }
+
+// MARK: - Extensions
 
 extension TabBarController {
     
-    // MARK: Method
+    // MARK: - Setups
     
     private func setUpTabBar(){
         self.tabBar.tintColor = .pophoryPurple
@@ -85,10 +84,9 @@ extension TabBarController {
     }
 }
 
-// MARK: UITabBarControllerDelegate
+// MARK: - UITabBarControllerDelegate
 
 extension TabBarController: UITabBarControllerDelegate {
-    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
             if isAlbumFull == true {
@@ -111,10 +109,9 @@ extension TabBarController: AlbumStatusProtocol {
     }
 }
 
-// MARK: PHPickerProtocol
+// MARK: - PHPickerProtocol
 
 extension TabBarController: PHPickerProtocol {
-    
     func setupPicker() {
         DispatchQueue.main.async {
             guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
