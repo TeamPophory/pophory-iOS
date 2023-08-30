@@ -135,6 +135,8 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                             PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
                             PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
                             
+                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                            
                             self.decideNextVC(isRegistered: loginResponse.isRegistered)
                             
                         } else {
