@@ -17,16 +17,7 @@ class BaseSignUpView: UIView {
     
     // MARK: - UI Properties
     
-    lazy var headerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "포포리에서 사용할\n너의 닉네임을 알려줘!"
-        label.textColor = .black
-        label.font = .head1Medium
-        label.numberOfLines = 0
-        label.setTextWithLineHeight(lineHeight: 34)
-        label.applyColorAndBoldText(targetString: "너의 닉네임", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
-        return label
-    }()
+    lazy var headerLabel: UILabel = createHeaderLabel(text: "포포리에서 사용할\n너의 닉네임을 알려줘!", lineHeight: 34, font: .head1Medium, targetString: "너의 닉네임", color: .pophoryPurple, boldFont: .head1Bold)
     
     lazy var nextButton: PophoryButton = {
         let buttonBuilder = PophoryButtonBuilder()
@@ -83,31 +74,31 @@ extension BaseSignUpView {
     private func setupViews() {
         
         addSubviews([headerLabel, indicatorStackView, nextButton])
-
-        headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
-            $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
+        
+        headerLabel.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
+            make.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
-        indicatorStackView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(6))
-            $0.height.equalTo(convertByHeightRatio(3))
+        indicatorStackView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.left.right.equalToSuperview().inset(convertByWidthRatio(6))
+            make.height.equalTo(convertByHeightRatio(3))
         }
         
-        nextButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             if #available(iOS 15.0, *) {
-                $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
+                make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
             }
         }
     }
-
+    
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)
-        subView.snp.makeConstraints {
-            $0.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
-            $0.centerX.equalToSuperview()
+        subView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
+            make.centerX.equalToSuperview()
         }
     }
     

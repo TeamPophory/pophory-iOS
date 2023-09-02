@@ -23,7 +23,7 @@ final class StartPophoryView: UIView {
         label.font = .head1Medium
         label.textColor = .pophoryWhite
         label.numberOfLines = 0
-        label.setTextWithLineHeight(lineHeight: 34)
+//        label.setTextWithLineHeight(lineHeight: 34)
         return label
     }()
     

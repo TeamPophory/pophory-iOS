@@ -248,6 +248,7 @@ extension AlbumDetailViewController {
                 self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
             default : return
             }
+            self.homeAlbumView.photoCollectionView.hideSkeleton()
         }
     }
 }

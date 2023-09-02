@@ -116,7 +116,7 @@ extension PickAlbumCoverView {
     
     private func updateNameInputViewLabels() {
         headerLabel.text = "마음에 쏙 드는\n앨범 테마를 선택해줘!"
-        headerLabel.applyColorAndBoldText(targetString: "앨범 테마", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
+//        headerLabel.applyColorAndBoldText(targetString: "앨범 테마", color: .pophoryPurple, font: .head1Medium, boldFont: .head1Bold)
     }
     
     private func setupRegister() {
@@ -191,6 +191,8 @@ extension PickAlbumCoverView: UICollectionViewDataSource {
         return buttonCell
     }
 }
+
+// MARK: - UICollectionViewDelegate
 
 extension PickAlbumCoverView: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

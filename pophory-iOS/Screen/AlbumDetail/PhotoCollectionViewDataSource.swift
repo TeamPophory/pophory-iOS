@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SkeletonView
+
 final class PhotoCollectionViewDataSource {
     
     typealias collectionCell = PhotoCollectionViewCell
@@ -40,6 +42,7 @@ final class PhotoCollectionViewDataSource {
             let photo = albumPhotoList.photos[indexPath.row]
             let cell: collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
             
+            cell.showAnimatedGradientSkeleton()
             cell.configCell(imageUrl: photo.imageUrl)
             return cell
         }

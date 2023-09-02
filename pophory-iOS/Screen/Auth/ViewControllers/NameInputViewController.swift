@@ -18,6 +18,7 @@ final class NameInputViewController: BaseViewController {
     // MARK: - UI Properties
     
     private lazy var nameInputView = NameInputView()
+    private var textFieldManager = TextFieldManager()
     
     // MARK: - Life Cycle
     
@@ -33,6 +34,9 @@ final class NameInputViewController: BaseViewController {
         showNavigationBar()
         handleNextButton()
         hideKeyboard()
+        textFieldManager.delegate = nameInputView
+        
+        textFieldManager.textFieldDidEndEditing(nameInputView.inputTextField)
     }
     
     override func viewDidLayoutSubviews() {

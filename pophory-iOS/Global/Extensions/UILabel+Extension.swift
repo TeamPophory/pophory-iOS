@@ -9,6 +9,25 @@ import UIKit
 
 extension UILabel {
     
+    func setAttributedText(
+        text: String,
+        targetString: String,
+        lineHeight: CGFloat,
+        color: UIColor,
+        font: UIFont,
+        boldFont: UIFont
+    ) {
+        let defaultAttributes = setDefaultAttributes(lineHeight: lineHeight, font: font)
+        let fullAttributedString = NSMutableAttributedString(string: text, attributes: defaultAttributes)
+        
+        let targetRange = (text as NSString).range(of: targetString)
+        fullAttributedString.addAttribute(.foregroundColor, value: color, range: targetRange)
+        fullAttributedString.addAttribute(.font, value: boldFont, range: targetRange)
+        
+        self.attributedText = fullAttributedString
+        self.numberOfLines = 0
+    }
+    
     /// 행간 조정 메서드
     func setLineSpacing(lineSpacing: CGFloat) {
         if let text = self.text {

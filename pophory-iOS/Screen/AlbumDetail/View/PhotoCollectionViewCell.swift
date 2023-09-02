@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import SkeletonView
 import Kingfisher
 
 final class PhotoCollectionViewCell: UICollectionViewCell {
@@ -23,6 +24,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     private let photoImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.isSkeletonable = true
         imageView.image = ImageLiterals.defaultPhotoIcon
         imageView.layer.cornerRadius = 2
         imageView.clipsToBounds = true
@@ -67,12 +69,16 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     ) {
         self.cellType = cellType
         
-        if imageUrl == "" {
-            photoImage.image = ImageLiterals.defaultPhotoIcon
-        } else {
-            let url = URL(string: imageUrl)
-            photoImage.kf.setImage(with: url)
-            photoImage.contentMode = cellType == .albumDetail ? .scaleToFill : .scaleAspectFill
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            if imageUrl == "" {
+                photoImage.image = ImageLiterals.defaultPhotoIcon
+                hideSkeleton()
+            } else {
+                let url = URL(string: imageUrl)
+                photoImage.kf.setImage(with: url)
+                photoImage.contentMode = cellType == .albumDetail ? .scaleToFill : .scaleAspectFill
+                hideSkeleton()
+            }
         }
     }
 }
@@ -80,6 +86,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 extension PhotoCollectionViewCell {
     private func setupLayout() {
         isSelected = false
+        isSkeletonable = true
         
         addSubviews([
             photoImage,

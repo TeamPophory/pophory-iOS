@@ -11,11 +11,9 @@ import SnapKit
 
 class NameInputView: BaseSignUpView {
     
-    var maxCharCount: Int = 6
-    
-    // MARK: - UI Properties
-    
     // TODO: Private -> Delegate 패턴 구현
+    
+    var textFieldManager = TextFieldManager()
     
     lazy var bodyStackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,38 +29,13 @@ class NameInputView: BaseSignUpView {
         label.textColor = .pophoryGray500
         label.font = .title1
         label.numberOfLines = 0
-        label.setTextWithLineHeight(lineHeight: convertByHeightRatio(24))
+        //        label.setTextWithLineHeight(lineHeight: convertByHeightRatio(24))
         return label
     }()
     
-    lazy var inputTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "닉네임"
-        textField.textColor = .black
-        textField.backgroundColor = .pophoryGray100
-        textField.font = .popupButton
-        textField.layer.borderColor = UIColor.pophoryGray400.cgColor
-        textField.layer.borderWidth = 1
-        textField.makeRounded(radius: 18)
-        textField.addPadding(left: 15)
-        textField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
-        
-        let clearTextFieldIcon: UIButton = {
-            let button = UIButton(type: .custom)
-            button.setImage(ImageLiterals.placeholderDeleteIcon, for: .normal)
-            button.addTarget(self, action: #selector(clearTextFieldTapped), for: .touchUpInside)
-            button.frame = CGRect(x: 0, y: 0, width: 18, height: 18)
-            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: convertByWidthRatio(15))
-            return button
-        }()
-        
-        textField.rightView = clearTextFieldIcon
-        textField.rightViewMode = .whileEditing
-        
-        return textField
-    }()
+    lazy var inputTextField: UITextField = { createInputTextField(placeholder: "닉네임", textFieldManager: textFieldManager) }()
     
-    lazy var charCountLabel: UILabel = {
+    var charCountLabel: UILabel = {
         let label = UILabel()
         label.font = .popupButton
         label.textColor = .pophoryGray400
@@ -70,7 +43,7 @@ class NameInputView: BaseSignUpView {
         return label
     }()
     
-    lazy var warningLabel: UILabel = {
+    var warningLabel: UILabel = {
         let label = UILabel()
         label.font = .popupLine
         label.textColor = .pophoryRed
@@ -79,21 +52,18 @@ class NameInputView: BaseSignUpView {
         return label
     }()
     
+    // MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        updateIndicatorViewBackgroundColor(at: 0, color: .pophoryPurple)
-        inputTextField.addTarget(self, action: #selector(textFieldDidChangeSelection), for: .editingChanged)
         setupDelegate()
         setupViews()
+        updateIndicatorViewBackgroundColor(at: 0, color: .pophoryPurple)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func updateCharCountLabel(charCount: Int) {
-        charCountLabel.text = "(\(charCount)/6)"
     }
 }
 
@@ -130,71 +100,32 @@ extension NameInputView {
         inputTextField.addTarget(self, action: #selector(onValueChangedTextField), for: .editingChanged)
     }
     
-    // MARK: - @objc
-    
-    @objc func clearTextFieldButtonOnClick() {
-        inputTextField.text = nil
-    }
-    
-    @objc private func clearTextFieldTapped() {
-        inputTextField.text = ""
-    }
-    
-    @objc func onValueChangedTextField() {
-        guard let text = inputTextField.text else { return }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            if text.isContainKoreanOnly() {
-                self.inputTextField.layer.borderColor = UIColor.pophoryPurple.cgColor
-                
-                if text.count >= 2 && text.count <= 6 {
-                    self.warningLabel.isHidden = true
-                    self.nextButton.isEnabled = true
-                } else {
-                    self.warningLabel.text = "2-6글자 이내로 작성해주세요"
-                    self.warningLabel.isHidden = false
-                    self.nextButton.isEnabled = false
-                }
-                
-            } else {
-                self.inputTextField.layer.borderColor = UIColor.pophoryRed.cgColor
-                self.warningLabel.text = "현재 한국어만 지원하고 있어요"
-                self.warningLabel.isHidden = false
-                self.nextButton.isEnabled = false
-            }
-        }
-    }
-    
     // MARK: - Private Methods
     
     private func setupDelegate() {
-        inputTextField.delegate = self
+        inputTextField.delegate = textFieldManager
+        textFieldManager.delegate = self
     }
 }
 
-// MARK: - UITextFieldDelegate
-
-extension NameInputView: UITextFieldDelegate {    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text?.count == 0 {
-            textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-        } else {
-            if !textField.text!.isContainKoreanOnly() {
-                textField.layer.borderColor = UIColor.pophoryRed.cgColor
-            }
-        }
+extension NameInputView: TextFieldManagerDelegate {
+    func updateBorderColor(to color: UIColor) {
+        inputTextField.layer.borderColor = color.cgColor
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.pophoryGray400.cgColor
+    func setWarningLabelHidden(isHidden: Bool) {
+        warningLabel.isHidden = isHidden
     }
     
-    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
-        let text = textField.text ?? ""
-        let charCount = text.count
-        updateCharCountLabel(charCount: charCount)
-        
-        let isTextFieldEmpty = text.isEmpty
-        textField.rightView?.isHidden = isTextFieldEmpty
+    func setCharCountLabelText(text: String) {
+        charCountLabel.text = text
+    }
+    
+    func setWarningLabelText(text: String) {
+        warningLabel.text = text
+    }
+    
+    func setNextButtonEnabled(isEnabled: Bool) {
+        nextButton.isEnabled = isEnabled
     }
 }
