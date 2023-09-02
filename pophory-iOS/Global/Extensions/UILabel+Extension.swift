@@ -8,6 +8,20 @@
 import UIKit
 
 extension UILabel {
+    func setDefaultAttributes(lineHeight: CGFloat, font: UIFont) -> [NSAttributedString.Key: Any] {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = lineHeight
+        
+        let defaultAttributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: paragraphStyle,
+            .baselineOffset: (lineHeight - font.lineHeight) / 4,
+            .font: font,
+            .foregroundColor: UIColor.black
+        ]
+        
+        return defaultAttributes
+    }
     
     func setAttributedText(
         text: String,
