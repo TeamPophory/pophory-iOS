@@ -68,6 +68,8 @@ extension TextFieldManager {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
 extension TextFieldManager: UITextFieldDelegate  {
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         let text = textField.text ?? ""
@@ -100,54 +102,3 @@ extension TextFieldManager: UITextFieldDelegate  {
         }
     }
 }
-
-//    @objc func onValueChangedTextField(_ textField: UITextField) {
-//        guard let text = textField.text else { return }
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//            if text.isContainKoreanOnly() {
-//                textField.layer.borderColor = UIColor.pophoryPurple.cgColor
-//
-//                if text.count >= 2 && text.count <= 6 {
-//                    self.warningLabelHidden?(true)
-//                    self.nextButtonEnabled?(true)
-//                } else {
-//                    self.warningLabelText?("2-6글자 이내로 작성해주세요")
-//                    self.warningLabelHidden?(false)
-//                    self.nextButtonEnabled?(false)
-//                }
-//
-//            } else {
-//                textField.layer.borderColor = UIColor.pophoryRed.cgColor
-//                self.warningLabelText?("현재 한국어만 지원하고 있어요")
-//                self.warningLabelHidden?(false)
-//                self.nextButtonEnabled?(false)
-//            }
-//        }
-//    }
-    
-//    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
-//        let text = textField.text ?? ""
-//        let charCount = text.count
-//        let countLabelText = "(\(charCount)/\(maxCharCount))"
-//        setCharCountLabelText?(countLabelText)
-//
-//        let isTextFieldEmpty = text.isEmpty
-//        textField.rightView?.isHidden = isTextFieldEmpty
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//            if self.isKoreanID {
-//                let valid = text.isContainKoreanOnly()
-//                self.updateUIWithValidStatus(valid: valid)
-//                if valid {
-//                    self.handleNextButtonStatus(charCount: charCount, minCharCount: 2, maxCharCount: 6)
-//                }
-//            } else {
-//                let valid = text.isValidCharacters()
-//                self.updateUIWithValidStatus(valid: valid)
-//                if valid {
-//                    self.handleNextButtonStatus(charCount: charCount, minCharCount: 4, maxCharCount: 12)
-//                }
-//            }
-//        }
-//    }

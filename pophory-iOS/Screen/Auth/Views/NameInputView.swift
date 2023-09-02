@@ -9,13 +9,13 @@ import UIKit
 
 import SnapKit
 
-class NameInputView: BaseSignUpView {
+class NameInputView: BaseSignUpView, PophoryTextFieldCustomizable {
     
     // TODO: Private -> Delegate 패턴 구현
     
-    var textFieldManager = TextFieldManager()
+    private var textFieldManager = TextFieldManager()
     
-    lazy var bodyStackView: UIStackView = {
+    private lazy var bodyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = convertByWidthRatio(20)
@@ -23,13 +23,13 @@ class NameInputView: BaseSignUpView {
         return stackView
     }()
     
-    lazy var bodyLabel: UILabel = {
+    let bodyLabel: UILabel = {
         let label = UILabel()
         label.text = "한글 2-6자리 이내로 작성해주세요\n닉네임은 이후에 수정이 어려워요"
         label.textColor = .pophoryGray500
         label.font = .title1
         label.numberOfLines = 0
-        //        label.setTextWithLineHeight(lineHeight: convertByHeightRatio(24))
+        label.setTextWithLineHeight(lineHeight: 24)
         return label
     }()
     
@@ -78,26 +78,24 @@ extension NameInputView {
         addSubviews([bodyStackView, charCountLabel, warningLabel])
         bodyStackView.addArrangedSubviews([bodyLabel, inputTextField])
         
-        bodyStackView.snp.makeConstraints {
-            $0.top.equalTo(headerLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+        bodyStackView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
-        inputTextField.snp.makeConstraints {
-            $0.height.equalTo(60)
+        inputTextField.snp.makeConstraints { make in
+            make.height.equalTo(60)
         }
         
-        charCountLabel.snp.makeConstraints {
-            $0.top.equalTo(inputTextField.snp.bottom).offset(10)
-            $0.trailing.equalTo(inputTextField)
+        charCountLabel.snp.makeConstraints { make in
+            make.top.equalTo(inputTextField.snp.bottom).offset(10)
+            make.trailing.equalTo(inputTextField)
         }
         
-        warningLabel.snp.makeConstraints {
-            $0.top.equalTo(charCountLabel)
-            $0.leading.equalToSuperview().offset(26)
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(charCountLabel)
+            make.leading.equalToSuperview().offset(26)
         }
-        
-        inputTextField.addTarget(self, action: #selector(onValueChangedTextField), for: .editingChanged)
     }
     
     // MARK: - Private Methods
@@ -107,6 +105,8 @@ extension NameInputView {
         textFieldManager.delegate = self
     }
 }
+
+// MARK: - TextFieldManagerDelegate
 
 extension NameInputView: TextFieldManagerDelegate {
     func updateBorderColor(to color: UIColor) {
