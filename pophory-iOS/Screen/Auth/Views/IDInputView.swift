@@ -38,28 +38,4 @@ final class IDInputView: NameInputView {
     override func updateCharCountLabel(charCount: Int) {
         charCountLabel.text = "(\(charCount)/12)"
     }
-    
-//    override func onValueChangedTextField() {
-//        guard let text = inputTextField.text else { return }
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//            if text.isValidCharacters() {
-//                self.inputTextField.layer.borderColor = UIColor.pophoryPurple.cgColor
-//                self.warningLabel.isHidden = true
-//
-//                if text.count >= 4 && text.count <= 12 {
-//                    self.nextButton.isEnabled = true
-//                } else {
-//                    self.warningLabel.text = "4-12자 이내로 작성해주세요"
-//                    self.warningLabel.isHidden = false
-//                    self.nextButton.isEnabled = false
-//                }
-//            } else {
-//                self.inputTextField.layer.borderColor = UIColor.pophoryRed.cgColor
-//                self.warningLabel.text = "올바른 형식의 아이디가 아닙니다"
-//                self.warningLabel.isHidden = false
-//                self.nextButton.isEnabled = false
-//            }
-//        }
-//    }
 }
