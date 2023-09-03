@@ -53,7 +53,7 @@ class BaseSignUpView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupIndicatorViews()
         setupViews()
         configureNextButton()
@@ -83,7 +83,7 @@ extension BaseSignUpView {
     private func setupViews() {
         
         addSubviews([headerLabel, indicatorStackView, nextButton])
-
+        
         headerLabel.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
             $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
@@ -97,12 +97,10 @@ extension BaseSignUpView {
         
         nextButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            if #available(iOS 15.0, *) {
-                $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
-            }
+            $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
         }
     }
-
+    
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)
         subView.snp.makeConstraints {
