@@ -50,6 +50,35 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
             }
         }
     }
+    
+    func updateRefreshToken(completion: @escaping (NetworkResult<Any>) -> Void) {
+            guard let refreshToken = UserDefaults.standard.string(forKey: OnboardingViewController.userDefaultsRefreshTokenKey) else {
+                completion(.requestErr("No refresh token found"))
+                return
+            }
+
+            let requestDTO = RefreshTokenDTO(refreshToken: refreshToken)
+
+            provider.request(.refreshToken(refreshToken: requestDTO.refreshToken)) { result in
+                switch result {
+                case .success(let response):
+                    if response.statusCode < 300 {
+                        do {
+                            let loginResponse = try response.map(LoginAPIDTO.self)
+                            completion(.success((loginResponse)))
+                        } catch {
+                            print("Error decoding the login response: \(error)")
+                            completion(.requestErr("Failed to decode the login response."))
+                        }
+                    } else {
+                        completion(.requestErr("Failed to update access token."))
+                    }
+                case .failure(let error):
+                    print(error)
+                    completion(.networkFail)
+                }
+            }
+        }
 
     
     func withdraw(completion: @escaping (NetworkResult<Any>) -> Void) {

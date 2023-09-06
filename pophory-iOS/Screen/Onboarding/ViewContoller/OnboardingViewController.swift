@@ -18,7 +18,7 @@ final class OnboardingViewController: BaseViewController {
     private let appleLoginManager: AppleLoginManager
     
     let userDefaultsAccessTokenKey = "accessToken"
-    let userDefaultsRefreshTokenKey = "refreshToken"
+    static var userDefaultsRefreshTokenKey = "refreshToken"
     
     // MARK: - Life Cycle
     
