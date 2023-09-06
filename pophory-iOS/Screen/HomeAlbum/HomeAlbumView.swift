@@ -24,7 +24,7 @@ protocol HomeAlbumViewButtonTappedProtocol {
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private var privateStatusLabelText: String
-    private let maxPhotoCount: Int = 15
+    private var maxPhotoLimit: Int
     var imageDidTappedDelegate: ImageViewDidTappedProtocol?
     var homeAlbumViewButtonTappedDelegate: HomeAlbumViewButtonTappedProtocol?
     
@@ -33,7 +33,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             return privateStatusLabelText
         }
         set {
-            privateStatusLabelText = newValue + "/\(maxPhotoCount)"
+            privateStatusLabelText = newValue + "/\(maxPhotoLimit)"
             
             let attributedText = NSMutableAttributedString(string: privateStatusLabelText)
             attributedText.addAttribute(.foregroundColor, value: UIColor.pophoryPurple, range: NSRange(location: 0, length: newValue.count))
@@ -95,6 +95,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     init(statusLabelText: String) {
         privateStatusLabelText = statusLabelText
+        maxPhotoLimit = 0
         super.init(frame: .zero)
         setupLayout()
         configUI()
@@ -212,5 +213,9 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         } else {
             progressBarIcon.image = ImageLiterals.progressBarIcon
         }
+    }
+    
+    func setMaxPhotoCount(_ maxPhotoCount: Int) {
+        self.maxPhotoLimit = maxPhotoCount
     }
 }

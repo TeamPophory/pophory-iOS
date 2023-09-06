@@ -17,6 +17,7 @@ final class HomeAlbumViewController: BaseViewController {
     
     private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
+    private var maxPhotoLimit: Int?
     private var albumCoverId: Int? {
         didSet {
             guard let albumCoverId = albumCoverId else { return }
@@ -33,15 +34,17 @@ final class HomeAlbumViewController: BaseViewController {
                     self.albumCoverId = albums[0].albumCover
                     let albumCover: Int = albums[0].albumCover ?? 0
                     let photoCount: Int = albums[0].photoCount ?? 0
-                    
+                    self.maxPhotoLimit = albums[0].photoLimit ?? 0
                     // MARK: - update UI
                     
+                    guard let maxPhotoLimit = self.maxPhotoLimit else { return }
+                    homeAlbumView.setMaxPhotoCount(maxPhotoLimit)
                     homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
                     homeAlbumView.statusLabelText = String(photoCount)
                     
                     let progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
                     homeAlbumView.updateProgressBarWidth(updateWidth: progressValue)
-                    let isAlbumFull = (photoCount == 15) ? true : false
+                    let isAlbumFull = (photoCount == maxPhotoLimit) ? true : false
                     homeAlbumView.updateProgressBarIcon(isAlbumFull: isAlbumFull)
                     albumStatusDelegate?.isAblumFull(isFull: isAlbumFull)
                 }
@@ -75,6 +78,7 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
         let albumDetailViewController = AlbumDetailViewController()
         if let albumId = self.albumId {
             albumDetailViewController.albumId = albumId
+            albumDetailViewController.setPhotoLimit(maxPhotoLimit ?? 0)
         }
         self.navigationController?.pushViewController(albumDetailViewController, animated: true)
     }
