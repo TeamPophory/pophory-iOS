@@ -117,7 +117,6 @@
 		91F3A77B2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */; };
 		91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */; };
 		91F3A7812A52AE1900C06D1B /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */; };
-		91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */; };
 		91F3A7852A52AE3900C06D1B /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7842A52AE3900C06D1B /* NetworkResult.swift */; };
 		91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7862A52AE4600C06D1B /* NetworkService.swift */; };
 		91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A7882A52AE5A00C06D1B /* URLConstants.swift */; };
@@ -223,6 +222,9 @@
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		37A271652AA71C3B001FFC38 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = SOURCE_ROOT; };
+		37A271662AA71D40001FFC38 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		37A271672AA71D9E001FFC38 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMoyaProvider.swift; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
 		37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveServiceViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +248,6 @@
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
 		6B09D2272A6808DA00DF4275 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		6B09D2292A6808EA00DF4275 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		6B09D2302A68192000DF4275 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
 		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
 		6B29DC552A5494A000F93EC7 /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6B29DC562A5494A000F93EC7 /* PhotoAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -295,7 +296,6 @@
 		91F3A77A2A52AC8000C06D1B /* PatchAlbumPhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchAlbumPhotoListResponseDTO.swift; sourceTree = "<group>"; };
 		91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
-		91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
 		91F3A7842A52AE3900C06D1B /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		91F3A7862A52AE4600C06D1B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		91F3A7882A52AE5A00C06D1B /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
@@ -781,7 +781,6 @@
 				373EEF012A582C4C0039A22C /* AppleLoginManager.swift */,
 				91F3A77E2A52ADD900C06D1B /* MoyaLoggerPlugin.swift */,
 				91F3A7802A52AE1900C06D1B /* BaseTargetType.swift */,
-				91F3A7822A52AE2800C06D1B /* BaseURLConstant.swift */,
 				91F3A7842A52AE3900C06D1B /* NetworkResult.swift */,
 				91F3A7862A52AE4600C06D1B /* NetworkService.swift */,
 				91F3A7882A52AE5A00C06D1B /* URLConstants.swift */,
@@ -907,8 +906,10 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				6B09D2302A68192000DF4275 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
+				37A271652AA71C3B001FFC38 /* Shared.xcconfig */,
+				37A271662AA71D40001FFC38 /* Debug.xcconfig */,
+				37A271672AA71D9E001FFC38 /* Release.xcconfig */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
@@ -1281,7 +1282,6 @@
 			files = (
 				912780142A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift in Sources */,
 				373A74D42A74126500CBE8B6 /* AuthNetworkManager.swift in Sources */,
-				91F3A7832A52AE2800C06D1B /* BaseURLConstant.swift in Sources */,
 				B138A3B82A586EC3000EE81E /* SettingsRootView.swift in Sources */,
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
@@ -1590,6 +1590,7 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37A271662AA71D40001FFC38 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1609,6 +1610,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1629,6 +1631,7 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37A271672AA71D9E001FFC38 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1648,6 +1651,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1758,7 +1762,7 @@
 				B1631F302A1759EB0050974F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B1631F312A1759EB0050974F /* Build configuration list for PBXNativeTarget "pophory-iOS" */ = {
 			isa = XCConfigurationList;
@@ -1767,7 +1771,7 @@
 				B1631F332A1759EB0050974F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B1631F342A1759EC0050974F /* Build configuration list for PBXNativeTarget "pophoryTests" */ = {
 			isa = XCConfigurationList;
@@ -1776,7 +1780,7 @@
 				B1631F362A1759EC0050974F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B1631F372A1759EC0050974F /* Build configuration list for PBXNativeTarget "pophoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -1785,7 +1789,7 @@
 				B1631F392A1759EC0050974F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
