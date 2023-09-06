@@ -24,7 +24,7 @@ extension AlbumAPI: BaseTargetType {
     var path: String {
         switch self {
         case .patchAlbumList:
-            return URLConstants.album
+            return URLConstantsV2.album
         case .patchAlbumPhotoList(let albumId):
             return URLConstantsV2.album + "/\(albumId)/photo"
         case .patchAlbumCover(let albumId, _):
