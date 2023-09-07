@@ -29,8 +29,10 @@ extension AuthAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .postAuthorizationCode, .postIdentityToken, .withdrawUser:
+        case .postAuthorizationCode, .postIdentityToken:
             return URLConstantsV2.auth
+        case .withdrawUser:
+            return URLConstants.auth
         case .refreshToken:
             return URLConstants.auth + "/token"
         }
