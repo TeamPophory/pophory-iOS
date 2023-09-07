@@ -12,6 +12,7 @@ import Moya
 final class MoyaLoggerPlugin: PluginType {
 
     // MARK: - Request 보낼 시 호출
+    
     func willSend(_ request: RequestType, target: TargetType) {
         guard let httpRequest = request.request else {
             print("--> 유효하지 않은 요청")
@@ -32,14 +33,19 @@ final class MoyaLoggerPlugin: PluginType {
     }
 
     // MARK: - Response 받을 시 호출
+    
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         switch result {
         case let .success(response):
+            if response.statusCode == 401 {
+                NotificationCenter.default.post(name: .didReceiveUnauthorizedNotification, object: nil)
+            }
             self.onSucceed(response)
         case let .failure(error):
             self.onFail(error)
         }
     }
+
 
     func onSucceed(_ response: Response) {
         let request = response.request
