@@ -158,7 +158,7 @@ final class AlbumDetailViewController: BaseViewController {
         homeAlbumView.photoCollectionView.delegate = self
     }
     
-    func setPhotoLimit(_ maxPhotoLimit: Int) {
+    func setupPhotoLimit(_ maxPhotoLimit: Int) {
         self.maxPhotoLimit = maxPhotoLimit
     }
 }

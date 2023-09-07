@@ -78,7 +78,7 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
         let albumDetailViewController = AlbumDetailViewController()
         if let albumId = self.albumId {
             albumDetailViewController.albumId = albumId
-            albumDetailViewController.setPhotoLimit(maxPhotoLimit ?? 0)
+            albumDetailViewController.setupPhotoLimit(maxPhotoLimit ?? 0)
         }
         self.navigationController?.pushViewController(albumDetailViewController, animated: true)
     }
