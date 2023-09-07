@@ -11,7 +11,7 @@ import Photos
 import SnapKit
 
 final class TabBarController: UITabBarController {
-
+    
     // MARK: - Properties
     
     private var isAlbumFull: Bool = false
@@ -26,7 +26,7 @@ final class TabBarController: UITabBarController {
     private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +34,23 @@ final class TabBarController: UITabBarController {
         ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
             if (response?.code == 4423) {
                 self?.showPopup(popupType: .simple,
-                          secondaryText: "이미 내 앨범에 있는 사진이에요",
+                                secondaryText: "이미 내 앨범에 있는 사진이에요",
                                 firstButtonTitle: .back)
             }
             self?.homeAlbumViewController.requestGetAlumListAPI()
         }
         
+        NotificationCenter.default.addObserver(self,
+                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
+                                               name:.didReceiveUnauthorizedNotification,
+                                               object:nil)
+        
         setUpTabBar()
         setupDelegate()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -165,7 +174,34 @@ extension TabBarController: PHPickerProtocol {
     func presentOverSize() {
         DispatchQueue.main.async {
             self.showPopup(popupType: .simple,
-                      secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
+                           secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
+        }
+    }
+}
+
+// MARK: - Network
+
+extension TabBarController {    
+    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
+        refreshToken()
+    }
+    
+    func refreshToken() {
+        let authRepository = DefaultAuthRepository()
+        
+        authRepository.updateRefreshToken { result in
+            switch result {
+            case .success(let loginResponse):
+                guard let loginResponse = loginResponse as? UpdatedAccessTokenDTO else { return }
+                PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
+                PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
+            case .requestErr(let message):
+                print("Error updating token:\(message)")
+            case .networkFail:
+                print("Network error")
+            default:
+                break
+            }
         }
     }
 }

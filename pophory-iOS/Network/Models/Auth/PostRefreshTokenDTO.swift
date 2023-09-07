@@ -5,6 +5,6 @@
 //  Created by Joon Baek on 2023/08/18.
 //
 
-struct RefreshTokenDTO: Codable {
+struct PostRefreshTokenDTO: Codable {
     let refreshToken: String
 }

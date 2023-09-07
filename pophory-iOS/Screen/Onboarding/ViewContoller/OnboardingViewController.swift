@@ -16,6 +16,7 @@ final class OnboardingViewController: BaseViewController {
     lazy var onboardingView = OnboardingView()
     
     private let appleLoginManager: AppleLoginManager
+    private let authRepository = DefaultAuthRepository()
     
     let userDefaultsAccessTokenKey = "accessToken"
     static var userDefaultsRefreshTokenKey = "refreshToken"
@@ -25,6 +26,7 @@ final class OnboardingViewController: BaseViewController {
     init(appleLoginManager: AppleLoginManager) {
         self.appleLoginManager = appleLoginManager
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
