@@ -22,8 +22,10 @@ extension AuthAPI: BaseTargetType {
         switch self {
         case .postIdentityToken(let identityToken, _):
             return identityToken
-        case .postAuthorizationCode,.refreshToken, .withdrawUser:
+        case .postAuthorizationCode, .withdrawUser:
             return PophoryTokenManager.shared.fetchAccessToken()
+        case .refreshToken:
+            return PophoryTokenManager.shared.fetchRefreshToken()
         }
     }
     
@@ -34,7 +36,7 @@ extension AuthAPI: BaseTargetType {
         case .withdrawUser:
             return URLConstants.auth
         case .refreshToken:
-            return URLConstants.auth + "/token"
+            return URLConstantsV2.auth + "/token"
         }
     }
     
@@ -53,8 +55,8 @@ extension AuthAPI: BaseTargetType {
             return .requestParameters(parameters: ["authorizationCode": authorizationCode], encoding: JSONEncoding.default)
         case .postIdentityToken(_, let socialType):
             return .requestParameters(parameters: ["socialType": socialType], encoding: JSONEncoding.default)
-        case .refreshToken(let refreshToken):
-            return .requestParameters(parameters: ["refreshToken": refreshToken], encoding: JSONEncoding.default)
+        case .refreshToken:
+            return .requestPlain
         case .withdrawUser:
             return .requestPlain
         }
