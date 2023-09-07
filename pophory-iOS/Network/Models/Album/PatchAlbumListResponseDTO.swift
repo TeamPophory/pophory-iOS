@@ -17,4 +17,5 @@ struct Album: Codable {
     let title: String?
     let albumCover: Int?
     let photoCount: Int?
+    let photoLimit: Int?
 }

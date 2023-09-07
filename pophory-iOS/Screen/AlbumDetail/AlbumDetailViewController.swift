@@ -27,6 +27,7 @@ final class AlbumDetailViewController: BaseViewController {
     private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     private var albumPhotoCount = Int()
+    private var maxPhotoLimit: Int?
     
     private let homeAlbumView = AlbumDetailView()
     private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
@@ -156,6 +157,10 @@ final class AlbumDetailViewController: BaseViewController {
     private func addDelegate() {
         homeAlbumView.photoCollectionView.delegate = self
     }
+    
+    func setupPhotoLimit(_ maxPhotoLimit: Int) {
+        self.maxPhotoLimit = maxPhotoLimit
+    }
 }
 
 // MARK: - @objc
@@ -167,7 +172,8 @@ extension AlbumDetailViewController {
     }
     
     @objc func addPhotoButtonOnClick() {
-        if albumPhotoCount >= 15 {
+        guard let maxPhotoLimit = self.maxPhotoLimit else { return }
+        if albumPhotoCount >= maxPhotoLimit {
             showPopup(
                 image: ImageLiterals.img_albumfull,
                 primaryText: "포포리 앨범이 가득찼어요",
