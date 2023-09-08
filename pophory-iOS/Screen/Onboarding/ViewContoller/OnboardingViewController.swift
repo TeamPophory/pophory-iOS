@@ -16,15 +16,17 @@ final class OnboardingViewController: BaseViewController {
     lazy var onboardingView = OnboardingView()
     
     private let appleLoginManager: AppleLoginManager
+    private let authRepository = DefaultAuthRepository()
     
     let userDefaultsAccessTokenKey = "accessToken"
-    let userDefaultsRefreshTokenKey = "refreshToken"
+    static var userDefaultsRefreshTokenKey = "refreshToken"
     
     // MARK: - Life Cycle
     
     init(appleLoginManager: AppleLoginManager) {
         self.appleLoginManager = appleLoginManager
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
