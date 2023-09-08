@@ -24,40 +24,14 @@ final class HomeAlbumViewController: BaseViewController {
     private var albumCoverId: Int? {
         didSet {
             guard let albumCoverId = albumCoverId else { return }
-            homeAlbumView.albumImageView.image = AlbumData.albumCovers[albumCoverId-1]
+            homeAlbumView.albumImageView.image = AlbumData.albumCovers[albumCoverId - 1]
         }
     }
     
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
     private var albumList: PatchAlbumListResponseDTO? {
         didSet {
-            if let albums = albumList?.albums {
-                if albums.count != 0 {
-                    self.albumId = albums[0].id
-                    self.albumCoverId = albums[0].albumCover
-                    let albumCover: Int = albums[0].albumCover ?? 0
-                    let photoCount: Int = albums[0].photoCount ?? 0
-                    self.maxPhotoLimit = albums[0].photoLimit ?? 0
-                    // MARK: - update UI
-                    
-                    guard let maxPhotoLimit = self.maxPhotoLimit else { return }
-                    homeAlbumView.setMaxPhotoCount(maxPhotoLimit)
-                    homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
-                    homeAlbumView.statusLabelText = String(photoCount)
-                    
-                    if maxPhotoLimit == 30 {
-                        progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 30.0)))
-                    } else {
-                        progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
-                    }
-                    if let progress = progressValue {
-                        homeAlbumView.updateProgressBarWidth(updateWidth: progressValue ?? 00)
-                    }
-                    let isAlbumFull = (photoCount == maxPhotoLimit) ? true : false
-                    homeAlbumView.updateProgressBarIcon(isAlbumFull: isAlbumFull)
-                    albumStatusDelegate?.isAblumFull(isFull: isAlbumFull)
-                }
-            }
+            updateUIWithAlbums()
         }
     }
     
@@ -89,6 +63,53 @@ extension HomeAlbumViewController {
     private func setupDelegate() {
         homeAlbumView.imageDidTappedDelegate = self
         homeAlbumView.homeAlbumViewButtonTappedDelegate = self
+    }
+    
+    private func updateUIWithAlbums() {
+        guard let album = albumList?.albums?.first else { return }
+        
+        setupAlbum(album)
+        updateUIForAlbum(album)
+    }
+    
+    private func setupAlbum(_ album: Album) {
+        self.albumId = album.id
+        self.albumCoverId = album.albumCover
+        self.maxPhotoLimit = album.photoLimit
+        
+        progressValue = calculateProgressValue(for: album)
+    }
+    
+    private func updateUIForAlbum(_ album: Album) {
+        guard let maxPhotoLimit = self.maxPhotoLimit,
+              let progressValueUnwrapped = progressValue else { return }
+        
+        homeAlbumView.setMaxPhotoCount(maxPhotoLimit)
+        
+        if let coverIndex = album.albumCover {
+            homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[coverIndex]
+        }
+        
+        homeAlbumView.statusLabelText = String(album.photoCount ?? 0)
+        
+        homeAlbumView.updateProgressBarWidth(updateWidth: progressValueUnwrapped)
+        
+        let isFull: Bool = (album.photoCount == maxPhotoLimit)
+        
+        homeAlbumView.updateProgressBarIcon(isAlbumFull: isFull)
+        
+        albumStatusDelegate?.isAblumFull(isFull: isFull)
+    }
+    
+    private func calculateProgressValue(for album: Album) -> Int? {
+        guard let maxPhotoLimit = self.maxPhotoLimit,
+              let photoCount = album.photoCount else { return nil }
+        
+        if maxPhotoLimit == 30 {
+            return Int(round(progressBackgroundViewWidth * (Double(photoCount) / 30.0)))
+        } else {
+            return Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
+        }
     }
 }
 
