@@ -105,11 +105,7 @@ extension HomeAlbumViewController {
         guard let maxPhotoLimit = self.maxPhotoLimit,
               let photoCount = album.photoCount else { return nil }
         
-        if maxPhotoLimit == 30 {
-            return Int(round(progressBackgroundViewWidth * (Double(photoCount) / 30.0)))
-        } else {
-            return Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
-        }
+        return Int(round(progressBackgroundViewWidth * (Double(photoCount) / Double(maxPhotoLimit))))
     }
 }
 
