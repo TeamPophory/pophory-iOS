@@ -134,7 +134,6 @@ extension SharePhotoRootView {
     
     // TODO: 이거 VC로 옮기기 (리팩토링 필요)
     private func sharePhoto(shareId: String) {
-        let parentVC = getParentViewController()
         
         // TODO: - 코드 정리, url 짧게
         
@@ -145,9 +144,22 @@ extension SharePhotoRootView {
         dynamicLinkComponents?.iOSParameters?.appStoreID = "6451004060"
         dynamicLinkComponents?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.teampophory.pophory")
         
-        let longDynamic = dynamicLinkComponents?.url
+        var dynamicURL = dynamicLinkComponents?.url
+
+        dynamicLinkComponents?.shorten { (shortURL, warnings, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                self.showLinkShare(url: dynamicURL)
+            }
+            self.showLinkShare(url: shortURL)
+        }
+    }
+    
+    private func showLinkShare(url: URL?) {
         
-        let activityVC = UIActivityViewController(activityItems: [longDynamic?.absoluteString], applicationActivities: nil)
+        let parentVC = getParentViewController()
+        
+        let activityVC = UIActivityViewController(activityItems: [url?.absoluteString], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = parentVC?.view
         
         parentVC?.present(activityVC, animated: true)
@@ -156,7 +168,6 @@ extension SharePhotoRootView {
             self.deselectPhoto()
         }
     }
-    
     private func deselectPhoto() {
         guard let index = selectedPhotoIndex else { return }
         
