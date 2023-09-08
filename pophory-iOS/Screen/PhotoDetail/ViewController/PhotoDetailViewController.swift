@@ -67,9 +67,20 @@ extension PhotoDetailViewController {
         dynamicLinkComponents?.iOSParameters?.appStoreID = "6451004060"
         dynamicLinkComponents?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.teampophory.pophory")
         
-        let longDynamic = dynamicLinkComponents?.url
+        var dynamicURL = dynamicLinkComponents?.url
         
-        let activityVC = UIActivityViewController(activityItems: [longDynamic?.absoluteString], applicationActivities: nil)
+        dynamicLinkComponents?.shorten { (shortURL, warnings, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                self.showLinkShare(url: dynamicURL)
+            }
+            self.showLinkShare(url: shortURL)
+        }
+    }
+    
+    private func showLinkShare(url: URL?) {
+        
+        let activityVC = UIActivityViewController(activityItems: [url?.absoluteString], applicationActivities: nil)
         
         activityVC.completionWithItemsHandler = { [weak self] (activityType, completed, _, error) in
             if completed {
