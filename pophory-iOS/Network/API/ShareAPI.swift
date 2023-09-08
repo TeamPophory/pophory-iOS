@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum ShareAPI {
-    case patchSharePhoto(shareID: String)
+    case fetchSharePhoto(shareID: String)
     case postSharePhoto(photoID: Int)
 }
 
@@ -22,7 +22,7 @@ extension ShareAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .patchSharePhoto(let shareID):
+        case .fetchSharePhoto(let shareID):
             return URLConstantsV2.share + "/\(shareID)"
         case .postSharePhoto(let photoID):
             return URLConstantsV2.share + "/photo/\(photoID)"
@@ -31,7 +31,7 @@ extension ShareAPI: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
-        case .patchSharePhoto:
+        case .fetchSharePhoto:
             return .get
         case .postSharePhoto:
             return .post
@@ -40,7 +40,7 @@ extension ShareAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .patchSharePhoto, .postSharePhoto:
+        case .fetchSharePhoto, .postSharePhoto:
             return .requestPlain
         }
     }

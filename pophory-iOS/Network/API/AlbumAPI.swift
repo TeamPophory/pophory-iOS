@@ -10,9 +10,9 @@ import Foundation
 import Moya
 
 enum AlbumAPI {
-    case patchAlbumList
-    case patchAlbumPhotoList(albumId: Int)
-    case patchAlbumCover(albumId: Int, body: PatchAlbumCoverRequestDTO)
+    case fetchAlbumList
+    case fetchAlbumPhotoList(albumId: Int)
+    case fetchAlbumCover(albumId: Int, body: patchAlbumCoverRequestDTO)
 }
 
 extension AlbumAPI: BaseTargetType {
@@ -23,29 +23,29 @@ extension AlbumAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .patchAlbumList:
+        case .fetchAlbumList:
             return URLConstantsV2.album
-        case .patchAlbumPhotoList(let albumId):
+        case .fetchAlbumPhotoList(let albumId):
             return URLConstantsV2.album + "/\(albumId)/photo"
-        case .patchAlbumCover(let albumId, _):
+        case .fetchAlbumCover(let albumId, _):
             return URLConstantsV2.album + "/\(albumId)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .patchAlbumList, .patchAlbumPhotoList:
+        case .fetchAlbumList, .fetchAlbumPhotoList:
             return .get
-        case .patchAlbumCover:
+        case .fetchAlbumCover:
             return .patch
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .patchAlbumList, .patchAlbumPhotoList:
+        case .fetchAlbumList, .fetchAlbumPhotoList:
             return .requestPlain
-        case .patchAlbumCover(_, let body):
+        case .fetchAlbumCover(_, let body):
             return .requestJSONEncodable(body)
         }
     }

@@ -29,7 +29,7 @@ final class HomeAlbumViewController: BaseViewController {
     }
     
     let homeAlbumView = HomeAlbumView(statusLabelText: String())
-    private var albumList: PatchAlbumListResponseDTO? {
+    private var albumList: FetchAlbumListResponseDTO? {
         didSet {
             updateUIWithAlbums()
         }
@@ -140,7 +140,7 @@ extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
 
 extension HomeAlbumViewController  {
     func requestGetAlumListAPI() {
-        NetworkService.shared.albumRepository.patchAlbumList() { result in
+        NetworkService.shared.albumRepository.fetchAlbumList() { result in
             switch result {
             case .success(let response):
                 self.albumList = response

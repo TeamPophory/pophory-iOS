@@ -8,16 +8,16 @@
 import Foundation
 
 protocol AlbumRepository {
-    func patchAlbumList(
-        completion: @escaping (NetworkResult<PatchAlbumListResponseDTO>) -> Void
+    func fetchAlbumList(
+        completion: @escaping (NetworkResult<FetchAlbumListResponseDTO>) -> Void
     )
-    func patchAlbumPhotoList(
+    func fetchAlbumPhotoList(
         albumId: Int,
-        completion: @escaping (NetworkResult<PatchAlbumPhotoListResponseDTO>) -> Void
+        completion: @escaping (NetworkResult<FetchAlbumPhotoListResponseDTO>) -> Void
     )
     func patchAlbumCover(
         albumId: Int,
-        body: PatchAlbumCoverRequestDTO,
+        body: patchAlbumCoverRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     )
 }

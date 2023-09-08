@@ -9,6 +9,8 @@ import UIKit
 
 import SnapKit
 
+//MARK: - Protocols
+
 protocol GettableHomeAlbumProperty {
     var statusLabelText: String { get set }
 }
@@ -20,6 +22,8 @@ protocol ImageViewDidTappedProtocol {
 protocol HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped()
 }
+
+// MARK: - HomeAlbumView
 
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
@@ -218,8 +222,8 @@ extension HomeAlbumView {
     }
     
     func updateProgressBarWidth(updateWidth: Int) {
-        progressBarView.snp.updateConstraints {
-            $0.width.equalTo(updateWidth)
+        progressBarView.snp.updateConstraints { make in
+            make.width.equalTo(updateWidth)
         }
     }
     

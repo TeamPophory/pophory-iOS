@@ -9,7 +9,7 @@ import Foundation
 
 protocol ShareRepository {
     
-    func patchSharePhoto(shareId: String, completion: @escaping (NetworkResult<PatchSharePhotoRequestDTO>) -> Void)
+    func fetchSharePhoto(shareId: String, completion: @escaping (NetworkResult<FetchSharePhotoRequestDTO>) -> Void)
 
     func postSharePhoto(photoID: Int, completion: @escaping (NetworkResult<PostSharePhotoRequestDTO>) -> Void)
 }

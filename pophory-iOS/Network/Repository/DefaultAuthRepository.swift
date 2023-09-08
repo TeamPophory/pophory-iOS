@@ -62,7 +62,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
                     }
                 } else if response.statusCode < 300 {
                     do {
-                        let loginResponse = try response.map(LoginAPIDTO.self)
+                        let loginResponse = try response.map(PostLoginAPIDTO.self)
                         completion(.success(loginResponse))
                     } catch {
                         print("Error decoding the login response: \(error)")

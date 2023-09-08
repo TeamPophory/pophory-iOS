@@ -13,13 +13,13 @@ final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
     
     let provider = MoyaProvider<AlbumAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func patchAlbumList(completion: @escaping (NetworkResult<PatchAlbumListResponseDTO>) -> Void) {
-        provider.request(.patchAlbumList) { result in
+    func fetchAlbumList(completion: @escaping (NetworkResult<FetchAlbumListResponseDTO>) -> Void) {
+        provider.request(.fetchAlbumList) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult: NetworkResult<PatchAlbumListResponseDTO> = self.judgeStatus(by: statusCode, data)
+                let networkResult: NetworkResult<FetchAlbumListResponseDTO> = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)
@@ -27,16 +27,16 @@ final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
         }
     }
     
-    func patchAlbumPhotoList(
+    func fetchAlbumPhotoList(
         albumId: Int,
-        completion: @escaping (NetworkResult<PatchAlbumPhotoListResponseDTO>) -> Void
+        completion: @escaping (NetworkResult<FetchAlbumPhotoListResponseDTO>) -> Void
     ) {
-        provider.request(.patchAlbumPhotoList(albumId: albumId)) { result in
+        provider.request(.fetchAlbumPhotoList(albumId: albumId)) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult: NetworkResult<PatchAlbumPhotoListResponseDTO> = self.judgeStatus(by: statusCode, data)
+                let networkResult: NetworkResult<FetchAlbumPhotoListResponseDTO> = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)
@@ -46,10 +46,10 @@ final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
     
     func patchAlbumCover(
         albumId: Int,
-        body: PatchAlbumCoverRequestDTO,
+        body: patchAlbumCoverRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
-        provider.request(.patchAlbumCover(albumId: albumId, body: body)) { result in
+        provider.request(.fetchAlbumCover(albumId: albumId, body: body)) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode

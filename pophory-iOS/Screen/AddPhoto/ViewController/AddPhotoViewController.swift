@@ -24,14 +24,14 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
-    private var presignedURL: PatchPresignedURLRequestDTO?
+    private var presignedURL: FetchPresignedURLRequestDTO?
     private let networkManager = AddPhotoNetworkManager()
     
     private var albumID: Int?
     private var photoCount: Int?
     private var maxPhotoCount: Int?
     
-    private var albumList: PatchAlbumListResponseDTO? {
+    private var albumList: FetchAlbumListResponseDTO? {
         didSet {
             if let albums = albumList?.albums {
                 if albums.count != 0 {

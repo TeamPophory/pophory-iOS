@@ -17,7 +17,7 @@ final class PhotoCollectionViewDataSource {
     private let collectionView: UICollectionView
 
     private lazy var dataSource: DiffableDataSource = createDataSource()
-    private var albumPhotoList: PatchAlbumPhotoListResponseDTO
+    private var albumPhotoList: FetchAlbumPhotoListResponseDTO
     
     enum Section {
         case main
@@ -46,7 +46,7 @@ final class PhotoCollectionViewDataSource {
     }
 
     func update(
-        photos: PatchAlbumPhotoListResponseDTO?,
+        photos: FetchAlbumPhotoListResponseDTO?,
         completion: CompletedUpdate? = nil
     ) {
         guard let photos = photos else {
