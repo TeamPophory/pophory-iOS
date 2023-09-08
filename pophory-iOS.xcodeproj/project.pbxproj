@@ -231,6 +231,7 @@
 		37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMoyaProvider.swift; sourceTree = "<group>"; };
 		37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAccessTokenDTO.swift; sourceTree = "<group>"; };
+		37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
 		37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveServiceViewController.swift; sourceTree = "<group>"; };
 		37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -914,6 +915,7 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
 				37A271652AA71C3B001FFC38 /* Shared.xcconfig */,
 				37A271662AA71D40001FFC38 /* Debug.xcconfig */,
@@ -1609,7 +1611,7 @@
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2023083001;
+				CURRENT_PROJECT_VERSION = 2023090801;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1628,7 +1630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1650,7 +1652,7 @@
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOSRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2023083001;
+				CURRENT_PROJECT_VERSION = 2023090801;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1669,7 +1671,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
