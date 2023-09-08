@@ -13,11 +13,14 @@ protocol AlbumStatusProtocol: AnyObject {
 
 final class HomeAlbumViewController: BaseViewController {
     
+    // MARK: - Properties
+    
     weak var albumStatusDelegate: AlbumStatusProtocol?
     
     private let progressBackgroundViewWidth: CGFloat = UIScreen.main.bounds.width - 180
     private var albumId: Int?
     private var maxPhotoLimit: Int?
+    private var progressValue: Int?
     private var albumCoverId: Int? {
         didSet {
             guard let albumCoverId = albumCoverId else { return }
@@ -42,8 +45,14 @@ final class HomeAlbumViewController: BaseViewController {
                     homeAlbumView.albumImageView.image = ImageLiterals.albumCoverList[albumCover]
                     homeAlbumView.statusLabelText = String(photoCount)
                     
-                    let progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
-                    homeAlbumView.updateProgressBarWidth(updateWidth: progressValue)
+                    if maxPhotoLimit == 30 {
+                        progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 30.0)))
+                    } else {
+                        progressValue = Int(round(progressBackgroundViewWidth * (Double(photoCount) / 15.0)))
+                    }
+                    if let progress = progressValue {
+                        homeAlbumView.updateProgressBarWidth(updateWidth: progressValue ?? 00)
+                    }
                     let isAlbumFull = (photoCount == maxPhotoLimit) ? true : false
                     homeAlbumView.updateProgressBarIcon(isAlbumFull: isAlbumFull)
                     albumStatusDelegate?.isAblumFull(isFull: isAlbumFull)
@@ -52,26 +61,38 @@ final class HomeAlbumViewController: BaseViewController {
         }
     }
     
+    // MARK: - Life Cycle
+    
+    override func loadView() {
+        super.loadView()
+        
+        view = homeAlbumView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
+        
+        setupDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         requestGetAlumListAPI()
         hideNavigationBar()
     }
-    
-    override func setupLayout() {
-        view = homeAlbumView
-    }
-    
-    private func setDelegate() {
+}
+
+// MARK: - Extensions
+
+extension HomeAlbumViewController {
+    private func setupDelegate() {
         homeAlbumView.imageDidTappedDelegate = self
         homeAlbumView.homeAlbumViewButtonTappedDelegate = self
     }
 }
+
+// MARK: - ImageViewDidTappedProtocol
 
 extension HomeAlbumViewController: ImageViewDidTappedProtocol {
     func imageDidTapped() {
@@ -84,6 +105,8 @@ extension HomeAlbumViewController: ImageViewDidTappedProtocol {
     }
 }
 
+//MARK: - HomeAlbumViewButtonTappedProtocol
+
 extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped() {
         let editAlbumViewController = EditAlbumViewController()
@@ -95,6 +118,8 @@ extension HomeAlbumViewController: HomeAlbumViewButtonTappedProtocol {
         self.navigationController?.pushViewController(editAlbumViewController, animated: true)
     }
 }
+
+// MARK: - Network
 
 extension HomeAlbumViewController  {
     func requestGetAlumListAPI() {
