@@ -49,7 +49,7 @@ final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
         body: patchAlbumCoverRequestDTO,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
-        provider.request(.fetchAlbumCover(albumId: albumId, body: body)) { result in
+        provider.request(.patchAlbumCover(albumId: albumId, body: body)) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
