@@ -13,13 +13,13 @@ final class DefaultStudioRepository: BaseRepository, StudioRepository {
     
     let provider = MoyaProvider<StudiosAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func patchStudiosList(completion: @escaping (NetworkResult<PatchStudiosResponseDTO>) -> Void) {
-        provider.request(.patchStudios) { result in
+    func fetchStudiosList(completion: @escaping (NetworkResult<FetchStudiosResponseDTO>) -> Void) {
+        provider.request(.fetchStudios) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult: NetworkResult<PatchStudiosResponseDTO> = self.judgeStatus(by: statusCode, data)
+                let networkResult: NetworkResult<FetchStudiosResponseDTO> = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

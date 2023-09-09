@@ -16,7 +16,7 @@ class StudioModalViewController: BaseViewController {
     weak var delegate: StudioDataBind?
     var selectedStudioIndex: Int = -1
     
-    private var studioList: PatchStudiosResponseDTO? {
+    private var studioList: FetchStudiosResponseDTO? {
         didSet {
             studioCollectionView.reloadData()
         }
@@ -110,7 +110,7 @@ extension StudioModalViewController: UICollectionViewDelegate {
 
 extension StudioModalViewController {
     func requestGetStudioList() {
-        NetworkService.shared.studioRepository.patchStudiosList() {
+        NetworkService.shared.studioRepository.fetchStudiosList() {
             result in
             switch result {
             case .success(let response):

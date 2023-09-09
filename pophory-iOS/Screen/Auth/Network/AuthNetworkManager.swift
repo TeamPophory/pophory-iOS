@@ -15,7 +15,7 @@ class AuthNetworkManager {
         return try await memberRepository.requestDuplicateNicknameCheck(nickname: nickname)
     }
     
-    func requestSignUpProcess(dto: FetchSignUpRequestDTO) async throws {
+    func requestSignUpProcess(dto: patchSignUpRequestDTO) async throws {
         return try await memberRepository.submitSignUp(body: dto)
     }
 }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "앨범커버_사랑2_최종 1.png",
+      "filename" : "앨범커버_사랑2_최종_1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "앨범커버_사랑2_최종 1@2x.png",
+      "filename" : "앨범커버_사랑2_최종_1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "앨범커버_사랑2_최종 1@3x.png",
+      "filename" : "앨범커버_사랑2_최종_1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

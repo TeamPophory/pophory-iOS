@@ -26,7 +26,7 @@ class ShareViewController: BaseViewController {
         }
     }
     
-    private var sharePhoto: PatchSharePhotoRequestDTO? {
+    private var sharePhoto: FetchSharePhotoRequestDTO? {
         didSet {
             if let sharePhoto = sharePhoto {
                 let url = URL(string: sharePhoto.imageUrl)
@@ -67,7 +67,7 @@ extension ShareViewController {
     func requestGetSharePhotoAPI(
         shareID: String
     ) {
-        NetworkService.shared.shareRepository.patchSharePhoto(shareId: shareID) { result in
+        NetworkService.shared.shareRepository.fetchSharePhoto(shareId: shareID) { result in
             switch result {
             case .success(let response):
                 self.sharePhoto = response

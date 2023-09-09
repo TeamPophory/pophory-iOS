@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum StudiosAPI {
-    case patchStudios
+    case fetchStudios
 }
 
 extension StudiosAPI: BaseTargetType {
@@ -21,21 +21,21 @@ extension StudiosAPI: BaseTargetType {
     
     var path: String {
         switch self {
-        case .patchStudios:
+        case .fetchStudios:
             return URLConstants.studio
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .patchStudios:
+        case .fetchStudios:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .patchStudios:
+        case .fetchStudios:
             return .requestPlain
         }
     }

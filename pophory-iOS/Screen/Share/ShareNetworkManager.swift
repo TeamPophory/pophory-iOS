@@ -17,10 +17,10 @@ class ShareNetworkManager {
     
     func requestGetSharePhoto(
         shareID: String,
-        completion: @escaping (PatchSharePhotoRequestDTO?) -> Void,
+        completion: @escaping (FetchSharePhotoRequestDTO?) -> Void,
         completionError: @escaping () -> Void
     ) {
-        NetworkService.shared.shareRepository.patchSharePhoto(shareId: shareID) { result in
+        NetworkService.shared.shareRepository.fetchSharePhoto(shareId: shareID) { result in
             switch result {
             case .success(let response):
                 self.toPostPhotoID = response.photoId

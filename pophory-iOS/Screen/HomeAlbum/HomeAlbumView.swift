@@ -9,6 +9,8 @@ import UIKit
 
 import SnapKit
 
+//MARK: - Protocols
+
 protocol GettableHomeAlbumProperty {
     var statusLabelText: String { get set }
 }
@@ -21,7 +23,11 @@ protocol HomeAlbumViewButtonTappedProtocol {
     func albumCoverEditButtonDidTapped()
 }
 
+// MARK: - HomeAlbumView
+
 final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
+    
+    // MARK: - Properties
     
     private var privateStatusLabelText: String
     private var maxPhotoLimit: Int
@@ -40,6 +46,8 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             self.statusLabel.attributedText = attributedText
         }
     }
+    
+    // MARK: - UI Properties
     
     private let appLogo: UIImageView = UIImageView(image: ImageLiterals.logIcon)
     private let headTitle: UILabel = {
@@ -93,10 +101,13 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private let progressBarIcon = UIImageView(image: ImageLiterals.progressBarIcon)
     
+    // MARK: - Life Cycle
+    
     init(statusLabelText: String) {
         privateStatusLabelText = statusLabelText
         maxPhotoLimit = 0
         super.init(frame: .zero)
+        
         setupLayout()
         configUI()
     }
@@ -107,10 +118,15 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         albumImageView.shapeWithCustomCorners(topLeftRadius: 4, topRightRadius: 26, bottomLeftRadius: 4, bottomRightRadius: 26)
         albumImageView.clipsToBounds = true
     }
-    
+}
+
+//MARK: - Extensions
+
+extension HomeAlbumView {
     private func setupLayout() {
         self.addSubviews(
             [
@@ -131,65 +147,63 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
             ]
         )
         
-        appLogo.snp.makeConstraints {
-            $0.top.equalTo(headerHeightByNotch(27))
-            $0.leading.equalToSuperview().offset(20)
+        appLogo.snp.makeConstraints { make in
+            make.top.equalTo(headerHeightByNotch(27))
+            make.leading.equalToSuperview().offset(20)
         }
         
-        headTitle.snp.makeConstraints {
-            $0.top.equalTo(appLogo.snp.bottom).offset(constraintByNotch(20, 15))
-            $0.leading.equalToSuperview().offset(20)
+        headTitle.snp.makeConstraints { make in
+            make.top.equalTo(appLogo.snp.bottom).offset(constraintByNotch(20, 15))
+            make.leading.equalToSuperview().offset(20)
         }
         
-        albumImageView.snp.makeConstraints {
-            $0.top.equalTo(headTitle.snp.bottom).offset(constraintByNotch(30, 25))
-            $0.leading.equalToSuperview().offset(45)
-            $0.aspectRatio(CGSize(width: 280, height: 380))
-            $0.centerX.equalToSuperview()
+        albumImageView.snp.makeConstraints { make in
+            make.top.equalTo(headTitle.snp.bottom).offset(constraintByNotch(30, 25))
+            make.leading.equalToSuperview().offset(45)
+            make.aspectRatio(CGSize(width: 280, height: 380))
+            make.centerX.equalToSuperview()
         }
         
-        albumCoverEditButton.snp.makeConstraints {
-            $0.bottom.equalTo(headTitle.snp.bottom)
-            $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(44)
+        albumCoverEditButton.snp.makeConstraints { make in
+            make.bottom.equalTo(headTitle.snp.bottom)
+            make.trailing.equalToSuperview().inset(20)
+            make.size.equalTo(44)
         }
         
-        progressView.snp.makeConstraints {
-            $0.top.equalTo(albumImageView.snp.bottom).offset(24)
-            $0.height.equalTo(38)
-            $0.horizontalEdges.equalTo(albumImageView)
+        progressView.snp.makeConstraints { make in
+            make.top.equalTo(albumImageView.snp.bottom).offset(24)
+            make.height.equalTo(38)
+            make.horizontalEdges.equalTo(albumImageView)
         }
         
-        progressBackgroundView.snp.makeConstraints {
-            $0.height.equalTo(6)
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(70)
+        progressBackgroundView.snp.makeConstraints { make in
+            make.height.equalTo(6)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().inset(70)
         }
         
-        progressBarView.snp.makeConstraints {
-            $0.leading.equalTo(progressBackgroundView)
-            $0.height.equalTo(6)
-            $0.width.equalTo(0)
-            $0.centerY.equalToSuperview()
+        progressBarView.snp.makeConstraints { make in
+            make.leading.equalTo(progressBackgroundView)
+            make.height.equalTo(6)
+            make.width.equalTo(0)
+            make.centerY.equalToSuperview()
         }
         progressBarView.bringSubviewToFront(self)
         
-        progressBarIcon.snp.makeConstraints {
-            $0.centerY.equalTo(progressBarView)
-            $0.leading.equalTo(progressBarView.snp.trailing).inset(5)
-            $0.size.equalTo(38)
+        progressBarIcon.snp.makeConstraints { make in
+            make.centerY.equalTo(progressBarView)
+            make.leading.equalTo(progressBarView.snp.trailing).inset(5)
+            make.size.equalTo(38)
         }
         
-        statusLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview()
+        statusLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
     }
     
-    private func configUI() {
-        self.backgroundColor = .pophoryWhite
-    }
+    // MARK: - @objc
     
     @objc
     private func imageTapped() {
@@ -201,9 +215,15 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
         homeAlbumViewButtonTappedDelegate?.albumCoverEditButtonDidTapped()
     }
     
+    // MARK: - Methods
+    
+    private func configUI() {
+        self.backgroundColor = .pophoryWhite
+    }
+    
     func updateProgressBarWidth(updateWidth: Int) {
-        progressBarView.snp.updateConstraints {
-            $0.width.equalTo(updateWidth)
+        progressBarView.snp.updateConstraints { make in
+            make.width.equalTo(updateWidth)
         }
     }
     

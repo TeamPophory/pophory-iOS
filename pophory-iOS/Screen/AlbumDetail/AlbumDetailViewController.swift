@@ -30,7 +30,7 @@ final class AlbumDetailViewController: BaseViewController {
     private var maxPhotoLimit: Int?
     
     private let homeAlbumView = AlbumDetailView()
-    private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
+    private var albumPhotoList: FetchAlbumPhotoListResponseDTO? {
         didSet {
             guard let albumPhotoList = albumPhotoList else { return }
             
@@ -110,10 +110,10 @@ final class AlbumDetailViewController: BaseViewController {
     }
     
     private func sortPhoto(
-        albumPhotoList: PatchAlbumPhotoListResponseDTO
-    ) -> PatchAlbumPhotoListResponseDTO {
+        albumPhotoList: FetchAlbumPhotoListResponseDTO
+    ) -> FetchAlbumPhotoListResponseDTO {
         let reversedPhotos = albumPhotoList.photos.reversed()
-        return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
+        return FetchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
     }
     
     private func mappedDefaultAlbumPhoto(
@@ -242,7 +242,7 @@ extension AlbumDetailViewController {
     func requestGetAlbumPhotoList(
         albumId: Int
     ) {
-        NetworkService.shared.albumRepository.patchAlbumPhotoList(
+        NetworkService.shared.albumRepository.fetchAlbumPhotoList(
             albumId: albumId
         ) { result in
             switch result {
@@ -250,7 +250,7 @@ extension AlbumDetailViewController {
                 let maxId: Int = response.photos.map { $0.id }.max() ?? 0
                 self.uniquePhotoStartId = maxId + 1
                 let mappedDefaultPhotoList = self.mappedDefaultAlbumPhoto(photos: response.photos)
-                let mappedDefaultAlbumPhotoListDTO = PatchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
+                let mappedDefaultAlbumPhotoListDTO = FetchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
                 self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
             default : return
             }

@@ -131,7 +131,7 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let response):
-                        if let loginResponse = response as? LoginAPIDTO {
+                        if let loginResponse = response as? PostLoginAPIDTO {
                             print("Successfully sent Identity Token to server")
                             
                             PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)

@@ -9,8 +9,8 @@ import UIKit
 
 class AddPhotoNetworkManager {
     
-    func requestGetAlumListAPI(completion: @escaping (PatchAlbumListResponseDTO?) -> Void) {
-        NetworkService.shared.albumRepository.patchAlbumList() { result in
+    func requestGetAlumListAPI(completion: @escaping (FetchAlbumListResponseDTO?) -> Void) {
+        NetworkService.shared.albumRepository.fetchAlbumList() { result in
             switch result {
             case .success(let response):
                 completion(response)
@@ -33,8 +33,8 @@ class AddPhotoNetworkManager {
         }
     }
     
-    func requestGetPresignedURLAPI(completion: @escaping (PatchPresignedURLRequestDTO?) -> Void) {
-        NetworkService.shared.photoRepository.patchPresignedPhotoURL( completion: { result in
+    func requestGetPresignedURLAPI(completion: @escaping (FetchPresignedURLRequestDTO?) -> Void) {
+        NetworkService.shared.photoRepository.fetchPresignedPhotoURL( completion: { result in
             switch result {
             case .success(let response):
                 completion(response)
