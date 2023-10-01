@@ -118,8 +118,8 @@ extension EditAlbumViewController {
         let request = GADRequest()
         
         
-        if let AdmobId = Bundle.main.infoDictionary?["GADApplicationIdentifier"] as? String {
-            GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/4411468910",
+        if Bundle.main.infoDictionary?["GADApplicationIdentifier"] is String {
+            GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/5135589807",
                                    request: request) { [self] ad, error in
                 if let error = error {
                     print("Failed to load interstitial ad with error: \(error.localizedDescription)")
@@ -136,7 +136,10 @@ extension EditAlbumViewController {
             print("광고가 준비되지 않았습니다.")
             return
         }
-        interstitial.present(fromRootViewController: self)
+        
+        dismiss(animated: true) {
+            interstitial.present(fromRootViewController: self)
+        }
     }
     
     private func dismissPopUp() {
@@ -148,6 +151,7 @@ extension EditAlbumViewController: GADFullScreenContentDelegate {
     /// 전면광고 노출 실패 시 호출
       func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
+        print(error.localizedDescription, "💗")
       }
 
       /// 전면광고 노출 전 호출
