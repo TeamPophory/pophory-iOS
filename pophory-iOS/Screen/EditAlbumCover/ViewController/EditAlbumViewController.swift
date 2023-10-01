@@ -64,8 +64,20 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
 
 extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped() {
-        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
+        showPopup(
+            popupType: .option,
+            image: ImageLiterals.adIcon,
+            primaryText: "앨범을 수정할까요?",
+            secondaryText: "앨범 커버를 수정하려면\n광고 시청 하나 부탁드려요!",
+            firstButtonTitle: .keppGoing,
+            secondButtonTitle: .back,
+            firstButtonHandler: loadAd,
+            secondButtonHandler: dismissPopUp
+        )
+        // TODO: 서버통신 수정
+        // 앨범 커버 수정 서버 통신
+//        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+//        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
 
@@ -111,5 +123,13 @@ extension EditAlbumViewController {
             default : return
             }
         }
+    }
+    
+    private func loadAd() {
+        print("전면광고를 로드합니다.")
+    }
+    
+    private func dismissPopUp() {
+        dismiss(animated: false)
     }
 }
