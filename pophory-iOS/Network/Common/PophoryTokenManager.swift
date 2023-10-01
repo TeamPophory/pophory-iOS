@@ -25,4 +25,8 @@ class PophoryTokenManager {
     func fetchAccessToken() -> String? {
         return UserDefaults.standard.string(forKey: userDefaultsAccessTokenKey)
     }
+    
+    func fetchRefreshToken() -> String? {
+        return UserDefaults.standard.string(forKey: userDefaultsRefreshTokenKey)
+    }
 }

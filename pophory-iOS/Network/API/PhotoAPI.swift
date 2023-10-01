@@ -11,7 +11,7 @@ import Moya
 
 enum PhotoAPI {
     case fetchAllPhotos
-    case patchPresignedPhotoURL
+    case fetchPresignedPhotoURL
     case postPhoto(body: PostPhotoS3RequestDTO)
     case deletePhoto(photoId: Int)
 }
@@ -26,7 +26,7 @@ extension PhotoAPI: BaseTargetType {
         switch self {
         case .fetchAllPhotos:
             return URLConstantsV2.photo
-        case .patchPresignedPhotoURL:
+        case .fetchPresignedPhotoURL:
             return URLConstantsV2.v3 + "/photo"
         case .postPhoto:
             return URLConstantsV2.photo
@@ -37,7 +37,7 @@ extension PhotoAPI: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
-        case .patchPresignedPhotoURL, .fetchAllPhotos:
+        case .fetchPresignedPhotoURL, .fetchAllPhotos:
             return .get
         case .postPhoto:
             return .post
@@ -48,7 +48,7 @@ extension PhotoAPI: BaseTargetType {
     
     var task: Moya.Task {
         switch self {
-        case .patchPresignedPhotoURL, .fetchAllPhotos:
+        case .fetchPresignedPhotoURL, .fetchAllPhotos:
             return .requestPlain
         case .postPhoto(let body):
             return .requestJSONEncodable(body)

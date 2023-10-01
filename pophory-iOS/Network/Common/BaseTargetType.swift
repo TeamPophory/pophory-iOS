@@ -15,9 +15,13 @@ protocol BaseTargetType: TargetType {
 
 extension BaseTargetType {
     var baseURL: URL {
-        return URL(string: BaseURLConstant.base) ?? URL(fileURLWithPath: String())
+        guard let urlString = Bundle.main.infoDictionary?["BASE_URL"] as? String,
+              let url = URL(string: urlString) else {
+            fatalError("🚨Base URL을 찾을 수 없습니다🚨")
+        }
+        return url
     }
-
+    
     var headers: [String: String]? {
         var header = [
             "Content-Type": "application/json"
@@ -27,7 +31,7 @@ extension BaseTargetType {
         }
         return header
     }
-
+    
     var sampleData: Data {
         return Data()
     }

@@ -1,5 +1,5 @@
 //
-//  PatchAlbumListResponseDTO.swift
+//  FetchAlbumListResponseDTO.swift
 //  pophory-iOS
 //
 //  Created by 홍준혁 on 2023/07/03.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PatchAlbumListResponseDTO: Codable {
+struct FetchAlbumListResponseDTO: Codable {
     let albums: [Album]?
 }
 
@@ -17,4 +17,5 @@ struct Album: Codable {
     let title: String?
     let albumCover: Int?
     let photoCount: Int?
+    let photoLimit: Int?
 }

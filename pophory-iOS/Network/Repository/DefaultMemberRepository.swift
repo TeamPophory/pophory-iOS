@@ -41,16 +41,16 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
         }
     }
     
-    func submitSignUp(body: FetchSignUpRequestDTO) async throws {
+    func submitSignUp(body: patchSignUpRequestDTO) async throws {
         do {
-            let response = try await provider.request(.signUp(body: body))
+            let response = try await provider.request(.patchSignUp(body: body))
         } catch {
             throw error
         }
     }
     
     func fetchUserInfo(completion: @escaping (NetworkResult<FetchUserInfoResponseDTO>) -> Void) {
-        provider.request(.patchUserInfo) { result in
+        provider.request(.fetchUserInfo) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode

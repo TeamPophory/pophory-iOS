@@ -24,19 +24,20 @@ final class AddPhotoViewController: BaseViewController, Navigatable {
     
     var navigationBarTitleText: String? { return "사진 추가" }
     
-    private var presignedURL: PatchPresignedURLRequestDTO?
+    private var presignedURL: FetchPresignedURLRequestDTO?
     private let networkManager = AddPhotoNetworkManager()
     
     private var albumID: Int?
     private var photoCount: Int?
-    private let maxPhotoCount: Int = 15
+    private var maxPhotoCount: Int?
     
-    private var albumList: PatchAlbumListResponseDTO? {
+    private var albumList: FetchAlbumListResponseDTO? {
         didSet {
             if let albums = albumList?.albums {
                 if albums.count != 0 {
                     self.albumID = albums[0].id
                     self.photoCount = albums[0].photoCount
+                    self.maxPhotoCount = albums[0].photoLimit
                 }
             }
         }
@@ -106,6 +107,7 @@ extension AddPhotoViewController {
     }
     
     @objc func onclickAddPhotoButton() {
+        guard let maxPhotoCount = self.maxPhotoCount else { return }
         if let photoCount = photoCount {
             if photoCount >= maxPhotoCount {
                 showPopup(popupType: .simple,

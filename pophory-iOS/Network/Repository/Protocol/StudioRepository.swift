@@ -8,5 +8,5 @@
 import Foundation
 
 protocol StudioRepository {
-    func patchStudiosList(completion: @escaping (NetworkResult<PatchStudiosResponseDTO>) -> Void)
+    func fetchStudiosList(completion: @escaping (NetworkResult<FetchStudiosResponseDTO>) -> Void)
 }

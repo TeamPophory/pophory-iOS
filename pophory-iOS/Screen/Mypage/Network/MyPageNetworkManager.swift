@@ -32,7 +32,7 @@ class MyPageNetworkManager {
     }
     
     func requestAlbumData(completion: @escaping ([Int], Int) -> Void) {
-        NetworkService.shared.albumRepository.patchAlbumList { result in
+        NetworkService.shared.albumRepository.fetchAlbumList { result in
             switch result {
             case .success(let response):
                 guard let albums = response.albums else { return }
@@ -49,7 +49,7 @@ class MyPageNetworkManager {
         var photoUrlList: [String] = []
         
         for albumId in albumList {
-            NetworkService.shared.albumRepository.patchAlbumPhotoList(albumId: albumId) { result in
+            NetworkService.shared.albumRepository.fetchAlbumPhotoList(albumId: albumId) { result in
                 switch result {
                 case .success(let response):
                     let photoUrls = response.photos.compactMap { $0.imageUrl }

@@ -27,13 +27,13 @@ final class DefaultPhotoRepository: BaseRepository, PhotoRepository {
         }
     }
     
-    func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void) {
-        provider.request(.patchPresignedPhotoURL) { result in
+    func fetchPresignedPhotoURL(completion: @escaping (NetworkResult<FetchPresignedURLRequestDTO>) -> Void) {
+        provider.request(.fetchPresignedPhotoURL) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult: NetworkResult<PatchPresignedURLRequestDTO> = self.judgeStatus(by: statusCode, data)
+                let networkResult: NetworkResult<FetchPresignedURLRequestDTO> = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

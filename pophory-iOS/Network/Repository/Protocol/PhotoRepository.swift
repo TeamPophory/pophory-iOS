@@ -13,7 +13,7 @@ protocol PhotoRepository {
     
     func fetchAllPhoto(completion: @escaping (NetworkResult<PhotosResponseDto>) -> Void)
     
-    func patchPresignedPhotoURL(completion: @escaping (NetworkResult<PatchPresignedURLRequestDTO>) -> Void)
+    func fetchPresignedPhotoURL(completion: @escaping (NetworkResult<FetchPresignedURLRequestDTO>) -> Void)
 
     func postPhoto(
         body: PostPhotoS3RequestDTO,

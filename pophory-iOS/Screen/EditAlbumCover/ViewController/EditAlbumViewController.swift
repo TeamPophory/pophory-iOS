@@ -70,7 +70,7 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
 
 extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped() {
-        let patchAlbumCoverRequestDTO = PatchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
         self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
@@ -105,7 +105,7 @@ extension EditAlbumViewController: Navigatable {
 extension EditAlbumViewController {
     func patchAlbumCover(
         albumId: Int,
-        body: PatchAlbumCoverRequestDTO
+        body: patchAlbumCoverRequestDTO
     ) {
         NetworkService.shared.albumRepository.patchAlbumCover(
             albumId: albumId, body: body

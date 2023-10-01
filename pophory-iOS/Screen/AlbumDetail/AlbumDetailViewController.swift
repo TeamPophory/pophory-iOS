@@ -27,9 +27,10 @@ final class AlbumDetailViewController: BaseViewController {
     private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     private var albumPhotoCount = Int()
+    private var maxPhotoLimit: Int?
     
     private let homeAlbumView = AlbumDetailView()
-    private var albumPhotoList: PatchAlbumPhotoListResponseDTO? {
+    private var albumPhotoList: FetchAlbumPhotoListResponseDTO? {
         didSet {
             guard let albumPhotoList = albumPhotoList else { return }
             
@@ -109,10 +110,10 @@ final class AlbumDetailViewController: BaseViewController {
     }
     
     private func sortPhoto(
-        albumPhotoList: PatchAlbumPhotoListResponseDTO
-    ) -> PatchAlbumPhotoListResponseDTO {
+        albumPhotoList: FetchAlbumPhotoListResponseDTO
+    ) -> FetchAlbumPhotoListResponseDTO {
         let reversedPhotos = albumPhotoList.photos.reversed()
-        return PatchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
+        return FetchAlbumPhotoListResponseDTO(photos: Array(reversedPhotos))
     }
     
     private func mappedDefaultAlbumPhoto(
@@ -156,6 +157,10 @@ final class AlbumDetailViewController: BaseViewController {
     private func addDelegate() {
         homeAlbumView.photoCollectionView.delegate = self
     }
+    
+    func setupPhotoLimit(_ maxPhotoLimit: Int) {
+        self.maxPhotoLimit = maxPhotoLimit
+    }
 }
 
 // MARK: - @objc
@@ -167,7 +172,8 @@ extension AlbumDetailViewController {
     }
     
     @objc func addPhotoButtonOnClick() {
-        if albumPhotoCount >= 15 {
+        guard let maxPhotoLimit = self.maxPhotoLimit else { return }
+        if albumPhotoCount >= maxPhotoLimit {
             showPopup(
                 image: ImageLiterals.img_albumfull,
                 primaryText: "포포리 앨범이 가득찼어요",
@@ -236,7 +242,7 @@ extension AlbumDetailViewController {
     func requestGetAlbumPhotoList(
         albumId: Int
     ) {
-        NetworkService.shared.albumRepository.patchAlbumPhotoList(
+        NetworkService.shared.albumRepository.fetchAlbumPhotoList(
             albumId: albumId
         ) { result in
             switch result {
@@ -244,7 +250,7 @@ extension AlbumDetailViewController {
                 let maxId: Int = response.photos.map { $0.id }.max() ?? 0
                 self.uniquePhotoStartId = maxId + 1
                 let mappedDefaultPhotoList = self.mappedDefaultAlbumPhoto(photos: response.photos)
-                let mappedDefaultAlbumPhotoListDTO = PatchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
+                let mappedDefaultAlbumPhotoListDTO = FetchAlbumPhotoListResponseDTO(photos: mappedDefaultPhotoList)
                 self.albumPhotoList = mappedDefaultAlbumPhotoListDTO
             default : return
             }

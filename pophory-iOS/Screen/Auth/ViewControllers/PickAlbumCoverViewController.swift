@@ -75,7 +75,7 @@ extension PickAlbumCoverViewController: NextButtonDelegate {
         guard let fullName = fullName,
               let nickname = nickname else { return }
         
-        let signUpDTO = FetchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedAlbumCoverIndex)
+        let signUpDTO = patchSignUpRequestDTO(realName: fullName, nickname: nickname, albumCover: selectedAlbumCoverIndex)
         
         Task {
             let signUpResult = await handleSignUpResult(dto: signUpDTO)
@@ -105,7 +105,7 @@ extension PickAlbumCoverViewController: PickAlbumCoverViewDelegate {
 // MARK: - Network
 
 extension PickAlbumCoverViewController {
-    private func handleSignUpResult(dto: FetchSignUpRequestDTO) async -> Bool{
+    private func handleSignUpResult(dto: patchSignUpRequestDTO) async -> Bool{
         do {
             try await networkManager.requestSignUpProcess(dto: dto)
             return true
