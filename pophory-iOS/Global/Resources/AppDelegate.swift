@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Sentry
 import GoogleMobileAds
+import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,9 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options.debug = true
             options.tracesSampleRate = 1.0
         }
-        
-        // Initialize the Google Mobile Ads SDK.
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        requestTrackingAuthorization()
         
         return true
     }
@@ -53,54 +52,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.portrait
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+    }
     
-//    func showCustomTrackingAuthorizationDialog() {
-//        let alertController = UIAlertController(
-//            title: "광고 추적 권한 요청",
-//            message: "이 앱은 광고 추적을 사용하여 광고를 타겟팅하고 개인 정보를 수집합니다. 광고 추적을 허용하시겠습니까?",
-//            preferredStyle: .alert
-//        )
-//
-//        let allowAction = UIAlertAction(title: "허용", style: .default) { _ in
-//            // 사용자가 허용을 선택한 경우 처리
-//            // 광고 타겟팅 또는 추적 기능을 활성화할 수 있습니다.
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                if #available(iOS 14, *) {
-//                    ATTrackingManager.requestTrackingAuthorization { status in
-//                        switch status {
-//                        case .authorized:           // 허용됨
-//                            print("Authorized")
-//                            let identifier = ASIdentifierManager.shared().advertisingIdentifier
-//                            let idfaString = identifier.uuidString
-//
-//                            print("IDFA: \(idfaString)")
-//                            print("IDFA = \(ASIdentifierManager.shared().advertisingIdentifier)")
-//                        case .denied:               // 거부됨
-//                            print("Denied")
-//                        case .notDetermined:        // 결정되지 않음
-//                            print("Not Determined")
-//                        case .restricted:           // 제한됨
-//                            print("Restricted")
-//                        @unknown default:           // 알려지지 않음
-//                            print("Unknow")
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        let denyAction = UIAlertAction(title: "거부", style: .destructive) { _ in
-//            // 사용자가 거부를 선택한 경우 처리
-//            // 광고 타겟팅 또는 추적 기능을 비활성화하거나 대체 로직을 수행할 수 있습니다.
-//        }
-//
-//        alertController.addAction(allowAction)
-//        alertController.addAction(denyAction)
-//
-//        // 다이얼로그를 표시합니다.
-//        DispatchQueue.main.async {
-//            self.present(alertController, animated: true, completion: nil)
-//        }
-//    }
+    private func requestTrackingAuthorization() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { (status) in
+                    switch status {
+                    case .notDetermined:
+                        print("notDetermined") // 결정되지 않음
+                    case .restricted:
+                        print("restricted") // 제한됨
+                    case .denied:
+                        print("denied") // 거부됨
+                    case .authorized:
+                        print("authorized") // 허용됨
+                    @unknown default:
+                        print("error") // 알려지지 않음
+                    }
+                }
+            }
+        }
+        if #available(iOS 14, *) {
+            if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
+                    // Initialize the Google Mobile Ads SDK.
+                    // TODO: 배포 후 실제 admobID로 변경
+                    //        GADMobileAds.sharedInstance().start(completionHandler: nil)
+                    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
+                    [ "89ad6e2f5e35327a7987a9a5dc2a1149" ]      // testID
+                })
+            }
+        }
+    }
 }
 
