@@ -50,12 +50,6 @@ final class EditAlbumViewController: BaseViewController {
         }
         
         editAlbumView.layoutSubviews()
-        setAlbumCover(albumIndex: albumCoverIndex)
-    }
-    
-    private func setAlbumCover(albumIndex: Int) {
-        let indexPath = IndexPath(item: albumIndex, section: 0)
-        self.editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
