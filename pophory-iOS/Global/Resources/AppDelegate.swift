@@ -9,6 +9,7 @@ import UIKit
 
 import Firebase
 import Sentry
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // MARK: - FireBase Dynamic Link 관련
+        // MARK: - FireBase SDK 초기화
         FirebaseApp.configure()
         
         // MARK: - Sentry SDK 관련
@@ -28,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // We recommend adjusting this value in production.
             options.tracesSampleRate = 1.0
         }
+        
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }
