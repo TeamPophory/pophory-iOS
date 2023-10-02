@@ -72,6 +72,17 @@
 		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
 		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
 		6B05C5742AC4277800A75C00 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6B05C5C12ACAA35800A75C00 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C5C02ACAA35800A75C00 /* ShareView.swift */; };
+		6B05C5C22ACAA50E00A75C00 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */; };
+		6B05C5C32ACAA5B000A75C00 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */; };
+		6B05C5C42ACAA78F00A75C00 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */; };
+		6B05C5C52ACAA79D00A75C00 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
+		6B05C5C62ACAA79F00A75C00 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B12A4AC7CC00FF8F90 /* Pretendard-Medium.otf */; };
+		6B05C5C72ACAA7A200A75C00 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B02A4AC7CC00FF8F90 /* Pretendard-SemiBold.otf */; };
+		6B05C5C82ACAA7A400A75C00 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B22A4AC7CD00FF8F90 /* Pretendard-Regular.otf */; };
+		6B05C5CB2ACAA82800A75C00 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C5CA2ACAA82800A75C00 /* PhotoInfoStackView.swift */; };
+		6B05C5CD2ACAA8CF00A75C00 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C722A55EB7400E49B12 /* DateManager.swift */; };
+		6B05C5DB2ACAB37500A75C00 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = B1631F132A1759EB0050974F /* Assets.xcassets */; };
 		6B09D2282A6808DA00DF4275 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2272A6808DA00DF4275 /* ShareViewController.swift */; };
 		6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2292A6808EA00DF4275 /* ShareView.swift */; };
 		6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */; };
@@ -283,6 +294,9 @@
 		6B05C56F2AC4277800A75C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		6B05C5712AC4277800A75C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B05C5792AC4277E00A75C00 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		6B05C5C02ACAA35800A75C00 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		6B05C5CA2ACAA82800A75C00 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
+		6B05C5CF2ACAAB8600A75C00 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6B09D2272A6808DA00DF4275 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		6B09D2292A6808EA00DF4275 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
@@ -654,12 +668,30 @@
 		6B05C56B2AC4277800A75C00 /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				6B05C5C92ACAA81200A75C00 /* View */,
 				6B05C5792AC4277E00A75C00 /* ShareExtension.entitlements */,
 				6B05C56C2AC4277800A75C00 /* ShareViewController.swift */,
 				6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */,
 				6B05C5712AC4277800A75C00 /* Info.plist */,
 			);
 			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+		6B05C5C92ACAA81200A75C00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B05C5C02ACAA35800A75C00 /* ShareView.swift */,
+				6B05C5CA2ACAA82800A75C00 /* PhotoInfoStackView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B05C5CE2ACAAB8500A75C00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B05C5CF2ACAAB8600A75C00 /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6B09D2262A6808BF00DF4275 /* Share */ = {
@@ -948,6 +980,7 @@
 				B1631F2A2A1759EB0050974F /* pophoryUITests */,
 				6B05C56B2AC4277800A75C00 /* ShareExtension */,
 				B1631F082A1759EA0050974F /* Products */,
+				6B05C5CE2ACAAB8500A75C00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1173,6 +1206,8 @@
 			dependencies = (
 			);
 			name = ShareExtension;
+			packageProductDependencies = (
+			);
 			productName = ShareExtension;
 			productReference = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1308,6 +1343,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */,
+				6B05C5C52ACAA79D00A75C00 /* Pretendard-Bold.otf in Resources */,
+				6B05C5C82ACAA7A400A75C00 /* Pretendard-Regular.otf in Resources */,
+				6B05C5C62ACAA79F00A75C00 /* Pretendard-Medium.otf in Resources */,
+				6B05C5C72ACAA7A200A75C00 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1412,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B05C5DB2ACAB37500A75C00 /* Assets.xcassets in Sources */,
+				6B05C5CD2ACAA8CF00A75C00 /* DateManager.swift in Sources */,
+				6B05C5C42ACAA78F00A75C00 /* FontLiterals.swift in Sources */,
+				6B05C5C12ACAA35800A75C00 /* ShareView.swift in Sources */,
+				6B05C5CB2ACAA82800A75C00 /* PhotoInfoStackView.swift in Sources */,
+				6B05C5C32ACAA5B000A75C00 /* ColorLiterals.swift in Sources */,
+				6B05C5C22ACAA50E00A75C00 /* ImageLiterals.swift in Sources */,
 				6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1596,11 +1642,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1612,7 +1660,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1623,11 +1671,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1639,7 +1689,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -8,23 +8,161 @@
 import UIKit
 import Social
 
-class ShareViewController: SLComposeServiceViewController {
-
-    override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
-        return true
-    }
-
-    override func didSelectPost() {
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
+final class ShareViewController: UIViewController {
     
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
-        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+    private let rootView = ShareView()
+    
+    override func loadView() {
+        super.loadView()
+        
+        view = rootView
     }
-
-    override func configurationItems() -> [Any]! {
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        return []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
-
+    
+//    // MARK: - Properties
+//
+//    private var presignedURL: FetchPresignedURLRequestDTO?
+//    private let networkManager = AddPhotoNetworkManager()
+//
+//    private var albumID: Int?
+//    private var photoCount: Int?
+//    private var maxPhotoCount: Int?
+//
+//    private var albumList: FetchAlbumListResponseDTO? {
+//        didSet {
+//            if let albums = albumList?.albums {
+//                if albums.count != 0 {
+//                    self.albumID = albums[0].id
+//                    self.photoCount = albums[0].photoCount
+//                    self.maxPhotoCount = albums[0].photoLimit
+//                }
+//            }
+//        }
+//    }
+//
+//    private var photoImage = UIImage()
+//    private var dateTaken: String = DateManager.dateToString(date: Date())
+//    private var studioID: Int = -1
+//
+//    // MARK: - UI Properties
+//
+//    private let rootView = AddPhotoView()
+//
+//    // MARK: - Life Cycle
+//
+//    override func loadView() {
+//        super.loadView()
+//
+//        view = rootView
+//    }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        networkManager.requestGetAlumListAPI() { [weak self] albumList in
+//            self?.albumList = albumList
+//        }
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        setupTarget()
+//        networkManager.requestGetPresignedURLAPI() { [weak self] presignedURL in
+//            self?.presignedURL = presignedURL
+//        }
+//    }
+//}
+//
+//extension ShareViewController {
+//
+//    // MARK: - @objc
+//
+//    @objc func onclickDateButton() {
+//        let customModalVC = CalendarModalViewController()
+//        customModalVC.modalPresentationStyle = .custom
+//
+//        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 340)
+//        customModalVC.transitioningDelegate = customTransitionDelegate
+//
+//        customModalVC.delegate = self
+//        customModalVC.setPickerDate(fordate: DateManager.stringToDate(date: rootView.dateStackView.getExplain()))
+//        present(customModalVC, animated: true, completion: nil)
+//    }
+//
+//    @objc func onclicStudioButton() {
+//        let customModalVC = StudioModalViewController()
+//        customModalVC.modalPresentationStyle = .custom
+//
+//        let customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 232)
+//        customModalVC.transitioningDelegate = customTransitionDelegate
+//        customModalVC.delegate = self
+//        customModalVC.selectedStudioIndex = studioID
+//        present(customModalVC, animated: true, completion: nil)
+//    }
+//
+//    @objc func onclickAddPhotoButton() {
+//        guard let maxPhotoCount = self.maxPhotoCount else { return }
+//        if let photoCount = photoCount {
+//            if photoCount >= maxPhotoCount {
+//                showPopup(popupType: .simple,
+//                          image: ImageLiterals.img_albumfull,
+//                          primaryText: "포포리 앨범이 가득찼어요",
+//                          secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!", firstButtonHandler: goToHome)
+//            } else {
+//                if let urlString = presignedURL?.presignedUrl, let url = URL(string: urlString) {
+//                    networkManager.uploadImageToPresignedURL(image: photoImage, presignedURL: url, completion: {_ in
+//                    })
+//                } else {
+//                    print("Invalid URL")
+//                }
+//                let photoInfo = PostPhotoS3RequestDTO(fileName: presignedURL?.fileName, albumId: albumID, takenAt: dateTaken, studioId: studioID, width: Int(photoImage.size.width), height: Int(photoImage.size.height))
+//                networkManager.requestPostPhotoAPI(photoInfo: photoInfo) {
+//                    self.goToHome()
+//                }
+//            }
+//        }
+//    }
+//
+//    // MARK: - Private Methods
+//
+//    private func setupTarget() {
+//        rootView.dateStackView.infoButton.addTarget(self, action: #selector(onclickDateButton), for: .touchUpInside)
+//        rootView.studioStackView.infoButton.addTarget(self, action: #selector(onclicStudioButton), for: .touchUpInside)
+//        rootView.photoAddButton.addTarget(self, action: #selector(onclickAddPhotoButton), for: .touchUpInside)
+//    }
+//
+//    private func goToHome() {
+//        dismiss(animated: false)
+//        navigationController?.popToRootViewController(animated: true)
+//    }
+//
+//    // MARK: - Methods
+//
+//    func setupRootViewImage(forImage: UIImage?, forType: PhotoCellType) {
+//        rootView.photo.image = forImage
+//        rootView.photoType = forType
+//        photoImage = forImage ?? UIImage()
+//    }
+//}
+//
+//// MARK: - DataBind Protocol
+//
+//extension ShareViewController: DateDataBind, StudioDataBind {
+//
+//    func dateDataBind(text: String) {
+//        rootView.dateStackView.setupExplain(explain: text)
+//        rootView.dateStackView.setupSelected(selected: true)
+//        dateTaken = text
+//    }
+//
+//    func studioDataBind(text: String, forIndex: Int) {
+//        rootView.studioStackView.setupExplain(explain: text)
+//        rootView.studioStackView.setupSelected(selected: true)
+//        studioID = forIndex
+//    }
 }
