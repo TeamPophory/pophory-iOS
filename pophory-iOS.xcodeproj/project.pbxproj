@@ -83,6 +83,7 @@
 		6B05C5CB2ACAA82800A75C00 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C5CA2ACAA82800A75C00 /* PhotoInfoStackView.swift */; };
 		6B05C5CD2ACAA8CF00A75C00 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C722A55EB7400E49B12 /* DateManager.swift */; };
 		6B05C5DB2ACAB37500A75C00 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = B1631F132A1759EB0050974F /* Assets.xcassets */; };
+		6B05C5DF2ACD262C00A75C00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B05C5DE2ACD262C00A75C00 /* SnapKit */; };
 		6B09D2282A6808DA00DF4275 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2272A6808DA00DF4275 /* ShareViewController.swift */; };
 		6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2292A6808EA00DF4275 /* ShareView.swift */; };
 		6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */; };
@@ -412,6 +413,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B05C5DF2ACD262C00A75C00 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1209,7 @@
 			);
 			name = ShareExtension;
 			packageProductDependencies = (
+				6B05C5DE2ACD262C00A75C00 /* SnapKit */,
 			);
 			productName = ShareExtension;
 			productReference = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */;
@@ -2119,6 +2122,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
+		};
+		6B05C5DE2ACD262C00A75C00 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		9161CADE2A5460AA002B8B77 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
