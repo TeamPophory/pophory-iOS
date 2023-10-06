@@ -10,11 +10,11 @@ import UIKit
 import Moya
 import SnapKit
 
-protocol DateDataBind: AnyObject{
+protocol DateDataBind: AnyObject {
     func dateDataBind(text: String)
 }
 
-protocol StudioDataBind: AnyObject{
+protocol StudioDataBind: AnyObject {
     func studioDataBind(text: String, forIndex: Int)
 }
 

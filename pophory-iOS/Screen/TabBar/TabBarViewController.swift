@@ -31,26 +31,14 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
-            if (response?.code == 4423) {
-                self?.showPopup(popupType: .simple,
-                                secondaryText: "이미 내 앨범에 있는 사진이에요",
-                                firstButtonTitle: .back)
-            }
-            self?.homeAlbumViewController.requestGetAlumListAPI()
-        }
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
-                                               name:.didReceiveUnauthorizedNotification,
-                                               object:nil)
-        
-        setUpTabBar()
+        setupShareNetworkRequest()
+        setupObservers()
+        setupTabBar()
         setupDelegate()
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        tearDownObservers()
     }
 }
 
@@ -60,7 +48,29 @@ extension TabBarController {
     
     // MARK: - Setups
     
-    private func setUpTabBar(){
+    private func setupShareNetworkRequest() {
+        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
+            if (response?.code == 4423) {
+                self?.showPopup(popupType: .simple,
+                                secondaryText: "이미 내 앨범에 있는 사진이에요",
+                                firstButtonTitle: .back)
+            }
+            self?.homeAlbumViewController.requestGetAlumListAPI()
+        }
+    }
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
+                                               name:.didReceiveUnauthorizedNotification,
+                                               object:nil)
+    }
+    
+    private func tearDownObservers() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func setupTabBar(){
         self.tabBar.tintColor = .pophoryPurple
         self.tabBar.unselectedItemTintColor = .pophoryGray400
         self.tabBar.isTranslucent = false
