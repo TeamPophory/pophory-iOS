@@ -12,12 +12,12 @@ import WebKit
 
 class QRDownLoadWebViewController: UIViewController {
     var webView: WKWebView?
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupWebView()
     }
 }
@@ -25,14 +25,13 @@ class QRDownLoadWebViewController: UIViewController {
 // MARK: - Extensions
 
 extension QRDownLoadWebViewController {
-
     private func setupWebView() {
         webView = WKWebView()
         webView?.navigationDelegate = self
         if let webView = webView {
             view.addSubview(webView)
             
-            // Load URL from QR code
+            // QR코드에서 이미지 로드
             guard let url = createURL(from: "URL주소") else { return }
             
             let request = URLRequest(url: url)
@@ -40,33 +39,28 @@ extension QRDownLoadWebViewController {
         }
     }
     
-    private func createURL(from urlString: String) -> URL? {
-        return URL(string: urlString)
-    }
-    
-    // Function to load the URL in the web view
+    // webView에서 url 로드
     func loadURL(_ urlString: String) {
         guard let url = createURL(from: urlString) else { return }
         let request = URLRequest(url: url)
         webView?.load(request)
     }
     
-    // Function to check if the photo service is supported
+    private func createURL(from urlString: String) -> URL? {
+        return URL(string: urlString)
+    }
+    
+    // 서비스 지원 여부 확인
     func isSupportedPhotoService(_ host: String?) -> Bool {
-        // Your logic to check if the service is supported
-        // Example: Check if host matches a supported service
+        // TODO: 서비스 지원 여부 확인 로직
         return true
     }
-
-    // Function to move to the photo registration screen
+    
     func moveToPhotoRegistrationScreen() {
-        // Your logic to navigate to the photo registration screen
         print("Move to Photo Registration Screen")
     }
-
-    // Function to move back to the home screen
+    
     func moveToHomeScreen() {
-        // Your logic to navigate back to the home screen
         print("Move to Home Screen")
     }
 }
@@ -74,16 +68,58 @@ extension QRDownLoadWebViewController {
 // MARK: - WKNavigationDelegate
 
 extension QRDownLoadWebViewController: WKNavigationDelegate {
-    // WKNavigationDelegate method to handle page load finish
+    // 페이지 로드 완료를 처리하는 WKNavigationDelegate 메서드
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Your logic after the webpage has finished loading
-        // Example: Check if it's a supported photo service or not
         if isSupportedPhotoService(webView.url?.host) {
-            // Move to the photo registration screen
             moveToPhotoRegistrationScreen()
         } else {
-            // Move back to the home screen
             moveToHomeScreen()
+        }
+    }
+    
+    // 현재 웹 페이지에서 이미지 링크를 추출하고 처리
+    private func extractAndProcessImageLinks() {
+        webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
+            if let htmlString = html as? String {
+                // HTML에서 이미지 링크 추출
+                let extractedImageLinks = self.extractImageLinks(html: htmlString)
+                
+                // 추출된 이미지 링크 처리
+                self.processImageLinks(extractedImageLinks)
+            }
+        }
+    }
+    
+    // 추출된 이미지 링크 처리
+    private func processImageLinks(_ imageLinks: [String]) {
+        for imageLink in imageLinks {
+            print("Extracted Image Link: \(imageLink)")
+            
+        }
+    }
+    
+    // HTML에서 이미지 링크 추출하는 메서드
+    private func extractImageLinks(html: String) -> [String] {
+        do {
+            // 이미지 링크 추출을 위한 정규식
+            let imgPattern = try NSRegularExpression(pattern: #"<img.*?src=['"](.*?)['"].*?>"#, options: [])
+            
+            // 위 정규식을 사용하여 이미지 링크 추출
+            let matches = imgPattern.matches(in: html, options: [], range: NSRange(location: 0, length: html.utf16.count))
+            
+            // 일치하는 이미지 링크를 배열에 저장
+            let imageLinks = matches.map { (result) -> String in
+                let range = result.range(at: 1)
+                if let swiftRange = Range(range, in: html) {
+                    return String(html[swiftRange])
+                }
+                return ""
+            }
+            
+            return imageLinks
+        } catch {
+            print("Error creating regular expression: \(error)")
+            return []
         }
     }
 }

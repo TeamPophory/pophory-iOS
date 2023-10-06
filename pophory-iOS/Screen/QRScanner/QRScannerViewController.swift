@@ -60,7 +60,7 @@ extension QRScannerViewController {
     
     // MARK: - Custom Methods
     
-    // Delegate method to handle captured metadata
+    // 캡처한 메타데이터를 처리하는 델리게이트 메서드
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -69,7 +69,7 @@ extension QRScannerViewController {
         }
     }
 
-    // Function to handle the QR code value
+    // QR코드 값을 처리
     func handleQRCode(_ value: String) {
         // Your logic to handle the QR code value
         print("QR Code Value: \(value)")
@@ -80,7 +80,6 @@ extension QRScannerViewController {
         // Pass the URL to the downloadWebViewController
         downloadWebViewController.loadURL(value)
 
-        // Present the downloadWebViewController (or push if you are using navigation controller)
         present(downloadWebViewController, animated: true, completion: nil)
     }
 
