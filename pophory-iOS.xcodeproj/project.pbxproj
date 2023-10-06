@@ -57,6 +57,7 @@
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
 		37DE3D882A6993CD00A98725 /* MyPageRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE3D872A6993CD00A98725 /* MyPageRootView.swift */; };
 		37DEF3902A822561000068A1 /* NextButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */; };
+		37E036D72ACFFD70004E179A /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D62ACFFD70004E179A /* QRScannerViewController.swift */; };
 		37E036D92AD000F5004E179A /* QRDownLoadWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */; };
 		37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
@@ -249,6 +250,7 @@
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37DE3D872A6993CD00A98725 /* MyPageRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageRootView.swift; sourceTree = "<group>"; };
 		37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonDelegate.swift; sourceTree = "<group>"; };
+		37E036D62ACFFD70004E179A /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDownLoadWebViewController.swift; sourceTree = "<group>"; };
 		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -580,6 +582,22 @@
 				37DCA6B02A4AC7CC00FF8F90 /* Pretendard-SemiBold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		37E036D42ACFFD0D004E179A /* QRScanner */ = {
+			isa = PBXGroup;
+			children = (
+				37E036D62ACFFD70004E179A /* QRScannerViewController.swift */,
+			);
+			path = QRScanner;
+			sourceTree = "<group>";
+		};
+		37E036D52ACFFD4A004E179A /* QRDownload */ = {
+			isa = PBXGroup;
+			children = (
+				37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */,
+			);
+			path = QRDownload;
 			sourceTree = "<group>";
 		};
 		37EB69E72A4BEF4300075E4E /* Base */ = {
@@ -965,6 +983,7 @@
 			isa = PBXGroup;
 			children = (
 				37E036D52ACFFD4A004E179A /* QRDownload */,
+				37E036D42ACFFD0D004E179A /* QRScanner */,
 				912780152A67D9ED0005BBA3 /* EditAlbumCover */,
 				3B3A090F2A56A4F200C8A740 /* PhotoDetail */,
 				6B29DC522A5494A000F93EC7 /* AddPhoto */,
