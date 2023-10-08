@@ -19,7 +19,7 @@ final class TabBarController: UITabBarController {
     // MARK: - ViewController properties
     
     private let homeAlbumViewController = HomeAlbumViewController()
-    private let plusViewController = UIViewController()
+    private let plusViewController = PhotoUploadModalViewController()
     private let myPageViewController = MypageViewController()
     
     private let addPhotoViewController = AddPhotoViewController()
@@ -109,14 +109,14 @@ extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
             if isAlbumFull == true {
-                showPopup(
-                    image: ImageLiterals.img_albumfull,
-                    primaryText: "포포리 앨범이 가득찼어요",
-                    secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
-                )
+//                showPopup(
+//                    image: ImageLiterals.img_albumfull,
+//                    primaryText: "포포리 앨범이 가득찼어요",
+//                    secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
+//                )
                 return  false
             }
-            imagePHPViewController.setupImagePermission()
+            plusViewController.onClickPlusButton()
             return false
         } else { return true }
     }

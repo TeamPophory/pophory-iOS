@@ -59,6 +59,7 @@
 		37DEF3902A822561000068A1 /* NextButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */; };
 		37E036D72ACFFD70004E179A /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D62ACFFD70004E179A /* QRScannerViewController.swift */; };
 		37E036D92AD000F5004E179A /* QRDownLoadWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */; };
+		37E036E02AD29936004E179A /* PhotoUploadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */; };
 		37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
 		37ED8E522A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */; };
@@ -252,6 +253,7 @@
 		37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonDelegate.swift; sourceTree = "<group>"; };
 		37E036D62ACFFD70004E179A /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDownLoadWebViewController.swift; sourceTree = "<group>"; };
+		37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadModalViewController.swift; sourceTree = "<group>"; };
 		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRefreshTokenDTO.swift; sourceTree = "<group>"; };
@@ -598,6 +600,14 @@
 				37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */,
 			);
 			path = QRDownload;
+			sourceTree = "<group>";
+		};
+		37E036DE2AD298F9004E179A /* PhotoUpload */ = {
+			isa = PBXGroup;
+			children = (
+				37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */,
+			);
+			path = PhotoUpload;
 			sourceTree = "<group>";
 		};
 		37EB69E72A4BEF4300075E4E /* Base */ = {
@@ -982,6 +992,7 @@
 		B1631F3B2A175B290050974F /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				37E036DE2AD298F9004E179A /* PhotoUpload */,
 				37E036D52ACFFD4A004E179A /* QRDownload */,
 				37E036D42ACFFD0D004E179A /* QRScanner */,
 				912780152A67D9ED0005BBA3 /* EditAlbumCover */,
@@ -1378,6 +1389,7 @@
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
+				37E036E02AD29936004E179A /* PhotoUploadModalViewController.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */,
 				6BCE47602A684FDB0060EC78 /* ShareRepository.swift in Sources */,
