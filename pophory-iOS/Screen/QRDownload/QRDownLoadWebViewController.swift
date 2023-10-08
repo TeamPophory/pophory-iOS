@@ -32,7 +32,7 @@ extension QRDownLoadWebViewController {
             view.addSubview(webView)
             
             // QR코드에서 이미지 로드
-            guard let url = createURL(from: "URL주소") else { return }
+            guard let url = createURL(from: "http://photoqr3.kr/R/md02/230930/223255/index.html") else { return }
             
             let request = URLRequest(url: url)
             webView.load(request)
@@ -71,8 +71,10 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     // 페이지 로드 완료를 처리하는 WKNavigationDelegate 메서드
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if isSupportedPhotoService(webView.url?.host) {
+            print("Supported Photo Service")
             moveToPhotoRegistrationScreen()
         } else {
+            print("Not Supported Photo Service")
             moveToHomeScreen()
         }
     }

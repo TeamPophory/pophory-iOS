@@ -20,8 +20,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupCamera()
+        
+        setupCameraRequestAccess()
     }
 }
 
@@ -49,13 +49,28 @@ extension QRScannerViewController {
             previewLayer.frame = view.layer.bounds
             previewLayer.videoGravity = .resizeAspectFill
             view.layer.addSublayer(previewLayer)
-
-            captureSession.startRunning()
+            
+            // 오래 걸릴 수 있는 작업이므로, 이를 메인 스레드에서 호출하면 UI가 멈추거나 반응하지 않을 수 있음
+            DispatchQueue.global().async {
+                captureSession.startRunning()
+            }
 
         } catch {
             print(error)
             return
         }
+    }
+    
+    private func setupCameraRequestAccess() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+            if granted {
+                DispatchQueue.main.async {
+                    self.setupCamera()
+                }
+            } else {
+                // The access has not been granted.
+            }
+        })
     }
     
     // MARK: - Custom Methods
@@ -71,10 +86,6 @@ extension QRScannerViewController {
 
     // QR코드 값을 처리
     func handleQRCode(_ value: String) {
-        // Your logic to handle the QR code value
-        print("QR Code Value: \(value)")
-
-        // Create an instance of QRDownLoadWebViewController
         let downloadWebViewController = QRDownLoadWebViewController()
 
         // Pass the URL to the downloadWebViewController
