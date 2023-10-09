@@ -32,7 +32,7 @@ extension QRDownLoadWebViewController {
             view.addSubview(webView)
             
             // QR코드에서 이미지 로드
-            guard let url = createURL(from: "http://photoqr3.kr/R/md02/230930/223255/index.html") else { return }
+            guard let url = createURL(from: "https://life4cut-l4c01.s3-accelerate.amazonaws.com/web/web/QRImage/20230904/SEL.YSN.MYUNG02/202003232/index.html") else { return }
             
             let request = URLRequest(url: url)
             webView.load(request)
@@ -72,7 +72,7 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if isSupportedPhotoService(webView.url?.host) {
             print("Supported Photo Service")
-            moveToPhotoRegistrationScreen()
+            extractAndProcessImageLinks()
         } else {
             print("Not Supported Photo Service")
             moveToHomeScreen()
@@ -84,10 +84,13 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
         webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
             if let htmlString = html as? String {
                 // HTML에서 이미지 링크 추출
-                let extractedImageLinks = self.extractImageLinks(html: htmlString)
+//                let extractedImageLinks = self.extractImageLinks(html: htmlString)
+                
+                let testImageLinks = "<img class=image src=./life4cut-l4c01.s3-accelerate.amazonaws.com_web_web_QRImage_20230904_SEL.YSN.MYUNG02_202003232_index_files/image.jpg>"
+                self.extractImageLinks(html: testImageLinks)
                 
                 // 추출된 이미지 링크 처리
-                self.processImageLinks(extractedImageLinks)
+//                self.processImageLinks(testImageLinks)
             }
         }
     }
@@ -104,10 +107,11 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     private func extractImageLinks(html: String) -> [String] {
         do {
             // 이미지 링크 추출을 위한 정규식
-            let imgPattern = try NSRegularExpression(pattern: #"<img.*?src=['"](.*?)['"].*?>"#, options: [])
+            let imgPattern = try NSRegularExpression(pattern: "src=([^\\s>]*).*?>", options: [])
             
             // 위 정규식을 사용하여 이미지 링크 추출
             let matches = imgPattern.matches(in: html, options: [], range: NSRange(location: 0, length: html.utf16.count))
+            print(">>> \(matches)")
             
             // 일치하는 이미지 링크를 배열에 저장
             let imageLinks = matches.map { (result) -> String in
@@ -117,7 +121,6 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
                 }
                 return ""
             }
-            
             return imageLinks
         } catch {
             print("Error creating regular expression: \(error)")

@@ -22,6 +22,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         super.viewDidLoad()
         
         setupCameraRequestAccess()
+        
+        let downloadWebViewController = QRDownLoadWebViewController()
+        present(downloadWebViewController, animated: true, completion: nil)
     }
 }
 
@@ -30,6 +33,18 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 extension QRScannerViewController {
     
     // MARK: - Settings
+    
+    private func setupCameraRequestAccess() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+            if granted {
+                DispatchQueue.main.async {
+                    self.setupCamera()
+                }
+            } else {
+                // The access has not been granted.
+            }
+        })
+    }
     
     private func setupCamera() {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -59,18 +74,6 @@ extension QRScannerViewController {
             print(error)
             return
         }
-    }
-    
-    private func setupCameraRequestAccess() {
-        AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
-            if granted {
-                DispatchQueue.main.async {
-                    self.setupCamera()
-                }
-            } else {
-                // The access has not been granted.
-            }
-        })
     }
     
     // MARK: - Custom Methods
