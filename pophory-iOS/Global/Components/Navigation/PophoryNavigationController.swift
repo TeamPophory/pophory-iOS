@@ -10,16 +10,19 @@ import UIKit
 final class PophoryNavigationController: UINavigationController {
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         configureNavigationBar()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+}
 
+extension PophoryNavigationController {
     func configureNavigationBar() {
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barTintColor = .pophoryWhite
         let titleFont = UIFont.head2
         let titleColor = UIColor.pophoryBlack
+        
         lazy var defaultNaviBarHeight = { self.navigationBar.frame.size.height }()
         let newNaviBarHeight = defaultNaviBarHeight + 22
         

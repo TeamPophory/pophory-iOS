@@ -14,7 +14,11 @@ final class TabBarController: UITabBarController {
     
     // MARK: - Properties
     
+    var customTransitionDelegate: UIViewControllerTransitioningDelegate?
+    
     private var isAlbumFull: Bool = false
+    
+    private var customHeight: CGFloat = 170
     
     // MARK: - ViewController properties
     
@@ -106,17 +110,26 @@ extension TabBarController {
 // MARK: - UITabBarControllerDelegate
 
 extension TabBarController: UITabBarControllerDelegate {
+    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
             if isAlbumFull == true {
-//                showPopup(
-//                    image: ImageLiterals.img_albumfull,
-//                    primaryText: "포포리 앨범이 가득찼어요",
-//                    secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
-//                )
+                showPopup(
+                    image: ImageLiterals.img_albumfull,
+                    primaryText: "포포리 앨범이 가득찼어요",
+                    secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!"
+                )
                 return  false
             }
-            plusViewController.onClickPlusButton()
+            
+            let customModalVC = PhotoUploadModalViewController()
+            customModalVC.modalPresentationStyle = .custom
+            
+            self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: self.customHeight)
+            customModalVC.transitioningDelegate = self.customTransitionDelegate
+            
+            self.present(customModalVC, animated: true, completion: nil)
+            
             return false
         } else { return true }
     }

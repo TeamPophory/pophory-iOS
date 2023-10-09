@@ -9,9 +9,11 @@ import UIKit
 
 import SnapKit
 
-class PhotoUploadModalViewController: BaseViewController {
+class PhotoUploadModalViewController: BaseViewController, UIViewControllerTransitioningDelegate {
     
     // MARK: - Properties
+    
+    weak var delegate: PhotoUploadModalViewControllerDelegate?
     
     // MARK: - UI Properties
     
@@ -90,9 +92,12 @@ extension PhotoUploadModalViewController {
     }
     
     @objc func handleRegisterWithQrButton() {
-        let qrScannerVC = QRScannerViewController()
-        
-        self.present(qrScannerVC, animated: true)
+        let qrScannerViewController = QRScannerViewController()
+        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalTransitionStyle = .crossDissolve
+        self.present(navigationController, animated: true, completion: nil)
+
     }
     
     @objc func handleRegisterWithAlbumButton() {

@@ -8,6 +8,8 @@
 import AVFoundation
 import UIKit
 
+import SnapKit
+
 // MARK: - QRScannerViewController
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -15,44 +17,122 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     // MARK: - Properties
     
     private var captureSession: AVCaptureSession?
+    private var previewLayer: AVCaptureVideoPreviewLayer?
     
-    private let qrScannerView = QRScannerView()
-
+    // MARK: - UI Properties
+    
+    private var overlayView = UIView()
+    
+    private lazy var backButton = UIBarButtonItem(image: ImageLiterals.backButtonIcon, style: .plain, target: self, action: #selector(onClickBackButton))
+    
+    private let scanQrCodeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .head3
+        label.textColor = .pophoryWhite
+        label.text = "QR코드를 스캔해주세요"
+        return label
+    }()
+    
     // MARK: - Life Cycle
-    
-    override func loadView() {
-        super.loadView()
-        
-        view = qrScannerView
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+        setupQRScannerNavigationBar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        setupLayout()
         setupCameraRequestAccess()
+        setupOverlayView()
         
         // TODO: Test
         
-        let downloadWebViewController = QRDownLoadWebViewController()
-        present(downloadWebViewController, animated: true, completion: nil)
+        //        let downloadWebViewController = QRDownLoadWebViewController()
+        //        present(downloadWebViewController, animated: true, completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        displayPreview()
+    }
+    
+    private func displayPreview() {
+        guard let previewLayer = self.previewLayer else { return }
+        
+        let previewView = UIView(frame: view.bounds)
+        view.addSubview(previewView)
+        view.addSubview(overlayView)
+        view.sendSubviewToBack(previewView)
+        
+        previewLayer.frame = previewView.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        
+        if previewLayer.superlayer == nil {
+            previewView.layer.addSublayer(previewLayer)
+        }
     }
 }
 
 // MARK: - Extensions
 
-extension QRScannerViewController: Navigatable {
-    var navigationBarTitleText: String? { "QR로 등록하기" }
-}
-
 extension QRScannerViewController {
     
     // MARK: - Settings
+    
+//    private func setupLayout() {
+//        view.addSubview(scanQrCodeLabel)
+//
+//        scanQrCodeLabel.snp.makeConstraints { make in
+//            make.top.equalTo(overlayView.snp.bottom).offset(23)
+//            make.centerX.equalTo(overlayView)
+//        }
+//    }
+    
+    private func setupOverlayView() {
+        overlayView.frame = UIScreen.main.bounds
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        let clearSquareFrame = CGRect(x: (overlayView.bounds.width - 249) / 2, y: (overlayView.bounds.height - 249) / 2, width: 249, height: 249)
+        let clearSquare = UIView(frame: clearSquareFrame)
+        clearSquare.backgroundColor = UIColor.clear
+        
+        overlayView.addSubview(clearSquare)
+        
+        createTransparentArea(aroundRect: clearSquare.frame, inOverlayview :overlayView)
+    }
+    
+    private func createTransparentArea(aroundRect rect:CGRect ,inOverlayview:UIView){
+        let pathBigRect = UIBezierPath(rect:view.frame)
+        let pathSmallRect = UIBezierPath(rect:CGRect(x:(UIScreen.main.bounds.size.width - rect.size.width)/2, y:(UIScreen.main.bounds.size.height - rect.size.height)/2, width:rect.size.width,height:rect.size.height))
+        pathBigRect.append(pathSmallRect)
+        pathBigRect.usesEvenOddFillRule = true
+        
+        let fillLayer = CAShapeLayer()
+        fillLayer.path = pathBigRect.cgPath
+        fillLayer.fillRule = .evenOdd
+        fillLayer.fillColor=UIColor(white: 0, alpha: 0.5).cgColor
+        
+        inOverlayview.layer.addSublayer(fillLayer)
+    }
+    
+    private func setupQRScannerNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.title = "QR로 등록하기"
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.navigationBar.tintColor = .pophoryBlack
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .pophoryWhite
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
     
     private func setupCameraRequestAccess() {
         AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
@@ -68,28 +148,23 @@ extension QRScannerViewController {
     
     private func setupCamera() {
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-
+        
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
-            let captureSession = AVCaptureSession()
-            captureSession.addInput(input)
-
+            self.captureSession = AVCaptureSession()
+            self.captureSession?.addInput(input)
+            
             let output = AVCaptureMetadataOutput()
-            captureSession.addOutput(output)
-
+            self.captureSession?.addOutput(output)
+            
             output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             output.metadataObjectTypes = [.qr]
-
-            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            previewLayer.frame = view.layer.bounds
-            previewLayer.videoGravity = .resizeAspectFill
-            view.layer.addSublayer(previewLayer)
             
-            // 오래 걸릴 수 있는 작업이므로, 이를 메인 스레드에서 호출하면 UI가 멈추거나 반응하지 않을 수 있음
-            DispatchQueue.global().async {
-                captureSession.startRunning()
+            self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession!)
+            
+            DispatchQueue.global().async { [weak self] in
+                self?.captureSession?.startRunning()
             }
-
         } catch {
             print(error)
             return
@@ -97,6 +172,10 @@ extension QRScannerViewController {
     }
     
     // MARK: - Custom Methods
+    
+    @objc func onClickBackButton() {
+        self.navigationController?.dismiss(animated: true)
+    }
     
     // 캡처한 메타데이터를 처리하는 델리게이트 메서드
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -106,15 +185,15 @@ extension QRScannerViewController {
             handleQRCode(stringValue)
         }
     }
-
+    
     // QR코드 값을 처리
     func handleQRCode(_ value: String) {
         let downloadWebViewController = QRDownLoadWebViewController()
-
+        
         // Pass the URL to the downloadWebViewController
         downloadWebViewController.loadURL(value)
-
-//        self.navigationController?.push(downloadWebViewController, animated: true, completion: nil)
+        
+        //        self.navigationController?.push(downloadWebViewController, animated: true, completion: nil)
     }
-
 }
+
