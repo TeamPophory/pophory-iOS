@@ -14,14 +14,30 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     // MARK: - Properties
     
-    var captureSession: AVCaptureSession?
+    private var captureSession: AVCaptureSession?
+    
+    private let qrScannerView = QRScannerView()
 
     // MARK: - Life Cycle
+    
+    override func loadView() {
+        super.loadView()
+        
+        view = qrScannerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCameraRequestAccess()
+        
+        // TODO: Test
         
         let downloadWebViewController = QRDownLoadWebViewController()
         present(downloadWebViewController, animated: true, completion: nil)
@@ -29,6 +45,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 }
 
 // MARK: - Extensions
+
+extension QRScannerViewController: Navigatable {
+    var navigationBarTitleText: String? { "QR로 등록하기" }
+}
 
 extension QRScannerViewController {
     
@@ -94,7 +114,7 @@ extension QRScannerViewController {
         // Pass the URL to the downloadWebViewController
         downloadWebViewController.loadURL(value)
 
-        present(downloadWebViewController, animated: true, completion: nil)
+//        self.navigationController?.push(downloadWebViewController, animated: true, completion: nil)
     }
 
 }

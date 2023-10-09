@@ -30,7 +30,7 @@ class PhotoUploadModalViewController: BaseViewController {
         return stackView
     }()
     
-    private let registerWithQrButton: UIButton = {
+    private lazy var registerWithQrButton: UIButton = {
         let button = UIButton()
         //        button.setImage(<#T##image: UIImage?##UIImage?#>, for: .normal)
         button.backgroundColor = .pophoryGray300
