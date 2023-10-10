@@ -144,4 +144,5 @@ iOSInjectionProject/
 
 pophory-iOS.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
+pophory-iOS.xcodeproj/xcshareddata/xcschemes/pophory-iOS.xcscheme
 *.xcconfig
