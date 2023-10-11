@@ -40,9 +40,8 @@ final class ShareViewController: UIViewController {
                 self.extensionContext?.completeRequest(returningItems: nil) { _ in
                     guard let url = URL(string: "pophoryiOS://share") else { return }
 
-                    let pasteboard = [[UTType.png.identifier : image]]
                     self.openURL(url)
-                    UIPasteboard.general.setItems(pasteboard)
+                    UIPasteboard.general.image = image as? UIImage
                 }
             }
         }
