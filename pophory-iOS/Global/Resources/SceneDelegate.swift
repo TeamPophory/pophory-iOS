@@ -92,17 +92,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                     
                     addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
-                    
                     rootViewController = addPhotoViewController
+                    window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                    window?.makeKeyAndVisible()
                 } else {
                     let appleLoginManager = AppleLoginManager()
                     let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
                     appleLoginManager.delegate = rootVC
                     
                     rootViewController = rootVC
+                    window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                    window?.makeKeyAndVisible()
                 }
-                window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                window?.makeKeyAndVisible()
             }
         }
     }
