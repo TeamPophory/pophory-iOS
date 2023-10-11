@@ -76,26 +76,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let substring = url.absoluteString[range.upperBound...]
             
             if substring == "share" {
-                if let windowScene = scene as? UIWindowScene {
-                    let window = UIWindow(windowScene: windowScene)
-                    window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
-                    let rootVC = AddPhotoViewController()
+                
+                let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                var rootViewController: UIViewController
+                
+                if isLoggedIn {
+                    let addPhotoViewController = AddPhotoViewController()
                     
                     var imageType: PhotoCellType = .vertical
                     guard let image = UIPasteboard.general.image else { return }
-                    
                     if image.size.width > image.size.height {
                         imageType = .horizontal
                     } else {
                         imageType = .vertical
                     }
                     
-                    rootVC.setupRootViewImage(forImage: image , forType: imageType)
+                    addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
                     
-                    window.rootViewController = rootVC
-                    window.makeKeyAndVisible()
-                    self.window = window
+                    rootViewController = addPhotoViewController
+                } else {
+                    let appleLoginManager = AppleLoginManager()
+                    let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+                    appleLoginManager.delegate = rootVC
+                    
+                    rootViewController = rootVC
                 }
+                window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                window?.makeKeyAndVisible()
             }
         }
     }
