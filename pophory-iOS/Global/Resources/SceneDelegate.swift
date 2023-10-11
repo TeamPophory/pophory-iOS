@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseDynamicLinks
+import UniformTypeIdentifiers
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -57,11 +58,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         let rootVC = ShareViewController()
                         rootVC.setupShareID(forShareID: shareID)
                         rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
-                    
+                        
                         window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window
                     }
+                }
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        
+        // shareExtension 받았을 때
+        if let range = url.absoluteString.range(of: "//") {
+            let substring = url.absoluteString[range.upperBound...]
+            
+            if substring == "share" {
+                if let windowScene = scene as? UIWindowScene {
+                    let window = UIWindow(windowScene: windowScene)
+                    window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+                    let rootVC = AddPhotoViewController()
+                    
+                    var imageType: PhotoCellType = .vertical
+                    guard let image = UIPasteboard.general.image else { return }
+                    
+                    if image.size.width > image.size.height {
+                        imageType = .horizontal
+                    } else {
+                        imageType = .vertical
+                    }
+                    
+                    rootVC.setupRootViewImage(forImage: image , forType: imageType)
+                    
+                    window.rootViewController = rootVC
+                    window.makeKeyAndVisible()
+                    self.window = window
                 }
             }
         }
@@ -98,7 +131,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @objc func setupRoot() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         var rootViewController: UIViewController
-
+        
         if isLoggedIn {
             rootViewController = TabBarController()
         } else {
@@ -109,11 +142,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController = rootVC
         }
         let navigationController = PophoryNavigationController(rootViewController: rootViewController)
-
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-
+    
     func setRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         
