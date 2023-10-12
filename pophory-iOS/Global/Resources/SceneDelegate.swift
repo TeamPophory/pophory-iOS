@@ -78,23 +78,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if substring == "share" {
                 
                 let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                let isAlbumFull = self.isAlbumFull()
                 var rootViewController: UIViewController
                 
                 if isLoggedIn {
-                    let addPhotoViewController = AddPhotoViewController()
-                    
-                    var imageType: PhotoCellType = .vertical
-                    guard let image = UIPasteboard.general.image else { return }
-                    if image.size.width > image.size.height {
-                        imageType = .horizontal
+                    if isAlbumFull {
+                        rootViewController = TabBarController()
+                        window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                        window?.rootViewController?.showPopup(popupType: .simple,
+                                                     image: ImageLiterals.img_albumfull,
+                                                     primaryText: "포포리 앨범이 가득찼어요",
+                                                     secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+                        window?.makeKeyAndVisible()
                     } else {
-                        imageType = .vertical
+                        let addPhotoViewController = AddPhotoViewController()
+                        
+                        var imageType: PhotoCellType = .vertical
+                        guard let image = UIPasteboard.general.image else { return }
+                        if image.size.width > image.size.height {
+                            imageType = .horizontal
+                        } else {
+                            imageType = .vertical
+                        }
+                        
+                        addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+                        rootViewController = addPhotoViewController
+                        window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                        window?.makeKeyAndVisible()
                     }
-                    
-                    addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
-                    rootViewController = addPhotoViewController
-                    window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                    window?.makeKeyAndVisible()
                 } else {
                     let appleLoginManager = AppleLoginManager()
                     let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
@@ -184,6 +195,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         return nil
+    }
+    
+    private func isAlbumFull() -> Bool {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        
+        if isLoggedIn {
+            var maxPhotoCount: Int?
+            var maxPhotoLimit: Int?
+            var albumList: FetchAlbumListResponseDTO? {
+                didSet {
+                    if let albums = albumList?.albums {
+                        if albums.count != 0 {
+                            maxPhotoCount = albums[0].photoLimit
+                            maxPhotoLimit = albums[0].photoLimit
+                        }
+                    }
+                }
+            }
+            
+            NetworkService.shared.albumRepository.fetchAlbumList() { result in
+                switch result {
+                case .success(let response):
+                    albumList = response
+                default : return
+                }
+            }
+            
+            if let maxCount = maxPhotoCount, let maxLimit = maxPhotoLimit {
+                if maxCount >= maxLimit { return true }
+                else { return false }
+            }
+            else { return true }
+        } else { return false }
     }
 }
 
