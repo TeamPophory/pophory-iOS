@@ -9,11 +9,7 @@ import UIKit
 
 import SnapKit
 
-class PhotoUploadModalViewController: BaseViewController, UIViewControllerTransitioningDelegate {
-    
-    // MARK: - Properties
-    
-    weak var delegate: PhotoUploadModalViewControllerDelegate?
+class PhotoUploadModalViewController: BaseViewController {
     
     // MARK: - UI Properties
     

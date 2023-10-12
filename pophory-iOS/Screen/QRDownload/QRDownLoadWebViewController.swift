@@ -32,7 +32,7 @@ extension QRDownLoadWebViewController {
             view.addSubview(webView)
             
             // QR코드에서 이미지 로드
-            guard let url = createURL(from: "https://life4cut-l4c01.s3-accelerate.amazonaws.com/web/web/QRImage/20230904/SEL.YSN.MYUNG02/202003232/index.html") else { return }
+            guard let url = createURL(from: "http://www.hamafilm.com/hamafilm/qrviewer.jsp?imgid=luc_Luscent028_20231011205213") else { return }
             
             let request = URLRequest(url: url)
             webView.load(request)

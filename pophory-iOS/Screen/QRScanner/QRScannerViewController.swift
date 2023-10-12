@@ -44,36 +44,33 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupLayout()
         setupCameraRequestAccess()
         setupOverlayView()
         
         // TODO: Test
         
-        //        let downloadWebViewController = QRDownLoadWebViewController()
-        //        present(downloadWebViewController, animated: true, completion: nil)
+                let downloadWebViewController = QRDownLoadWebViewController()
+                present(downloadWebViewController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         displayPreview()
+        self.navigationController?.navigationBar.layer.zPosition = 1
     }
     
     private func displayPreview() {
         guard let previewLayer = self.previewLayer else { return }
-        
-        let previewView = UIView(frame: view.bounds)
-        view.addSubview(previewView)
-        view.addSubview(overlayView)
-        view.sendSubviewToBack(previewView)
-        
-        previewLayer.frame = previewView.bounds
+
+        previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
-        
+
         if previewLayer.superlayer == nil {
-            previewView.layer.addSublayer(previewLayer)
+            view.layer.insertSublayer(previewLayer, at: 0)
         }
+
+        view.bringSubviewToFront(overlayView)
     }
 }
 
@@ -83,18 +80,9 @@ extension QRScannerViewController {
     
     // MARK: - Settings
     
-//    private func setupLayout() {
-//        view.addSubview(scanQrCodeLabel)
-//
-//        scanQrCodeLabel.snp.makeConstraints { make in
-//            make.top.equalTo(overlayView.snp.bottom).offset(23)
-//            make.centerX.equalTo(overlayView)
-//        }
-//    }
-    
     private func setupOverlayView() {
         overlayView.frame = UIScreen.main.bounds
-        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0)
         
         let clearSquareFrame = CGRect(x: (overlayView.bounds.width - 249) / 2, y: (overlayView.bounds.height - 249) / 2, width: 249, height: 249)
         let clearSquare = UIView(frame: clearSquareFrame)
@@ -103,11 +91,19 @@ extension QRScannerViewController {
         overlayView.addSubview(clearSquare)
         
         createTransparentArea(aroundRect: clearSquare.frame, inOverlayview :overlayView)
+        
+        view.addSubview(overlayView)
+        overlayView.addSubview(scanQrCodeLabel)
+        
+        scanQrCodeLabel.snp.makeConstraints { make in
+            make.top.equalTo(clearSquare.snp.bottom).offset(23)
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func createTransparentArea(aroundRect rect:CGRect ,inOverlayview:UIView){
         let pathBigRect = UIBezierPath(rect:view.frame)
-        let pathSmallRect = UIBezierPath(rect:CGRect(x:(UIScreen.main.bounds.size.width - rect.size.width)/2, y:(UIScreen.main.bounds.size.height - rect.size.height)/2, width:rect.size.width,height:rect.size.height))
+        let pathSmallRect = UIBezierPath(roundedRect: rect, cornerRadius: 12)
         pathBigRect.append(pathSmallRect)
         pathBigRect.usesEvenOddFillRule = true
         
