@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "앨범커버_사랑1_최종_1.svg",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "앨범커버_사랑1_최종_1@2x.svg",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "앨범커버_사랑1_최종_1@3x.svg",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "ic_album_cover_love_1.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
