@@ -25,6 +25,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     private lazy var backButton = UIBarButtonItem(image: ImageLiterals.backButtonIcon, style: .plain, target: self, action: #selector(onClickBackButton))
     
+    private let scannerFrame = UIImageView(image: ImageLiterals.qrScannerFrame)
+    
     private let scanQrCodeLabel: UILabel = {
         let label = UILabel()
         label.font = .head3
@@ -48,9 +50,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         setupOverlayView()
         
         // TODO: Test
-        
-                let downloadWebViewController = QRDownLoadWebViewController()
-                present(downloadWebViewController, animated: true, completion: nil)
+//
+//                let downloadWebViewController = QRDownLoadWebViewController()
+//                present(downloadWebViewController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +95,11 @@ extension QRScannerViewController {
         createTransparentArea(aroundRect: clearSquare.frame, inOverlayview :overlayView)
         
         view.addSubview(overlayView)
-        overlayView.addSubview(scanQrCodeLabel)
+        overlayView.addSubviews([scannerFrame,scanQrCodeLabel])
+        
+        scannerFrame.snp.makeConstraints { make in
+            make.edges.equalTo(clearSquare).inset(-3)
+        }
         
         scanQrCodeLabel.snp.makeConstraints { make in
             make.top.equalTo(clearSquare.snp.bottom).offset(23)

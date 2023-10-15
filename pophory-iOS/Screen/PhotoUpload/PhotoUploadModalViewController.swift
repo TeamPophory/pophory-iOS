@@ -90,7 +90,7 @@ extension PhotoUploadModalViewController {
     @objc func handleRegisterWithQrButton() {
         let qrScannerViewController = QRScannerViewController()
         let navigationController = UINavigationController(rootViewController: qrScannerViewController)
-        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalPresentationStyle = .overFullScreen
         navigationController.modalTransitionStyle = .crossDissolve
         self.present(navigationController, animated: true, completion: nil)
 

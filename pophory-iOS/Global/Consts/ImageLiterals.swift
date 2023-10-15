@@ -117,6 +117,10 @@ enum ImageLiterals {
     // MARK: - ErrorImg
 
     static var networkFail: UIImage { .load(name: "networkFail") }
+    
+    // MARK: - QRImg
+    
+    static var qrScannerFrame: UIImage { .load(name: "qrScannerFrame")}
 }
 
 extension UIImage {
