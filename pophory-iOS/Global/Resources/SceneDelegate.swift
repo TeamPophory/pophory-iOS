@@ -77,44 +77,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             if substring == "share" {
                 
-                let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-                let isAlbumFull = self.isAlbumFull()
-                var rootViewController: UIViewController
-                
-                if isLoggedIn {
-                    if isAlbumFull {
-                        rootViewController = TabBarController()
-                        window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                        window?.rootViewController?.showPopup(popupType: .simple,
-                                                     image: ImageLiterals.img_albumfull,
-                                                     primaryText: "포포리 앨범이 가득찼어요",
-                                                     secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
-                        window?.makeKeyAndVisible()
-                    } else {
-                        let addPhotoViewController = AddPhotoViewController()
-                        
-                        var imageType: PhotoCellType = .vertical
-                        guard let image = UIPasteboard.general.image else { return }
-                        if image.size.width > image.size.height {
-                            imageType = .horizontal
-                        } else {
-                            imageType = .vertical
-                        }
-                        
-                        addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
-                        rootViewController = addPhotoViewController
-                        window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                        window?.makeKeyAndVisible()
-                    }
-                } else {
-                    let appleLoginManager = AppleLoginManager()
-                    let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-                    appleLoginManager.delegate = rootVC
+                self.isAlbumFull { isAlbumFull in
                     
-                    rootViewController = rootVC
-                    window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                    window?.makeKeyAndVisible()
+                    let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                    var rootViewController: UIViewController
+                    
+                    if isLoggedIn {
+                        if isAlbumFull {
+                            rootViewController = TabBarController()
+                            DispatchQueue.main.async {
+                                self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                                self.window?.rootViewController?.showPopup(popupType: .simple,
+                                                                           image: ImageLiterals.img_albumfull,
+                                                                           primaryText: "포포리 앨범이 가득찼어요",
+                                                                           secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+                                self.window?.makeKeyAndVisible()
+                            }
+                        } else {
+                            let addPhotoViewController = AddPhotoViewController()
+                            
+                            var imageType: PhotoCellType = .vertical
+                            guard let image = UIPasteboard.general.image else { return }
+                            if image.size.width > image.size.height {
+                                imageType = .horizontal
+                            } else {
+                                imageType = .vertical
+                            }
+                                                            
+                                addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+                                rootViewController = addPhotoViewController
+                            DispatchQueue.main.async {
+
+                                self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                                self.window?.makeKeyAndVisible()
+                            }
+                        }
+                    } else {
+                        let appleLoginManager = AppleLoginManager()
+                        let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+                        appleLoginManager.delegate = rootVC
+                        
+                            
+                            rootViewController = rootVC
+                        DispatchQueue.main.async {
+
+                            self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
+                            self.window?.makeKeyAndVisible()
+                        }
+                    }
                 }
+                
             }
         }
     }
@@ -197,7 +209,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return nil
     }
     
-    private func isAlbumFull() -> Bool {
+    private func isAlbumFull(completion: @escaping (Bool) -> ()) {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         
         if isLoggedIn {
@@ -207,7 +219,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 didSet {
                     if let albums = albumList?.albums {
                         if albums.count != 0 {
-                            maxPhotoCount = albums[0].photoLimit
+                            maxPhotoCount = albums[0].photoCount
                             maxPhotoLimit = albums[0].photoLimit
                         }
                     }
@@ -218,16 +230,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 switch result {
                 case .success(let response):
                     albumList = response
-                default : return
+                    if let maxCount = maxPhotoCount, let maxLimit = maxPhotoLimit {
+                        if maxCount >= maxLimit { completion(true) }
+                        else { completion(false) }
+                    }
+                    else { completion(false) }
+                default: completion(false)
                 }
             }
-            
-            if let maxCount = maxPhotoCount, let maxLimit = maxPhotoLimit {
-                if maxCount >= maxLimit { return true }
-                else { return false }
-            }
-            else { return true }
-        } else { return false }
+        }
     }
 }
 
