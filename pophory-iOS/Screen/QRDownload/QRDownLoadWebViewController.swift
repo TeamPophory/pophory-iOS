@@ -8,10 +8,16 @@
 import UIKit
 import WebKit
 
+import SnapKit
+
 // MARK: - WebViewController
 
 class QRDownLoadWebViewController: UIViewController {
     var webView: WKWebView?
+    var loadedURLs = Set<URL>()
+    var isMovingToSafari = false
+    
+    var onImageURLsExtracted: (([String]) -> Void)?
     
     // MARK: - Life Cycle
     
@@ -19,49 +25,102 @@ class QRDownLoadWebViewController: UIViewController {
         super.viewDidLoad()
         
         setupWebView()
+        // 앱이 포어그라운드로 전환되고 활성화될 때 관찰
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 }
 
 // MARK: - Extensions
 
 extension QRDownLoadWebViewController {
+    
+    // MARK: - Settings
+    
     private func setupWebView() {
         webView = WKWebView()
         webView?.navigationDelegate = self
+        
         if let webView = webView {
             view.addSubview(webView)
-            
-            // QR코드에서 이미지 로드
-            guard let url = createURL(from: "http://www.hamafilm.com/hamafilm/qrviewer.jsp?imgid=luc_Luscent028_20231011205213") else { return }
-            
-            let request = URLRequest(url: url)
-            webView.load(request)
+            webView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+        
+        // QR코드에서 이미지 로드
+        guard let url = createURL(from: "http://14.63.225.67/?qr=2023/0422/hh01_2_V_V4_20230422134610834&S_TYPE=SELPIX&VER=1&LOC=KOR#/") else { return }
+        
+        let request = URLRequest(url: url)
+        webView?.load(request)
+        
+    }
+    
+    // MARK: - Action Helpers
+    
+    // Safari에서 돌아왔을 때 실행
+    @objc func didBecomeActive() {
+        if isMovingToSafari {
+            moveToHomeScreen()
+            isMovingToSafari = false
         }
     }
     
     // webView에서 url 로드
     func loadURL(_ urlString: String) {
         guard let url = createURL(from: urlString) else { return }
+        
         let request = URLRequest(url: url)
-        webView?.load(request)
+        
+        if !loadedURLs.contains(url) {
+            loadedURLs.insert(url)
+            self.webView?.load(request)
+        }
     }
     
     private func createURL(from urlString: String) -> URL? {
-        return URL(string: urlString)
+        
+        // TRIMING CHARACTORS?
+        return URL(string: urlString.trimmingCharacters(in:.whitespacesAndNewlines))
     }
     
     // 서비스 지원 여부 확인
-    func isSupportedPhotoService(_ host: String?) -> Bool {
-        // TODO: 서비스 지원 여부 확인 로직
-        return true
+    func isSupportedPhotoService(_ inputHost: String?) -> Bool {
+        guard let host = inputHost?.lowercased() else { return false }
+        
+        let suppertedDomains = [
+            "life4cut-l4c01.s3-accelerate.amazonaws.com",
+            "3.37.14.138",
+            "photoqr3.kr",
+            "haru1.mx2.co.kr/@HA006XEb7Nh"
+        ]
+        
+        return suppertedDomains.contains(host)
     }
     
-    func moveToPhotoRegistrationScreen() {
+    private func loadUnsupportedPage(_ url: URL) {
+        UIApplication.shared.open(url)
+        isMovingToSafari = true
+        //        self.dismiss(animated: true)
+    }
+    
+    // MARK: - Navigation
+    
+    func moveToAddPhotoViewController() {
         print("Move to Photo Registration Screen")
     }
     
     func moveToHomeScreen() {
-        print("Move to Home Screen")
+        self.dismiss(animated: true) { [weak self] in
+            guard self != nil else { return }
+            if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+               let tabBarController = scene.windows.first?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 0
+            }
+        }
     }
 }
 
@@ -69,13 +128,15 @@ extension QRDownLoadWebViewController {
 
 extension QRDownLoadWebViewController: WKNavigationDelegate {
     // 페이지 로드 완료를 처리하는 WKNavigationDelegate 메서드
+    
+    // TODO: 강제언래핑 해제
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if isSupportedPhotoService(webView.url?.host) {
-            print("Supported Photo Service")
             extractAndProcessImageLinks()
         } else {
-            print("Not Supported Photo Service")
-            moveToHomeScreen()
+            if let url = webView.url {
+                loadUnsupportedPage(url)
+            }
         }
     }
     
@@ -84,13 +145,13 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
         webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
             if let htmlString = html as? String {
                 // HTML에서 이미지 링크 추출
-//                let extractedImageLinks = self.extractImageLinks(html: htmlString)
-                
-                let testImageLinks = "<img class=image src=./life4cut-l4c01.s3-accelerate.amazonaws.com_web_web_QRImage_20230904_SEL.YSN.MYUNG02_202003232_index_files/image.jpg>"
-                self.extractImageLinks(html: testImageLinks)
+                let extractedImageLinks = self.extractImageLinks(html: htmlString)
+                self.onImageURLsExtracted?(extractedImageLinks)
                 
                 // 추출된 이미지 링크 처리
-//                self.processImageLinks(testImageLinks)
+                self.processImageLinks(extractedImageLinks)
+            } else if let error = error {
+                print("Error evaluating JavaScript: \(error)")
             }
         }
     }
@@ -98,8 +159,10 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     // 추출된 이미지 링크 처리
     private func processImageLinks(_ imageLinks: [String]) {
         for imageLink in imageLinks {
-            print("Extracted Image Link: \(imageLink)")
-            
+            if !imageLinks.isEmpty {
+                let addphotoVC = AddPhotoViewController()
+                self.navigationController?.pushViewController(addphotoVC, animated: true)
+            }
         }
     }
     
@@ -107,7 +170,7 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     private func extractImageLinks(html: String) -> [String] {
         do {
             // 이미지 링크 추출을 위한 정규식
-            let imgPattern = try NSRegularExpression(pattern: "src=([^\\s>]*).*?>", options: [])
+            let imgPattern = try NSRegularExpression(pattern:"img[^>]*src=\"([^\"]*)\"", options:[ ])
             
             // 위 정규식을 사용하여 이미지 링크 추출
             let matches = imgPattern.matches(in: html, options: [], range: NSRange(location: 0, length: html.utf16.count))

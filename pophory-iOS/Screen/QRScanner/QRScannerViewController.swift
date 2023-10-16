@@ -195,7 +195,8 @@ extension QRScannerViewController {
         // Pass the URL to the downloadWebViewController
         downloadWebViewController.loadURL(value)
         
-        //        self.navigationController?.push(downloadWebViewController, animated: true, completion: nil)
+        self.modalPresentationStyle = .overFullScreen
+        self.present(downloadWebViewController, animated: true)
     }
 }
 
