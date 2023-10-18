@@ -12,7 +12,7 @@ import SnapKit
 
 // MARK: - QRScannerViewController
 
-class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRScannerViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -41,6 +41,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         super.viewWillAppear(animated)
         
         setupQRScannerNavigationBar()
+        
+        if !(captureSession?.isRunning ?? false) {
+            captureSession?.startRunning()
+        }
     }
     
     override func viewDidLoad() {
@@ -48,11 +52,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         setupCameraRequestAccess()
         setupOverlayView()
-        
-        // TODO: Test
-//
-//                let downloadWebViewController = QRDownLoadWebViewController()
-//                present(downloadWebViewController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -179,24 +178,28 @@ extension QRScannerViewController {
         self.navigationController?.dismiss(animated: true)
     }
     
+    // QR코드 값을 처리
+    func handleQRCode(_ value: String) {
+        captureSession?.stopRunning()
+        
+        let downloadWebViewController = QRDownLoadWebViewController()
+        
+        // Pass the URL to the downloadWebViewController
+        downloadWebViewController.urlString = value
+        
+        downloadWebViewController.modalPresentationStyle = .overFullScreen
+        self.present(downloadWebViewController, animated: true)
+    }
+}
+
+extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     // 캡처한 메타데이터를 처리하는 델리게이트 메서드
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
+            
             handleQRCode(stringValue)
         }
     }
-    
-    // QR코드 값을 처리
-    func handleQRCode(_ value: String) {
-        let downloadWebViewController = QRDownLoadWebViewController()
-        
-        // Pass the URL to the downloadWebViewController
-        downloadWebViewController.loadURL(value)
-        
-        self.modalPresentationStyle = .overFullScreen
-        self.present(downloadWebViewController, animated: true)
-    }
 }
-
