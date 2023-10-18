@@ -207,14 +207,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setupAlbumFullViewController() {
         let tabBarController = TabBarController()
-        DispatchQueue.main.async {
-            self.window?.rootViewController = PophoryNavigationController(rootViewController: tabBarController)
-            self.window?.rootViewController?.showPopup(popupType: .simple,
-                                                       image: ImageLiterals.img_albumfull,
-                                                       primaryText: "포포리 앨범이 가득찼어요",
-                                                       secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
-            self.window?.makeKeyAndVisible()
-        }
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: tabBarController)
+        self.window?.rootViewController?.showPopup(popupType: .simple,
+                                                   image: ImageLiterals.img_albumfull,
+                                                   primaryText: "포포리 앨범이 가득찼어요",
+                                                   secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+        self.window?.makeKeyAndVisible()
+        
     }
     
     private func setupAddphotoViewcontroller() {
@@ -227,13 +226,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             imageType = .vertical
         }
-                                        
-            addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
-        DispatchQueue.main.async {
-
-            self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
-            self.window?.makeKeyAndVisible()
-        }
+        
+        addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+        
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
+        self.window?.makeKeyAndVisible()
+        
     }
 }
 
