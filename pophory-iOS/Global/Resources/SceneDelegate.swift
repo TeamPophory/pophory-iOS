@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseDynamicLinks
+import UniformTypeIdentifiers
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -57,10 +58,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         let rootVC = ShareViewController()
                         rootVC.setupShareID(forShareID: shareID)
                         rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
-                    
+                        
                         window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window
+                    }
+                }
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        
+        // shareExtension 받았을 때
+        if let range = url.absoluteString.range(of: "//") {
+            let substring = url.absoluteString[range.upperBound...]
+            
+            if substring == "share" {
+                
+                self.isAlbumFull { isAlbumFull in
+                    
+                    let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                    
+                    if isLoggedIn {
+                        if isAlbumFull {
+                            self.setupAlbumFullViewController()
+                        } else {
+                            self.setupAddphotoViewcontroller()
+                        }
+                    } else {
+                        self.setupRootViewController()
                     }
                 }
             }
@@ -98,7 +126,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @objc func setupRoot() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         var rootViewController: UIViewController
-
+        
         if isLoggedIn {
             rootViewController = TabBarController()
         } else {
@@ -109,12 +137,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController = rootVC
         }
         let navigationController = PophoryNavigationController(rootViewController: rootViewController)
-
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-
-    func setRootViewController() {
+    
+    func setupRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         
         var rootViewController: UIViewController
@@ -143,6 +171,67 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         return nil
+    }
+    
+    private func isAlbumFull(completion: @escaping (Bool) -> ()) {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        
+        if isLoggedIn {
+            var maxPhotoCount: Int?
+            var maxPhotoLimit: Int?
+            var albumList: FetchAlbumListResponseDTO? {
+                didSet {
+                    if let albums = albumList?.albums {
+                        if albums.count != 0 {
+                            maxPhotoCount = albums[0].photoCount
+                            maxPhotoLimit = albums[0].photoLimit
+                        }
+                    }
+                }
+            }
+            
+            NetworkService.shared.albumRepository.fetchAlbumList() { result in
+                switch result {
+                case .success(let response):
+                    albumList = response
+                    if let maxCount = maxPhotoCount, let maxLimit = maxPhotoLimit {
+                        if maxCount >= maxLimit { completion(true) }
+                        else { completion(false) }
+                    }
+                    else { completion(false) }
+                default: completion(false)
+                }
+            }
+        }
+    }
+    
+    private func setupAlbumFullViewController() {
+        let tabBarController = TabBarController()
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: tabBarController)
+        self.window?.rootViewController?.showPopup(popupType: .simple,
+                                                   image: ImageLiterals.img_albumfull,
+                                                   primaryText: "포포리 앨범이 가득찼어요",
+                                                   secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
+    private func setupAddphotoViewcontroller() {
+        let addPhotoViewController = AddPhotoViewController()
+        
+        var imageType: PhotoCellType = .vertical
+        guard let image = UIPasteboard.general.image else { return }
+        if image.size.width > image.size.height {
+            imageType = .horizontal
+        } else {
+            imageType = .vertical
+        }
+        
+        addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+        
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
+        self.window?.makeKeyAndVisible()
+        
     }
 }
 
