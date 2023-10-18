@@ -80,53 +80,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.isAlbumFull { isAlbumFull in
                     
                     let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-                    var rootViewController: UIViewController
                     
                     if isLoggedIn {
                         if isAlbumFull {
-                            rootViewController = TabBarController()
-                            DispatchQueue.main.async {
-                                self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                                self.window?.rootViewController?.showPopup(popupType: .simple,
-                                                                           image: ImageLiterals.img_albumfull,
-                                                                           primaryText: "포포리 앨범이 가득찼어요",
-                                                                           secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
-                                self.window?.makeKeyAndVisible()
-                            }
+                            self.setupAlbumFullViewController()
                         } else {
-                            let addPhotoViewController = AddPhotoViewController()
-                            
-                            var imageType: PhotoCellType = .vertical
-                            guard let image = UIPasteboard.general.image else { return }
-                            if image.size.width > image.size.height {
-                                imageType = .horizontal
-                            } else {
-                                imageType = .vertical
-                            }
-                                                            
-                                addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
-                                rootViewController = addPhotoViewController
-                            DispatchQueue.main.async {
-
-                                self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                                self.window?.makeKeyAndVisible()
-                            }
+                            self.setupAddphotoViewcontroller()
                         }
                     } else {
-                        let appleLoginManager = AppleLoginManager()
-                        let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-                        appleLoginManager.delegate = rootVC
-                        
-                            
-                            rootViewController = rootVC
-                        DispatchQueue.main.async {
-
-                            self.window?.rootViewController = PophoryNavigationController(rootViewController: rootViewController)
-                            self.window?.makeKeyAndVisible()
-                        }
+                        self.setupRootViewController()
                     }
                 }
-                
             }
         }
     }
@@ -178,7 +142,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func setRootViewController() {
+    func setupRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         
         var rootViewController: UIViewController
@@ -238,6 +202,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 default: completion(false)
                 }
             }
+        }
+    }
+    
+    private func setupAlbumFullViewController() {
+        let tabBarController = TabBarController()
+        DispatchQueue.main.async {
+            self.window?.rootViewController = PophoryNavigationController(rootViewController: tabBarController)
+            self.window?.rootViewController?.showPopup(popupType: .simple,
+                                                       image: ImageLiterals.img_albumfull,
+                                                       primaryText: "포포리 앨범이 가득찼어요",
+                                                       secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+            self.window?.makeKeyAndVisible()
+        }
+    }
+    
+    private func setupAddphotoViewcontroller() {
+        let addPhotoViewController = AddPhotoViewController()
+        
+        var imageType: PhotoCellType = .vertical
+        guard let image = UIPasteboard.general.image else { return }
+        if image.size.width > image.size.height {
+            imageType = .horizontal
+        } else {
+            imageType = .vertical
+        }
+                                        
+            addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+        DispatchQueue.main.async {
+
+            self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
+            self.window?.makeKeyAndVisible()
         }
     }
 }
