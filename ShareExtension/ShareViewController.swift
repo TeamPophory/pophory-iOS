@@ -23,18 +23,7 @@ final class ShareViewController: UIViewController {
     }
 
     private func handleIncomingText(itemProvider: NSItemProvider) {
-//        itemProvider.loadItem(forTypeIdentifier: UTType.text.identifier, options: nil) { (item, error) in
-//            if let error {
-//                print(error)
-//            }
-//            self.extensionContext?.completeRequest(returningItems: nil) { _ in
-//                guard let url = URL(string: "pophoryiOS://") else { return }
-//                print(item)
-//                self.openURL(url)
-//            }
-//        }
-        if
-        itemProvider.canLoadObject(ofClass: UIImage.self) { // itemProvider가 불러온 이미지 값 가져올 수 있다면 실행
+        if itemProvider.canLoadObject(ofClass: UIImage.self) { // itemProvider가 불러온 이미지 값 가져올 수 있다면 실행
             
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 self.extensionContext?.completeRequest(returningItems: nil) { _ in
