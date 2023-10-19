@@ -79,7 +79,7 @@ final class HomeAlbumView: UIView, GettableHomeAlbumProperty {
     
     private lazy var albumCoverEditButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.changeElbumCover, for: .normal)
+        button.setImage(ImageLiterals.changeAlbumCover, for: .normal)
         button.addTarget(self, action: #selector(albumCoverEditButtonDidTapped), for: .touchUpInside)
         return button
     }()

@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseDynamicLinks
+import UniformTypeIdentifiers
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -16,15 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private var networkMonitor: NetworkMonitor = NetworkMonitor()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
         if let userActivity = connectionOptions.userActivities.first {
             self.scene(scene, continue: userActivity)
         }
-        
-        guard let _ = (scene as? UIWindowScene) else { return }
         
         startMonitoringNetwork(on: scene)
         
@@ -57,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         let rootVC = ShareViewController()
                         rootVC.setupShareID(forShareID: shareID)
                         rootVC.rootView.shareButton.addTarget(self, action: #selector(self.setupRoot), for: .touchUpInside)
-                    
+                        
                         window.rootViewController = rootVC
                         window.makeKeyAndVisible()
                         self.window = window
@@ -67,38 +62,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        
+        // shareExtension 받았을 때
+        if let range = url.absoluteString.range(of: "//") {
+            let substring = url.absoluteString[range.upperBound...]
+            
+            if substring == "share" {
+                
+                self.isAlbumFull { isAlbumFull in
+                    
+                    let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                    
+                    if isLoggedIn {
+                        if isAlbumFull {
+                            self.setupAlbumFullViewController()
+                        } else {
+                            self.setupAddphotoViewcontroller()
+                        }
+                    } else {
+                        self.setupRootViewController()
+                    }
+                }
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
     
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
+    func sceneDidBecomeActive(_ scene: UIScene) { }
     
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
+    func sceneWillResignActive(_ scene: UIScene) { }
     
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
+    func sceneWillEnterForeground(_ scene: UIScene) { }
     
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-    }
+    func sceneDidEnterBackground(_ scene: UIScene) { }
     
     @objc func setupRoot() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         var rootViewController: UIViewController
-
+        
         if isLoggedIn {
             rootViewController = TabBarController()
         } else {
@@ -109,12 +114,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController = rootVC
         }
         let navigationController = PophoryNavigationController(rootViewController: rootViewController)
-
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-
-    func setRootViewController() {
+    
+    func setupRootViewController() {
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         
         var rootViewController: UIViewController
@@ -143,6 +148,67 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         return nil
+    }
+    
+    private func isAlbumFull(completion: @escaping (Bool) -> ()) {
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        
+        if isLoggedIn {
+            var maxPhotoCount: Int?
+            var maxPhotoLimit: Int?
+            var albumList: FetchAlbumListResponseDTO? {
+                didSet {
+                    if let albums = albumList?.albums {
+                        if albums.count != 0 {
+                            maxPhotoCount = albums[0].photoCount
+                            maxPhotoLimit = albums[0].photoLimit
+                        }
+                    }
+                }
+            }
+            
+            NetworkService.shared.albumRepository.fetchAlbumList() { result in
+                switch result {
+                case .success(let response):
+                    albumList = response
+                    if let maxCount = maxPhotoCount, let maxLimit = maxPhotoLimit {
+                        if maxCount >= maxLimit { completion(true) }
+                        else { completion(false) }
+                    }
+                    else { completion(false) }
+                default: completion(false)
+                }
+            }
+        }
+    }
+    
+    private func setupAlbumFullViewController() {
+        let tabBarController = TabBarController()
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: tabBarController)
+        self.window?.rootViewController?.showPopup(popupType: .simple,
+                                                   image: ImageLiterals.img_albumfull,
+                                                   primaryText: "포포리 앨범이 가득찼어요",
+                                                   secondaryText: "아쉽지만,\n다음 업데이트에서 만나요!")
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
+    private func setupAddphotoViewcontroller() {
+        let addPhotoViewController = AddPhotoViewController()
+        
+        var imageType: PhotoCellType = .vertical
+        guard let image = UIPasteboard.general.image else { return }
+        if image.size.width > image.size.height {
+            imageType = .horizontal
+        } else {
+            imageType = .vertical
+        }
+        
+        addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
+        
+        self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
+        self.window?.makeKeyAndVisible()
+        
     }
 }
 
