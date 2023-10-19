@@ -18,12 +18,7 @@ enum ImageLiterals {
     //MARK: - logo icon
     
     static var launchIcon: UIImage { .load(name: "launchIcon") }
-    static var logIcon: UIImage { .load(name: "logIcon") }
-    static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
-    static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
-    static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
-    static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
-    static var checkBigIconWhite: UIImage { .load(name: "checkBigIconWhite") }
+    static var logIcon: UIImage { .load(name: "logoIcon") }
     static var shareLogoIcon: UIImage { .load(name: "sharePophoryLogo") }
     
     // MARK: - icon
@@ -41,12 +36,15 @@ enum ImageLiterals {
     static var chevronUpIcon: UIImage { .load(name: "up") }
     static var xIcon: UIImage { .load(name: "x") }
     static var emptyFeedIcon: UIImage { .load(name: "emptyFeedIcon") }
-    static var changeElbumCover: UIImage { .load(name: "changeElbumCover") }
+    static var changeAlbumCover: UIImage { .load(name: "changeAlbumCover") }
     static var progressBarIcon: UIImage { .load(name: "progressBarIcon") }
     static var progressBarIconFull: UIImage { .load(name: "progressBarIconFull") }
-    static var shareIcon: UIImage {
-        .load(name: "Share")
-    }
+    static var shareIcon: UIImage { .load(name: "Share") }
+    static var myAlbumPlusButtonIcon: UIImage { .load(name: "myAlbumPlusButtonIcon") }
+    static var arrowUpDown: UIImage { .load(name: "arrowUpDown") }
+    static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
+    static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
+    static var checkBigIconWhite: UIImage { .load(name: "checkBigIconWhite") }
     
     // MARK: - exception
     
@@ -88,19 +86,24 @@ enum ImageLiterals {
     static var albumCoverProfile3Alpa: UIImage { .load(name: "albumCoverProfile3Alpa") }
     static var albumCoverProfile4Alpa: UIImage { .load(name: "albumCoverProfile4Alpa") }
     
-    static var albumCoverProfileList: [UIImage] = [UIImage(), albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4]
+    static var albumCoverProfileList: [UIImage] = [
+        UIImage(),
+        albumCoverProfile1,
+        albumCoverProfile2,
+        albumCoverProfile3,
+        albumCoverProfile4
+    ]
 
     // MARK: - OnboardingImg
     
     static var OnboardingImage1: UIImage { .load(name: "onboardingImg1") }
     static var OnboardingImage2: UIImage { .load(name: "onboardingImg2") }
     static var OnboardingImage3: UIImage { .load(name: "onboardingImg3") }
-    static var OnboardingImage4: UIImage { .load(name: "OnboardingImage4") }
-    
-    static var congratuation: UIImage { .load(name: "img_congratuation") }
+    static var OnboardingImage4: UIImage { .load(name: "onboardingImage4") }
     
     // MARK: - PopUpImg
     
+    static var congratuation: UIImage { .load(name: "img_congratuation") }
     static var img_albumfull: UIImage { .load(name: "img_albumfull") }
     
     // MARK: - BackgroundImg
