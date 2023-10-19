@@ -45,6 +45,7 @@ enum ImageLiterals {
     static var backButtonIcon: UIImage { .load(name: "backButtonIcon") }
     static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
     static var checkBigIconWhite: UIImage { .load(name: "checkBigIconWhite") }
+    static var adIcon: UIImage { .load(name: "img_AD") }
     
     // MARK: - exception
     

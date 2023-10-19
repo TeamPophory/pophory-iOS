@@ -9,6 +9,8 @@ import UIKit
 
 import Firebase
 import Sentry
+import GoogleMobileAds
+import AppTrackingTransparency
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,18 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // MARK: - FireBase Dynamic Link 관련
+        // MARK: - FireBase SDK 초기화
         FirebaseApp.configure()
         
         // MARK: - Sentry SDK 관련
         SentrySDK.start { options in
-            options.dsn = ""
-            options.debug = true // Enabled debug when first installing is always helpful
-            
-            // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-            // We recommend adjusting this value in production.
+            if let dsn = Bundle.main.infoDictionary?["SENTRY_DSN"] as? String {
+                options.dsn = dsn
+            }
+            options.debug = true
             options.tracesSampleRate = 1.0
         }
+        requestTrackingAuthorization()
         
         return true
     }
@@ -50,5 +52,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask.portrait
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+    }
+    
+    private func requestTrackingAuthorization() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { (status) in
+                    switch status {
+                    case .notDetermined:
+                        print("notDetermined") // 결정되지 않음
+                    case .restricted:
+                        print("restricted") // 제한됨
+                    case .denied:
+                        print("denied") // 거부됨
+                    case .authorized:
+                        print("authorized") // 허용됨
+                    @unknown default:
+                        print("error") // 알려지지 않음
+                    }
+                }
+            }
+        }
+        if #available(iOS 14, *) {
+            if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+                ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
+                    // Initialize the Google Mobile Ads SDK.
+                    // TODO: 배포 후 실제 admobID로 변경
+                    //        GADMobileAds.sharedInstance().start(completionHandler: nil)
+                    GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
+                    [ "89ad6e2f5e35327a7987a9a5dc2a1149" ]      // testID
+                })
+            }
+        }
+    }
 }
 
