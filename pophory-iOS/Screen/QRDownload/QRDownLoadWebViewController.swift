@@ -13,6 +13,9 @@ import SnapKit
 // MARK: - WebViewController
 
 class QRDownLoadWebViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     var webView: WKWebView?
     var loadedURLs = Set<URL>()
     var isMovingToSafari = false
@@ -21,33 +24,17 @@ class QRDownLoadWebViewController: UIViewController {
     
     var onImageURLsExtracted: (([String]) -> Void)?
     
-    let jsCode = """
-    (function() {
-        var images = document.querySelectorAll('img');
-        var longestImage = null;
-        var longestHeight = 0;
-        for (var i = 0; i < images.length; i++) {
-            if (images[i].naturalHeight > longestHeight) {
-                longestHeight = images[i].naturalHeight;
-                longestImage = images[i];
-            }
-        }
-        return longestImage ? longestImage.src : null;
-    })();
-    """
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupWebView()
-        // 앱이 포어그라운드로 전환되고 활성화될 때 관찰
-        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        addDidBecomeActiveObserver()
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        removeDidBecomeActiveObserver()
     }
 }
 
@@ -71,6 +58,15 @@ extension QRDownLoadWebViewController {
                 make.edges.equalToSuperview()
             }
         }
+    }
+    
+    private func addDidBecomeActiveObserver() {
+        // 앱이 포어그라운드로 전환되고 활성화될 때
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    func removeDidBecomeActiveObserver() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     // MARK: - Action Helpers
@@ -129,7 +125,6 @@ extension QRDownLoadWebViewController {
                 return true
             }
         }
-        
         return false
     }
     
@@ -162,11 +157,12 @@ extension QRDownLoadWebViewController {
         let dispatchGroup = DispatchGroup()
         
         for imageName in imageLinks {
-            // life4cut 도메인에서 오는 이미지 파일일 때 처리
+            // life4cut 도메인에서 오는 이미지 파일일 때
             if fullUrlString?.contains("life4cut") == true {
-                // 웹 페이지 URL에서 "index.html" 제거 후, 이미지 파일 이름 추가
                 let baseUrlWithoutIndex = fullUrlString?.replacingOccurrences(of: "/index.html", with: "")
-                let fullImageUrlString = "\(baseUrlWithoutIndex ?? "")\(imageName)"
+                let fullImageUrlString = "\(baseUrlWithoutIndex ?? "")/\(imageName)"
+                
+                if !fullImageUrlString.contains("jpg") { continue }
                 
                 guard let url = URL(string: fullImageUrlString) else { continue }
                 
@@ -177,15 +173,8 @@ extension QRDownLoadWebViewController {
                     
                     if let data = data,
                        let image = UIImage(data: data) {
-                        if image.size.width > image.size.height {
-                            longestImageType = .horizontal
-                        } else {
-                            longestImageType = .vertical
-                        }
-                        
-                        if longestImageData == nil || image.size.height > (longestImageData!.image?.size.height ?? 0) {
-                            longestImageData = (image, url.absoluteString, longestImageType)
-                        }
+                        longestImage = image
+                        longestImageLink = fullImageUrlString
                     }
                 }.resume()
             }
@@ -220,7 +209,9 @@ extension QRDownLoadWebViewController {
                 
                 let addphotoVC = AddPhotoViewController()
                 // Longest Image를 활용하는 코드.
-                addphotoVC.setupRootViewImage(forImage: longestImage, forType: longestImageType)
+                DispatchQueue.main.async {
+                    addphotoVC.setupRootViewImage(forImage: longestImage, forType: longestImageType)
+                }
                 self.navigationController?.pushViewController(addphotoVC, animated: true)
             }
         }
@@ -268,19 +259,6 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if isSupportedPhotoService(webView.url?.host) {
             extractAndProcessImageLinks()
-            
-            //            webView.evaluateJavaScript(jsCode) { [weak self] result, error in
-            //                 guard let self = self else { return }
-            //                 if let error = error {
-            //                     print("Error evaluating JavaScript: \(error)")
-            //                 } else if let imgSrc = result as? String {
-            //                     // imgSrc is the source URL of the tallest image in the web page.
-            //                     // Do something with it here.
-            //                     print("The selected image's src is: \(imgSrc)")
-            //                 } else {
-            //                      print("No image found.")
-            //                 }
-            //            }
         }
     }
 }

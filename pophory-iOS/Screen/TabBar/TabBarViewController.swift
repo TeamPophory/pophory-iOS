@@ -110,7 +110,6 @@ extension TabBarController {
 // MARK: - UITabBarControllerDelegate
 
 extension TabBarController: UITabBarControllerDelegate {
-    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController == plusViewController {
             if isAlbumFull == true {
@@ -123,12 +122,11 @@ extension TabBarController: UITabBarControllerDelegate {
             }
             
             let customModalVC = PhotoUploadModalViewController()
-            customModalVC.modalPresentationStyle = .custom
-            
-            self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: self.customHeight)
-            customModalVC.transitioningDelegate = self.customTransitionDelegate
+            self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 170)
             
             let navigationController = UINavigationController(rootViewController: customModalVC)
+            navigationController.modalPresentationStyle = .custom
+            navigationController.transitioningDelegate = self.customTransitionDelegate
             
             self.present(navigationController, animated: true, completion: nil)
             

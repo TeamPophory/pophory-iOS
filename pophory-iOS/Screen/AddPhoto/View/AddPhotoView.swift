@@ -15,6 +15,8 @@ final class AddPhotoView: UIView {
     
     var photoType: PhotoCellType = .vertical {
         didSet {
+            guard let _ = photo.image else { return }
+            
             switch photoType {
             case .vertical, .none:
                 photoView.image = ImageLiterals.addPhotoBackgroundVertical
