@@ -7,11 +7,13 @@
 
 import UIKit
 
-import RxSwift
+import GoogleMobileAds
+import AdSupport
 
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
+    private var interstitial: GADInterstitialAd?
     var albumPK = Int()
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
@@ -19,6 +21,10 @@ final class EditAlbumViewController: BaseViewController {
             guard let albumThemeCoverIndex = albumThemeCoverIndex else { return }
             editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadAd()
     }
     
     override func viewDidLoad() {
@@ -50,12 +56,6 @@ final class EditAlbumViewController: BaseViewController {
         }
         
         editAlbumView.layoutSubviews()
-        setAlbumCover(albumIndex: albumCoverIndex)
-    }
-    
-    private func setAlbumCover(albumIndex: Int) {
-        let indexPath = IndexPath(item: albumIndex, section: 0)
-        self.editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -70,8 +70,20 @@ extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
 
 extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped() {
-        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
+        showPopup(
+            popupType: .option,
+            image: ImageLiterals.adIcon,
+            primaryText: "앨범을 수정할까요?",
+            secondaryText: "앨범 커버를 수정하려면\n광고 시청 하나 부탁드려요!",
+            firstButtonTitle: .keppGoing,
+            secondButtonTitle: .back,
+            firstButtonHandler: pushToFullAd,
+            secondButtonHandler: dismissPopUp
+        )
+        // TODO: 서버통신 수정
+        // 앨범 커버 수정 서버 통신
+        //        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+        //        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
 
@@ -98,6 +110,59 @@ extension EditAlbumViewController: UICollectionViewDelegate {
 
 extension EditAlbumViewController: Navigatable {
     var navigationBarTitleText: String? { return "앨범 테마" }
+}
+
+// MARK: - Ad
+extension EditAlbumViewController {
+    private func loadAd() {
+        let request = GADRequest()
+        
+        
+        if Bundle.main.infoDictionary?["GADApplicationIdentifier"] is String {
+            GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/5135589807",
+                                   request: request) { [self] ad, error in
+                if let error = error {
+                    print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                    return
+                }
+                interstitial = ad
+                interstitial?.fullScreenContentDelegate = self
+            }
+        }
+    }
+    
+    private func pushToFullAd() {
+        guard let interstitial = self.interstitial else {
+            print("광고가 준비되지 않았습니다.")
+            return
+        }
+        
+        dismiss(animated: true) {
+            interstitial.present(fromRootViewController: self)
+        }
+    }
+    
+    private func dismissPopUp() {
+        dismiss(animated: false)
+    }
+}
+
+extension EditAlbumViewController: GADFullScreenContentDelegate {
+    /// 전면광고 노출 실패 시 호출
+      func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Ad did fail to present full screen content.")
+        print(error.localizedDescription, "💗")
+      }
+
+      /// 전면광고 노출 전 호출
+      func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad will present full screen content.")
+      }
+
+      /// 전면광고 종료 후 호출
+      func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+          navigationController?.popToRootViewController(animated: true)
+      }
 }
 
 // MARK: - api

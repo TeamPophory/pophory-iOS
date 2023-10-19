@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "ic_album_cover_family_1.svg",
+      "filename" : "img_illustWidth.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

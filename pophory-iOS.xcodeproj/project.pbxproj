@@ -40,7 +40,6 @@
 		37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */; };
 		37D6A46B2AA83C6A00D25B13 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */; };
 		37D6A46D2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */; };
-		37D6A4702AAAF62B00D25B13 /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 37D6A46F2AAAF62B00D25B13 /* Shared.xcconfig */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
 		37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */; };
 		37DCA69C2A4AB6D300FF8F90 /* LeaveServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */; };
@@ -73,6 +72,21 @@
 		3B5CDBD72A94DDDB001382C4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */; };
 		3B5CDBD92A94DDDB001382C4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */; };
 		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
+		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
+		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
+		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
+		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
+		6B05C5742AC4277800A75C00 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6B05C5C22ACAA50E00A75C00 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */; };
+		6B05C5C32ACAA5B000A75C00 /* ColorLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */; };
+		6B05C5C42ACAA78F00A75C00 /* FontLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */; };
+		6B05C5C52ACAA79D00A75C00 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
+		6B05C5C62ACAA79F00A75C00 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B12A4AC7CC00FF8F90 /* Pretendard-Medium.otf */; };
+		6B05C5C72ACAA7A200A75C00 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B02A4AC7CC00FF8F90 /* Pretendard-SemiBold.otf */; };
+		6B05C5C82ACAA7A400A75C00 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37DCA6B22A4AC7CD00FF8F90 /* Pretendard-Regular.otf */; };
+		6B05C5CD2ACAA8CF00A75C00 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB37C722A55EB7400E49B12 /* DateManager.swift */; };
+		6B05C5DB2ACAB37500A75C00 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = B1631F132A1759EB0050974F /* Assets.xcassets */; };
+		6B05C5DF2ACD262C00A75C00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6B05C5DE2ACD262C00A75C00 /* SnapKit */; };
 		6B09D2282A6808DA00DF4275 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2272A6808DA00DF4275 /* ShareViewController.swift */; };
 		6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09D2292A6808EA00DF4275 /* ShareView.swift */; };
 		6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */; };
@@ -183,6 +197,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6B05C5722AC4277800A75C00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1631EFF2A1759EA0050974F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B05C5692AC4277800A75C00;
+			remoteInfo = ShareExtension;
+		};
 		B1631F1E2A1759EB0050974F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B1631EFF2A1759EA0050974F /* Project object */;
@@ -198,6 +219,20 @@
 			remoteInfo = ZKFace;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B05C5752AC4277800A75C00 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6B05C5742AC4277800A75C00 /* ShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3703F0F42A6071B50017A381 /* PostIdentityTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostIdentityTokenDTO.swift; sourceTree = "<group>"; };
@@ -230,13 +265,10 @@
 		3782F43F2A52C6EB00FE3846 /* BaseInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInputView.swift; sourceTree = "<group>"; };
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentCollectionViewCell.swift; sourceTree = "<group>"; };
-		37A271662AA71D40001FFC38 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		37A271672AA71D9E001FFC38 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMoyaProvider.swift; sourceTree = "<group>"; };
 		37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAccessTokenDTO.swift; sourceTree = "<group>"; };
 		37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
-		37D6A46F2AAAF62B00D25B13 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		37DCA6992A4AB6C900FF8F90 /* HomeAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAlbumViewController.swift; sourceTree = "<group>"; };
 		37DCA69B2A4AB6D300FF8F90 /* LeaveServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveServiceViewController.swift; sourceTree = "<group>"; };
 		37DCA69D2A4AB6DC00FF8F90 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +294,13 @@
 		3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
+		3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		6B05C56A2AC4277800A75C00 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B05C56C2AC4277800A75C00 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		6B05C56F2AC4277800A75C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		6B05C5712AC4277800A75C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B05C5792AC4277E00A75C00 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		6B05C5CF2ACAAB8600A75C00 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6B09D2272A6808DA00DF4275 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		6B09D2292A6808EA00DF4275 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		6B29DC542A5494A000F93EC7 /* PhotoInfoStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInfoStackView.swift; sourceTree = "<group>"; };
@@ -373,10 +412,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6B05C5672AC4277800A75C00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B05C5DF2ACD262C00A75C00 /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1631F042A1759EA0050974F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */,
+				3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */,
 				9161CADF2A5460AA002B8B77 /* Kingfisher in Frameworks */,
 				3B5CDBD52A94DDDB001382C4 /* FirebaseAnalytics in Frameworks */,
 				6B5EF4E62A9122D100D20E04 /* (null) in Frameworks */,
@@ -646,6 +695,33 @@
 				3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6B05C56B2AC4277800A75C00 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6B05C5792AC4277E00A75C00 /* ShareExtension.entitlements */,
+				6B05C56C2AC4277800A75C00 /* ShareViewController.swift */,
+				6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */,
+				6B05C5712AC4277800A75C00 /* Info.plist */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+		6B05C5CE2ACAAB8500A75C00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B05C5CF2ACAAB8600A75C00 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B6F26162AC9DBF70065C2C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6B09D2262A6808BF00DF4275 /* Share */ = {
@@ -932,7 +1008,9 @@
 				B1631F092A1759EA0050974F /* pophory-iOS */,
 				B1631F202A1759EB0050974F /* pophory-iOSTests */,
 				B1631F2A2A1759EB0050974F /* pophoryUITests */,
+				6B05C56B2AC4277800A75C00 /* ShareExtension */,
 				B1631F082A1759EA0050974F /* Products */,
+				6B05C5CE2ACAAB8500A75C00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -942,6 +1020,7 @@
 				B1631F072A1759EA0050974F /* pophory-iOS.app */,
 				B1631F1D2A1759EB0050974F /* pophoryTests.xctest */,
 				B1631F272A1759EB0050974F /* pophoryUITests.xctest */,
+				6B05C56A2AC4277800A75C00 /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -949,11 +1028,11 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3B6F260D2AC97F3E0065C2C5 /* Shared.xcconfig */,
+				3B6F260F2AC97F4D0065C2C5 /* Release.xcconfig */,
+				3B6F26112AC97F570065C2C5 /* Debug.xcconfig */,
 				37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
-				37D6A46F2AAAF62B00D25B13 /* Shared.xcconfig */,
-				37A271662AA71D40001FFC38 /* Debug.xcconfig */,
-				37A271672AA71D9E001FFC38 /* Release.xcconfig */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
@@ -1147,6 +1226,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6B05C5692AC4277800A75C00 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B05C5782AC4277800A75C00 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				6B05C5662AC4277800A75C00 /* Sources */,
+				6B05C5672AC4277800A75C00 /* Frameworks */,
+				6B05C5682AC4277800A75C00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			packageProductDependencies = (
+				6B05C5DE2ACD262C00A75C00 /* SnapKit */,
+			);
+			productName = ShareExtension;
+			productReference = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B1631F062A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1631F312A1759EB0050974F /* Build configuration list for PBXNativeTarget "pophory-iOS" */;
@@ -1155,10 +1254,12 @@
 				B1631F042A1759EA0050974F /* Frameworks */,
 				B1631F052A1759EA0050974F /* Resources */,
 				3B5CDBC32A94CEA9001382C4 /* Run Script */,
+				6B05C5752AC4277800A75C00 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6B05C5732AC4277800A75C00 /* PBXTargetDependency */,
 			);
 			name = "pophory-iOS";
 			packageProductDependencies = (
@@ -1172,6 +1273,7 @@
 				3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */,
 				3B15D0E32A9627940007E330 /* Moya */,
 				3B15D0E62A9627F40007E330 /* Sentry */,
+				3B6F26142AC987920065C2C5 /* GoogleMobileAds */,
 			);
 			productName = ZKFace;
 			productReference = B1631F072A1759EA0050974F /* pophory-iOS.app */;
@@ -1223,6 +1325,9 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					6B05C5692AC4277800A75C00 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					B1631F062A1759EA0050974F = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -1254,6 +1359,7 @@
 				3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3B15D0E22A9627940007E330 /* XCRemoteSwiftPackageReference "Moya" */,
 				3B15D0E52A9627F40007E330 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				3B6F26132AC987920065C2C5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = B1631F082A1759EA0050974F /* Products */;
 			projectDirPath = "";
@@ -1262,22 +1368,37 @@
 				B1631F062A1759EA0050974F /* pophory-iOS */,
 				B1631F1C2A1759EB0050974F /* pophoryTests */,
 				B1631F262A1759EB0050974F /* pophoryUITests */,
+				6B05C5692AC4277800A75C00 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6B05C5682AC4277800A75C00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */,
+				6B05C5C52ACAA79D00A75C00 /* Pretendard-Bold.otf in Resources */,
+				6B05C5C82ACAA7A400A75C00 /* Pretendard-Regular.otf in Resources */,
+				6B05C5C62ACAA79F00A75C00 /* Pretendard-Medium.otf in Resources */,
+				6B05C5C72ACAA7A200A75C00 /* Pretendard-SemiBold.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1631F052A1759EA0050974F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */,
 				376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */,
+				3B6F26102AC97F4D0065C2C5 /* Release.xcconfig in Resources */,
 				37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */,
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
-				37D6A4702AAAF62B00D25B13 /* Shared.xcconfig in Resources */,
+				3B6F260E2AC97F3E0065C2C5 /* Shared.xcconfig in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
+				3B6F26122AC97F570065C2C5 /* Debug.xcconfig in Resources */,
 				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1325,6 +1446,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6B05C5662AC4277800A75C00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B05C5DB2ACAB37500A75C00 /* Assets.xcassets in Sources */,
+				6B05C5CD2ACAA8CF00A75C00 /* DateManager.swift in Sources */,
+				6B05C5C42ACAA78F00A75C00 /* FontLiterals.swift in Sources */,
+				6B05C5C32ACAA5B000A75C00 /* ColorLiterals.swift in Sources */,
+				6B05C5C22ACAA50E00A75C00 /* ImageLiterals.swift in Sources */,
+				6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1631F032A1759EA0050974F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1504,6 +1638,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6B05C5732AC4277800A75C00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B05C5692AC4277800A75C00 /* ShareExtension */;
+			targetProxy = 6B05C5722AC4277800A75C00 /* PBXContainerItemProxy */;
+		};
 		B1631F1F2A1759EB0050974F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B1631F062A1759EA0050974F /* pophory-iOS */;
@@ -1517,6 +1656,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B05C56F2AC4277800A75C00 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		B1631F152A1759EB0050974F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1528,6 +1675,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6B05C5762AC4277800A75C00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6B05C5772AC4277800A75C00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		B1631F2F2A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1646,8 +1851,9 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37A271662AA71D40001FFC38 /* Debug.xcconfig */;
+			baseConfigurationReference = 3B6F26112AC97F570065C2C5 /* Debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
@@ -1687,8 +1893,9 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37A271672AA71D9E001FFC38 /* Release.xcconfig */;
+			baseConfigurationReference = 3B6F260F2AC97F4D0065C2C5 /* Release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOSRelease.entitlements";
@@ -1811,6 +2018,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6B05C5782AC4277800A75C00 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B05C5762AC4277800A75C00 /* Debug */,
+				6B05C5772AC4277800A75C00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		B1631F022A1759EA0050974F /* Build configuration list for PBXProject "pophory-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1882,6 +2098,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		3B6F26132AC987920065C2C5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		9161CADD2A5460AA002B8B77 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1943,6 +2167,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3B5CDBD32A94DDDB001382C4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
+		};
+		3B6F26142AC987920065C2C5 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B6F26132AC987920065C2C5 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		6B05C5DE2ACD262C00A75C00 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37DCA6842A4A97CA00FF8F90 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		9161CADE2A5460AA002B8B77 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
