@@ -128,7 +128,9 @@ extension TabBarController: UITabBarControllerDelegate {
             self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: self.customHeight)
             customModalVC.transitioningDelegate = self.customTransitionDelegate
             
-            self.present(customModalVC, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: customModalVC)
+            
+            self.present(navigationController, animated: true, completion: nil)
             
             return false
         } else { return true }

@@ -17,8 +17,24 @@ class QRDownLoadWebViewController: UIViewController {
     var loadedURLs = Set<URL>()
     var isMovingToSafari = false
     var urlString: String?
+    var fullUrlString: String?
     
     var onImageURLsExtracted: (([String]) -> Void)?
+    
+    let jsCode = """
+    (function() {
+        var images = document.querySelectorAll('img');
+        var longestImage = null;
+        var longestHeight = 0;
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].naturalHeight > longestHeight) {
+                longestHeight = images[i].naturalHeight;
+                longestImage = images[i];
+            }
+        }
+        return longestImage ? longestImage.src : null;
+    })();
+    """
     
     // MARK: - Life Cycle
     
@@ -72,19 +88,25 @@ extension QRDownLoadWebViewController {
         guard let url = createURL(from: urlString) else { return }
         
         if isSupportedPhotoService(url.host) {
-            let request = URLRequest(url: url)
-            webView?.load(request)
-            //            if !loadedURLs.contains(url) {
-            //                loadedURLs.insert(url)
-            //                self.webView?.load(request)
+            // Full URL
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let httpResponse = response as? HTTPURLResponse {
+                    DispatchQueue.main.async {
+                        guard let finalUrl = httpResponse.url else { return }
+                        self.fullUrlString = finalUrl.absoluteString
+                        let request = URLRequest(url: finalUrl)
+                        self.webView?.load(request)
+                    }
+                }
+            }
+            task.resume()
         } else {
             loadUnsupportedPage(url)
         }
     }
     
+    
     private func createURL(from urlString: String) -> URL? {
-        
-        // TRIMING CHARACTORS?
         return URL(string: urlString.trimmingCharacters(in:.whitespacesAndNewlines))
     }
     
@@ -93,15 +115,22 @@ extension QRDownLoadWebViewController {
         guard let host = inputHost?.lowercased() else { return false }
         
         let suppertedDomains = [
-            "life4cut-l4c01.s3-accelerate.amazonaws.com",
+            // 인생네컷
+            "life4cut",
             "3.37.14.138",
             "photoqr3.kr",
             "haru1.mx2.co.kr",
-            "photoone.download",
-            "photoqr3.kr"
+            "haru3.mx2.co.kr",
+            "photoone.download"
         ]
         
-        return suppertedDomains.contains(host)
+        for domain in suppertedDomains {
+            if host.contains(domain) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     private func loadUnsupportedPage(_ url: URL) {
@@ -125,9 +154,73 @@ extension QRDownLoadWebViewController {
     
     // 추출된 이미지 링크 처리
     private func processImageLinks(_ imageLinks: [String]) {
-        for imageLink in imageLinks {
-            if !imageLinks.isEmpty {
+        var longestImage: UIImage? = nil
+        var longestImageLink: String? = nil
+        var longestImageType: PhotoCellType = .horizontal
+        var longestImageData: (image: UIImage?, link: String?, type: PhotoCellType)? = nil
+        
+        let dispatchGroup = DispatchGroup()
+        
+        for imageName in imageLinks {
+            // life4cut 도메인에서 오는 이미지 파일일 때 처리
+            if fullUrlString?.contains("life4cut") == true {
+                // 웹 페이지 URL에서 "index.html" 제거 후, 이미지 파일 이름 추가
+                let baseUrlWithoutIndex = fullUrlString?.replacingOccurrences(of: "/index.html", with: "")
+                let fullImageUrlString = "\(baseUrlWithoutIndex ?? "")\(imageName)"
+                
+                guard let url = URL(string: fullImageUrlString) else { continue }
+                
+                dispatchGroup.enter()
+                
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    defer { dispatchGroup.leave() }
+                    
+                    if let data = data,
+                       let image = UIImage(data: data) {
+                        if image.size.width > image.size.height {
+                            longestImageType = .horizontal
+                        } else {
+                            longestImageType = .vertical
+                        }
+                        
+                        if longestImageData == nil || image.size.height > (longestImageData!.image?.size.height ?? 0) {
+                            longestImageData = (image, url.absoluteString, longestImageType)
+                        }
+                    }
+                }.resume()
+            }
+            // 다른 도메인에서 오는 이미지 링크일 때 일반적인 처리
+            else {
+                guard let url = URL(string: imageName) else { continue }
+                dispatchGroup.enter()
+                
+                URLSession.shared.dataTask(with:url) { data, response, error in
+                    defer { dispatchGroup.leave() }
+                    
+                    if let data = data,
+                       let image = UIImage(data:data),
+                       image.size.height > longestImage?.size.height ?? 0 {
+                        longestImage = image
+                        longestImageLink = imageName
+                        
+                        if image.size.width > image.size.height {
+                            longestImageType = .horizontal
+                        } else {
+                            longestImageType = .vertical
+                        }
+                    }
+                }
+                .resume()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if !imageLinks.isEmpty && longestImage != nil {
+                print("Longest Image Link is : \(longestImageLink)")
+                
                 let addphotoVC = AddPhotoViewController()
+                // Longest Image를 활용하는 코드.
+                addphotoVC.setupRootViewImage(forImage: longestImage, forType: longestImageType)
                 self.navigationController?.pushViewController(addphotoVC, animated: true)
             }
         }
@@ -137,7 +230,7 @@ extension QRDownLoadWebViewController {
     private func extractImageLinks(html: String) -> [String] {
         do {
             // 이미지 링크 추출을 위한 정규식
-            let imgPattern = try NSRegularExpression(pattern:"img[^>]*src=\"([^\"]*)\"", options:[ ])
+            let imgPattern = try NSRegularExpression(pattern:"<img[^>]*src=\"([^\"]*)\"", options:[ ])
             
             // 위 정규식을 사용하여 이미지 링크 추출
             let matches = imgPattern.matches(in: html, options: [], range: NSRange(location: 0, length: html.utf16.count))
@@ -175,6 +268,19 @@ extension QRDownLoadWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if isSupportedPhotoService(webView.url?.host) {
             extractAndProcessImageLinks()
+            
+            //            webView.evaluateJavaScript(jsCode) { [weak self] result, error in
+            //                 guard let self = self else { return }
+            //                 if let error = error {
+            //                     print("Error evaluating JavaScript: \(error)")
+            //                 } else if let imgSrc = result as? String {
+            //                     // imgSrc is the source URL of the tallest image in the web page.
+            //                     // Do something with it here.
+            //                     print("The selected image's src is: \(imgSrc)")
+            //                 } else {
+            //                      print("No image found.")
+            //                 }
+            //            }
         }
     }
 }
