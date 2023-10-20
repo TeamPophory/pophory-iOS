@@ -31,7 +31,6 @@ class PhotoUploadModalViewController: BaseViewController {
     private lazy var registerWithQrButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.qrUploadButton, for: .normal)
-        button.backgroundColor = .pophoryGray300
         button.addTarget(self, action: #selector(handleRegisterWithQrButton), for: .touchUpInside)
         return button
     }()
@@ -39,7 +38,6 @@ class PhotoUploadModalViewController: BaseViewController {
     private lazy var registerWithAlbumButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.uploadFromAlbumButton, for: .normal)
-        button.backgroundColor = .pophoryGray300
         button.addTarget(self, action: #selector(handleRegisterWithAlbumButton), for: .touchUpInside)
         return button
     }()

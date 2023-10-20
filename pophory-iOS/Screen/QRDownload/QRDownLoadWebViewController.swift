@@ -115,9 +115,8 @@ extension QRDownLoadWebViewController {
             "life4cut",
             "3.37.14.138",
             "photoqr3.kr",
-            "haru1.mx2.co.kr",
-            "haru3.mx2.co.kr",
-            "photoone.download"
+            "haru",
+            "photoone"
         ]
         
         for domain in suppertedDomains {
@@ -151,7 +150,7 @@ extension QRDownLoadWebViewController {
     private func processImageLinks(_ imageLinks: [String]) {
         var longestImage: UIImage? = nil
         var longestImageLink: String? = nil
-        var longestImageType: PhotoCellType = .horizontal
+        var longestImageType: PhotoCellType = .vertical
         var longestImageData: (image: UIImage?, link: String?, type: PhotoCellType)? = nil
         
         let dispatchGroup = DispatchGroup()
@@ -175,8 +174,15 @@ extension QRDownLoadWebViewController {
                        let image = UIImage(data: data) {
                         longestImage = image
                         longestImageLink = fullImageUrlString
+                        
+                        if image.size.width > image.size.height {
+                            longestImageType = .horizontal
+                        } else {
+                            longestImageType = .vertical
+                        }
                     }
-                }.resume()
+                }
+                .resume()
             }
             // 다른 도메인에서 오는 이미지 링크일 때 일반적인 처리
             else {
@@ -205,14 +211,13 @@ extension QRDownLoadWebViewController {
         
         dispatchGroup.notify(queue: .main) {
             if !imageLinks.isEmpty && longestImage != nil {
-                print("Longest Image Link is : \(longestImageLink)")
                 
-                let addphotoVC = AddPhotoViewController()
-                // Longest Image를 활용하는 코드.
                 DispatchQueue.main.async {
+                    let addphotoVC = AddPhotoViewController()
                     addphotoVC.setupRootViewImage(forImage: longestImage, forType: longestImageType)
+                    
+                    self.navigationController?.pushViewController(addphotoVC, animated: true)
                 }
-                self.navigationController?.pushViewController(addphotoVC, animated: true)
             }
         }
     }
