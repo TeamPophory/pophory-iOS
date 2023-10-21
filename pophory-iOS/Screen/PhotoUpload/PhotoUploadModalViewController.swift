@@ -8,8 +8,24 @@
 import UIKit
 
 import SnapKit
+import Photos
+
+protocol PhotoUploadModalViewControllerDelegate: AnyObject {
+    func didFinishPickingImage(_ image: UIImage)
+}
 
 class PhotoUploadModalViewController: BaseViewController {
+    
+    // MARK: - Properties
+    
+    private var isAlbumFull: Bool = false
+
+    private var imagePHPViewController = BasePHPickerViewController()
+    private let limitedViewController = PHPickerLimitedPhotoViewController()
+    
+    var parentNavigationController: UINavigationController?
+    
+    weak var delegate: PhotoUploadModalViewControllerDelegate?
     
     // MARK: - UI Properties
     
@@ -48,6 +64,7 @@ class PhotoUploadModalViewController: BaseViewController {
         super.viewDidLoad()
         
         setLayout()
+        imagePHPViewController.delegate = self
     }
 }
 
@@ -86,8 +103,65 @@ extension PhotoUploadModalViewController {
     }
     
     @objc func handleRegisterWithAlbumButton() {
-        let imagePHPViewController = BasePHPickerViewController()
-        
-        imagePHPViewController.setupImagePermission()
+        if isAlbumFull {
+            showPopup(
+                image: ImageLiterals.img_albumfull,
+                primaryText: "포포리 앨범이 가득찼어요",
+                secondaryText: "아쉽지만, 다음 업데이트에서 만나요!"
+            )
+        } else {
+            imagePHPViewController.setupImagePermission()
+        }
+    }
+}
+
+// MARK: - PHPickerProtocol
+
+extension PhotoUploadModalViewController: PHPickerProtocol {
+    func setupPicker() {
+        DispatchQueue.main.async {
+            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
+            
+            self.dismiss(animated: true)
+            self.delegate?.didFinishPickingImage(selectedImage)
+        }
+    }
+    
+    func presentLimitedLibrary() {
+        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+    }
+    
+    func presentImageLibrary() {
+        DispatchQueue.main.async {
+            self.imagePHPViewController = BasePHPickerViewController()
+            self.imagePHPViewController.delegate = self
+            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
+        }
+    }
+    
+    func presentDenidAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedAlert() {
+        DispatchQueue.main.async {
+            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func presentLimitedImageView() {
+        DispatchQueue.main.async {
+            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
+            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
+        }
+    }
+    
+    func presentOverSize() {
+        DispatchQueue.main.async {
+            self.showPopup(popupType: .simple,
+                           secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
+        }
     }
 }

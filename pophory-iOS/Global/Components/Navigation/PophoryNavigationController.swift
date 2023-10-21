@@ -18,8 +18,6 @@ final class PophoryNavigationController: UINavigationController {
 
 extension PophoryNavigationController {
     func configureNavigationBar() {
-        self.navigationBar.isTranslucent = false
-        self.navigationBar.barTintColor = .pophoryWhite
         let titleFont = UIFont.head2
         let titleColor = UIColor.pophoryBlack
         
