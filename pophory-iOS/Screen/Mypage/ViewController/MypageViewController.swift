@@ -26,12 +26,17 @@ class MypageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         hideNavigationBar()
         
         requestData()
+    }
+    
+    deinit {
+        tearDownObservers()
     }
 }
 
@@ -61,5 +66,13 @@ extension MypageViewController: MyPageRootViewDelegate {
     func handleOnClickStory() {
         let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/porit-story", title: "포릿 이야기")
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - Token
+
+extension MypageViewController {
+    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
+        handleTokenExpiration()
     }
 }

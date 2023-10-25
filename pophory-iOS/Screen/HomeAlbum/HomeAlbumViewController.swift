@@ -47,6 +47,7 @@ final class HomeAlbumViewController: BaseViewController {
         super.viewDidLoad()
         
         setupDelegate()
+        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +55,10 @@ final class HomeAlbumViewController: BaseViewController {
         
         requestGetAlumListAPI()
         hideNavigationBar()
+    }
+    
+    deinit {
+        tearDownObservers()
     }
 }
 
@@ -147,5 +152,11 @@ extension HomeAlbumViewController  {
             default : return
             }
         }
+    }
+}
+
+extension HomeAlbumViewController {
+    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
+        handleTokenExpiration()
     }
 }

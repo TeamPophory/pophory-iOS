@@ -32,13 +32,8 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         setupShareNetworkRequest()
-        setupObservers()
         setupTabBar()
         setupDelegate()
-    }
-    
-    deinit {
-        tearDownObservers()
     }
 }
 
@@ -59,16 +54,12 @@ extension TabBarController {
         }
     }
     
-    private func setupObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
-                                               name:.didReceiveUnauthorizedNotification,
-                                               object:nil)
-    }
-    
-    private func tearDownObservers() {
-        NotificationCenter.default.removeObserver(self)
-    }
+//    private func setupObservers() {
+//        NotificationCenter.default.addObserver(self,
+//                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
+//                                               name:.didReceiveUnauthorizedNotification,
+//                                               object:nil)
+//    }
     
     private func setupTabBar(){
         self.tabBar.tintColor = .pophoryPurple
@@ -119,6 +110,7 @@ extension TabBarController: UITabBarControllerDelegate {
             let customModalVC = PhotoUploadModalViewController()
             customModalVC.delegate = self
             customModalVC.parentNavigationController = navigationController
+            customModalVC.tabbarController = self
             self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 170)
             
             let navigationControllerToPresentModally = PophoryNavigationController(rootViewController: customModalVC)
@@ -153,32 +145,5 @@ extension TabBarController: PhotoUploadModalViewControllerDelegate {
         secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
 
        self.navigationController?.pushViewController(secondViewController, animated:true)
-    }
-}
-
-// MARK: - Network
-
-extension TabBarController {    
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        refreshToken()
-    }
-    
-    func refreshToken() {
-        let authRepository = DefaultAuthRepository()
-        
-        authRepository.updateRefreshToken { result in
-            switch result {
-            case .success(let loginResponse):
-                guard let loginResponse = loginResponse as? UpdatedAccessTokenDTO else { return }
-                PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
-                PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
-            case .requestErr(let message):
-                print("Error updating token:\(message)")
-            case .networkFail:
-                print("Network error")
-            default:
-                break
-            }
-        }
     }
 }
