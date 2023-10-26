@@ -25,6 +25,14 @@ final class PickAlbumCoverView: BaseSignUpView {
     
     // MARK: - UI Properties
     
+    private let subscriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .title1
+        label.textColor = .pophoryGray500
+        label.text = "테마는 언제든지 변경이 가능해요"
+        return label
+    }()
+    
     private let albumCoverView = UIImageView(image: ImageLiterals.albumCover1)
     
     private lazy var selectButtonCollectionView: UICollectionView = {
@@ -80,10 +88,15 @@ extension PickAlbumCoverView {
         albumCoverView.addGestureRecognizer(swipeRight)
         albumCoverView.isUserInteractionEnabled = true
         
-        addSubviews([albumCoverView, selectButtonCollectionView])
+        addSubviews([subscriptionLabel, albumCoverView, selectButtonCollectionView])
+        
+        subscriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide).offset(constraintByNotch(113, 95))
+            $0.leading.equalToSuperview().offset(20)
+        }
         
         albumCoverView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(constraintByNotch(154, 135))
+            $0.top.equalTo(subscriptionLabel.snp.bottom).offset(convertByHeightRatio(34))
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().offset(convertByWidthRatio(78))
             $0.height.equalTo(convertByHeightRatio(298))

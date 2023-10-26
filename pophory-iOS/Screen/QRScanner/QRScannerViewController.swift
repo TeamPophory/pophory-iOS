@@ -31,7 +31,15 @@ class QRScannerViewController: UIViewController {
         let label = UILabel()
         label.font = .head3
         label.textColor = .pophoryWhite
-        label.text = "QR코드를 스캔해주세요"
+        label.text = "QR코드를 스캔해줘!"
+        return label
+    }()
+    
+    private let discriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .caption1
+        label.textColor = .pophoryWhite
+        label.text = "지원하지 않는 사진관의 경우, 웹사이트로 이동할게요"
         return label
     }()
     
@@ -59,6 +67,10 @@ class QRScannerViewController: UIViewController {
         
         displayPreview()
         self.navigationController?.navigationBar.layer.zPosition = 1
+    }
+    
+    override func setupStyle() {
+        view.backgroundColor = .black
     }
     
     private func displayPreview() {
@@ -94,7 +106,7 @@ extension QRScannerViewController {
         createTransparentArea(aroundRect: clearSquare.frame, inOverlayview :overlayView)
         
         view.addSubview(overlayView)
-        overlayView.addSubviews([scannerFrame,scanQrCodeLabel])
+        overlayView.addSubviews([scannerFrame, scanQrCodeLabel, discriptionLabel])
         
         scannerFrame.snp.makeConstraints { make in
             make.edges.equalTo(clearSquare).inset(-3)
@@ -103,6 +115,11 @@ extension QRScannerViewController {
         scanQrCodeLabel.snp.makeConstraints { make in
             make.top.equalTo(clearSquare.snp.bottom).offset(23)
             make.centerX.equalToSuperview()
+        }
+        
+        discriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(scanQrCodeLabel.snp.bottom).offset(13)
+            make.centerX.equalTo(scanQrCodeLabel)
         }
     }
     
@@ -115,7 +132,7 @@ extension QRScannerViewController {
         let fillLayer = CAShapeLayer()
         fillLayer.path = pathBigRect.cgPath
         fillLayer.fillRule = .evenOdd
-        fillLayer.fillColor=UIColor(white: 0, alpha: 0.5).cgColor
+        fillLayer.fillColor = UIColor(white: 0, alpha: 0.5).cgColor
         
         inOverlayview.layer.addSublayer(fillLayer)
     }
