@@ -19,11 +19,13 @@ class PhotoUploadModalViewController: BaseViewController {
     // MARK: - Properties
     
     private var isAlbumFull: Bool = false
-
+    
     private var imagePHPViewController = BasePHPickerViewController()
     private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     var parentNavigationController: UINavigationController?
+    var tabbarController: UITabBarController?
+    
     
     weak var delegate: PhotoUploadModalViewControllerDelegate?
     
@@ -92,14 +94,17 @@ extension PhotoUploadModalViewController {
     }
     
     // MARK: - Action Helpers
+    
     @objc func handleRegisterWithQrButton() {
+        
         let qrScannerVC = QRScannerViewController()
-        let qrNavigationController = UINavigationController(rootViewController: qrScannerVC)
+        let qrNavigationController = PophoryNavigationController(rootViewController: qrScannerVC)
         
-        qrNavigationController.modalPresentationStyle = .overFullScreen
-        qrNavigationController.modalTransitionStyle = .crossDissolve
-        
-        self.navigationController?.present(qrNavigationController, animated: true)
+        self.dismiss(animated: true) { [weak self]  in
+            qrNavigationController.modalPresentationStyle = .overFullScreen
+            qrNavigationController.modalTransitionStyle = .crossDissolve
+            self?.parentNavigationController?.present(qrNavigationController, animated: true)
+        }
     }
     
     @objc func handleRegisterWithAlbumButton() {
@@ -112,6 +117,12 @@ extension PhotoUploadModalViewController {
         } else {
             imagePHPViewController.setupImagePermission()
         }
+    }
+    
+    // MARK: - Custom Methods
+    
+    func dismissBottomSheet() {
+        self.dismiss(animated: true)
     }
 }
 

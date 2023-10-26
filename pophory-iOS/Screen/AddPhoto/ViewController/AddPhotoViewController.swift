@@ -140,7 +140,9 @@ extension AddPhotoViewController {
     private func goToHome() {
         dismiss(animated: false)
         let tabBarViewController = TabBarController()
-        self.navigationController?.pushViewController(tabBarViewController, animated: true)
+        let bottomSheet = PhotoUploadModalViewController()
+        bottomSheet.dismissBottomSheet()
+        navigationController?.setViewControllers([tabBarViewController], animated: true)
     }
     
     // MARK: - Methods

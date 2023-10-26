@@ -12,7 +12,7 @@ import SnapKit
 
 // MARK: - QRScannerViewController
 
-class QRScannerViewController: UIViewController {
+class QRScannerViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -48,7 +48,8 @@ class QRScannerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupQRScannerNavigationBar()
+//        setupQRScannerNavigationBar()
+        setupNavigationBar(with: PophoryNavigationConfigurator.shared)
         
         if !(captureSession?.isRunning ?? false) {
             captureSession?.startRunning()
@@ -195,6 +196,10 @@ extension QRScannerViewController {
         self.navigationController?.dismiss(animated: true)
     }
     
+    @objc func dismissQrScanner() {
+        self.dismiss(animated: true)
+    }
+    
     // QR코드 값을 처리
     func handleQRCode(_ value: String) {
         captureSession?.stopRunning()
@@ -218,4 +223,8 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             handleQRCode(stringValue)
         }
     }
+}
+
+extension QRScannerViewController: Navigatable {
+    var navigationBarTitleText: String? { return "QR로 등록하기" }
 }

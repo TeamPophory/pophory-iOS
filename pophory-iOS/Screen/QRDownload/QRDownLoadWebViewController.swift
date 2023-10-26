@@ -30,6 +30,7 @@ class QRDownLoadWebViewController: UIViewController {
         super.viewDidLoad()
         
         setupWebView()
+        hideNavigationBar()
         addDidBecomeActiveObserver()
     }
     
@@ -112,11 +113,11 @@ extension QRDownLoadWebViewController {
         
         let suppertedDomains = [
             // 인생네컷
-            "life4cut",
-            "3.37.14.138",
-            "photoqr3.kr",
-            "haru",
-            "photoone"
+            "life4cut"
+//            "3.37.14.138",
+//            "photoqr3.kr",
+//            "haru",
+//            "photoone"
         ]
         
         for domain in suppertedDomains {
@@ -130,7 +131,11 @@ extension QRDownLoadWebViewController {
     private func loadUnsupportedPage(_ url: URL) {
         UIApplication.shared.open(url)
         isMovingToSafari = true
-        //        self.dismiss(animated: true)
+    }
+    
+    // AddPhotoViewController로 바로 전환할지 여부를 확인
+    private func shouldDirectlyOpenAddPhotoVC() -> Bool {
+        return fullUrlString?.contains("life4cut") == true
     }
     
     // 현재 웹 페이지에서 이미지 링크를 추출하고 처리
@@ -139,84 +144,55 @@ extension QRDownLoadWebViewController {
             if let htmlString = html as? String {
                 let extractedImageLinks = self.extractImageLinks(html: htmlString)
                 self.onImageURLsExtracted?(extractedImageLinks)
-                self.processImageLinks(extractedImageLinks)
+
+                self.findLongestImageAndType(imageLinks: extractedImageLinks) { longestImage, longestImageType in
+                    if let unwrappedLongestImageType = longestImageType {
+                        if self.shouldDirectlyOpenAddPhotoVC() {
+                            self.directlyOpenAddPhotoVC(forImage: longestImage, ofType: unwrappedLongestImageType)
+                        } else {
+                            self.processImageLinks(extractedImageLinks)
+                        }
+                    } else {
+                        // longestImageType이 nil일 때 처리할 내용
+                    }
+                }
             } else if let error = error {
                 print("Error evaluating JavaScript: \(error)")
             }
         }
     }
+
     
     // 추출된 이미지 링크 처리
     private func processImageLinks(_ imageLinks: [String]) {
-        var longestImage: UIImage? = nil
-        var longestImageLink: String? = nil
-        var longestImageType: PhotoCellType = .vertical
-        var longestImageData: (image: UIImage?, link: String?, type: PhotoCellType)? = nil
-        
+        var longestImageData: (image: UIImage, link: String, type: PhotoCellType)? = nil
+
         let dispatchGroup = DispatchGroup()
-        
+
         for imageName in imageLinks {
-            // life4cut 도메인에서 오는 이미지 파일일 때
-            if fullUrlString?.contains("life4cut") == true {
-                let baseUrlWithoutIndex = fullUrlString?.replacingOccurrences(of: "/index.html", with: "")
-                let fullImageUrlString = "\(baseUrlWithoutIndex ?? "")/\(imageName)"
-                
-                if !fullImageUrlString.contains("jpg") { continue }
-                
-                guard let url = URL(string: fullImageUrlString) else { continue }
-                
-                dispatchGroup.enter()
-                
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    defer { dispatchGroup.leave() }
-                    
-                    if let data = data,
-                       let image = UIImage(data: data) {
-                        longestImage = image
-                        longestImageLink = fullImageUrlString
-                        
-                        if image.size.width > image.size.height {
-                            longestImageType = .horizontal
-                        } else {
-                            longestImageType = .vertical
-                        }
-                    }
+            guard let imageURL = createImageURL(from: imageName) else { continue }
+
+            dispatchGroup.enter()
+
+            URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                defer { dispatchGroup.leave() }
+
+                guard let data = data, let image = UIImage(data: data) else { return }
+
+                let imageType: PhotoCellType = (image.size.width > image.size.height) ? .horizontal : .vertical
+
+                if longestImageData == nil || image.size.height > longestImageData!.image.size.height {
+                    longestImageData = (image, imageURL.absoluteString, imageType)
                 }
-                .resume()
             }
-            // 다른 도메인에서 오는 이미지 링크일 때 일반적인 처리
-            else {
-                guard let url = URL(string: imageName) else { continue }
-                dispatchGroup.enter()
-                
-                URLSession.shared.dataTask(with:url) { data, response, error in
-                    defer { dispatchGroup.leave() }
-                    
-                    if let data = data,
-                       let image = UIImage(data:data),
-                       image.size.height > longestImage?.size.height ?? 0 {
-                        longestImage = image
-                        longestImageLink = imageName
-                        
-                        if image.size.width > image.size.height {
-                            longestImageType = .horizontal
-                        } else {
-                            longestImageType = .vertical
-                        }
-                    }
-                }
-                .resume()
-            }
+            .resume()
         }
-        
+
         dispatchGroup.notify(queue: .main) {
-            if !imageLinks.isEmpty && longestImage != nil {
-                
+            if let longestImageData = longestImageData {
                 DispatchQueue.main.async {
                     let addphotoVC = AddPhotoViewController()
-                    addphotoVC.setupRootViewImage(forImage: longestImage, forType: longestImageType)
-                    
-                    self.navigationController?.pushViewController(addphotoVC, animated: true)
+                    addphotoVC.setupRootViewImage(forImage: longestImageData.image, forType: longestImageData.type)
                 }
             }
         }
@@ -247,10 +223,69 @@ extension QRDownLoadWebViewController {
         }
     }
     
+    private func findLongestImageAndType(imageLinks: [String], completion: @escaping (UIImage?, PhotoCellType?) -> Void) {
+        var longestImage: UIImage? = nil
+        var longestImageType: PhotoCellType? = nil
+
+        let dispatchGroup = DispatchGroup()
+
+        for imageName in imageLinks {
+            guard let imageURL = createImageURL(from: imageName) else { continue }
+
+            dispatchGroup.enter()
+
+            URLSession.shared.dataTask(with: imageURL) { data, response, error in
+                defer { dispatchGroup.leave() }
+
+                guard let data = data, let image = UIImage(data: data) else { return }
+
+                let imageType: PhotoCellType = (image.size.width > image.size.height) ? .horizontal : .vertical
+
+                if longestImage == nil || image.size.height > longestImage!.size.height {
+                    longestImage = image
+                    longestImageType = imageType
+                }
+            }
+            .resume()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            completion(longestImage, longestImageType)
+        }
+    }
+
+    private func createImageURL(from imageName: String) -> URL? {
+        // life4cut 도메인에서 오는 이미지 파일일 때
+        if fullUrlString?.contains("life4cut") == true {
+            let baseUrlWithoutIndex = fullUrlString?.replacingOccurrences(of: "/index.html", with: "")
+            let fullImageUrlString = "\(baseUrlWithoutIndex ?? "")/\(imageName)"
+
+            guard fullImageUrlString.contains("jpg"), let url = URL(string: fullImageUrlString) else { return nil }
+
+            return url
+        }
+        // 다른 도메인에서 오는 이미지 링크일 때 일반적인 처리
+        else {
+            guard let url = URL(string: imageName) else { return nil }
+            return url
+        }
+    }
+
+    
     // MARK: - Navigation
     
     func moveToAddPhotoViewController() {
         print("Move to Photo Registration Screen")
+    }
+    
+    private func directlyOpenAddPhotoVC(forImage image: UIImage?, ofType type: PhotoCellType) {
+        DispatchQueue.main.async {
+            let addphotoVC = AddPhotoViewController()
+            addphotoVC.setupRootViewImage(forImage: image, forType: type)
+            
+            // 여기에서 필요한 설정 수행
+            self.navigationController?.pushViewController(addphotoVC, animated: true)
+        }
     }
     
     func moveToHomeScreen() {

@@ -70,7 +70,10 @@ final class PophoryNavigationConfigurator: NavigationConfigurator {
             }
         }
         
-        let backButton = UIBarButtonItem(image: ImageLiterals.backButtonIcon, style: .plain, target: viewController, action: #selector(BaseViewController.backButtonOnClick))
+        let backButtonAction: Selector = (viewController is QRScannerViewController)
+                ? #selector(QRScannerViewController.dismissQrScanner)
+                : #selector(BaseViewController.backButtonOnClick)
+            let backButton = UIBarButtonItem(image: ImageLiterals.backButtonIcon, style: .plain, target: viewController, action: backButtonAction)
         viewController.navigationItem.leftBarButtonItem = backButton
         viewController.navigationItem.leftBarButtonItem?.tintColor = .pophoryBlack
         

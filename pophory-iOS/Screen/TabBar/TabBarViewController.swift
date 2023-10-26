@@ -15,6 +15,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Properties
     
     var customTransitionDelegate: UIViewControllerTransitioningDelegate?
+    var navigationControllerToPresentModally: UINavigationController?
     private var isAlbumFull: Bool = false
     private var customHeight: CGFloat = 170
     
@@ -53,13 +54,6 @@ extension TabBarController {
             self?.homeAlbumViewController.requestGetAlumListAPI()
         }
     }
-    
-//    private func setupObservers() {
-//        NotificationCenter.default.addObserver(self,
-//                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
-//                                               name:.didReceiveUnauthorizedNotification,
-//                                               object:nil)
-//    }
     
     private func setupTabBar(){
         self.tabBar.tintColor = .pophoryPurple
@@ -106,19 +100,19 @@ extension TabBarController: UITabBarControllerDelegate {
                 )
                 return  false
             }
-            
+
             let customModalVC = PhotoUploadModalViewController()
-            customModalVC.delegate = self
             customModalVC.parentNavigationController = navigationController
+            customModalVC.delegate = self
             customModalVC.tabbarController = self
             self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 170)
-            
+
             let navigationControllerToPresentModally = PophoryNavigationController(rootViewController: customModalVC)
             navigationControllerToPresentModally.modalPresentationStyle = .custom
             navigationControllerToPresentModally.transitioningDelegate = self.customTransitionDelegate
-            
+
             self.present(navigationControllerToPresentModally, animated: true, completion: nil)
-            
+
             return false
         } else { return true }
     }
@@ -141,9 +135,13 @@ extension TabBarController: PhotoUploadModalViewControllerDelegate {
         } else {
             imageType = .vertical
         }
-
+        
         secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
-
-       self.navigationController?.pushViewController(secondViewController, animated:true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.dismiss(animated: true)
+        }
+        
+        self.navigationController?.pushViewController(secondViewController, animated:true)
     }
 }
