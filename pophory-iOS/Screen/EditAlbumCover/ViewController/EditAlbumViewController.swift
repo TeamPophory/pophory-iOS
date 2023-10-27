@@ -159,7 +159,6 @@ extension EditAlbumViewController: GADFullScreenContentDelegate {
       func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
           let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
           self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
-//          navigationController?.popToRootViewController(animated: true)
       }
 }
 
