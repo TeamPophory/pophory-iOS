@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>관심 없는 광고를 보지 않기 위해 &apos;허용&apos;을 눌러주세요. &apos;허용&apos;을 눌러도 개인정보는 유출되지 않으니 안심하세요.</string>
+	<key>SENTRY_DSN</key>
+	<string>$(SENTRY_DSN)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>$(ADMOB_APP_ID)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
 	<key>CFBundleURLTypes</key>
