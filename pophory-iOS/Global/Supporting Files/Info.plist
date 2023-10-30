@@ -7,9 +7,9 @@
 	<key>SENTRY_DSN</key>
 	<string>$(SENTRY_DSN)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-8530931463844200~4477619562</string>
+	<string>$(ADMOB_APP_ID)</string>
 	<key>BASE_URL</key>
-	<string>http:/$()/15.165.123.155</string>
+	<string>$(BASE_URL)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -23,10 +23,6 @@
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
-		<key>NSAllowsArbitraryLoadsForMedia</key>
-		<true/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
