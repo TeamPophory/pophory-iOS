@@ -64,6 +64,11 @@
 		3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */; };
 		3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */; };
 		3B3BE7192A56CC820064E716 /* PophoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */; };
+		3B583A5D2AF0275F008FFB9A /* PophoryAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B583A5C2AF0275F008FFB9A /* PophoryAdManager.swift */; };
+		3B583A5F2AF0288F008FFB9A /* AdAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B583A5E2AF0288F008FFB9A /* AdAPI.swift */; };
+		3B583A622AF029BF008FFB9A /* FetchAdResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */; };
+		3B583A642AF02A83008FFB9A /* AdRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B583A632AF02A83008FFB9A /* AdRepository.swift */; };
+		3B583A662AF02B4D008FFB9A /* DefaultAdRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B583A652AF02B4D008FFB9A /* DefaultAdRepository.swift */; };
 		3B5CDBD52A94DDDB001382C4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD42A94DDDB001382C4 /* FirebaseAnalytics */; };
 		3B5CDBD72A94DDDB001382C4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */; };
 		3B5CDBD92A94DDDB001382C4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */; };
@@ -290,6 +295,11 @@
 		3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
+		3B583A5C2AF0275F008FFB9A /* PophoryAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryAdManager.swift; sourceTree = "<group>"; };
+		3B583A5E2AF0288F008FFB9A /* AdAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdAPI.swift; sourceTree = "<group>"; };
+		3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAdResponseDTO.swift; sourceTree = "<group>"; };
+		3B583A632AF02A83008FFB9A /* AdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepository.swift; sourceTree = "<group>"; };
+		3B583A652AF02B4D008FFB9A /* DefaultAdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAdRepository.swift; sourceTree = "<group>"; };
 		3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		3B99B7222AE17E360012A79A /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Release.xcconfig"; sourceTree = "<group>"; };
 		3B99B7232AE17E360012A79A /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Shared.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Shared.xcconfig"; sourceTree = "<group>"; };
@@ -672,6 +682,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		3B583A602AF029B0008FFB9A /* Ad */ = {
+			isa = PBXGroup;
+			children = (
+				3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */,
+			);
+			path = Ad;
+			sourceTree = "<group>";
+		};
 		3B99B7212AE17E020012A79A /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +898,7 @@
 				91F3A7882A52AE5A00C06D1B /* URLConstants.swift */,
 				3780FBCF2A6274390002A0FD /* PophoryTokenManager.swift */,
 				37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */,
+				3B583A5C2AF0275F008FFB9A /* PophoryAdManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -893,6 +912,7 @@
 				91F3A7912A52B71800C06D1B /* AlbumAPI.swift */,
 				91F3A7932A52B96F00C06D1B /* AuthAPI.swift */,
 				6BCE475D2A684E580060EC78 /* ShareAPI.swift */,
+				3B583A5E2AF0288F008FFB9A /* AdAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -908,6 +928,7 @@
 				91F3A7AB2A52F23D00C06D1B /* DefaultAlbumRespository.swift */,
 				91F3A7AD2A52F2F700C06D1B /* DefaultAuthRepository.swift */,
 				6BCE47612A6850920060EC78 /* DefaultShareRepository.swift */,
+				3B583A652AF02B4D008FFB9A /* DefaultAdRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -921,6 +942,7 @@
 				91F3A7A12A52D40A00C06D1B /* AlbumRepository.swift */,
 				91F3A7A32A52D52200C06D1B /* AuthRepository.swift */,
 				6BCE475F2A684FDB0060EC78 /* ShareRepository.swift */,
+				3B583A632AF02A83008FFB9A /* AdRepository.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1120,6 +1142,7 @@
 		B1631F5E2A175FD00050974F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B583A602AF029B0008FFB9A /* Ad */,
 				91F3A7782A52AC3E00C06D1B /* Photos.swift */,
 				91F3A7672A52A8C300C06D1B /* Studio */,
 				91F3A7682A52A8D000C06D1B /* Photo */,
@@ -1443,7 +1466,9 @@
 				377EF7E72A4F4C8700E3268D /* NameInputView.swift in Sources */,
 				B1631F542A175F090050974F /* UIImageView+Extension.swift in Sources */,
 				377EF7EF2A4FC6E900E3268D /* PophoryNavigationConfigurator.swift in Sources */,
+				3B583A5F2AF0288F008FFB9A /* AdAPI.swift in Sources */,
 				B1631F502A175E840050974F /* String+Extension.swift in Sources */,
+				3B583A622AF029BF008FFB9A /* FetchAdResponseDTO.swift in Sources */,
 				37DCA6A22A4AB6EF00FF8F90 /* TabBarViewController.swift in Sources */,
 				6BB37C672A558A8B00E49B12 /* CustomModalTransitionDelegate.swift in Sources */,
 				91F3A7A62A52D57700C06D1B /* DefaultStudioRepository.swift in Sources */,
@@ -1509,6 +1534,7 @@
 				3780FBD02A6274390002A0FD /* PophoryTokenManager.swift in Sources */,
 				6BCE475E2A684E580060EC78 /* ShareAPI.swift in Sources */,
 				9161CAE12A5464F0002B8B77 /* UICollectionView+Extension.swift in Sources */,
+				3B583A5D2AF0275F008FFB9A /* PophoryAdManager.swift in Sources */,
 				91F3A7872A52AE4600C06D1B /* NetworkService.swift in Sources */,
 				3703F0F52A6071B50017A381 /* PostIdentityTokenDTO.swift in Sources */,
 				91F3A7892A52AE5A00C06D1B /* URLConstants.swift in Sources */,
@@ -1544,6 +1570,7 @@
 				B1F310ED2A62D4E800BF989B /* MyPageBannerView.swift in Sources */,
 				B1F310E92A5EC91200BF989B /* PophoryWebViewController.swift in Sources */,
 				91F3A7732A52AB5600C06D1B /* FetchUserInfoResponseDTO.swift in Sources */,
+				3B583A642AF02A83008FFB9A /* AdRepository.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* FetchMyPageResponseDTO.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
@@ -1561,6 +1588,7 @@
 				37DCA6AC2A4ABAE200FF8F90 /* ColorLiterals.swift in Sources */,
 				9161CAE62A546DCD002B8B77 /* PhotoCollectionViewDataSource.swift in Sources */,
 				91F3A77B2A52AC8000C06D1B /* FetchAlbumPhotoListResponseDTO.swift in Sources */,
+				3B583A662AF02B4D008FFB9A /* DefaultAdRepository.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
 				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */,
@@ -1864,7 +1892,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1909,7 +1937,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

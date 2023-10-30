@@ -47,6 +47,11 @@ final class TabBarController: UITabBarController {
         
         setUpTabBar()
         setupDelegate()
+        
+        #if RELEASE
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+        fetchAdInfo(os: "ios", version: version)
+        #endif
     }
     
     deinit {
@@ -203,5 +208,19 @@ extension TabBarController {
                 break
             }
         }
+    }
+    
+    func fetchAdInfo(os: String, version: String) {
+        NetworkService.shared.adRepository.fetchAdInfo(
+            os: os, version: version) { result in
+                switch result {
+                case .success(let data):
+                    PophoryAdManager.shared.setEditAlbumAd(data.first?.adName)
+                    PophoryAdManager.shared.saveEditAlbumAd(data.first?.adId)
+                    break
+                default:
+                    print("ERROR")
+                }
+            }
     }
 }
