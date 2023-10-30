@@ -13,7 +13,7 @@ import AdSupport
 final class EditAlbumViewController: BaseViewController {
     
     private let editAlbumView = EditAlbumView()
-    private var interstitial: GADInterstitialAd?
+    private var rewardedInterstitialAd: GADRewardedInterstitialAd?
     var albumPK = Int()
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
@@ -113,28 +113,35 @@ extension EditAlbumViewController {
     private func loadAd() {
         let request = GADRequest()
         
-        
         if Bundle.main.infoDictionary?["GADApplicationIdentifier"] is String {
-            GADInterstitialAd.load(withAdUnitID: "ca-app-pub-3940256099942544/5135589807",
-                                   request: request) { [self] ad, error in
+            GADRewardedInterstitialAd.load(withAdUnitID: PophoryAdManager.shared.fetchEditAlbumAd() ?? "ca-app-pub-3940256099942544/6978759866",
+                                           request: request) { [self] ad, error in
                 if let error = error {
                     print("Failed to load interstitial ad with error: \(error.localizedDescription)")
                     return
                 }
-                interstitial = ad
-                interstitial?.fullScreenContentDelegate = self
+                rewardedInterstitialAd = ad
+                rewardedInterstitialAd?.fullScreenContentDelegate = self
             }
         }
     }
     
     private func pushToFullAd() {
-        guard let interstitial = self.interstitial else {
+        guard let rewardedInterstitialAd = self.rewardedInterstitialAd else {
             print("광고가 준비되지 않았습니다.")
+            
+            //TODO: - 광고 준비되지 않았을 때 홈으로 돌아가는 상태
+            dismiss(animated: true) {
+                self.navigationController?.popViewController(animated: true)
+            }
             return
         }
         
         dismiss(animated: true) {
-            interstitial.present(fromRootViewController: self)
+            rewardedInterstitialAd.present(fromRootViewController: self) {
+                let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+                self.patchAlbumCover(albumId: self.albumPK, body: patchAlbumCoverRequestDTO)
+            }
         }
     }
     
@@ -145,21 +152,20 @@ extension EditAlbumViewController {
 
 extension EditAlbumViewController: GADFullScreenContentDelegate {
     /// 전면광고 노출 실패 시 호출
-      func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
         print(error.localizedDescription)
-      }
-
-      /// 전면광고 노출 전 호출
-      func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    }
+    
+    /// 전면광고 노출 전 호출
+    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("Ad will present full screen content.")
-      }
-
-      /// 전면광고 종료 후 호출
-      func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-          let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-          self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
-      }
+    }
+    
+    /// 전면광고 종료 후 호출
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did dismiss full screen content.")
+    }
 }
 
 // MARK: - api
