@@ -6,11 +6,18 @@
 //
 
 enum NetworkResult<T> {
-    case success(T)                    // 서버 통신 성공했을 때,
-    case requestErr(T)            // 요청 에러 발생했을 때,
-    case unauthorized             // 401 Unauthorized 응답 받았을 때,
-    case pathErr                        // 경로 에러 발생했을 때,
-    case serverErr                    // 서버의 내부적 에러가 발생했을 때,
-    case networkFail                // 네트워크 연결 실패했을 때
-    case sharePhotoErr(T)              // 내가 공유한 사진을 내가 수락했을 때
+    /// 서버 통신 성공
+    case success(T)
+    /// 요청 에러 발생
+    case requestErr(T)
+    /// 401 Unauthorized 응답시
+    case unauthorized
+    /// 경로 에러 발생
+    case pathErr
+    /// 서버의 내부적 에러가 발생
+    case serverErr
+    /// 네트워크 연결 실패
+    case networkFail
+    /// 본인이 공유한 사진을 본인이 수락시
+    case sharePhotoErr(T)
 }

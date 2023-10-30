@@ -14,43 +14,27 @@ final class TabBarController: UITabBarController {
     
     // MARK: - Properties
     
+    var customTransitionDelegate: UIViewControllerTransitioningDelegate?
+    var navigationControllerToPresentModally: UINavigationController?
     private var isAlbumFull: Bool = false
+    private var customHeight: CGFloat = 170
     
     // MARK: - ViewController properties
     
     private let homeAlbumViewController = HomeAlbumViewController()
-    private let plusViewController = UIViewController()
+    private let plusViewController = PhotoUploadModalViewController()
     private let myPageViewController = MypageViewController()
     
     private let addPhotoViewController = AddPhotoViewController()
-    private var imagePHPViewController = BasePHPickerViewController()
-    private let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
-            if (response?.code == 4423) {
-                self?.showPopup(popupType: .simple,
-                                secondaryText: "이미 내 앨범에 있는 사진이에요",
-                                firstButtonTitle: .back)
-            }
-            self?.homeAlbumViewController.requestGetAlumListAPI()
-        }
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector:#selector(didReceiveUnauthorizedNotification(_:)),
-                                               name:.didReceiveUnauthorizedNotification,
-                                               object:nil)
-        
-        setUpTabBar()
+        setupShareNetworkRequest()
+        setupTabBar()
         setupDelegate()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -60,7 +44,18 @@ extension TabBarController {
     
     // MARK: - Setups
     
-    private func setUpTabBar(){
+    private func setupShareNetworkRequest() {
+        ShareNetworkManager.shared.requestPostSharePhoto() { [weak self] response in
+            if (response?.code == 4423) {
+                self?.showPopup(popupType: .simple,
+                                secondaryText: "이미 내 앨범에 있는 사진이에요",
+                                firstButtonTitle: .back)
+            }
+            self?.homeAlbumViewController.requestGetAlumListAPI()
+        }
+    }
+    
+    private func setupTabBar(){
         self.tabBar.tintColor = .pophoryPurple
         self.tabBar.unselectedItemTintColor = .pophoryGray400
         self.tabBar.isTranslucent = false
@@ -88,7 +83,6 @@ extension TabBarController {
     
     private func setupDelegate() {
         self.delegate = self
-        imagePHPViewController.delegate = self
         homeAlbumViewController.albumStatusDelegate = self
     }
 }
@@ -106,7 +100,19 @@ extension TabBarController: UITabBarControllerDelegate {
                 )
                 return  false
             }
-            imagePHPViewController.setupImagePermission()
+
+            let customModalVC = PhotoUploadModalViewController()
+            customModalVC.parentNavigationController = navigationController
+            customModalVC.delegate = self
+            customModalVC.tabbarController = self
+            self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 170)
+
+            let navigationControllerToPresentModally = PophoryNavigationController(rootViewController: customModalVC)
+            navigationControllerToPresentModally.modalPresentationStyle = .custom
+            navigationControllerToPresentModally.transitioningDelegate = self.customTransitionDelegate
+
+            self.present(navigationControllerToPresentModally, animated: true, completion: nil)
+
             return false
         } else { return true }
     }
@@ -118,90 +124,24 @@ extension TabBarController: AlbumStatusProtocol {
     }
 }
 
-// MARK: - PHPickerProtocol
-
-extension TabBarController: PHPickerProtocol {
-    func setupPicker() {
-        DispatchQueue.main.async {
-            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
-            
-            let secondViewController = AddPhotoViewController()
-            
-            var imageType: PhotoCellType = .vertical
-            
-            if selectedImage.size.width > selectedImage.size.height {
-                imageType = .horizontal
-            } else {
-                imageType = .vertical
-            }
-            
-            secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-        }
-    }
-    
-    func presentLimitedLibrary() {
-        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
-    }
-    
-    func presentImageLibrary() {
-        DispatchQueue.main.async {
-            self.imagePHPViewController = BasePHPickerViewController()
-            self.imagePHPViewController.delegate = self
-            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
-        }
-    }
-    
-    func presentDenidAlert() {
-        DispatchQueue.main.async {
-            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
-        }
-    }
-    
-    func presentLimitedAlert() {
-        DispatchQueue.main.async {
-            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
-        }
-    }
-    
-    func presentLimitedImageView() {
-        DispatchQueue.main.async {
-            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
-            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
-        }
-    }
-    
-    func presentOverSize() {
-        DispatchQueue.main.async {
-            self.showPopup(popupType: .simple,
-                           secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
-        }
-    }
-}
-
-// MARK: - Network
-
-extension TabBarController {    
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        refreshToken()
-    }
-    
-    func refreshToken() {
-        let authRepository = DefaultAuthRepository()
+extension TabBarController: PhotoUploadModalViewControllerDelegate {
+    func didFinishPickingImage(_ selectedImage: UIImage) {
+        let secondViewController = AddPhotoViewController()
         
-        authRepository.updateRefreshToken { result in
-            switch result {
-            case .success(let loginResponse):
-                guard let loginResponse = loginResponse as? UpdatedAccessTokenDTO else { return }
-                PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
-                PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
-            case .requestErr(let message):
-                print("Error updating token:\(message)")
-            case .networkFail:
-                print("Network error")
-            default:
-                break
-            }
+        var imageType: PhotoCellType = .vertical
+        
+        if selectedImage.size.width > selectedImage.size.height {
+            imageType = .horizontal
+        } else {
+            imageType = .vertical
         }
+        
+        secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.dismiss(animated: true)
+        }
+        
+        self.navigationController?.pushViewController(secondViewController, animated:true)
     }
 }

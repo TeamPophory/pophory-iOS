@@ -46,6 +46,8 @@ enum ImageLiterals {
     static var checkBigIcon: UIImage { .load(name: "checkBigIcon") }
     static var checkBigIconWhite: UIImage { .load(name: "checkBigIconWhite") }
     static var adIcon: UIImage { .load(name: "img_AD") }
+    static var qrUploadButton: UIImage { .load(name: "qrUploadButton")}
+    static var uploadFromAlbumButton: UIImage { .load(name: "uploadFromAlbumButton")}
     
     // MARK: - exception
     
@@ -122,6 +124,10 @@ enum ImageLiterals {
     // MARK: - ErrorImg
 
     static var networkFail: UIImage { .load(name: "networkFail") }
+    
+    // MARK: - QRImg
+    
+    static var qrScannerFrame: UIImage { .load(name: "qrScannerFrame")}
 }
 
 extension UIImage {

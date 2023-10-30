@@ -84,28 +84,28 @@ extension BaseSignUpView {
         
         addSubviews([headerLabel, indicatorStackView, nextButton])
         
-        headerLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
-            $0.leading.equalToSuperview().offset(convertByWidthRatio(20))
+        headerLabel.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(convertByHeightRatio(32))
+            make.leading.equalToSuperview().offset(convertByWidthRatio(20))
         }
         
-        indicatorStackView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview().inset(convertByWidthRatio(6))
-            $0.height.equalTo(convertByHeightRatio(3))
+        indicatorStackView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview().inset(convertByWidthRatio(6))
+            make.height.equalTo(convertByHeightRatio(3))
         }
         
-        nextButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-10)
         }
     }
     
     func setupLayoutForAlbumCoverView(_ subView: UIView, topOffset: CGFloat) {
         addSubview(subView)
-        subView.snp.makeConstraints {
-            $0.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
-            $0.centerX.equalToSuperview()
+        subView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(topOffset)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -129,9 +129,9 @@ extension BaseSignUpView {
         for view in indicatorViews {
             view.backgroundColor = .pophoryGray300
             
-            view.snp.makeConstraints {
-                $0.width.equalTo(convertByWidthRatio(30))
-                $0.height.equalTo(convertByHeightRatio(3))
+            view.snp.makeConstraints { make in
+                make.width.equalTo(convertByWidthRatio(30))
+                make.height.equalTo(convertByHeightRatio(3))
             }
             
             indicatorStackView.addArrangedSubview(view)
