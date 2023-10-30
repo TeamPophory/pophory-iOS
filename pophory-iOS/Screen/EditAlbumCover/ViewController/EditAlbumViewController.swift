@@ -80,10 +80,6 @@ extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
             firstButtonHandler: pushToFullAd,
             secondButtonHandler: dismissPopUp
         )
-        // TODO: 서버통신 수정
-        // 앨범 커버 수정 서버 통신
-        //        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-        //        self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
 
@@ -151,7 +147,7 @@ extension EditAlbumViewController: GADFullScreenContentDelegate {
     /// 전면광고 노출 실패 시 호출
       func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
-        print(error.localizedDescription, "💗")
+        print(error.localizedDescription)
       }
 
       /// 전면광고 노출 전 호출
@@ -161,7 +157,8 @@ extension EditAlbumViewController: GADFullScreenContentDelegate {
 
       /// 전면광고 종료 후 호출
       func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-          navigationController?.popToRootViewController(animated: true)
+          let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+          self.patchAlbumCover(albumId: albumPK, body: patchAlbumCoverRequestDTO)
       }
 }
 
