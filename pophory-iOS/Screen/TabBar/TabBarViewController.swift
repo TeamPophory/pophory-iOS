@@ -35,6 +35,11 @@ final class TabBarController: UITabBarController {
         setupShareNetworkRequest()
         setupTabBar()
         setupDelegate()
+        
+        #if RELEASE
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+        fetchAdInfo(os: "ios", version: version)
+        #endif
     }
 }
 
@@ -143,5 +148,19 @@ extension TabBarController: PhotoUploadModalViewControllerDelegate {
         }
         
         self.navigationController?.pushViewController(secondViewController, animated:true)
+    }
+    
+    func fetchAdInfo(os: String, version: String) {
+        NetworkService.shared.adRepository.fetchAdInfo(
+            os: os, version: version) { result in
+                switch result {
+                case .success(let data):
+                    PophoryAdManager.shared.setEditAlbumAd(data.first?.adName)
+                    PophoryAdManager.shared.saveEditAlbumAd(data.first?.adId)
+                    break
+                default:
+                    print("ERROR")
+                }
+            }
     }
 }

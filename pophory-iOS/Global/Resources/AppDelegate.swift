@@ -78,10 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
                 ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in
                     // Initialize the Google Mobile Ads SDK.
-                    // TODO: 배포 후 실제 admobID로 변경
-                    //        GADMobileAds.sharedInstance().start(completionHandler: nil)
+                    #if RELEASE
+                    GADMobileAds.sharedInstance().start(completionHandler: nil)
+                    #else
                     GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers =
                     [ "89ad6e2f5e35327a7987a9a5dc2a1149" ]      // testID
+                    #endif
                 })
             }
         }

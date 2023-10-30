@@ -25,4 +25,5 @@ struct URLConstantsV2 {
     static let auth = "/api/v2/auth"
     static let share = "/api/v2/share"
     static let v3 = "/api/v2/s3"
+    static let ad = "/api/v2/ad"
 }
