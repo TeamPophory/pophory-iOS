@@ -194,6 +194,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func setupAddphotoViewcontroller() {
+        let tabBarController = TabBarController()
         let addPhotoViewController = AddPhotoViewController()
         
         var imageType: PhotoCellType = .vertical
@@ -206,9 +207,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         addPhotoViewController.setupRootViewImage(forImage: image , forType: imageType)
         
-        self.window?.rootViewController = PophoryNavigationController(rootViewController: addPhotoViewController)
+        let navigationController = PophoryNavigationController(rootViewController: tabBarController)
+        navigationController.pushViewController(addPhotoViewController, animated: false)
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
-        
     }
 }
 
