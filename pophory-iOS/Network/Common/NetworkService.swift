@@ -17,4 +17,5 @@ final class NetworkService {
     let albumRepository = DefaultAlbumRespository()
     let authRepostiory = DefaultAuthRepository()
     let shareRepository = DefaultShareRepository()
+    let adRepository = DefaultAdRepository()
 }

@@ -29,6 +29,7 @@ class BaseRepository {
             let decodedData = try decoder.decode(responseType, from: data)
             return .success(decodedData)
         } catch {
+            print("디코딩 오류: \(error)")
             return .pathErr
         }
     }
@@ -39,6 +40,7 @@ class BaseRepository {
             let decodedData = try decoder.decode(responseType, from: data)
             return .sharePhotoErr(decodedData)
         } catch {
+            print("디코딩 오류: \(error)")
             return .pathErr
         }
     }

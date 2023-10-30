@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct FetchAdResponseDTO: Codable {
+    let adId, adName: String
+}
