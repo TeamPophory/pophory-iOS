@@ -118,6 +118,7 @@ enum ImageLiterals {
     
     static var defaultProfile: UIImage { .load(name: "defaultProfile") }
     static var defaultBannerAd: UIImage { .load(name: "bannerAdDefault") }
+    static var bannerAd: UIImage { .load(name: "banner_ad") }
     static var myPageShareBanner: UIImage { .load(name: "myPageShareBanner") }
     
     // MARK: - ErrorImg

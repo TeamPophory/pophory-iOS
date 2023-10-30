@@ -13,6 +13,7 @@ class MypageViewController: BaseViewController {
     
     private let rootView = MyPageRootView()
     private let networkManager = MyPageNetworkManager()
+//    private var wkWebView = WKWebView!
     
     // MARK: - Life Cycle
     
@@ -55,6 +56,11 @@ extension MypageViewController {
 }
 
 extension MypageViewController: MyPageRootViewDelegate {
+    func handleOnAd() {
+        let vc = PophoryWebViewController(urlString: WebViewURLList.mypageBannerAd.url, title: "")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func handleOnclickSetting() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
@@ -64,7 +70,7 @@ extension MypageViewController: MyPageRootViewDelegate {
     }
     
     func handleOnClickStory() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/porit-story", title: "포릿 이야기")
+        let vc = PophoryWebViewController(urlString: WebViewURLList.mypagePophoryStory.url , title: "포릿 이야기")
         navigationController?.pushViewController(vc, animated: true)
     }
 }

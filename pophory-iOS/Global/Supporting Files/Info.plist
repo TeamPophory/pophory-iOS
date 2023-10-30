@@ -9,9 +9,9 @@
 	<key>SENTRY_DSN</key>
 	<string>$(SENTRY_DSN)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>$(ADMOB_APP_ID)</string>
+	<string>ca-app-pub-8530931463844200~4477619562</string>
 	<key>BASE_URL</key>
-	<string>$(BASE_URL)</string>
+	<string>http:/$()/15.165.123.155</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
