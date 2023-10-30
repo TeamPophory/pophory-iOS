@@ -19,9 +19,6 @@
 		376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E62A66CB740010CF8D /* CGSize+Extension.swift */; };
 		376927E92A66E88C0010CF8D /* ConstraintMaker+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */; };
 		376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */; };
-		377D6A6D2AE17A1B007E9CE4 /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 377D6A6C2AE17A1B007E9CE4 /* Shared.xcconfig */; };
-		377D6A702AE17BA1007E9CE4 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 377D6A6E2AE17BA1007E9CE4 /* Debug.xcconfig */; };
-		377D6A712AE17BA1007E9CE4 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 377D6A6F2AE17BA1007E9CE4 /* Release.xcconfig */; };
 		377EF7D52A4EFB5000E3268D /* PophoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7D42A4EFB5000E3268D /* PophoryButton.swift */; };
 		377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DA2A4F14DA00E3268D /* PophoryButtonBuilder.swift */; };
 		377EF7DE2A4F47FB00E3268D /* NameInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EF7DD2A4F47FB00E3268D /* NameInputViewController.swift */; };
@@ -82,11 +79,9 @@
 		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
 		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
 		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
-		3B9492272AF0523D00AACAD1 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */; };
 		3B94922A2AF0525000AACAD1 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492282AF0525000AACAD1 /* Release.xcconfig */; };
 		3B94922B2AF0525000AACAD1 /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492292AF0525000AACAD1 /* Shared.xcconfig */; };
 		3B99B7252AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
-		3B99B7262AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */; };
 		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
 		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
@@ -261,7 +256,6 @@
 		376927E62A66CB740010CF8D /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
 		376927E82A66E88C0010CF8D /* ConstraintMaker+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintMaker+Extension.swift"; sourceTree = "<group>"; };
 		376BF64F2A548FB60007D4C3 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		377D6A6C2AE17A1B007E9CE4 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Shared.xcconfig; path = ../../../Shared.xcconfig; sourceTree = "<group>"; };
 		377D6A6E2AE17BA1007E9CE4 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		377D6A6F2AE17BA1007E9CE4 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		377EF7D42A4EFB5000E3268D /* PophoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryButton.swift; sourceTree = "<group>"; };
@@ -561,6 +555,8 @@
 			isa = PBXGroup;
 			children = (
 				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
+				377D6A6F2AE17BA1007E9CE4 /* Release.xcconfig */,
+				377D6A6E2AE17BA1007E9CE4 /* Debug.xcconfig */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1433,18 +1429,14 @@
 			files = (
 				3B99B7252AE17E360012A79A /* (null) in Resources */,
 				B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */,
-				3B99B7262AE17E360012A79A /* (null) in Resources */,
 				376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */,
 				37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */,
 				3B94922B2AF0525000AACAD1 /* Shared.xcconfig in Resources */,
 				3B94922A2AF0525000AACAD1 /* Release.xcconfig in Resources */,
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
-				377D6A712AE17BA1007E9CE4 /* Release.xcconfig in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
-				3B99B7272AE17E360012A79A /* Debug.xcconfig in Resources */,
 				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
-				377D6A702AE17BA1007E9CE4 /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1796,7 +1788,6 @@
 		};
 		B1631F2F2A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1915,7 +1906,6 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1924,7 +1914,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023102401;
+				CURRENT_PROJECT_VERSION = 2023103101;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
@@ -1962,7 +1952,6 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1971,7 +1960,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023102401;
+				CURRENT_PROJECT_VERSION = 2023103101;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
