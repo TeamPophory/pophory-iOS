@@ -52,7 +52,17 @@ class BaseViewController: UIViewController {
     // MARK: - @objc
     
     @objc func backButtonOnClick() {
-        navigationController?.popViewController(animated: true)
+        guard let stackDepth = navigationController?.viewControllers.count else { return }
+        
+        let tabBarController = TabBarController()
+        
+        if self is PhotoDetailViewController {
+            navigationController?.popViewController(animated: true)
+        } else if stackDepth > 2 {
+            navigationController?.setViewControllers([tabBarController], animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func rightButtonOnClick() {}

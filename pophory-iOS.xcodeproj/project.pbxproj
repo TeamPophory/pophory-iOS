@@ -12,7 +12,6 @@
 		371A7C5D2A5120CA0095C744 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		371A7C632A5133C80095C744 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A7C622A5133C80095C744 /* UIViewController+Extension.swift */; };
 		372F7F362A540D270032B7BC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F352A540D270032B7BC /* OnboardingView.swift */; };
-		372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F7F372A5446390032B7BC /* KeyboardFollowable.swift */; };
 		37310F142A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */; };
 		373A74D42A74126500CBE8B6 /* AuthNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */; };
 		373EEEFB2A576CC40039A22C /* PophoryPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */; };
@@ -38,6 +37,7 @@
 		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
 		3782F4462A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */; };
 		37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */; };
+		37C3E1992AE4278E00FE1C8A /* TokenExpirationHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */; };
 		37D6A46B2AA83C6A00D25B13 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */; };
 		37D6A46D2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
@@ -56,6 +56,10 @@
 		37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */; };
 		37DE3D882A6993CD00A98725 /* MyPageRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE3D872A6993CD00A98725 /* MyPageRootView.swift */; };
 		37DEF3902A822561000068A1 /* NextButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */; };
+		37E036D72ACFFD70004E179A /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D62ACFFD70004E179A /* QRScannerViewController.swift */; };
+		37E036D92AD000F5004E179A /* QRDownLoadWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */; };
+		37E036E02AD29936004E179A /* PhotoUploadModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */; };
+		37E036E22AD38AFF004E179A /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E036E12AD38AFF004E179A /* QRScannerView.swift */; };
 		37E1FC7E2A68066D009AF774 /* PophoryErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */; };
 		37EB69E92A4BEF5400075E4E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EB69E82A4BEF5400075E4E /* BaseViewController.swift */; };
 		37ED8E522A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */; };
@@ -75,9 +79,11 @@
 		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
 		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
 		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
-		3B99B7252AE17E360012A79A /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7222AE17E360012A79A /* Release.xcconfig */; };
-		3B99B7262AE17E360012A79A /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7232AE17E360012A79A /* Shared.xcconfig */; };
-		3B99B7272AE17E360012A79A /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7242AE17E360012A79A /* Debug.xcconfig */; };
+		3B9492272AF0523D00AACAD1 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */; };
+		3B94922A2AF0525000AACAD1 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492282AF0525000AACAD1 /* Release.xcconfig */; };
+		3B94922B2AF0525000AACAD1 /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B9492292AF0525000AACAD1 /* Shared.xcconfig */; };
+		3B99B7252AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
+		3B99B7262AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */; };
 		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
 		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
@@ -244,7 +250,6 @@
 		3703F0F62A60A9BE0017A381 /* SignUpIndicatorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpIndicatorCollectionViewCell.swift; sourceTree = "<group>"; };
 		371A7C622A5133C80095C744 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		372F7F352A540D270032B7BC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		372F7F372A5446390032B7BC /* KeyboardFollowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFollowable.swift; sourceTree = "<group>"; };
 		37310F132A5535B20046E777 /* PickAlbumButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickAlbumButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkManager.swift; sourceTree = "<group>"; };
 		373EEEFA2A576CC40039A22C /* PophoryPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryPopupViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +276,7 @@
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMoyaProvider.swift; sourceTree = "<group>"; };
+		37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExpirationHandling.swift; sourceTree = "<group>"; };
 		37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAccessTokenDTO.swift; sourceTree = "<group>"; };
 		37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
@@ -289,6 +295,10 @@
 		37DCA6B82A4ACEC700FF8F90 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		37DE3D872A6993CD00A98725 /* MyPageRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageRootView.swift; sourceTree = "<group>"; };
 		37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonDelegate.swift; sourceTree = "<group>"; };
+		37E036D62ACFFD70004E179A /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRDownLoadWebViewController.swift; sourceTree = "<group>"; };
+		37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadModalViewController.swift; sourceTree = "<group>"; };
+		37E036E12AD38AFF004E179A /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRefreshTokenDTO.swift; sourceTree = "<group>"; };
@@ -301,9 +311,9 @@
 		3B583A632AF02A83008FFB9A /* AdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepository.swift; sourceTree = "<group>"; };
 		3B583A652AF02B4D008FFB9A /* DefaultAdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAdRepository.swift; sourceTree = "<group>"; };
 		3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
-		3B99B7222AE17E360012A79A /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Release.xcconfig"; sourceTree = "<group>"; };
-		3B99B7232AE17E360012A79A /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Shared.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Shared.xcconfig"; sourceTree = "<group>"; };
-		3B99B7242AE17E360012A79A /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Debug.xcconfig"; sourceTree = "<group>"; };
+		3B9492262AF0523D00AACAD1 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3B9492282AF0525000AACAD1 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3B9492292AF0525000AACAD1 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewURLList.swift; sourceTree = "<group>"; };
 		6B05C56A2AC4277800A75C00 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B05C56C2AC4277800A75C00 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -481,8 +491,8 @@
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */,
 				91F3A7572A51760B00C06D1B /* Navigatable.swift */,
-				372F7F372A5446390032B7BC /* KeyboardFollowable.swift */,
 				37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */,
 			);
 			path = Protocols;
@@ -539,6 +549,14 @@
 				373A74D32A74126500CBE8B6 /* AuthNetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		377D6A6B2AE17812007E9CE4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		377EF7DC2A4F479800E3268D /* Auth */ = {
@@ -647,6 +665,31 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		37E036D42ACFFD0D004E179A /* QRScanner */ = {
+			isa = PBXGroup;
+			children = (
+				37E036D62ACFFD70004E179A /* QRScannerViewController.swift */,
+				37E036E12AD38AFF004E179A /* QRScannerView.swift */,
+			);
+			path = QRScanner;
+			sourceTree = "<group>";
+		};
+		37E036D52ACFFD4A004E179A /* QRDownload */ = {
+			isa = PBXGroup;
+			children = (
+				37E036D82AD000F5004E179A /* QRDownLoadWebViewController.swift */,
+			);
+			path = QRDownload;
+			sourceTree = "<group>";
+		};
+		37E036DE2AD298F9004E179A /* PhotoUpload */ = {
+			isa = PBXGroup;
+			children = (
+				37E036DF2AD29936004E179A /* PhotoUploadModalViewController.swift */,
+			);
+			path = PhotoUpload;
+			sourceTree = "<group>";
+		};
 		37EB69E72A4BEF4300075E4E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,14 +731,6 @@
 				3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */,
 			);
 			path = Ad;
-			sourceTree = "<group>";
-		};
-		3B99B7212AE17E020012A79A /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		6B05C56B2AC4277800A75C00 /* ShareExtension */ = {
@@ -1008,7 +1043,7 @@
 				6B05C56B2AC4277800A75C00 /* ShareExtension */,
 				B1631F082A1759EA0050974F /* Products */,
 				6B05C5CE2ACAAB8500A75C00 /* Frameworks */,
-				3B99B7212AE17E020012A79A /* Recovered References */,
+				377D6A6B2AE17812007E9CE4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1026,11 +1061,11 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3B99B7242AE17E360012A79A /* Debug.xcconfig */,
-				3B99B7222AE17E360012A79A /* Release.xcconfig */,
-				3B99B7232AE17E360012A79A /* Shared.xcconfig */,
 				37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
+				3B9492282AF0525000AACAD1 /* Release.xcconfig */,
+				3B9492292AF0525000AACAD1 /* Shared.xcconfig */,
+				3B9492262AF0523D00AACAD1 /* Debug.xcconfig */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
@@ -1072,6 +1107,9 @@
 		B1631F3B2A175B290050974F /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				37E036DE2AD298F9004E179A /* PhotoUpload */,
+				37E036D52ACFFD4A004E179A /* QRDownload */,
+				37E036D42ACFFD0D004E179A /* QRScanner */,
 				912780152A67D9ED0005BBA3 /* EditAlbumCover */,
 				3B3A090F2A56A4F200C8A740 /* PhotoDetail */,
 				6B29DC522A5494A000F93EC7 /* AddPhoto */,
@@ -1387,15 +1425,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B99B7252AE17E360012A79A /* Release.xcconfig in Resources */,
+				3B99B7252AE17E360012A79A /* (null) in Resources */,
 				B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */,
-				3B99B7262AE17E360012A79A /* Shared.xcconfig in Resources */,
+				3B99B7262AE17E360012A79A /* (null) in Resources */,
 				376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */,
 				37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */,
+				3B94922B2AF0525000AACAD1 /* Shared.xcconfig in Resources */,
+				3B94922A2AF0525000AACAD1 /* Release.xcconfig in Resources */,
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
-				3B99B7272AE17E360012A79A /* Debug.xcconfig in Resources */,
+				3B9492272AF0523D00AACAD1 /* Debug.xcconfig in Resources */,
 				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1480,6 +1520,7 @@
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
 				6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */,
 				91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */,
+				37C3E1992AE4278E00FE1C8A /* TokenExpirationHandling.swift in Sources */,
 				3B3BE7192A56CC820064E716 /* PophoryNavigationController.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
 				6BB37C772A55FA7E00E49B12 /* StudioModalViewController.swift in Sources */,
@@ -1526,6 +1567,7 @@
 				91F3A7582A51760B00C06D1B /* Navigatable.swift in Sources */,
 				91F3A7792A52AC3E00C06D1B /* Photos.swift in Sources */,
 				3782F4402A52C6EB00FE3846 /* BaseInputView.swift in Sources */,
+				37E036E02AD29936004E179A /* PhotoUploadModalViewController.swift in Sources */,
 				377EF7E02A4F489B00E3268D /* IDInputViewController.swift in Sources */,
 				37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */,
 				6BCE47602A684FDB0060EC78 /* ShareRepository.swift in Sources */,
@@ -1564,6 +1606,7 @@
 				91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,
 				9127801C2A6846A80005BBA3 /* patchAlbumCoverRequestDTO.swift in Sources */,
+				37E036D92AD000F5004E179A /* QRDownLoadWebViewController.swift in Sources */,
 				91F3A77F2A52ADD900C06D1B /* MoyaLoggerPlugin.swift in Sources */,
 				91F3A7A42A52D52200C06D1B /* AuthRepository.swift in Sources */,
 				376927E72A66CB740010CF8D /* CGSize+Extension.swift in Sources */,
@@ -1573,6 +1616,8 @@
 				3B583A642AF02A83008FFB9A /* AdRepository.swift in Sources */,
 				91F3A79E2A52D31000C06D1B /* PhotoRepository.swift in Sources */,
 				91F3A7712A52AADE00C06D1B /* FetchMyPageResponseDTO.swift in Sources */,
+				37E036E22AD38AFF004E179A /* QRScannerView.swift in Sources */,
+				37E036D72ACFFD70004E179A /* QRScannerViewController.swift in Sources */,
 				371A7C5D2A5120CA0095C744 /* (null) in Sources */,
 				6B09D22A2A6808EA00DF4275 /* ShareView.swift in Sources */,
 				3782F4382A528BAF00FE3846 /* StartPophoryViewController.swift in Sources */,
@@ -1590,7 +1635,6 @@
 				91F3A77B2A52AC8000C06D1B /* FetchAlbumPhotoListResponseDTO.swift in Sources */,
 				3B583A662AF02B4D008FFB9A /* DefaultAdRepository.swift in Sources */,
 				91F3A7622A5206B100C06D1B /* HomeAlbumView.swift in Sources */,
-				372F7F382A5446390032B7BC /* KeyboardFollowable.swift in Sources */,
 				B1F310F32A62E6C000BF989B /* SharePhotoRootView.swift in Sources */,
 				91F3A7902A52B5DA00C06D1B /* MemberAPI.swift in Sources */,
 				912780202A68698F0005BBA3 /* NetworkMonitor.swift in Sources */,
@@ -1676,7 +1720,7 @@
 /* Begin XCBuildConfiguration section */
 		6B05C5762AC4277800A75C00 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1697,7 +1741,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ownCloud-Share-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareDebug;
@@ -1710,7 +1754,7 @@
 		};
 		6B05C5772AC4277800A75C00 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1731,7 +1775,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ownCloud-Share-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareRelease;
@@ -1744,7 +1788,7 @@
 		};
 		B1631F2F2A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1806,7 +1850,7 @@
 		};
 		B1631F302A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1863,7 +1907,7 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1872,15 +1916,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023090902;
+				CURRENT_PROJECT_VERSION = 2023102401;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
+				INFOPLIST_KEY_NSCameraUsageDescription = "네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "포포리에 네컷사진을 업로드하기 위해 사진 라이브러리에 엑세스를 허용해 주세요.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "관심 없는 광고를 보지 않기 위해 '허용'을 눌러주세요. '허용'을 눌러도 개인정보는 유출되지 않으니 안심하세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1908,7 +1954,7 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1917,15 +1963,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2023090902;
+				CURRENT_PROJECT_VERSION = 2023102401;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
+				INFOPLIST_KEY_NSCameraUsageDescription = "네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "포포리에 네컷사진을 업로드하기 위해 사진 라이브러리에 엑세스를 허용해 주세요.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "관심 없는 광고를 보지 않기 위해 '허용'을 눌러주세요. '허용'을 눌러도 개인정보는 유출되지 않으니 안심하세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1953,7 +2001,7 @@
 		};
 		B1631F352A1759EC0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1974,7 +2022,7 @@
 		};
 		B1631F362A1759EC0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1995,7 +2043,7 @@
 		};
 		B1631F382A1759EC0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2017,7 +2065,7 @@
 		};
 		B1631F392A1759EC0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

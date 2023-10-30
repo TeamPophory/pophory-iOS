@@ -10,11 +10,11 @@ import UIKit
 import Moya
 import SnapKit
 
-protocol DateDataBind: AnyObject{
+protocol DateDataBind: AnyObject {
     func dateDataBind(text: String)
 }
 
-protocol StudioDataBind: AnyObject{
+protocol StudioDataBind: AnyObject {
     func studioDataBind(text: String, forIndex: Int)
 }
 
@@ -140,7 +140,9 @@ extension AddPhotoViewController {
     private func goToHome() {
         dismiss(animated: false)
         let tabBarViewController = TabBarController()
-        self.navigationController?.pushViewController(tabBarViewController, animated: true)
+        let bottomSheet = PhotoUploadModalViewController()
+        bottomSheet.dismissBottomSheet()
+        navigationController?.setViewControllers([tabBarViewController], animated: true)
     }
     
     // MARK: - Methods
