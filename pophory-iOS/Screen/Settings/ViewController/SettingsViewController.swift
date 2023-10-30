@@ -75,17 +75,17 @@ extension SettingsViewController: Navigatable {
 
 extension SettingsViewController: SettingsRootViewDelegate {
     func handleOnClickNotice() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/notice", title: "공지사항")
+        let vc = PophoryWebViewController(urlString: WebViewURLList.settingNotice.url, title: "공지사항")
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func handleOnClickPrivacyPolicy() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/%EC%A0%95%EC%B1%85#policy2", title: "개인정보 처리방침")
+        let vc = PophoryWebViewController(urlString: WebViewURLList.settingPrivacyPolicy.url, title: "개인정보 처리방침")
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func handleOnClickTerms() {
-        let vc = PophoryWebViewController(urlString: "https://pophoryofficial.wixsite.com/pophory/%EC%A0%95%EC%B1%85#policy1", title: "이용약관")
+        let vc = PophoryWebViewController(urlString: WebViewURLList.settingTerms.url, title: "이용약관")
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -14,6 +14,7 @@ protocol MyPageRootViewDelegate: NSObject {
     func handleOnclickSetting()
     func handleOnClickShare()
     func handleOnClickStory()
+    func handleOnAd()
 }
 
 class MyPageRootView: UIView {
@@ -43,8 +44,8 @@ class MyPageRootView: UIView {
     private lazy var shareBannerView: UIView = { createShareBannerView() }()
     private lazy var storyBannerView: UIView = { createStoryBannerView() }()
     
-    private lazy var adView: UIView = { UIView() }()
-    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.defaultBannerAd) }()
+    private lazy var adView: UIView = { createBannerAdView() }()
+    private lazy var adEmptyView: UIImageView = { UIImageView(image: ImageLiterals.bannerAd) }()
     
     // MARK: - Life Cycle
     
@@ -289,6 +290,15 @@ extension MyPageRootView {
         return view
     }
     
+    private func createBannerAdView() -> UIView {
+        let view = UIView()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickAd))
+        view.addGestureRecognizer(tapGesture)
+        
+        return view
+    }
+    
     // MARK: - Logics
     
     @objc private func onClickSetting() {
@@ -301,6 +311,10 @@ extension MyPageRootView {
     
     @objc private func onClickStory() {
         delegate?.handleOnClickStory()
+    }
+    
+    @objc private func onClickAd() {
+        delegate?.handleOnAd()
     }
     
     func updateNickname(_ nickname: String?) {

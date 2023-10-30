@@ -70,6 +70,10 @@
 		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
 		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
 		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
+		3B99B7252AE17E360012A79A /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7222AE17E360012A79A /* Release.xcconfig */; };
+		3B99B7262AE17E360012A79A /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7232AE17E360012A79A /* Shared.xcconfig */; };
+		3B99B7272AE17E360012A79A /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3B99B7242AE17E360012A79A /* Debug.xcconfig */; };
+		3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */; };
 		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
 		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
 		6B05C5742AC4277800A75C00 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6B05C56A2AC4277800A75C00 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -287,6 +291,10 @@
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
 		3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		3B99B7222AE17E360012A79A /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Release.xcconfig"; sourceTree = "<group>"; };
+		3B99B7232AE17E360012A79A /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Shared.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Shared.xcconfig"; sourceTree = "<group>"; };
+		3B99B7242AE17E360012A79A /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = "../../../pophory-iOS/pophory-iOS/Debug.xcconfig"; sourceTree = "<group>"; };
+		3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewURLList.swift; sourceTree = "<group>"; };
 		6B05C56A2AC4277800A75C00 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B05C56C2AC4277800A75C00 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		6B05C56F2AC4277800A75C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -664,6 +672,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		3B99B7212AE17E020012A79A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		6B05C56B2AC4277800A75C00 /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,14 +695,6 @@
 			isa = PBXGroup;
 			children = (
 				6B05C5CF2ACAAB8600A75C00 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3B6F26162AC9DBF70065C2C5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -978,6 +986,7 @@
 				6B05C56B2AC4277800A75C00 /* ShareExtension */,
 				B1631F082A1759EA0050974F /* Products */,
 				6B05C5CE2ACAAB8500A75C00 /* Frameworks */,
+				3B99B7212AE17E020012A79A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -995,9 +1004,9 @@
 		B1631F092A1759EA0050974F /* pophory-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3B6F260D2AC97F3E0065C2C5 /* Shared.xcconfig */,
-				3B6F260F2AC97F4D0065C2C5 /* Release.xcconfig */,
-				3B6F26112AC97F570065C2C5 /* Debug.xcconfig */,
+				3B99B7242AE17E360012A79A /* Debug.xcconfig */,
+				3B99B7222AE17E360012A79A /* Release.xcconfig */,
+				3B99B7232AE17E360012A79A /* Shared.xcconfig */,
 				37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */,
 				373EEF052A5922540039A22C /* pophory-iOS.entitlements */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
@@ -1125,6 +1134,7 @@
 		B1631F612A175FF80050974F /* Consts */ = {
 			isa = PBXGroup;
 			children = (
+				3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */,
 				37DCA6AB2A4ABAE200FF8F90 /* ColorLiterals.swift */,
 				37DCA6AD2A4ABAF300FF8F90 /* FontLiterals.swift */,
 				91F3A75F2A517E9E00C06D1B /* ImageLiterals.swift */,
@@ -1354,15 +1364,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B99B7252AE17E360012A79A /* Release.xcconfig in Resources */,
 				B1631F172A1759EB0050974F /* LaunchScreen.storyboard in Resources */,
+				3B99B7262AE17E360012A79A /* Shared.xcconfig in Resources */,
 				376BF6502A548FB60007D4C3 /* Pretendard-Bold.otf in Resources */,
-				3B6F26102AC97F4D0065C2C5 /* Release.xcconfig in Resources */,
 				37DCA6B52A4AC7CD00FF8F90 /* Pretendard-Regular.otf in Resources */,
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
-				3B6F260E2AC97F3E0065C2C5 /* Shared.xcconfig in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
-				3B6F26122AC97F570065C2C5 /* Debug.xcconfig in Resources */,
+				3B99B7272AE17E360012A79A /* Debug.xcconfig in Resources */,
 				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1454,6 +1464,7 @@
 				6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */,
 				37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */,
 				912780102A67BF760005BBA3 /* EditAlbumView.swift in Sources */,
+				3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */,
 				3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */,
 				B1631F4E2A175E350050974F /* UIStackView+Extension.swift in Sources */,
 				91F3A76F2A52AA9100C06D1B /* patchSignUpRequestDTO.swift in Sources */,
@@ -1637,13 +1648,16 @@
 /* Begin XCBuildConfiguration section */
 		6B05C5762AC4277800A75C00 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
@@ -1657,6 +1671,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareDebug;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1666,13 +1682,16 @@
 		};
 		6B05C5772AC4277800A75C00 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
@@ -1686,6 +1705,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ShareExtension.ownCloud-Share-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareRelease;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1695,6 +1716,7 @@
 		};
 		B1631F2F2A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1756,6 +1778,7 @@
 		};
 		B1631F302A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1811,17 +1834,19 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6F26112AC97F570065C2C5 /* Debug.xcconfig */;
+			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2023090902;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
@@ -1842,6 +1867,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryDebug;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1853,17 +1879,19 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6F260F2AC97F4D0065C2C5 /* Release.xcconfig */;
+			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pophory-iOS/pophory-iOSRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2023090902;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CQJ9UKUU35;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
@@ -1884,6 +1912,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryRelease;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1895,6 +1924,7 @@
 		};
 		B1631F352A1759EC0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1915,6 +1945,7 @@
 		};
 		B1631F362A1759EC0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1935,6 +1966,7 @@
 		};
 		B1631F382A1759EC0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7242AE17E360012A79A /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1956,6 +1988,7 @@
 		};
 		B1631F392A1759EC0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B99B7222AE17E360012A79A /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
