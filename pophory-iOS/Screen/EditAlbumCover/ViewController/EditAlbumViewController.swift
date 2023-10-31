@@ -132,21 +132,25 @@ extension EditAlbumViewController {
             
             //TODO: - 광고 준비되지 않았을 때 홈으로 돌아가는 상태
             dismiss(animated: true) {
-                self.navigationController?.popViewController(animated: true)
+                self.presentAdAndPatchAlbumCover()
             }
             return
         }
         
         dismiss(animated: true) {
             rewardedInterstitialAd.present(fromRootViewController: self) {
-                let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-                self.patchAlbumCover(albumId: self.albumPK, body: patchAlbumCoverRequestDTO)
+                self.presentAdAndPatchAlbumCover()
             }
         }
     }
     
     private func dismissPopUp() {
         dismiss(animated: false)
+    }
+    
+    private func presentAdAndPatchAlbumCover() {
+        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+        self.patchAlbumCover(albumId: self.albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
 
