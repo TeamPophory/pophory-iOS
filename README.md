@@ -25,12 +25,11 @@
 
 #### 준포리
 `온보딩` `회원가입` 
+> POP, Builder패턴을 활용한 공용 컴포넌트 구현
 
-> UINavigationBar 커스텀, Protocol 활용해 UINagivationConfigurator 구현
+> Apple Social Login 구현
 
 > 자체 회원가입 플로우 의존성 주입
-
-> 공용 버튼 컴포넌트 Builder패턴으로 구현
 
 #### 이포리
 `마이 페이지` 
