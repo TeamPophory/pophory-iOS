@@ -1788,6 +1788,7 @@
 		};
 		B1631F2F2A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1906,6 +1907,7 @@
 		};
 		B1631F322A1759EB0050974F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B9492262AF0523D00AACAD1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1952,6 +1954,7 @@
 		};
 		B1631F332A1759EB0050974F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B9492282AF0525000AACAD1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
