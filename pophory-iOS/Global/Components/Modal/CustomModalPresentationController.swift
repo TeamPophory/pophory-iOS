@@ -19,7 +19,7 @@ import UIKit
  present(customModalVC, animated: true, completion: nil)
  **/
 
-class CustomModalPresentationController: UIPresentationController {
+final class CustomModalPresentationController: UIPresentationController {
     
     // MARK: - Properties
     
