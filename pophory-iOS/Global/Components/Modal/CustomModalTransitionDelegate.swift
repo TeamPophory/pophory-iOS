@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomModalTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+final class CustomModalTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
     // MARK: - Properties
 

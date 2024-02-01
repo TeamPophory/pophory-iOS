@@ -57,26 +57,12 @@ final class AlbumDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        requestGetAlbumPhotoList(albumId: albumId ?? 0)
         setButtonAction()
+        configUI()
         addDelegate()
         setupNavigationBar(with: PophoryNavigationConfigurator.shared, showRightButton: true, rightButtonImageType: .plus)
-        
         showNavigationBar()
-        
-        imagePHPViewController.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        requestGetAlbumPhotoList(albumId: albumId ?? 0)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        view.addSubview(homeAlbumView)
-        
-        homeAlbumView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
     }
     
     private func setButtonAction() {
@@ -156,10 +142,19 @@ final class AlbumDetailViewController: BaseViewController {
     
     private func addDelegate() {
         homeAlbumView.photoCollectionView.delegate = self
+        imagePHPViewController.delegate = self
     }
     
     func setupPhotoLimit(_ maxPhotoLimit: Int) {
         self.maxPhotoLimit = maxPhotoLimit
+    }
+    
+    private func configUI() {
+        view.addSubview(homeAlbumView)
+        
+        homeAlbumView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
+        }
     }
 }
 
@@ -194,7 +189,6 @@ extension AlbumDetailViewController: ConfigPhotoSortStyleDelegate {
                 albumPhotoList: albumPhotoList
             )
             self.albumPhotoList = photoAlbumPhotoList
-            albumPhotoDataSource.update(photos: photoAlbumPhotoList)
             homeAlbumView.setEmptyPhotoExceptionImageView(isEmpty: albumPhotoList.photos.isEmpty)
         }
         self.photoSortStyle = sortStyle
