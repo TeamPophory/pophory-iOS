@@ -43,6 +43,7 @@ final class PhotoDetailView: UIView {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 2
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -119,19 +120,10 @@ extension PhotoDetailView {
             make.height.equalTo(554)
         }
         
-        switch photoType {
-        case .horizontal:
-            photoImageView.snp.makeConstraints { make in
-                make.directionalHorizontalEdges.centerY.equalToSuperview()
-                make.height.equalTo(213)
-            }
-        case .vertical:
-            photoImageView.snp.makeConstraints { make in
-                make.directionalHorizontalEdges.centerY.equalToSuperview()
-                make.directionalVerticalEdges.equalToSuperview().inset(20)
-            }
-        case .none:
-            return
+        photoImageView.snp.makeConstraints { make in
+            make.center.directionalHorizontalEdges.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(27)
         }
         
         bottomLine.snp.makeConstraints { make in
