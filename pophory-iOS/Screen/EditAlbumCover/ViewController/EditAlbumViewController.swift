@@ -18,7 +18,7 @@ final class EditAlbumViewController: BaseViewController {
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
         didSet {
-            guard let albumThemeCoverIndex = albumThemeCoverIndex else { return }
+            guard let albumThemeCoverIndex else { return }
             editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
         }
     }
@@ -56,6 +56,11 @@ final class EditAlbumViewController: BaseViewController {
         }
         
         editAlbumView.layoutSubviews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let albumCoverIndex = IndexPath(item: albumCoverIndex, section: 0)
+        editAlbumView.albumCoverCollectionView.scrollToItem(at: albumCoverIndex, at: .centeredHorizontally, animated: true)
     }
 }
 
