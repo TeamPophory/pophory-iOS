@@ -72,7 +72,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         } else {
             let url = URL(string: imageUrl)
             photoImage.kf.setImage(with: url)
-            photoImage.contentMode = cellType == .albumDetail ? .scaleToFill : .scaleAspectFill
+            photoImage.contentMode = cellType == .albumDetail ? .scaleAspectFit : .scaleAspectFill
         }
     }
 }
