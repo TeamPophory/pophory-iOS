@@ -98,9 +98,13 @@ extension EditAlbumViewController: UICollectionViewDataSource {
 
 extension EditAlbumViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / (self.editAlbumView.albumCoverCollectionView.frame.width - 110))
-        self.albumCoverIndex = currentIndex
-        self.albumThemeCoverIndex = currentIndex / 2
+        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / self.editAlbumView.albumCoverCollectionView.frame.width - 95)
+        if self.editAlbumView.albumCoverCollectionView.contentOffset.x == 0 {
+            self.albumCoverIndex = currentIndex
+        } else {
+            self.albumCoverIndex = currentIndex + 1
+        }
+        self.albumThemeCoverIndex = albumCoverIndex / 2
     }
 }
 
