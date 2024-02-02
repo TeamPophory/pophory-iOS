@@ -30,6 +30,10 @@ final class AlbumCoverCollectionViewCell: UICollectionViewCell {
         albumCoverImageView.clipsToBounds = true
     }
     
+    override func prepareForReuse() {
+        albumCoverImageView.image = nil
+    }
+    
     private func setupLayout() {
         contentView.addSubview(albumCoverImageView)
         
