@@ -9,17 +9,12 @@ import UIKit
 
 import SnapKit
 
-protocol AlbumCoverProfileButtonDidTappedProtocol {
-    func albumCoverThemeDidTapped(themeIndex: Int)
-}
-
 protocol AlbumCoverEditButtonDidTappedProtocol {
     func editButtonDidTapped()
 }
 
 final class EditAlbumView: UIView {
     
-    var albumCoverProfileButtonDidTappedProtocol: AlbumCoverProfileButtonDidTappedProtocol?
     var albumCoverEditButtonDidTappedProtocol: AlbumCoverEditButtonDidTappedProtocol?
     
     private let lineView: UIView = {
