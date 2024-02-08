@@ -22,11 +22,7 @@ final class EditAlbumViewController: BaseViewController {
             editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadAd()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +31,20 @@ final class EditAlbumViewController: BaseViewController {
         setDelegate()
         setCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadAd()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.setupViewConstraints(editAlbumView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let albumCoverIndex = IndexPath(item: albumCoverIndex, section: 0)
+        editAlbumView.albumCoverCollectionView.scrollToItem(at: albumCoverIndex, at: .centeredHorizontally, animated: true)
+    }
+    
     
     private func setDelegate() {
         editAlbumView.albumCoverProfileButtonDidTappedProtocol = self
@@ -46,21 +56,6 @@ final class EditAlbumViewController: BaseViewController {
     
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        view.addSubview(editAlbumView)
-        
-        editAlbumView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
-        
-        editAlbumView.layoutSubviews()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        let albumCoverIndex = IndexPath(item: albumCoverIndex, section: 0)
-        editAlbumView.albumCoverCollectionView.scrollToItem(at: albumCoverIndex, at: .centeredHorizontally, animated: true)
     }
 }
 
