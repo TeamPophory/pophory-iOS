@@ -16,7 +16,7 @@ final class EditAlbumViewController: BaseViewController {
     private var rewardedInterstitialAd: GADRewardedInterstitialAd?
     var albumPK = Int()
     var albumCoverIndex = Int()
-    var albumThemeCoverIndex: Int?
+    var albumThemeCoverIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,9 +82,6 @@ extension EditAlbumViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumThemeCollectionViewCell.identifier, for: indexPath) as? AlbumThemeCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if indexPath.row == self.albumThemeCoverIndex {
-                cell.configCell(AlbumData.albumThemeAlphaImages[indexPath.row])
-            }
             cell.configCell(AlbumData.albumThemeImages[indexPath.row])
             return cell
         } else if collectionView == editAlbumView.albumCoverCollectionView {
@@ -119,7 +116,7 @@ extension EditAlbumViewController: UICollectionViewDelegate {
             editAlbumView.albumCoverCollectionView.scrollToItem(at: albumIndexPath, at: .centeredHorizontally, animated: true)
             self.albumCoverIndex = albumCoverIndex
             albumThemeCoverIndex = indexPath.row
-            self.albumCoverIndex = albumThemeCoverIndex ?? 0 * 2
+            self.albumCoverIndex = albumThemeCoverIndex * 2
         }
     }
     
