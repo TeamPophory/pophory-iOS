@@ -17,6 +17,7 @@ final class AlbumCoverCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUI()
         setupLayout()
     }
     
@@ -24,10 +25,14 @@ final class AlbumCoverCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        albumCoverImageView.shapeWithCustomCorners(topLeftRadius: 4, topRightRadius: 26, bottomLeftRadius: 4, bottomRightRadius: 26)
-        albumCoverImageView.clipsToBounds = true
+    override func prepareForReuse() {
+        albumCoverImageView.image = nil
+    }
+    
+    
+    private func setupUI() {
+        contentView.shapeWithCustomCorners(topLeftRadius: 4, topRightRadius: 26, bottomLeftRadius: 4, bottomRightRadius: 26)
+        contentView.clipsToBounds = true
     }
     
     private func setupLayout() {

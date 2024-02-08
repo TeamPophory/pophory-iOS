@@ -18,15 +18,11 @@ final class EditAlbumViewController: BaseViewController {
     var albumCoverIndex = Int()
     var albumThemeCoverIndex: Int? {
         didSet {
-            guard let albumThemeCoverIndex = albumThemeCoverIndex else { return }
+            guard let albumThemeCoverIndex else { return }
             editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadAd()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +31,20 @@ final class EditAlbumViewController: BaseViewController {
         setDelegate()
         setCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadAd()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.setupViewConstraints(editAlbumView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let albumCoverIndex = IndexPath(item: albumCoverIndex, section: 0)
+        editAlbumView.albumCoverCollectionView.scrollToItem(at: albumCoverIndex, at: .centeredHorizontally, animated: true)
+    }
+    
     
     private func setDelegate() {
         editAlbumView.albumCoverProfileButtonDidTappedProtocol = self
@@ -46,16 +56,6 @@ final class EditAlbumViewController: BaseViewController {
     
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        view.addSubview(editAlbumView)
-        
-        editAlbumView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaInsets).inset(UIEdgeInsets(top: totalNavigationBarHeight, left: 0, bottom: 0, right: 0))
-        }
-        
-        editAlbumView.layoutSubviews()
     }
 }
 
@@ -98,9 +98,13 @@ extension EditAlbumViewController: UICollectionViewDataSource {
 
 extension EditAlbumViewController: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / (self.editAlbumView.albumCoverCollectionView.frame.width - 110))
-        self.albumCoverIndex = currentIndex
-        self.albumThemeCoverIndex = currentIndex / 2
+        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / (self.editAlbumView.albumCoverCollectionView.frame.width - 95))
+        if self.editAlbumView.albumCoverCollectionView.contentOffset.x == 0 {
+            self.albumCoverIndex = currentIndex
+        } else {
+            self.albumCoverIndex = currentIndex + 1
+        }
+        self.albumThemeCoverIndex = albumCoverIndex / 2
     }
 }
 
