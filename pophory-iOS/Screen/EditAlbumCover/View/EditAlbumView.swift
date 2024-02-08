@@ -44,7 +44,7 @@ final class EditAlbumView: UIView {
         flowLayout.minimumLineSpacing = 16
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45)
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 280 * 375 / UIScreen.main.bounds.width, height: 380 * 375 / UIScreen.main.bounds.width)
+        flowLayout.itemSize = CGSize(width: 280 * UIScreen.main.bounds.width / 375, height: 380 * UIScreen.main.bounds.height / 812)
         
         let collectionViewLayout: UICollectionViewFlowLayout = flowLayout as UICollectionViewFlowLayout
         
@@ -109,7 +109,7 @@ final class EditAlbumView: UIView {
         albumCoverCollectionView.snp.makeConstraints {
             $0.top.equalTo(albumCoverProfile1.snp.bottom).offset(UIScreen.main.hasNotch ? 53 : 10)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(380)
+            $0.bottom.equalTo(editButton.snp.top).offset(-64)
         }
         
         editButton.snp.makeConstraints {
