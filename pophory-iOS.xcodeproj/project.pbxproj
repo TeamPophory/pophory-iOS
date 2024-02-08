@@ -77,6 +77,7 @@
 		3B5CDBD72A94DDDB001382C4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD62A94DDDB001382C4 /* FirebaseAnalyticsSwift */; };
 		3B5CDBD92A94DDDB001382C4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBD82A94DDDB001382C4 /* FirebaseCrashlytics */; };
 		3B5CDBDB2A94DDDB001382C4 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 3B5CDBDA2A94DDDB001382C4 /* FirebaseDynamicLinks */; };
+		3B63DAC52B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63DAC42B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift */; };
 		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
 		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
 		3B99B7252AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -308,6 +309,7 @@
 		3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAdResponseDTO.swift; sourceTree = "<group>"; };
 		3B583A632AF02A83008FFB9A /* AdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepository.swift; sourceTree = "<group>"; };
 		3B583A652AF02B4D008FFB9A /* DefaultAdRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAdRepository.swift; sourceTree = "<group>"; };
+		3B63DAC42B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumThemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		3B9492262AF0523D00AACAD1 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		3B9492282AF0525000AACAD1 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 			children = (
 				9127800F2A67BF760005BBA3 /* EditAlbumView.swift */,
 				912780132A67D4190005BBA3 /* AlbumCoverCollectionViewCell.swift */,
+				3B63DAC42B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1536,6 +1539,7 @@
 				9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */,
 				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
+				3B63DAC52B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift in Sources */,
 				91F3A7A02A52D36F00C06D1B /* MemberRepository.swift in Sources */,
 				3780FBCE2A6265E20002A0FD /* PostLoginAPIDTO.swift in Sources */,
 				B138A3BE2A587A15000EE81E /* SettingsData.swift in Sources */,

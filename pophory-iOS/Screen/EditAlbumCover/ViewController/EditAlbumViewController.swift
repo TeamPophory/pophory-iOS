@@ -16,13 +16,8 @@ final class EditAlbumViewController: BaseViewController {
     private var rewardedInterstitialAd: GADRewardedInterstitialAd?
     var albumPK = Int()
     var albumCoverIndex = Int()
-    var albumThemeCoverIndex: Int? {
-        didSet {
-            guard let albumThemeCoverIndex else { return }
-            editAlbumView.setAlbumCoverProfileImage(albumCoverIndex: albumThemeCoverIndex)
-        }
-    }
-
+    var albumThemeCoverIndex: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,26 +40,17 @@ final class EditAlbumViewController: BaseViewController {
         editAlbumView.albumCoverCollectionView.scrollToItem(at: albumCoverIndex, at: .centeredHorizontally, animated: true)
     }
     
-    
     private func setDelegate() {
-        editAlbumView.albumCoverProfileButtonDidTappedProtocol = self
-        editAlbumView.albumCoverEditButtonDidTappedProtocol = self
-        
         editAlbumView.albumCoverCollectionView.dataSource = self
         editAlbumView.albumCoverCollectionView.delegate = self
+        
+        editAlbumView.albumThemeCollectionView.dataSource = self
+        editAlbumView.albumThemeCollectionView.delegate = self
     }
     
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
-    }
-}
-
-extension EditAlbumViewController: AlbumCoverProfileButtonDidTappedProtocol {
-    func albumCoverThemeDidTapped(themeIndex: Int) {
-        let albumCoverIndex = themeIndex * 2
-        let indexPath = IndexPath(item: albumCoverIndex, section: 0)
-        editAlbumView.albumCoverCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        self.albumCoverIndex = albumCoverIndex
+        editAlbumView.albumThemeCollectionView.register(cell: AlbumThemeCollectionViewCell.self)
     }
 }
 
@@ -85,14 +71,27 @@ extension EditAlbumViewController: AlbumCoverEditButtonDidTappedProtocol {
 
 extension EditAlbumViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == editAlbumView.albumThemeCollectionView {
+            return AlbumData.albumThemeImages.count
+        }
         return AlbumData.albumCovers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCoverCollectionViewCell", for: indexPath) as? AlbumCoverCollectionViewCell else { return UICollectionViewCell()
+        if collectionView == editAlbumView.albumThemeCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumThemeCollectionViewCell.identifier, for: indexPath) as? AlbumThemeCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configCell(AlbumData.albumThemeImages[indexPath.row])
+            return cell
+        } else if collectionView == editAlbumView.albumCoverCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCoverCollectionViewCell.identifier, for: indexPath) as? AlbumCoverCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configCell(albumCoverImage: AlbumData.albumCovers[indexPath.row])
+            return cell
         }
-        cell.configCell(albumCoverImage: AlbumData.albumCovers[indexPath.row])
-        return cell
+        return UICollectionViewCell()
     }
 }
 
@@ -105,6 +104,17 @@ extension EditAlbumViewController: UICollectionViewDelegate {
             self.albumCoverIndex = currentIndex + 1
         }
         self.albumThemeCoverIndex = albumCoverIndex / 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == editAlbumView.albumThemeCollectionView {
+            let albumCoverIndex = indexPath.row * 2
+            let albumIndexPath = IndexPath(item: albumCoverIndex, section: 0)
+            editAlbumView.albumCoverCollectionView.scrollToItem(at: albumIndexPath, at: .centeredHorizontally, animated: true)
+            self.albumCoverIndex = albumCoverIndex
+            albumThemeCoverIndex = indexPath.row
+            self.albumCoverIndex = albumThemeCoverIndex ?? 0 * 2
+        }
     }
 }
 
