@@ -28,15 +28,24 @@ final class EditAlbumView: UIView {
         return view
     }()
     
-    private lazy var albumCoverProfile1 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[0])
-    private lazy var albumCoverProfile2 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[1])
-    private lazy var albumCoverProfile3 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[2])
-    private lazy var albumCoverProfile4 = createAlbumCoverProfileButton(image: AlbumData.albumCoverImages[3])
-    private let albumCoverProfileStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 18
-        stackView.axis = .horizontal
-        return stackView
+    lazy var albumThemeCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        
+        let itemWidth = 50 * UIScreen.main.bounds.width / 375
+        let itemHeight = 50 * UIScreen.main.bounds.height / 812
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+
+        let totalItemWidth = itemWidth * CGFloat(AlbumData.albumThemeImages.count)
+        let totalSpacingWidth = UIScreen.main.bounds.width - totalItemWidth - 120
+        let minimumLineSpacing = totalSpacingWidth / CGFloat(AlbumData.albumThemeImages.count - 1)
+        flowLayout.minimumLineSpacing = minimumLineSpacing
+
+        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
     }()
     
     lazy var albumCoverCollectionView: UICollectionView = {
@@ -68,7 +77,6 @@ final class EditAlbumView: UIView {
         super.init(frame: .zero)
         setupLayout()
         configUI()
-        setButtonTarget()
         handleEditButton()
     }
     
@@ -80,18 +88,9 @@ final class EditAlbumView: UIView {
         self.addSubviews(
             [
                 lineView,
-                albumCoverProfileStackView,
+                albumThemeCollectionView,
                 albumCoverCollectionView,
                 editButton
-            ]
-        )
-        
-        albumCoverProfileStackView.addArrangedSubviews(
-            [
-                albumCoverProfile1,
-                albumCoverProfile2,
-                albumCoverProfile3,
-                albumCoverProfile4
             ]
         )
         
@@ -101,13 +100,15 @@ final class EditAlbumView: UIView {
             $0.height.equalTo(1)
         }
         
-        albumCoverProfileStackView.snp.makeConstraints {
+        albumThemeCollectionView.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(UIScreen.main.hasNotch ? 52 : 20)
             $0.centerX.equalToSuperview()
+            $0.directionalHorizontalEdges.equalToSuperview().inset(60)
+            $0.height.equalTo(50 * UIScreen.main.bounds.height / 812)
         }
         
         albumCoverCollectionView.snp.makeConstraints {
-            $0.top.equalTo(albumCoverProfile1.snp.bottom).offset(UIScreen.main.hasNotch ? 53 : 10)
+            $0.top.equalTo(albumThemeCollectionView.snp.bottom).offset(UIScreen.main.hasNotch ? 53 : 10)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(editButton.snp.top).offset(-64)
         }
@@ -122,72 +123,9 @@ final class EditAlbumView: UIView {
         self.backgroundColor = .pophoryWhite
     }
     
-    private func createAlbumCoverProfileButton(
-        image: UIImage
-    ) -> UIButton {
-        let button = UIButton()
-        button.setImage(image, for: .normal)
-        button.snp.makeConstraints {
-            $0.size.equalTo(50)
-        }
-        return button
-    }
-    
-    private func setButtonTarget() {
-        albumCoverProfile1.tag = 0
-        albumCoverProfile2.tag = 1
-        albumCoverProfile3.tag = 2
-        albumCoverProfile4.tag = 3
-        
-        albumCoverProfile1.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
-        albumCoverProfile2.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
-        albumCoverProfile3.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
-        albumCoverProfile4.addTarget(self, action: #selector(albumCoverButtonDidTapped(_:)), for: .touchUpInside)
-    }
-
-    @objc
-    func albumCoverButtonDidTapped(_ sender: UIButton) {
-        for (index, button) in [albumCoverProfile1, albumCoverProfile2, albumCoverProfile3, albumCoverProfile4].enumerated() {
-            if button == sender {
-                button.setImage(AlbumData.albumCoverAlphaImages[index], for: .normal)
-                self.albumCoverProfileButtonDidTappedProtocol?.albumCoverThemeDidTapped(themeIndex: index)
-            } else {
-                button.setImage(AlbumData.albumCoverImages[index], for: .normal)
-            }
-        }
-    }
-    
     @objc
     func editButtonTapped() {
         albumCoverEditButtonDidTappedProtocol?.editButtonDidTapped()
-    }
-    
-    func setAlbumCoverProfileImage(
-        albumCoverIndex: Int
-    ) {
-        switch albumCoverIndex {
-        case 0:
-            albumCoverProfile1.setImage(AlbumData.albumCoverAlphaImages[0], for: .normal)
-            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
-            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
-            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
-        case 1:
-            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
-            albumCoverProfile2.setImage(AlbumData.albumCoverAlphaImages[1], for: .normal)
-            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
-            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
-        case 2:
-            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
-            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
-            albumCoverProfile3.setImage(AlbumData.albumCoverAlphaImages[2], for: .normal)
-            albumCoverProfile4.setImage(AlbumData.albumCoverImages[3], for: .normal)
-        case 3:
-            albumCoverProfile1.setImage(AlbumData.albumCoverImages[0], for: .normal)
-            albumCoverProfile2.setImage(AlbumData.albumCoverImages[1], for: .normal)
-            albumCoverProfile3.setImage(AlbumData.albumCoverImages[2], for: .normal)
-            albumCoverProfile4.setImage(AlbumData.albumCoverAlphaImages[3], for: .normal)
-        default: return
-        }
     }
 }
 
