@@ -18,7 +18,6 @@ final class AlbumThemeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupUI()
         setupLayout()
     }
     
@@ -28,16 +27,18 @@ final class AlbumThemeCollectionViewCell: UICollectionViewCell {
 }
 
 extension AlbumThemeCollectionViewCell {
-    private func setupUI() {
-        
-    }
-    
     private func setupLayout() {
         contentView.addSubview(albumThemeImageView)
         
         albumThemeImageView.snp.makeConstraints {
-            $0.snp.
+            $0.edges.equalToSuperview()
         }
+    }
+    
+    func configCell(
+        _ img: UIImage
+    ) {
+        albumThemeImageView.image = img
     }
 }
 
