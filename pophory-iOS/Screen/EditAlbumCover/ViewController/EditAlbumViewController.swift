@@ -16,7 +16,11 @@ final class EditAlbumViewController: BaseViewController {
     private var rewardedInterstitialAd: GADRewardedInterstitialAd?
     var albumPK = Int()
     var albumCoverIndex = Int()
-    var albumThemeCoverIndex = 0
+    var albumThemeCoverIndex = Int() {
+        didSet {
+            handleAlbumThemeImage()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,8 @@ final class EditAlbumViewController: BaseViewController {
     }
     
     private func setDelegate() {
+        editAlbumView.albumCoverEditButtonDidTappedProtocol = self
+        
         editAlbumView.albumCoverCollectionView.dataSource = self
         editAlbumView.albumCoverCollectionView.delegate = self
         
@@ -51,6 +57,10 @@ final class EditAlbumViewController: BaseViewController {
     private func setCollectionView() {
         editAlbumView.albumCoverCollectionView.register(cell: AlbumCoverCollectionViewCell.self)
         editAlbumView.albumThemeCollectionView.register(cell: AlbumThemeCollectionViewCell.self)
+    }
+    
+    private func handleAlbumThemeImage() {
+        print(albumThemeCoverIndex, "💗")
     }
 }
 
@@ -96,13 +106,13 @@ extension EditAlbumViewController: UICollectionViewDataSource {
 }
 
 extension EditAlbumViewController: UICollectionViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentIndex = Int(self.editAlbumView.albumCoverCollectionView.contentOffset.x / (self.editAlbumView.albumCoverCollectionView.frame.width - 95))
-        if self.editAlbumView.albumCoverCollectionView.contentOffset.x == 0 {
-            self.albumCoverIndex = currentIndex
-        } else {
-            self.albumCoverIndex = currentIndex + 1
-        }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let leftInset: CGFloat = 45
+        let cellWidth: CGFloat = 280 * UIScreen.main.bounds.width / 375
+        let minimumLineSpacing: CGFloat = 16
+        let currentIndex = Int((scrollView.contentOffset.x + leftInset) / (cellWidth + minimumLineSpacing))
+        
+        self.albumCoverIndex = currentIndex
         self.albumThemeCoverIndex = albumCoverIndex / 2
     }
     
@@ -171,11 +181,6 @@ extension EditAlbumViewController {
     private func dismissPopUp() {
         dismiss(animated: false)
     }
-    
-    private func presentAdAndPatchAlbumCover() {
-        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
-        self.patchAlbumCover(albumId: self.albumPK, body: patchAlbumCoverRequestDTO)
-    }
 }
 
 extension EditAlbumViewController: GADFullScreenContentDelegate {
@@ -213,5 +218,10 @@ extension EditAlbumViewController {
             default : return
             }
         }
+    }
+    
+    private func presentAdAndPatchAlbumCover() {
+        let patchAlbumCoverRequestDTO = patchAlbumCoverRequestDTO(albumDesignId: self.albumCoverIndex + 1)
+        self.patchAlbumCover(albumId: self.albumPK, body: patchAlbumCoverRequestDTO)
     }
 }
