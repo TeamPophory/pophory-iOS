@@ -82,6 +82,9 @@ extension EditAlbumViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumThemeCollectionViewCell.identifier, for: indexPath) as? AlbumThemeCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            if indexPath.row == self.albumThemeCoverIndex {
+                cell.configCell(AlbumData.albumThemeAlphaImages[indexPath.row])
+            }
             cell.configCell(AlbumData.albumThemeImages[indexPath.row])
             return cell
         } else if collectionView == editAlbumView.albumCoverCollectionView {
@@ -108,12 +111,22 @@ extension EditAlbumViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == editAlbumView.albumThemeCollectionView {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? AlbumThemeCollectionViewCell else { return }
+            cell.configCell(AlbumData.albumThemeAlphaImages[indexPath.row])
+            
             let albumCoverIndex = indexPath.row * 2
             let albumIndexPath = IndexPath(item: albumCoverIndex, section: 0)
             editAlbumView.albumCoverCollectionView.scrollToItem(at: albumIndexPath, at: .centeredHorizontally, animated: true)
             self.albumCoverIndex = albumCoverIndex
             albumThemeCoverIndex = indexPath.row
             self.albumCoverIndex = albumThemeCoverIndex ?? 0 * 2
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == editAlbumView.albumThemeCollectionView {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? AlbumThemeCollectionViewCell else { return }
+            cell.configCell(AlbumData.albumThemeImages[indexPath.row])
         }
     }
 }
