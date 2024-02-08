@@ -11,14 +11,14 @@ class AlbumData {
     
     // MARK: - album theme
     
-    static let albumCoverImages = [
+    static let albumThemeImages = [
         ImageLiterals.albumCoverProfile1,
         ImageLiterals.albumCoverProfile2,
         ImageLiterals.albumCoverProfile3,
         ImageLiterals.albumCoverProfile4
     ]
     
-    static let albumCoverAlphaImages = [
+    static let albumThemeAlphaImages = [
         ImageLiterals.albumCoverProfile1Alpa,
         ImageLiterals.albumCoverProfile2Alpa,
         ImageLiterals.albumCoverProfile3Alpa,
