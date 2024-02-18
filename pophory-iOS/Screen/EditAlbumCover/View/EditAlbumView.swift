@@ -23,7 +23,7 @@ final class EditAlbumView: UIView {
         return view
     }()
     
-    lazy var albumThemeCollectionView: UICollectionView = {
+    private(set) lazy var albumThemeCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         
@@ -43,7 +43,7 @@ final class EditAlbumView: UIView {
         return collectionView
     }()
     
-    lazy var albumCoverCollectionView: UICollectionView = {
+    private(set) lazy var albumCoverCollectionView: UICollectionView = {
         let flowLayout = HorizontalCarouselCollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 16
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45)

@@ -11,7 +11,7 @@ import SnapKit
 
 final class AlbumThemeCollectionViewCell: UICollectionViewCell {
     
-    static var identifier: String = "AlbumThemeCollectionViewCell"
+    static let identifier: String = "AlbumThemeCollectionViewCell"
     
     private let albumThemeImageView = UIImageView()
     private var index: IndexPath?
