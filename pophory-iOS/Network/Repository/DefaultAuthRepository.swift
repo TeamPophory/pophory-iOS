@@ -33,34 +33,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
         provider.request(.postIdentityToken(identityToken: tokenDTO.identityToken , socialType: tokenDTO.socialType)) { result in
             switch result {
             case .success(let response):
-                if response.statusCode == 401 {
-                    print("✅Server response: \(response)")
-                    self.updateRefreshToken { refreshResult in
-//                        NotificationCenter.default.post(name: .didReceiveUnauthorizedNotification, object: nil) 
-                        switch refreshResult {
-                        case .success:
-                            // 토큰 갱신 성공. 원래 요청 재시도 또는 적절한 처리...
-                            self.submitIdentityToken(tokenDTO: tokenDTO, completion: completion)
-                        case .requestErr(let message):
-                            // 토큰 갱신 실패. 오류 메시지 출력 또는 적절한 처리...
-                            print("Failed to update access token:", message)
-                            completion(.requestErr(message))
-                        case .pathErr:
-                            print("Path error")
-                            completion(.pathErr)
-                        case .serverErr:
-                            print("Server error")
-                            completion(.serverErr)
-                        case .networkFail:
-                            print("Network failure")
-                            completion(.networkFail)
-                        case .sharePhotoErr(_):
-                            print("sharePhotoErr")
-                        case .unauthorized:
-                            print("unauthorized")
-                        }
-                    }
-                } else if response.statusCode < 300 {
+                if response.statusCode < 300 {
                     do {
                         let loginResponse = try response.map(PostLoginAPIDTO.self)
                         completion(.success(loginResponse))
@@ -68,8 +41,6 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
                         print("Error decoding the login response: \(error)")
                         completion(.requestErr("Failed to decode the login response."))
                     }
-                } else {
-                    completion(.requestErr("Failed to send Identity Token."))
                 }
             case .failure(let error):
                 print("🚨Error: \(error)")

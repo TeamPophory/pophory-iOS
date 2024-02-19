@@ -29,10 +29,12 @@ final class AppleLoginManager: NSObject, ASAuthorizationControllerDelegate, ASAu
         controller.performRequests()
     }
 
+    /// 로그인 성공 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         delegate?.appleLoginManager(didCompleteWithAuthResult: .success(authorization))
     }
     
+    /// 로그인 실패 시
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         delegate?.appleLoginManager(didCompleteWithAuthResult: .failure(error))
     }
