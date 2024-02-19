@@ -47,12 +47,12 @@ final class HomeAlbumViewController: BaseViewController {
         super.viewDidLoad()
         
         setupDelegate()
-        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupTokenExpirationObserver()
         requestGetAlumListAPI()
         hideNavigationBar()
     }
