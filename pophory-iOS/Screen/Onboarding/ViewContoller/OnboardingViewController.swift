@@ -16,10 +16,6 @@ final class OnboardingViewController: BaseViewController {
     lazy var onboardingView = OnboardingView()
     
     private let appleLoginManager: AppleLoginManager
-    private let authRepository = DefaultAuthRepository()
-    
-    let userDefaultsAccessTokenKey = "accessToken"
-    static var userDefaultsRefreshTokenKey = "refreshToken"
     
     // MARK: - Life Cycle
     
@@ -41,11 +37,9 @@ final class OnboardingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideNavigationBar()
         checkLoginHistoryAndNavigate()
         setupAppleSignInButton()
-        fetchAccessToken()
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,9 +91,22 @@ extension OnboardingViewController {
     }
     
     private func checkLoginHistoryAndNavigate() {
-       if let token = PophoryTokenManager.shared.fetchAccessToken() {
-            navigateToTabBarController()
-        }
+       DispatchQueue.main.async {
+          if self.hasLoginHistory() {
+             NetworkService.shared.authRepostiory.updateRefreshToken { result in
+                switch result {
+                case .success:
+                   print("🍥🍥토큰 재발급 성공")
+                   self.navigateToTabBarController()
+                default:
+                   print("🍥🍥재발급 실패")
+                   
+                }
+             }
+          } else {
+             print("🍥🍥재발급 실패")
+          }
+       }
     }
 }
 
@@ -162,12 +169,6 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
             navigateToTabBarController()
         } else {
             goToSignInViewController()
-        }
-    }
-    
-    private func fetchAccessToken() {
-        if let accessToken = UserDefaults.standard.string(forKey: userDefaultsAccessTokenKey) {
-            print("Access Token: \(accessToken)")
         }
     }
 }
