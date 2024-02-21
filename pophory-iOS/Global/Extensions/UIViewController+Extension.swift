@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-extension UIViewController: TokenExpirationHandling {
+extension UIViewController {
     
     var totalNavigationBarHeight: CGFloat {
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
@@ -75,37 +75,7 @@ extension UIViewController: TokenExpirationHandling {
         self.present(errorVC, animated: true, completion: nil)
     }
     
-    func setupTokenExpirationObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleTokenExpiration),
-                                               name: .didReceiveUnauthorizedNotification,
-                                               object: nil)
-    }
-    
     func tearDownObservers() {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func handleTokenExpiration() {
-        refreshToken()
-    }
-    
-    func refreshToken() {
-        let authRepository = DefaultAuthRepository()
-        
-        authRepository.updateRefreshToken { result in
-            switch result {
-            case .success(let loginResponse):
-                guard let loginResponse = loginResponse as? UpdatedAccessTokenDTO else { return }
-                PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
-                PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
-            case .requestErr(let message):
-                print("Error updating token:\(message)")
-            case .networkFail:
-                print("Network error")
-            default:
-                break
-            }
-        }
     }
 }
