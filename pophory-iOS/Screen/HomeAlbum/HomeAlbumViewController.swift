@@ -153,9 +153,3 @@ extension HomeAlbumViewController  {
         }
     }
 }
-
-extension HomeAlbumViewController {
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        handleTokenExpiration()
-    }
-}

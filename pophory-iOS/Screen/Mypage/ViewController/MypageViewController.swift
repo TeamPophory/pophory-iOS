@@ -67,11 +67,3 @@ extension MypageViewController: MyPageRootViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
-// MARK: - Token
-
-extension MypageViewController {
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        handleTokenExpiration()
-    }
-}
