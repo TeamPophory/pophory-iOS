@@ -13,7 +13,7 @@ final class DefaultMemberRepository: BaseRepository, MemberRepository {
     
     let provider: AsyncMoyaProvider<MemberAPI>
 
-    init(provider: AsyncMoyaProvider<MemberAPI> = AsyncMoyaProvider<MemberAPI>(plugins: [MoyaLoggerPlugin()])) {
+    init(provider: AsyncMoyaProvider<MemberAPI> = AsyncMoyaProvider<MemberAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])) {
         self.provider = provider
     }
     

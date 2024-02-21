@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultShareRepository: BaseRepository, ShareRepository {
     
-    let provider = MoyaProvider<ShareAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = MoyaProvider<ShareAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])
 
     func fetchSharePhoto(shareId: String, completion: @escaping (NetworkResult<FetchSharePhotoRequestDTO>) -> Void) {
         provider.request(.fetchSharePhoto(shareID: shareId)) { result in

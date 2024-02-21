@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultStudioRepository: BaseRepository, StudioRepository {
     
-    let provider = MoyaProvider<StudiosAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = MoyaProvider<StudiosAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])
     
     func fetchStudiosList(completion: @escaping (NetworkResult<FetchStudiosResponseDTO>) -> Void) {
         provider.request(.fetchStudios) { result in

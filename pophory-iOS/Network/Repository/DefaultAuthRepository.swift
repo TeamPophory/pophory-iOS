@@ -50,7 +50,7 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
     }
     
     func updateRefreshToken(completion: @escaping (NetworkResult<Any>) -> Void) {
-        guard let refreshToken = UserDefaults.standard.string(forKey: OnboardingViewController.userDefaultsRefreshTokenKey) else {
+        guard let refreshToken = PophoryTokenManager.shared.fetchRefreshToken() else {
             completion(.requestErr("No refresh token found"))
             return
         }
@@ -64,6 +64,8 @@ final class DefaultAuthRepository: BaseRepository, AuthRepository {
                     do {
                         let loginResponse = try response.map(UpdatedAccessTokenDTO.self)
                         completion(.success((loginResponse)))
+                        PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
+                        PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
                         print("Successfully refreshed access token")
                     } catch {
                         print("Error decoding the login response: \(error)")
