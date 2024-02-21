@@ -7,13 +7,12 @@
 
 import UIKit
 
-class MypageViewController: BaseViewController {
+final class MypageViewController: BaseViewController {
     
     // MARK: - UI Properties
     
     private let rootView = MyPageRootView()
     private let networkManager = MyPageNetworkManager()
-//    private var wkWebView = WKWebView!
     
     // MARK: - Life Cycle
     
@@ -22,12 +21,6 @@ class MypageViewController: BaseViewController {
         
         view = rootView
         rootView.delegate = self
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
