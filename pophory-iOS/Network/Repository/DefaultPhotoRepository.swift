@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultPhotoRepository: BaseRepository, PhotoRepository {
     
-    let provider = MoyaProvider<PhotoAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = MoyaProvider<PhotoAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])
     
     func fetchAllPhoto(completion: @escaping (NetworkResult<PhotosResponseDto>) -> Void) {
         provider.request(.fetchAllPhotos) { result in

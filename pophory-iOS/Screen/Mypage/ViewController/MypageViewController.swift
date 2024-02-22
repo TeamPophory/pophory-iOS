@@ -7,13 +7,12 @@
 
 import UIKit
 
-class MypageViewController: BaseViewController {
+final class MypageViewController: BaseViewController {
     
     // MARK: - UI Properties
     
     private let rootView = MyPageRootView()
     private let networkManager = MyPageNetworkManager()
-//    private var wkWebView = WKWebView!
     
     // MARK: - Life Cycle
     
@@ -22,12 +21,6 @@ class MypageViewController: BaseViewController {
         
         view = rootView
         rootView.delegate = self
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,13 +65,5 @@ extension MypageViewController: MyPageRootViewDelegate {
     func handleOnClickStory() {
         let vc = PophoryWebViewController(urlString: WebViewURLList.mypagePophoryStory.url , title: "포릿 이야기")
         navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-// MARK: - Token
-
-extension MypageViewController {
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        handleTokenExpiration()
     }
 }

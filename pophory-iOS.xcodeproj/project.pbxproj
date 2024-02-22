@@ -37,7 +37,6 @@
 		3782F4422A52CD5A00FE3846 /* StartPophoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */; };
 		3782F4462A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */; };
 		37ABA3472A7FA08400201A39 /* AsyncMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */; };
-		37C3E1992AE4278E00FE1C8A /* TokenExpirationHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */; };
 		37D6A46B2AA83C6A00D25B13 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */; };
 		37D6A46D2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */; };
 		37DCA6862A4A97CA00FF8F90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37DCA6852A4A97CA00FF8F90 /* SnapKit */; };
@@ -65,6 +64,7 @@
 		37ED8E522A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */; };
 		3B15D0E42A9627940007E330 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3B15D0E32A9627940007E330 /* Moya */; };
 		3B15D0E72A9627F40007E330 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 3B15D0E62A9627F40007E330 /* Sentry */; };
+		3B218EA72B833FA0006959E3 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B218EA62B833FA0006959E3 /* AuthInterceptor.swift */; };
 		3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */; };
 		3B3A09152A56A6C700C8A740 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */; };
 		3B3BE7192A56CC820064E716 /* PophoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */; };
@@ -275,7 +275,6 @@
 		3782F4412A52CD5A00FE3846 /* StartPophoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPophoryView.swift; sourceTree = "<group>"; };
 		3782F4452A52F4BF00FE3846 /* OnboardingContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		37ABA3462A7FA08400201A39 /* AsyncMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMoyaProvider.swift; sourceTree = "<group>"; };
-		37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExpirationHandling.swift; sourceTree = "<group>"; };
 		37D6A46A2AA83C6A00D25B13 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		37D6A46C2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAccessTokenDTO.swift; sourceTree = "<group>"; };
 		37D6A46E2AAA58D500D25B13 /* pophory-iOSRelease.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "pophory-iOSRelease.entitlements"; sourceTree = "<group>"; };
@@ -301,6 +300,7 @@
 		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRefreshTokenDTO.swift; sourceTree = "<group>"; };
+		3B218EA62B833FA0006959E3 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		3B3BE7182A56CC820064E716 /* PophoryNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryNavigationController.swift; sourceTree = "<group>"; };
@@ -491,7 +491,6 @@
 		371A7C5F2A5124F40095C744 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				37C3E1982AE4278E00FE1C8A /* TokenExpirationHandling.swift */,
 				91F3A7572A51760B00C06D1B /* Navigatable.swift */,
 				37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */,
 			);
@@ -700,6 +699,15 @@
 				6BC63CD72A5DD0B7001DF31F /* BasePHPickerViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		3B218EA52B833F85006959E3 /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				3B218EA62B833FA0006959E3 /* AuthInterceptor.swift */,
+			);
+			name = Interceptor;
+			path = "Intercep색";
 			sourceTree = "<group>";
 		};
 		3B3A090F2A56A4F200C8A740 /* PhotoDetail */ = {
@@ -917,6 +925,7 @@
 		91F3A77C2A52AD8300C06D1B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3B218EA52B833F85006959E3 /* Interceptor */,
 				91F3A77D2A52ADCA00C06D1B /* Common */,
 				B1631F5E2A175FD00050974F /* Models */,
 				91F3A78A2A52B1B300C06D1B /* API */,
@@ -1519,7 +1528,6 @@
 				91F3A78C2A52B21000C06D1B /* StudiosAPI.swift in Sources */,
 				6BB37C652A5589F400E49B12 /* CustomModalPresentationController.swift in Sources */,
 				91F3A7A22A52D40A00C06D1B /* AlbumRepository.swift in Sources */,
-				37C3E1992AE4278E00FE1C8A /* TokenExpirationHandling.swift in Sources */,
 				3B3BE7192A56CC820064E716 /* PophoryNavigationController.swift in Sources */,
 				37DCA69E2A4AB6DC00FF8F90 /* SettingsViewController.swift in Sources */,
 				6BB37C772A55FA7E00E49B12 /* StudioModalViewController.swift in Sources */,
@@ -1602,6 +1610,7 @@
 				B1631F4A2A175D5C0050974F /* UIButton+Extension.swift in Sources */,
 				6B09D2282A6808DA00DF4275 /* ShareViewController.swift in Sources */,
 				6B29DC592A5494A000F93EC7 /* PhotoInfoStackView.swift in Sources */,
+				3B218EA72B833FA0006959E3 /* AuthInterceptor.swift in Sources */,
 				37DCA6B92A4ACEC700FF8F90 /* UIScreen+Extension.swift in Sources */,
 				91F3A7922A52B71800C06D1B /* AlbumAPI.swift in Sources */,
 				37DCA69A2A4AB6C900FF8F90 /* HomeAlbumViewController.swift in Sources */,

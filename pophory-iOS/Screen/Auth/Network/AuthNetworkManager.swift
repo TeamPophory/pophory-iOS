@@ -9,14 +9,12 @@ import Foundation
 
 class AuthNetworkManager {
     
-    private let memberRepository: MemberRepository = DefaultMemberRepository()
-    
     func requestNicknameCheck(nickname: String) async throws -> Bool {
-        return try await memberRepository.requestDuplicateNicknameCheck(nickname: nickname)
+        return try await NetworkService.shared.memberRepository.requestDuplicateNicknameCheck(nickname: nickname)
     }
     
     func requestSignUpProcess(dto: patchSignUpRequestDTO) async throws {
-        return try await memberRepository.submitSignUp(body: dto)
+        return try await NetworkService.shared.memberRepository.submitSignUp(body: dto)
     }
 }
  

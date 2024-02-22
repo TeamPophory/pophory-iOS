@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SharePhotoViewController: BaseViewController {
+final class SharePhotoViewController: BaseViewController {
     
     // MARK: - UI Properties
     

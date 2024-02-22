@@ -36,6 +36,10 @@ extension BaseTargetType {
         return Data()
     }
     
+    var validationType: ValidationType {
+        return .successCodes
+    }
+    
     func getAccessTokenFromUserDefaults() -> String? {
         return UserDefaults.standard.string(forKey: "accessToken")
     }

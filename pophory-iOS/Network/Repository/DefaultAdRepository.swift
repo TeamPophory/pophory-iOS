@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultAdRepository: BaseRepository, AdRepository {
     
-    let provider = MoyaProvider<AdAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = MoyaProvider<AdAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])
     
     func fetchAdInfo(os: String, version: String, completion: @escaping (NetworkResult<[FetchAdResponseDTO]>) -> Void?) {
         provider.request(.fetchAdInfo(os: os, version: version)) { result in

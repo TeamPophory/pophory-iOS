@@ -47,7 +47,6 @@ final class HomeAlbumViewController: BaseViewController {
         super.viewDidLoad()
         
         setupDelegate()
-        setupTokenExpirationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,11 +151,5 @@ extension HomeAlbumViewController  {
             default : return
             }
         }
-    }
-}
-
-extension HomeAlbumViewController {
-    @objc func didReceiveUnauthorizedNotification(_ notification:NSNotification) {
-        handleTokenExpiration()
     }
 }

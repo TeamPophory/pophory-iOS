@@ -101,22 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) { }
     
     @objc func setupRoot() {
-        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-        var rootViewController: UIViewController
-        
-        if isLoggedIn {
-            rootViewController = TabBarController()
-        } else {
-            let appleLoginManager = AppleLoginManager()
-            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
-            
-            appleLoginManager.delegate = rootVC
-            rootViewController = rootVC
-        }
-        let navigationController = PophoryNavigationController(rootViewController: rootViewController)
-        
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        setupRootViewController()
     }
     
     func setupRootViewController() {
@@ -125,14 +110,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var rootViewController: UIViewController
         
         if isLoggedIn {
-            let tabBarViewController = UITabBarController()
+            let tabBarViewController = TabBarController()
             rootViewController = tabBarViewController
         } else {
-            let loginViewController = NameInputViewController()
-            rootViewController = loginViewController
+            let appleLoginManager = AppleLoginManager()
+            let rootVC = OnboardingViewController(appleLoginManager: appleLoginManager)
+            
+            appleLoginManager.delegate = rootVC
+            rootViewController = rootVC
         }
-        
-        window?.rootViewController = rootViewController
+        let navigationController = PophoryNavigationController(rootViewController: rootViewController)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
     

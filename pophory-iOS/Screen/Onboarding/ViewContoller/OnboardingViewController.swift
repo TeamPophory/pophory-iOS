@@ -16,10 +16,6 @@ final class OnboardingViewController: BaseViewController {
     lazy var onboardingView = OnboardingView()
     
     private let appleLoginManager: AppleLoginManager
-    private let authRepository = DefaultAuthRepository()
-    
-    let userDefaultsAccessTokenKey = "accessToken"
-    static var userDefaultsRefreshTokenKey = "refreshToken"
     
     // MARK: - Life Cycle
     
@@ -41,11 +37,9 @@ final class OnboardingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideNavigationBar()
         checkLoginHistoryAndNavigate()
         setupAppleSignInButton()
-        fetchAccessToken()
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,6 +69,7 @@ extension OnboardingViewController {
         onboardingView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLoginButtonClicked), for: .touchUpInside)
     }
     
+   /// isLoggedIn 여부 확인
     private func hasLoginHistory() -> Bool {
         return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
@@ -96,9 +91,22 @@ extension OnboardingViewController {
     }
     
     private func checkLoginHistoryAndNavigate() {
-        if hasLoginHistory() {
-            navigateToTabBarController()
-        }
+       DispatchQueue.main.async {
+          if self.hasLoginHistory() {
+             NetworkService.shared.authRepostiory.updateRefreshToken { result in
+                switch result {
+                case .success:
+                   print("🍥🍥토큰 재발급 성공")
+                   self.navigateToTabBarController()
+                default:
+                   print("🍥🍥재발급 실패")
+                   
+                }
+             }
+          } else {
+             print("🍥🍥재발급 실패")
+          }
+       }
     }
 }
 
@@ -123,52 +131,44 @@ extension OnboardingViewController: AppleLoginManagerDelegate {
             print("Failed Apple login with error: \(error.localizedDescription)")
         }
     }
-    
-    private func submitIdentityTokenToServer(identityToken: String) {
-        let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
-        DispatchQueue.global(qos: .userInitiated).async {
-            NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let response):
-                        if let loginResponse = response as? PostLoginAPIDTO {
-                            print("Successfully sent Identity Token to server")
-                            
-                            PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
-                            PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
-                            
-                            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                            
-                            self.decideNextVC(isRegistered: loginResponse.isRegistered)
-                            
-                        } else {
-                            print("Unexpected response")
-                        }
-                    case .requestErr(let message):
-                        print("Error sending Identity Token to server: \(message)")
-                    case .networkFail:
-                        self.presentErrorViewController(with: .networkError)
-                    case .serverErr, .pathErr:
-                        self.presentErrorViewController(with: .serverError)
-                    default:
-                        break
-                    }
-                }
+   
+   private func submitIdentityTokenToServer(identityToken: String) {
+      let tokenDTO = PostIdentityTokenDTO(socialType: "APPLE", identityToken: identityToken)
+      NetworkService.shared.authRepostiory.submitIdentityToken(tokenDTO: tokenDTO) { result in
+         DispatchQueue.main.async {
+            switch result {
+            case .success(let response):
+               if let loginResponse = response as? PostLoginAPIDTO {
+                  print("Successfully sent Identity Token to server")
+                  
+                  PophoryTokenManager.shared.saveAccessToken(loginResponse.accessToken)
+                  PophoryTokenManager.shared.saveRefreshToken(loginResponse.refreshToken)
+                  
+                  UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                  
+                  self.decideNextVC(isRegistered: loginResponse.isRegistered)
+                  
+               } else {
+                  print("Unexpected response")
+               }
+            case .requestErr(let message):
+               print("Error sending Identity Token to server: \(message)")
+            case .networkFail:
+               self.presentErrorViewController(with: .networkError)
+            case .serverErr, .pathErr:
+               self.presentErrorViewController(with: .serverError)
+            default:
+               break
             }
-        }
-    }
+         }
+      }
+   }
     
     private func decideNextVC(isRegistered: Bool) {
         if isRegistered {
             navigateToTabBarController()
         } else {
             goToSignInViewController()
-        }
-    }
-    
-    private func fetchAccessToken() {
-        if let accessToken = UserDefaults.standard.string(forKey: userDefaultsAccessTokenKey) {
-            print("Access Token: \(accessToken)")
         }
     }
 }

@@ -11,7 +11,7 @@ import Moya
 
 final class DefaultAlbumRespository: BaseRepository, AlbumRepository {
     
-    let provider = MoyaProvider<AlbumAPI>(plugins: [MoyaLoggerPlugin()])
+    let provider = MoyaProvider<AlbumAPI>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggerPlugin()])
     
     func fetchAlbumList(completion: @escaping (NetworkResult<FetchAlbumListResponseDTO>) -> Void) {
         provider.request(.fetchAlbumList) { result in
