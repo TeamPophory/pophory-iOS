@@ -187,7 +187,7 @@ extension PickAlbumCoverView: UICollectionViewDelegateFlowLayout {
         }
         
         lastSelectedItemIndex = indexPath
-        albumCoverView.image = ImageLiterals.albumCoverList[indexPath.item + 1]
+        albumCoverView.image = ImageLiterals.albumCoverList[indexPath.item * 2 + 1]
     }
 }
 
