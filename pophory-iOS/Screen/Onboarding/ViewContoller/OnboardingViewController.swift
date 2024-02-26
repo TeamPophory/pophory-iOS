@@ -93,6 +93,7 @@ extension OnboardingViewController {
     private func checkLoginHistoryAndNavigate() {
        DispatchQueue.main.async {
           if self.hasLoginHistory() {
+             print("🍥🍥기록 있음")
              NetworkService.shared.authRepostiory.updateRefreshToken { result in
                 switch result {
                 case .success:
@@ -104,7 +105,7 @@ extension OnboardingViewController {
                 }
              }
           } else {
-             print("🍥🍥재발급 실패")
+             print("🍥🍥기록 없음")
           }
        }
     }

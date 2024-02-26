@@ -150,17 +150,17 @@ extension TabBarController: PhotoUploadModalViewControllerDelegate {
         self.navigationController?.pushViewController(secondViewController, animated:true)
     }
     
-//    func fetchAdInfo(os: String, version: String) {
-//        NetworkService.shared.adRepository.fetchAdInfo(
-//            os: os, version: version) { result in
-//                switch result {
-//                case .success(let data):
-//                    PophoryAdManager.shared.setEditAlbumAd(data.first?.adName)
-//                    PophoryAdManager.shared.saveEditAlbumAd(data.first?.adId)
-//                    break
-//                default:
-//                    print("ERROR")
-//                }
-//            }
-//    }
+    func fetchAdInfo(os: String, version: String) {
+        NetworkService.shared.adRepository.fetchAdInfo(
+            os: os, version: version) { result in
+                switch result {
+                case .success(let data):
+                    PophoryAdManager.shared.setEditAlbumAd(data.first?.adName)
+                    PophoryAdManager.shared.saveEditAlbumAd(data.first?.adId)
+                    break
+                default:
+                    print("ERROR")
+                }
+            }
+    }
 }

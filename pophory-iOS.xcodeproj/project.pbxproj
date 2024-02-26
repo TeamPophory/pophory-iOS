@@ -81,6 +81,8 @@
 		3B6F26152AC987920065C2C5 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6F26142AC987920065C2C5 /* GoogleMobileAds */; };
 		3B6F26182AC9DBF70065C2C5 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6F26172AC9DBF70065C2C5 /* AppTrackingTransparency.framework */; };
 		3B99B7252AE17E360012A79A /* (null) in Resources */ = {isa = PBXBuildFile; };
+		3BBC1FD02B8B8B220098E000 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBC1FCF2B8B8B220098E000 /* OnboardingViewModel.swift */; };
+		3BBC1FD22B8B8BA80098E000 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBC1FD12B8B8BA80098E000 /* ViewModelType.swift */; };
 		3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */; };
 		6B05C56D2AC4277800A75C00 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B05C56C2AC4277800A75C00 /* ShareViewController.swift */; };
 		6B05C5702AC4277800A75C00 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B05C56E2AC4277800A75C00 /* MainInterface.storyboard */; };
@@ -115,7 +117,6 @@
 		6BC63CD82A5DD0B7001DF31F /* BasePHPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CD72A5DD0B7001DF31F /* BasePHPickerViewController.swift */; };
 		6BC63CDC2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */; };
 		6BC63CDE2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */; };
-		6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */; };
 		6BCE475A2A684D540060EC78 /* FetchSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE47592A684D540060EC78 /* FetchSharePhotoRequestDTO.swift */; };
 		6BCE475C2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */; };
 		6BCE475E2A684E580060EC78 /* ShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCE475D2A684E580060EC78 /* ShareAPI.swift */; };
@@ -300,6 +301,8 @@
 		37E1FC7D2A68066D009AF774 /* PophoryErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PophoryErrorViewController.swift; sourceTree = "<group>"; };
 		37EB69E82A4BEF5400075E4E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		37ED8E512A8E6F9E002D6F07 /* PostRefreshTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRefreshTokenDTO.swift; sourceTree = "<group>"; };
+		3B0DB5A32B87B4E900665FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3B0DB5AE2B87BBFE00665FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B218EA62B833FA0006959E3 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		3B3A09122A56A56F00C8A740 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		3B3A09142A56A6C700C8A740 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 		3B9492262AF0523D00AACAD1 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		3B9492282AF0525000AACAD1 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		3B9492292AF0525000AACAD1 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		3BBC1FCF2B8B8B220098E000 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		3BBC1FD12B8B8BA80098E000 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		3BC03E8F2AEB902F006CF499 /* WebViewURLList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewURLList.swift; sourceTree = "<group>"; };
 		6B05C56A2AC4277800A75C00 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B05C56C2AC4277800A75C00 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -340,7 +345,6 @@
 		6BC63CD72A5DD0B7001DF31F /* BasePHPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePHPickerViewController.swift; sourceTree = "<group>"; };
 		6BC63CDB2A5DD188001DF31F /* PHPickerLimitedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoViewController.swift; sourceTree = "<group>"; };
 		6BC63CDD2A5DD281001DF31F /* PHPickerLimitedPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerLimitedPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
-		6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BCE47592A684D540060EC78 /* FetchSharePhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSharePhotoRequestDTO.swift; sourceTree = "<group>"; };
 		6BCE475B2A684DD30060EC78 /* PostSharePhotoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSharePhotoRequestDTO.swift; sourceTree = "<group>"; };
 		6BCE475D2A684E580060EC78 /* ShareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAPI.swift; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 			children = (
 				91F3A7572A51760B00C06D1B /* Navigatable.swift */,
 				37DEF38F2A822561000068A1 /* NextButtonDelegate.swift */,
+				3BBC1FD12B8B8BA80098E000 /* ViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 		37DCA6872A4AB3C900FF8F90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				3BBC1FCE2B8B8B140098E000 /* ViewModel */,
 				372CB1FD2A62CDF100C56FE0 /* View */,
 				372CB1FE2A62CDF800C56FE0 /* ViewContoller */,
 			);
@@ -701,6 +707,22 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		3B0DB5AC2B87BBD500665FE7 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				3B0DB5A32B87B4E900665FE7 /* GoogleService-Info.plist */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		3B0DB5AD2B87BBE500665FE7 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				3B0DB5AE2B87BBFE00665FE7 /* GoogleService-Info.plist */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
 		3B218EA52B833F85006959E3 /* Interceptor */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +763,14 @@
 				3B583A612AF029BF008FFB9A /* FetchAdResponseDTO.swift */,
 			);
 			path = Ad;
+			sourceTree = "<group>";
+		};
+		3BBC1FCE2B8B8B140098E000 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3BBC1FCF2B8B8B220098E000 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6B05C56B2AC4277800A75C00 /* ShareExtension */ = {
@@ -1078,6 +1108,7 @@
 				3B9492282AF0525000AACAD1 /* Release.xcconfig */,
 				3B9492292AF0525000AACAD1 /* Shared.xcconfig */,
 				3B9492262AF0523D00AACAD1 /* Debug.xcconfig */,
+				B1631F462A175BF10050974F /* Firebase */,
 				91F3A77C2A52AD8300C06D1B /* Network */,
 				B1631F3A2A175B210050974F /* Global */,
 				B1631F3B2A175B290050974F /* Screen */,
@@ -1111,7 +1142,6 @@
 				B1631F612A175FF80050974F /* Consts */,
 				B1631F3C2A175B4D0050974F /* Extensions */,
 				B1631F422A175BA30050974F /* Resources */,
-				B1631F462A175BF10050974F /* Supporting Files */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1180,13 +1210,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		B1631F462A175BF10050974F /* Supporting Files */ = {
+		B1631F462A175BF10050974F /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				3B0DB5AD2B87BBE500665FE7 /* Release */,
+				3B0DB5AC2B87BBD500665FE7 /* Debug */,
 				B1631F182A1759EB0050974F /* Info.plist */,
-				6BCE474F2A68239F0060EC78 /* GoogleService-Info.plist */,
 			);
-			path = "Supporting Files";
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		B1631F5E2A175FD00050974F /* Models */ = {
@@ -1299,6 +1330,7 @@
 			buildPhases = (
 				B1631F032A1759EA0050974F /* Sources */,
 				B1631F042A1759EA0050974F /* Frameworks */,
+				3B0DB5A52B87B50400665FE7 /* Setup Firebase Environment GoogleService-Info.plist */,
 				B1631F052A1759EA0050974F /* Resources */,
 				6B05C5752AC4277800A75C00 /* Embed Foundation Extensions */,
 				3B5CDBC32A94CEA9001382C4 /* Run Script */,
@@ -1444,7 +1476,6 @@
 				37DCA6B42A4AC7CD00FF8F90 /* Pretendard-Medium.otf in Resources */,
 				37DCA6B32A4AC7CD00FF8F90 /* Pretendard-SemiBold.otf in Resources */,
 				B1631F142A1759EB0050974F /* Assets.xcassets in Resources */,
-				6BCE47502A68239F0060EC78 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1496,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3B0DB5A52B87B50400665FE7 /* Setup Firebase Environment GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase Environment GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Debug/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Release/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\n    echo \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\nif [ \"${CONFIGURATION}\" == \"Release\" ]\nthen\n    echo \"Using ${GOOGLESERVICE_INFO_PROD}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"Using ${GOOGLESERVICE_INFO_DEV}\"\n    cp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nfi\n";
+		};
 		3B5CDBC32A94CEA9001382C4 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1536,6 +1585,7 @@
 				37D6A46D2AAA524300D25B13 /* UpdatedAccessTokenDTO.swift in Sources */,
 				6B29DC5C2A5494A000F93EC7 /* AddPhotoViewController.swift in Sources */,
 				37DCA6AE2A4ABAF300FF8F90 /* FontLiterals.swift in Sources */,
+				3BBC1FD22B8B8BA80098E000 /* ViewModelType.swift in Sources */,
 				912780102A67BF760005BBA3 /* EditAlbumView.swift in Sources */,
 				3BC03E902AEB902F006CF499 /* WebViewURLList.swift in Sources */,
 				3B3A09132A56A56F00C8A740 /* PhotoDetailView.swift in Sources */,
@@ -1545,6 +1595,7 @@
 				91F3A79C2A52D2DE00C06D1B /* StudioRepository.swift in Sources */,
 				377EF7DB2A4F14DA00E3268D /* PophoryButtonBuilder.swift in Sources */,
 				9161CADC2A545EA2002B8B77 /* PhotoCollectionViewCell.swift in Sources */,
+				3BBC1FD02B8B8B220098E000 /* OnboardingViewModel.swift in Sources */,
 				91F3A7B72A53183800C06D1B /* ChangeSortView.swift in Sources */,
 				91F3A7B22A52F99F00C06D1B /* AlbumDetailView.swift in Sources */,
 				3B63DAC52B74DCA1004DC4E8 /* AlbumThemeCollectionViewCell.swift in Sources */,
@@ -1786,7 +1837,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS.ownCloud-Share-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareReleaseAdHoc;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryShareRelease;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1833,7 +1884,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1899,7 +1950,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1937,7 +1988,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "pophory-iOS/Firebase/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
 				INFOPLIST_KEY_NSCameraUsageDescription = "네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -1954,7 +2005,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1984,7 +2035,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = CQJ9UKUU35;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "pophory-iOS/Global/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "pophory-iOS/Firebase/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포포리";
 				INFOPLIST_KEY_NSCameraUsageDescription = "네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범 사용 허가";
@@ -2001,11 +2052,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryAdHoc;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryRelease;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -2114,7 +2165,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Team.pophory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PoporyRelease;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = PophoryAdHoc;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
