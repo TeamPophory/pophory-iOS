@@ -32,13 +32,13 @@ final class OnboardingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+       checkLoginHistoryAndNavigate()
         PophoryNavigationConfigurator.shared.configureNavigationBar(in: self)
     }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavigationBar()
-        checkLoginHistoryAndNavigate()
         setupAppleSignInButton()
     }
     

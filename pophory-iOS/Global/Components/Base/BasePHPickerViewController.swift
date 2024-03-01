@@ -10,18 +10,6 @@ import UIKit
 import PhotosUI
 import Photos
 
-// MARK: - Protocol
-
-protocol PHPickerProtocol: AnyObject {
-    func setupPicker()
-    func presentLimitedLibrary()
-    func presentImageLibrary()
-    func presentDenidAlert()
-    func presentLimitedAlert()
-    func presentLimitedImageView()
-    func presentOverSize()
-}
-
 class BasePHPickerViewController {
     
     // MARK: - Properties

@@ -10,22 +10,21 @@ import UIKit
 import Photos
 import SnapKit
 
-final class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController, PHPickerProtocol {
     
     // MARK: - Properties
     
-    var customTransitionDelegate: UIViewControllerTransitioningDelegate?
-    var navigationControllerToPresentModally: UINavigationController?
     private var isAlbumFull: Bool = false
-    private var customHeight: CGFloat = 170
     
     // MARK: - ViewController properties
     
     private let homeAlbumViewController = HomeAlbumViewController()
-    private let plusViewController = PhotoUploadModalViewController()
+    private let plusViewController = UIViewController()
     private let myPageViewController = MypageViewController()
     
     private let addPhotoViewController = AddPhotoViewController()
+    internal var imagePHPViewController = BasePHPickerViewController()
+    internal let limitedViewController = PHPickerLimitedPhotoViewController()
     
     // MARK: - Life Cycle
     
@@ -89,6 +88,7 @@ extension TabBarController {
     private func setupDelegate() {
         self.delegate = self
         homeAlbumViewController.albumStatusDelegate = self
+        imagePHPViewController.delegate = self
     }
 }
 
@@ -105,62 +105,17 @@ extension TabBarController: UITabBarControllerDelegate {
                 )
                 return  false
             }
-
-            let customModalVC = PhotoUploadModalViewController()
-            customModalVC.parentNavigationController = navigationController
-            customModalVC.delegate = self
-            customModalVC.tabbarController = self
-            self.customTransitionDelegate = CustomModalTransitionDelegate(customHeight: 170)
-
-            let navigationControllerToPresentModally = PophoryNavigationController(rootViewController: customModalVC)
-            navigationControllerToPresentModally.modalPresentationStyle = .custom
-            navigationControllerToPresentModally.transitioningDelegate = self.customTransitionDelegate
-
-            self.present(navigationControllerToPresentModally, animated: true, completion: nil)
-
+            
+            imagePHPViewController.setupImagePermission()
             return false
-        } else { return true }
+        } else {
+            return true
+        }
     }
 }
 
 extension TabBarController: AlbumStatusProtocol {
     func isAblumFull(isFull: Bool) {
         self.isAlbumFull = isFull
-    }
-}
-
-extension TabBarController: PhotoUploadModalViewControllerDelegate {
-    func didFinishPickingImage(_ selectedImage: UIImage) {
-        let secondViewController = AddPhotoViewController()
-        
-        var imageType: PhotoCellType = .vertical
-        
-        if selectedImage.size.width > selectedImage.size.height {
-            imageType = .horizontal
-        } else {
-            imageType = .vertical
-        }
-        
-        secondViewController.setupRootViewImage(forImage: selectedImage, forType: imageType)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.dismiss(animated: true)
-        }
-        
-        self.navigationController?.pushViewController(secondViewController, animated:true)
-    }
-    
-    func fetchAdInfo(os: String, version: String) {
-        NetworkService.shared.adRepository.fetchAdInfo(
-            os: os, version: version) { result in
-                switch result {
-                case .success(let data):
-                    PophoryAdManager.shared.setEditAlbumAd(data.first?.adName)
-                    PophoryAdManager.shared.saveEditAlbumAd(data.first?.adId)
-                    break
-                default:
-                    print("ERROR")
-                }
-            }
     }
 }
