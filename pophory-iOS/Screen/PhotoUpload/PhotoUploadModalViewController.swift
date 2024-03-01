@@ -20,8 +20,8 @@ class PhotoUploadModalViewController: BaseViewController {
     
     private var isAlbumFull: Bool = false
     
-    private var imagePHPViewController = BasePHPickerViewController()
-    private let limitedViewController = PHPickerLimitedPhotoViewController()
+    internal var imagePHPViewController = BasePHPickerViewController()
+    internal let limitedViewController = PHPickerLimitedPhotoViewController()
     
     var parentNavigationController: UINavigationController?
     var tabbarController: UITabBarController?
@@ -66,7 +66,6 @@ class PhotoUploadModalViewController: BaseViewController {
         super.viewDidLoad()
         
         setLayout()
-        imagePHPViewController.delegate = self
     }
 }
 
@@ -123,56 +122,5 @@ extension PhotoUploadModalViewController {
     
     func dismissBottomSheet() {
         self.dismiss(animated: true)
-    }
-}
-
-// MARK: - PHPickerProtocol
-
-extension PhotoUploadModalViewController: PHPickerProtocol {
-    func setupPicker() {
-        DispatchQueue.main.async {
-            guard let selectedImage = self.imagePHPViewController.pickerImage else { return }
-            
-            self.dismiss(animated: true)
-            self.delegate?.didFinishPickingImage(selectedImage)
-        }
-    }
-    
-    func presentLimitedLibrary() {
-        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
-    }
-    
-    func presentImageLibrary() {
-        DispatchQueue.main.async {
-            self.imagePHPViewController = BasePHPickerViewController()
-            self.imagePHPViewController.delegate = self
-            self.present(self.imagePHPViewController.phpickerViewController, animated: true)
-        }
-    }
-    
-    func presentDenidAlert() {
-        DispatchQueue.main.async {
-            self.present(self.imagePHPViewController.deniedAlert, animated: true, completion: nil)
-        }
-    }
-    
-    func presentLimitedAlert() {
-        DispatchQueue.main.async {
-            self.present(self.imagePHPViewController.limitedAlert, animated: true, completion: nil)
-        }
-    }
-    
-    func presentLimitedImageView() {
-        DispatchQueue.main.async {
-            self.limitedViewController.setImageDummy(forImage: self.imagePHPViewController.fetchLimitedImages())
-            self.navigationController?.pushViewController(self.limitedViewController, animated: true)
-        }
-    }
-    
-    func presentOverSize() {
-        DispatchQueue.main.async {
-            self.showPopup(popupType: .simple,
-                           secondaryText: "사진의 사이즈가 너무 커서\n업로드할 수 없어요!")
-        }
     }
 }
