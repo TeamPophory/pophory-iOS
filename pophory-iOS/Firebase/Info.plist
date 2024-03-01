@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UNIT_AD_ID</key>
+	<string>$(UNIT_AD_ID)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>네컷사진의 qr을 인식해 포포리로 사진을 불러오기 위해 카메라 엑세스를 허용해주세요.</string>
 	<key>NSUserTrackingUsageDescription</key>

@@ -35,10 +35,10 @@ final class TabBarController: UITabBarController, PHPickerProtocol {
         setupTabBar()
         setupDelegate()
         
-        #if RELEASE
-        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
-        fetchAdInfo(os: "ios", version: version)
-        #endif
+//        #if RELEASE
+//        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+//        fetchAdInfo(os: "ios", version: version)
+//        #endif
     }
 }
 
