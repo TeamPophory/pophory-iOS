@@ -88,6 +88,7 @@ extension TabBarController {
     
     private func setupDelegate() {
         self.delegate = self
+        imagePHPViewController.delegate = self
         homeAlbumViewController.albumStatusDelegate = self
     }
 }
