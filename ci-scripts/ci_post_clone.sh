@@ -7,7 +7,7 @@
 #
 
 # *.xconfig 파일이 생성될 폴더 경로
-FOLDER_PATH="/Volumes/workspace/repository/pophory-iOS"
+FOLDER_PATH="/Volumes/workspace/repository/pophory-iOS/pophory-iOS"
 
 # PARTS 배열의 두 번째 요소가 "Scheme Name"에 해당
 IFS='-' read -ra PARTS <<< "$CI_XCODE_SCHEME"
