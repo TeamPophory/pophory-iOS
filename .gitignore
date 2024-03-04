@@ -142,7 +142,7 @@ iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,macos,swift,cocoapods
 
-pophory-iOS.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+# pophory-iOS.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 pophory-iOS.xcodeproj/xcshareddata/xcschemes/pophory-iOS.xcscheme
 *.xcconfig
